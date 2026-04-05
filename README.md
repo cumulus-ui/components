@@ -15,6 +15,11 @@ Built with [Lit 3](https://lit.dev) + TypeScript.
 - **Tested** — real browser tests via Playwright, accessibility audits via axe-core
 - **Dual output** — ESM for bundlers, CDN bundle for `<script>` tags
 
+## References
+
+- [Cloudscape Design System](https://cloudscape.design) — AWS's open-source design system
+- [Rainforest](https://github.com/krhoyt/Rainforest) — Kevin Hoyt's Cloudscape-inspired web components ([fork](https://github.com/krhoyt/Rainforest/fork))
+
 ## License
 
 Apache 2.0
