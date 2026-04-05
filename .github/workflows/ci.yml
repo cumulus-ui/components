@@ -18,3 +18,13 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm run build
+      - run: npm run build:cdn
+      - name: Smoke-test CDN bundle
+        run: node --input-type=module -e "import './dist/cumulus-ui.cdn.js'"
+      - name: Upload demo
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo
+          path: |
+            demo/
+            dist/cumulus-ui.cdn.js

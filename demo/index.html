@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cumulus UI — Demo</title>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; }
+    </style>
+  </head>
+  <body>
+    <h1>Cumulus UI</h1>
+    <p id="status">Loading…</p>
+
+    <script type="module">
+      import '../dist/cumulus-ui.cdn.js';
+      document.getElementById('status').textContent =
+        '✓ CDN bundle loaded successfully';
+    </script>
+  </body>
+</html>
