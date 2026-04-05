@@ -16,11 +16,10 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      - run: npx playwright install --with-deps chromium
       - run: npm run typecheck
       - run: npm run build
-      - run: npm run build:cdn
-      - name: Smoke-test CDN bundle
-        run: node --input-type=module -e "import './dist/cumulus-ui.cdn.js'"
+      - run: npm run test
       - name: Upload demo
         uses: actions/upload-artifact@v4
         with:

@@ -20,6 +20,8 @@
     "build:esm": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --external:lit --external:lit/*",
     "build:cdn": "esbuild src/index.ts --bundle --format=esm --outfile=dist/cumulus-ui.cdn.js --minify",
     "build:types": "tsc --emitDeclarationOnly",
+    "dev": "npm run build:cdn && node scripts/serve.mjs",
+    "test": "npm run build:cdn && npx playwright test",
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "tsc --noEmit --watch",
     "clean": "rm -rf dist"
@@ -39,6 +41,7 @@
     "lit": "^3.2.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "esbuild": "^0.28.0",
     "typescript": "~5.7.0"
   }
