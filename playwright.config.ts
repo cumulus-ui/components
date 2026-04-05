@@ -11,6 +11,6 @@ export default defineConfig({
   webServer: {
     command: 'node scripts/serve.mjs',
     port: 3000,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,
   },
 });
