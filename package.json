@@ -1,7 +1,7 @@
 {
   "name": "@cumulus-ui/components",
   "version": "0.0.1",
-  "description": "Web components inspired by Cloudscape Design System and Rainforest",
+  "description": "Web components inspired by Cloudscape Design System",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -17,14 +17,17 @@
   ],
   "scripts": {
     "build": "npm run clean && npm run build:esm && npm run build:types",
-    "build:esm": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --external:lit --external:lit/*",
+    "build:esm": "esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js --external:lit --external:lit/* --external:@lit/context --external:@lit/context/*",
     "build:cdn": "esbuild src/index.ts --bundle --format=esm --outfile=dist/cumulus-ui.cdn.js --minify",
-    "build:types": "tsc --emitDeclarationOnly",
-    "dev": "npm run build:cdn && node scripts/serve.mjs",
+    "build:types": "tsc -p tsconfig.build.json",
+    "build:demo": "node scripts/build-demo.mjs",
+    "dev": "npx vite --port 3000",
     "test": "npm run build:cdn && npx playwright test",
-    "typecheck": "tsc --noEmit",
-    "typecheck:watch": "tsc --noEmit --watch",
-    "clean": "rm -rf dist"
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.demo.json",
+    "clean": "rm -rf dist",
+    "generate:interfaces": "tsx scripts/generate-interfaces.ts",
+    "generate:styles": "tsx scripts/generate-styles.ts",
+    "capture:baselines": "cd scripts/cloudscape-baselines && npm install && npx tsx capture.ts"
   },
   "keywords": [
     "web-components",
@@ -38,12 +41,24 @@
     "url": "https://github.com/cumulus-ui/components.git"
   },
   "dependencies": {
+    "@cloudscape-design/design-tokens": "^3.0.78",
+    "@cloudscape-design/global-styles": "^1.0.56",
+    "@cloudscape-design/theming-runtime": "^1.0.106",
+    "@floating-ui/dom": "^1.7.6",
+    "@lit/context": "^1.1.6",
     "lit": "^3.2.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
+    "@cloudscape-design/components": "^3.0.0",
     "@playwright/test": "^1.59.1",
     "@types/node": "^25.5.2",
+    "@types/pngjs": "^6.0.5",
     "esbuild": "^0.28.0",
-    "typescript": "~5.7.0"
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "~5.7.0",
+    "vite": "^8.0.5"
   }
 }

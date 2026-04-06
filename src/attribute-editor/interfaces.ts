@@ -1,0 +1,161 @@
+// AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
+// @ts-nocheck — references Cloudscape-internal types not yet generated
+import { ButtonDropdownProps } from '../button-dropdown/interfaces.js';
+export declare namespace AttributeEditorProps {
+  interface IsItemRemovableFunction<T> {
+    (item: T): boolean;
+  }
+  type FieldRenderable<T> = (item: T, itemIndex: number) => unknown;
+  interface FieldDefinition<T> {
+    label?: unknown;
+    description?: unknown;
+    info?: unknown;
+    control?: FieldRenderable<T> | unknown;
+    errorText?: FieldRenderable<T> | unknown;
+    warningText?: FieldRenderable<T> | unknown;
+    constraintText?: FieldRenderable<T> | unknown;
+  }
+  type AddButtonVariant = 'normal' | 'inline-link';
+  interface RemoveButtonClickDetail {
+    itemIndex: number;
+  }
+  interface Ref {
+    /**
+     * Focuses the 'remove' button for the given row index.
+     */
+    focusRemoveButton(itemIndex: number): void;
+    /**
+     * Focuses the 'add' button. Use this, for example, after a user removes the last row.
+     */
+    focusAddButton(): void;
+  }
+  interface RowActionsProps<T> {
+    item: T;
+    itemIndex: number;
+    ref: unknown;
+    breakpoint: Breakpoint | null;
+    ownRow: boolean;
+  }
+  interface I18nStrings<T = any> {
+    /**
+     * Provides a text alternative for the error icon in the error message.
+     */
+    errorIconAriaLabel?: string;
+    /**
+     * Provides a text alternative for the warning icon in the warning message.
+     */
+    warningIconAriaLabel?: string;
+    /**
+     * Announcement made to screen readers when an item is removed.
+     */
+    itemRemovedAriaLive?: string;
+    /**
+     * @deprecated Use `removeButtonAriaLabel` on the component instead.
+     */
+    removeButtonAriaLabel?: (item: T) => string;
+  }
+  type Breakpoint = InternalBreakpoint;
+  interface GridLayout {
+    breakpoint?: Breakpoint;
+    rows: ReadonlyArray<ReadonlyArray<number>>;
+    removeButton?: {
+      ownRow?: boolean;
+      width?: number | 'auto';
+    };
+  }
+}
+export interface AttributeEditorProps<T> {
+  /** @slot empty — Displayed when there are no items to display */
+  /** @slot additionalInfo — Displayed below the add button */
+  /**
+   * Specifies the text that's displayed in the add button.
+   */
+  addButtonText: string;
+  /**
+   * Specifies the text that's displayed in the remove button.
+   * @i18n
+   */
+  removeButtonText?: string;
+  /**
+   * Adds an `aria-label` to the remove button.
+   */
+  removeButtonAriaLabel?: (item: T) => string;
+  /**
+   * Specifies the items that serve as the data source for all rows.
+   * The display of a row is handled by the `definition` property.
+   */
+  items?: ReadonlyArray<T>;
+  /**
+   * Function that determines whether an item is removable. When this function returns `false`, the remove
+   * button is not rendered and the user can't remove the item.
+   * By default, all items are removable.
+   */
+  isItemRemovable?: AttributeEditorProps.IsItemRemovableFunction<T>;
+  /**
+   * Determines whether the add button is disabled.
+   */
+  disableAddButton?: boolean;
+  /**
+   * Determines whether the add button is hidden
+   */
+  hideAddButton?: boolean;
+  /** @slot additionalActions — Specifies additional actions displayed next to the add-button (or instead of the add-button if hidden) */
+  /**
+   * Specifies the variant to use for the add button. By default a normal button is used.
+   * Use `inline-link` when using an attribute editor nested inside complex attribute editing
+   * with expandable sections.
+   */
+  addButtonVariant?: AttributeEditorProps.AddButtonVariant;
+  /**
+   * Defines the editor configuration. Each object in the array represents one form field in the row.
+   * If more than 6 attributes are specified, a `gridLayout` must be provided.
+   *
+   * * `label` (unknown) - Text label for the form field.
+   * * `description` (unknown) - Additional description for the form field.
+   * * `info` (unknown) - Info link for the form field.
+   * * `errorText` ((item, itemIndex) => unknown) - Error message text to display as a control validation message.
+   *    It renders the form field as invalid if the returned value is not `null` or `undefined`.
+   * * `warningText` ((item, itemIndex) => unknown) - Warning message text to display as a control validation message.
+   *    It renders the form field in a warning state if the returned value is not `null` or `undefined`.
+   * * `constraintText` ((item, itemIndex) => unknown) - Text to display as a constraint message below the field.
+   * * `control` ((item, itemIndex) => unknown) - A control to use as the input for the field.
+   */
+  definition: ReadonlyArray<AttributeEditorProps.FieldDefinition<T>>;
+  /**
+   * Optionally specifies the layout of the attributes. By default, all attributes will be
+   * equally spaced and wrapped into multiple rows on smaller viewports.
+   *
+   * A `gridLayout` is an array of breakpoint definitions. Each definition consists of:
+   * - `rows` (`number[][]`): the rows in which to display the attributes. Each row consists of a list of numbers indicating
+   *   the relative width of each attribute. For example, `[[1, 1, 1, 1]]` is a single row of four evenly-spaced attributes,
+   *   or `[[1, 2], [1, 1, 1]]` splits five attributes onto two rows.
+   * - `breakpoint` (`string`): optionally specifies that the given entry should only be used when at least that much width is available.
+   * - `removeButton`: optionally configures the remove (or row action) button placement. If this is not provided, the button will be
+   *   placed at the end of a single row, or below if multiple rows are present. The `removeButton` property supports contains two properties:
+   *   - `ownRow` (`boolean`): forces the remove button onto its own row.
+   *   - `width` (`number | 'auto'`): a number indicating the relative width (equivalent to a `rows` entry), or 'auto' to fit to the button width.
+   */
+  gridLayout?: ReadonlyArray<AttributeEditorProps.GridLayout>;
+  /**
+   * Specifies a custom action trigger for each row, in place of the remove button.
+   * Only button and button dropdown components are supported.
+   * If you provide this, `removeButtonText`, `removeButtonAriaLabel`,
+   * and `onRemoveButtonClick` will be ignored.
+   * The trigger must be given the provided `ref` in order for `focusRemoveButton`
+   * to work.
+   * The function receives the following properties:
+   * - `item`: The item being rendered in the current row.
+   * - `itemIndex` (`number`): The index of the item.
+   * - `ref` (`ReactRef`): A React ref that should be passed to the rendered button.
+   * - `breakpoint` (`Breakpoint`): The current breakpoint, for responsive behavior.
+   * - `ownRow` (`boolean`): Whether the button is rendered on its own row.
+   */
+  customRowActions?: (props: AttributeEditorProps.RowActionsProps<T>) => unknown;
+  /** @event addButtonClick — CustomEvent<void> */
+  /** @event removeButtonClick — CustomEvent<AttributeEditorProps.RemoveButtonClickDetail> */
+  /**
+   * An object containing all the necessary localized strings required by the component.
+   * @i18n
+   */
+  i18nStrings?: AttributeEditorProps.I18nStrings<T>;
+}

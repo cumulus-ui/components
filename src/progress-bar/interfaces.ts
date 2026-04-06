@@ -1,0 +1,75 @@
+// AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
+// @ts-nocheck — references Cloudscape-internal types not yet generated
+export interface ProgressBarProps {
+  /**
+   * Indicates the current progress as a percentage. The value must be between 0 and 100. Decimals are rounded.
+   */
+  value?: number;
+  /**
+   * Specifies the status of the progress bar. You can set it to one of the following:
+   *
+   * - `"in-progress"` - Displays a progress bar.
+   * - `"success"` or `"error"` - Displays a result state and replaces the progress element with a status indicator,
+   * `resultText`, and a result button.
+   */
+  status?: ProgressBarProps.Status;
+  /**
+   * Enables the correct styling of the progress bar in different contexts. You can set it to one of the following:
+   *
+   * - `"flash"` - Use this variant when using the progress bar within a flash component.
+   *              Note that the result button isn't displayed when using this variant.
+   *              Use the `buttonText` property and the `onButtonClick` event listener of the flashbar item instead of the result button provided by the progress bar.
+   * - `"key-value"` - Use this variant when using the progress bar within the key-value pairs pattern.
+   * - `"standalone"` Use in all other cases. This is the default value.
+   */
+  variant?: ProgressBarProps.Variant;
+  /**
+   * Specifies the text for the button that's displayed when the `status` is set to `error` or `success`.
+   * If `resultButtonText` is empty, the result button isn't displayed.
+   *
+   * Note: If you use the `flash` variant, the result button isn't displayed.
+   * Add a button using the `action` property of the flashbar item instead.
+   */
+  resultButtonText?: string;
+  /**
+   * Adds an `aria-label` to the progress bar.
+   */
+  ariaLabel?: string;
+  /**
+   * Adds `aria-labelledby` to the progress bar.
+   */
+  ariaLabelledby?: string;
+  /**
+   * Adds `aria-describedby` to the progress bar.
+   */
+  ariaDescribedby?: string;
+  /** @slot label — Short description of the operation that appears at the top of the component */
+  /** @slot description — More detailed information about the operation that appears below the label */
+  /** @slot additionalInfo — Information that's displayed below the progress bar or status text */
+  /** @slot resultText — Content that's displayed when `status` is set to `error` or `success` */
+  /** @event resultButtonClick — CustomEvent<void> */
+  /**
+   * An object containing CSS properties to customize the progress bar's visual appearance.
+   * Refer to the [style](/components/progress-bar/?tabId=style) tab for more details.
+   */
+  style?: ProgressBarProps.Style;
+}
+export declare namespace ProgressBarProps {
+  type Status = 'in-progress' | 'success' | 'error';
+  type Variant = 'standalone' | 'flash' | 'key-value';
+  interface Style {
+    progressBar?: {
+      backgroundColor?: string;
+      borderRadius?: string;
+      height?: string;
+    };
+    progressValue?: {
+      backgroundColor?: string;
+    };
+    progressPercentage?: {
+      color?: string;
+      fontSize?: string;
+      fontWeight?: string;
+    };
+  }
+}

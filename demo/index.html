@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cumulus UI — Demo</title>
     <style>
-      body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; }
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 960px;
+        margin: 2rem auto;
+        padding: 0 16px;
+        background-color: var(--color-background-layout-main-5ilwcb, #ffffff);
+        color: var(--color-text-body-default-vvtq8u, #0f141a);
+        -webkit-font-smoothing: auto;
+        -moz-osx-font-smoothing: auto;
+      }
     </style>
   </head>
   <body>
-    <h1>Cumulus UI</h1>
-    <p id="status">Loading…</p>
-
-    <script type="module">
-      import '../dist/cumulus-ui.cdn.js';
-      document.getElementById('status').textContent =
-        '✓ CDN bundle loaded successfully';
-    </script>
+    <demo-app></demo-app>
+    <script type="module" src="/app.ts"></script>
   </body>
 </html>

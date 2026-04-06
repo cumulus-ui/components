@@ -7,23 +7,72 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
+
     steps:
+      # ── Checkout ──────────────────────────────────────────
       - uses: actions/checkout@v4
+
+      # ── Node setup ────────────────────────────────────────
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - run: npm run typecheck
-      - run: npm run build
-      - run: npm run test
-      - name: Upload demo
+
+      # ── Cache node_modules ────────────────────────────────
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        id: cache-node-modules
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            node-modules-${{ runner.os }}-
+
+      # ── Install dependencies ──────────────────────────────
+      - name: Install dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+      # ── Typecheck (all workspaces) ────────────────────────
+      - name: Typecheck
+        run: npm run typecheck
+
+      # ── Build (all workspaces) ────────────────────────────
+      - name: Build
+        run: npm run build
+
+      # ── Cache Playwright browsers ─────────────────────────
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(node -e "console.log(require('./package-lock.json').packages['node_modules/@playwright/test'].version)")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: cache-playwright
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
+
+      - name: Install Playwright browsers
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+
+      - name: Install Playwright system deps (cache hit)
+        if: steps.cache-playwright.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+
+      # ── Tests (unit + integration + visual + a11y) ────────
+      - name: Run tests
+        run: npm test
+
+      # ── Upload artifacts on failure ───────────────────────
+      - name: Upload test artifacts
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: demo
+          name: test-results
           path: |
-            demo/
-            dist/cumulus-ui.cdn.js
+            packages/*/test-results/
+            packages/*/playwright-report/
+          retention-days: 7
