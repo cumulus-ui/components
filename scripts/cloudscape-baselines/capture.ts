@@ -41,6 +41,7 @@ function startViteServer(): Promise<ChildProcess> {
     const child = spawn('npx', ['vite', '--port', String(PORT), '--strictPort'], {
       cwd: __dirname,
       stdio: ['ignore', 'pipe', 'pipe'],
+      detached: true,
     });
 
     let started = false;
@@ -53,7 +54,6 @@ function startViteServer(): Promise<ChildProcess> {
 
     child.stdout?.on('data', (data: Buffer) => {
       const text = data.toString();
-      process.stdout.write(`[vite stdout] ${text}`);
       if (text.includes('Local:') || text.includes(`localhost:${PORT}`) || text.includes('ready in')) {
         started = true;
         clearTimeout(timeout);
@@ -63,7 +63,6 @@ function startViteServer(): Promise<ChildProcess> {
 
     child.stderr?.on('data', (data: Buffer) => {
       const text = data.toString();
-      process.stderr.write(`[vite stderr] ${text}`);
       if (text.includes('Local:') || text.includes(`localhost:${PORT}`) || text.includes('ready in')) {
         started = true;
         clearTimeout(timeout);
@@ -159,7 +158,7 @@ async function capture() {
     await browser.close();
     console.log(`\nDone! Captured ${configs.length * 2} baselines.`);
   } finally {
-    server.kill();
+    if (server.pid) process.kill(-server.pid);
   }
 }
 
