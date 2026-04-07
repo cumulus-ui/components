@@ -1,6 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
-import { PropertyFilterFreeTextFiltering, PropertyFilterOperation, PropertyFilterOperator, PropertyFilterOperatorExtended, PropertyFilterOperatorForm, PropertyFilterOperatorFormat, PropertyFilterOperatorFormProps, PropertyFilterOption, PropertyFilterProperty, PropertyFilterQuery, PropertyFilterToken, PropertyFilterTokenGroup, PropertyFilterTokenType } from '@cloudscape-design/collection-hooks';
+import type { PropertyFilterFreeTextFiltering, PropertyFilterOperation, PropertyFilterOperator, PropertyFilterOperatorExtended, PropertyFilterOperatorForm, PropertyFilterOperatorFormat, PropertyFilterOperatorFormProps, PropertyFilterOption, PropertyFilterProperty, PropertyFilterQuery, PropertyFilterToken, PropertyFilterTokenGroup, PropertyFilterTokenType } from '@cloudscape-design/collection-hooks';
 import { AutosuggestProps } from '../autosuggest/interfaces.js';
 import { ExpandToViewport } from '../dropdown/interfaces.js';
 export interface PropertyFilterProps extends ExpandToViewport {

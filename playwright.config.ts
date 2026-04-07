@@ -17,12 +17,12 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'unit',
-      testMatch: '**/*.unit.test.ts',
+      name: 'smoke',
+      testMatch: '**/smoke.test.ts',
     },
     {
-      name: 'integration',
-      testMatch: '**/*.integ.test.ts',
+      name: 'unit',
+      testMatch: '**/*.unit.test.ts',
     },
     {
       name: 'visual',
@@ -32,12 +32,12 @@ export default defineConfig({
       },
     },
     {
-      name: 'a11y',
-      testMatch: '**/*.a11y.test.ts',
+      name: 'integration',
+      testMatch: '**/*.integ.test.ts',
     },
     {
-      name: 'smoke',
-      testMatch: '**/smoke.test.ts',
+      name: 'a11y',
+      testMatch: '**/*.a11y.test.ts',
     },
   ],
   webServer: {

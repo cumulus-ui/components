@@ -1,6 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
-import { GeneratedAnalyticsMetadataFragment } from '@cloudscape-design/component-toolkit/internal/analytics-metadata';
+import type { GeneratedAnalyticsMetadataFragment } from '@cloudscape-design/component-toolkit/internal/analytics-metadata';
 import { ButtonProps } from '../button/interfaces.js';
 import { ExpandToViewport } from '../dropdown/interfaces.js';
 import { IconProps } from '../icon/interfaces.js';
