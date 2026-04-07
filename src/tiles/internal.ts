@@ -24,13 +24,13 @@ export class CsTilesInternal extends Base {
   @property({ type: Array })
   items: ReadonlyArray<TilesProps.TilesDefinition> = [];
 
-  @property({ type: String, attribute: 'arialabel' })
+  @property({ type: String, attribute: 'aria-label' })
   controlAriaLabel = '';
 
-  @property({ type: Boolean, attribute: 'ariarequired' })
+  @property({ type: Boolean, attribute: 'aria-required' })
   controlAriaRequired = false;
 
-  @property({ type: String, attribute: 'ariacontrols' })
+  @property({ type: String, attribute: 'aria-controls' })
   controlAriaControls = '';
 
   @property({ type: Number })
