@@ -14,37 +14,37 @@ const Base = FormAssociatedMixin(CsBaseElement);
 
 const hostStyles = css`
   :host { display: block; }
-  .checkbox-icon {
+  svg.checkbox-icon-root {
     position: absolute;
     inline-size: 100%;
     block-size: 100%;
     inset-block-start: 0;
     inset-inline-start: 0;
   }
-  .checkbox-icon > .styled-box {
+  svg.checkbox-icon-root > .styled-box {
     fill: var(--color-background-control-default-4jb21l, #ffffff);
     stroke: var(--color-border-control-default-sh3548, #8c8c94);
     stroke-width: var(--border-width-field-2xc78x, 1px);
   }
-  .checkbox-icon > .styled-box-checked,
-  .checkbox-icon > .styled-box-indeterminate {
+  svg.checkbox-icon-root > .styled-box-checked,
+  svg.checkbox-icon-root > .styled-box-indeterminate {
     fill: var(--color-background-control-checked-ka7kc2, #006ce0);
     stroke: var(--color-border-control-checked-bdv28l, #006ce0);
   }
-  .checkbox-icon > .styled-box-disabled,
-  .checkbox-icon > .styled-box-readonly {
+  svg.checkbox-icon-root > .styled-box-disabled,
+  svg.checkbox-icon-root > .styled-box-readonly {
     fill: var(--color-background-control-disabled-1f3718, #dedee3);
     stroke: var(--color-border-control-disabled-uj7t08, #dedee3);
   }
-  .checkbox-icon > .styled-line {
+  svg.checkbox-icon-root > .styled-line {
     stroke: var(--color-foreground-control-default-eto4wy, #ffffff);
     stroke-width: 2;
     fill: none;
   }
-  .checkbox-icon > .styled-line-disabled {
+  svg.checkbox-icon-root > .styled-line-disabled {
     stroke: var(--color-foreground-control-disabled-txi6cf, #ffffff);
   }
-  .checkbox-icon > .styled-line-readonly {
+  svg.checkbox-icon-root > .styled-line-readonly {
     stroke: var(--color-foreground-control-read-only-7ydvuj, #656871);
   }
 `;
@@ -139,13 +139,8 @@ export class CsCheckboxInternal extends Base {
     return html`
       <label class="root wrapper" @click=${this._preventNativeToggle}>
         <span class="label-wrapper">
-          <span class=${classMap({
-              'control': true,
-              'checkbox-control': true,
-              'checkbox-control--checked': this.checked && !this.indeterminate,
-              'checkbox-control--indeterminate': this.indeterminate,
-            })}>
-            <svg class="checkbox-icon" viewBox="0 0 16 16" aria-hidden="true"><rect class=${classMap(styledBoxClasses)} x="0.5" y="0.5" width="15" height="15" rx="3" ry="3" />${
+          <span class="control checkbox-control">
+            <svg class="checkbox-icon-root" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect class=${classMap(styledBoxClasses)} x="0.5" y="0.5" width="15" height="15" rx="3" ry="3" />${
               this.checked && !this.indeterminate
                 ? svg`<polyline class=${classMap(styledLineClasses)} points="3.5,8 7,11 12,4" />`
                 : this.indeterminate

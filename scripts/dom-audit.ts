@@ -7,12 +7,15 @@
  * in a headless browser, extracts DOM trees, and reports actionable diffs.
  *
  * Usage:
- *   npx tsx scripts/dom-audit.ts                        # all components
- *   npx tsx scripts/dom-audit.ts --component tree-view  # single component
+ *   npx tsx scripts/dom-audit.ts                              # diff all components
+ *   npx tsx scripts/dom-audit.ts --component tree-view        # diff single component
+ *   npx tsx scripts/dom-audit.ts --capture --component checkbox  # save Cloudscape DOM as JSON
+ *   npx tsx scripts/dom-audit.ts --template --component checkbox # generate Lit template from captured JSON
  */
 
-import { chromium, type Browser, type Page } from '@playwright/test';
+import { chromium, type Page } from '@playwright/test';
 import { spawn, type ChildProcess } from 'node:child_process';
+import * as fs from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -36,6 +39,18 @@ interface DOMNode {
   classes: string[];
   role?: string;
   children: DOMNode[];
+}
+
+const CAPTURE_DIR = resolve(__dirname, 'output', 'dom-captures');
+
+interface CapturedSection {
+  name: string;
+  dom: DOMNode;
+}
+
+interface CapturedComponent {
+  component: string;
+  sections: CapturedSection[];
 }
 
 // ─── Server Management ────────────────────────────────────────
@@ -206,10 +221,105 @@ async function extractCloudscapeDOM(page: Page, url: string): Promise<DOMNode | 
   })()`);
 }
 
+// ─── Multi-Section Capture ────────────────────────────────────
+
+async function captureCloudscapeSections(page: Page, url: string): Promise<CapturedSection[]> {
+  await page.goto(url);
+  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(1000);
+
+  return page.evaluate(`(() => {
+    const walk = (el, depth) => {
+      if (depth > 15) return null;
+      const children = [];
+      for (const child of el.children) {
+        if (['SCRIPT', 'STYLE', 'TEMPLATE'].includes(child.tagName)) continue;
+        const w = walk(child, depth + 1);
+        if (w) children.push(w);
+      }
+      const classes = [...el.classList]
+        .map(c => { const m = c.match(/^awsui_([^_]+)_/); return m ? m[1] : c; })
+        .sort();
+      return {
+        tag: el.tagName.toLowerCase(),
+        classes,
+        role: el.getAttribute('role') || undefined,
+        children,
+      };
+    };
+
+    const sections = document.querySelectorAll('section');
+    const results = [];
+    for (const section of sections) {
+      const h3 = section.querySelector('h3');
+      const name = h3 ? h3.textContent.trim().toLowerCase().replace(/\\s+/g, '-') : 'unknown';
+      const root = section.querySelector('[class*="awsui_root"]');
+      if (root) results.push({ name, dom: walk(root, 0) });
+    }
+    return results;
+  })()`);
+}
+
+// ─── Lit Template Generator ───────────────────────────────────
+
+function domToLitTemplate(node: DOMNode, indent = 2): string {
+  const pad = ' '.repeat(indent);
+  const tag = node.tag;
+  const attrs: string[] = [];
+
+  if (node.classes.length > 0) {
+    attrs.push(`class="${node.classes.join(' ')}"`);
+  }
+  if (node.role) {
+    attrs.push(`role="${node.role}"`);
+  }
+
+  const attrStr = attrs.length > 0 ? ' ' + attrs.join(' ') : '';
+
+  if (node.children.length === 0) {
+    return `${pad}<${tag}${attrStr}></${tag}>`;
+  }
+
+  const childLines = node.children
+    .map(child => domToLitTemplate(child, indent + 2))
+    .join('\n');
+
+  return `${pad}<${tag}${attrStr}>\n${childLines}\n${pad}</${tag}>`;
+}
+
+function generateLitRenderMethod(component: string, sections: CapturedSection[]): string {
+  const lines: string[] = [];
+
+  lines.push(`// Generated from Cloudscape DOM capture — ${component}`);
+  lines.push(`// Sections captured: ${sections.map(s => s.name).join(', ')}`);
+  lines.push(`// Fill in: \${this.prop}, \${classMap({...})}, \${condition ? html\`...\` : nothing}`);
+  lines.push('');
+  lines.push(`import { html, nothing } from 'lit';`);
+  lines.push(`import { classMap } from 'lit/directives/class-map.js';`);
+  lines.push(`import { ifDefined } from 'lit/directives/if-defined.js';`);
+  lines.push('');
+
+  for (const section of sections) {
+    lines.push(`// ── ${section.name} ──`);
+    lines.push('');
+    lines.push('override render() {');
+    lines.push('  return html`');
+    lines.push(domToLitTemplate(section.dom, 4));
+    lines.push('  `;');
+    lines.push('}');
+    lines.push('');
+  }
+
+  return lines.join('\n');
+}
+
 // ─── Main ─────────────────────────────────────────────────────
 
 async function main() {
-  const filterArg = process.argv.find((_: string, i: number) => process.argv[i - 1] === '--component');
+  const args = process.argv.slice(2);
+  const filterArg = args.find((_: string, i: number) => args[i - 1] === '--component');
+  const isCapture = args.includes('--capture');
+  const isTemplate = args.includes('--template');
   const components = filterArg ? COMPONENTS.filter(c => c === filterArg) : COMPONENTS;
 
   if (filterArg && components.length === 0) {
@@ -217,50 +327,95 @@ async function main() {
     process.exit(1);
   }
 
+  if (isTemplate) {
+    fs.mkdirSync(resolve(__dirname, 'output'), { recursive: true });
+    for (const comp of components) {
+      const capturePath = resolve(CAPTURE_DIR, `${comp}.json`);
+      if (!fs.existsSync(capturePath)) {
+        console.error(`No capture found for ${comp}. Run --capture first.`);
+        continue;
+      }
+      const captured: CapturedComponent = JSON.parse(fs.readFileSync(capturePath, 'utf-8'));
+      const template = generateLitRenderMethod(comp, captured.sections);
+      const outPath = resolve(__dirname, 'output', `${comp}.template.ts`);
+      fs.writeFileSync(outPath, template + '\n');
+      console.log(`✓ ${comp} → ${outPath}`);
+    }
+    return;
+  }
+
   console.log('Starting servers...');
+  const servers: ChildProcess[] = [];
+
   const csServer = await startServer(CS_BASELINES, CS_PORT, 'Cloudscape');
-  const ourServer = await startServer(resolve(ROOT, 'demo'), OUR_PORT, 'Cumulus');
+  servers.push(csServer);
   console.log(`  Cloudscape: http://localhost:${CS_PORT}`);
-  console.log(`  Cumulus:    http://localhost:${OUR_PORT}\n`);
+
+  if (!isCapture) {
+    const ourServer = await startServer(resolve(ROOT, 'demo'), OUR_PORT, 'Cumulus');
+    servers.push(ourServer);
+    console.log(`  Cumulus:    http://localhost:${OUR_PORT}`);
+  }
 
   const browser = await chromium.launch();
 
   try {
-    console.log(`═══ DOM Audit ═══\n`);
-    console.log(`Comparing ${components.length} component(s)...\n`);
+    if (isCapture) {
+      fs.mkdirSync(CAPTURE_DIR, { recursive: true });
+      console.log(`\n═══ DOM Capture ═══\n`);
 
-    let totalDiffs = 0;
-    let clean = 0;
+      for (const comp of components) {
+        const page = await browser.newPage();
+        const url = `http://localhost:${CS_PORT}/#/light/${comp}`;
+        const sections = await captureCloudscapeSections(page, url);
 
-    for (const comp of components) {
-      const csPage = await browser.newPage();
-      const ourPage = await browser.newPage();
+        if (sections.length === 0) {
+          console.log(`  ⚠ ${comp}: no sections found`);
+        } else {
+          const captured: CapturedComponent = { component: comp, sections };
+          const outPath = resolve(CAPTURE_DIR, `${comp}.json`);
+          fs.writeFileSync(outPath, JSON.stringify(captured, null, 2));
+          console.log(`  ✓ ${comp} (${sections.length} sections: ${sections.map(s => s.name).join(', ')})`);
+        }
+        await page.close();
+      }
+    } else {
+      console.log(`\n═══ DOM Audit ═══\n`);
+      console.log(`Comparing ${components.length} component(s)...\n`);
 
-      const csUrl = `http://localhost:${CS_PORT}/#/light/${comp}`;
-      const ourUrl = `http://localhost:${OUR_PORT}/#/light/${comp}`;
+      let totalDiffs = 0;
+      let clean = 0;
 
-      const csDOM = await extractCloudscapeDOM(csPage, csUrl);
-      const ourDOM = await extractOurDOM(ourPage, ourUrl);
+      for (const comp of components) {
+        const csPage = await browser.newPage();
+        const ourPage = await browser.newPage();
 
-      const diffs = diffTrees(ourDOM, csDOM);
-      console.log(formatReport(comp, diffs));
-      totalDiffs += diffs.length;
-      if (diffs.length === 0) clean++;
+        const csUrl = `http://localhost:${CS_PORT}/#/light/${comp}`;
+        const ourUrl = `http://localhost:${OUR_PORT}/#/light/${comp}`;
 
-      await csPage.close();
-      await ourPage.close();
+        const csDOM = await extractCloudscapeDOM(csPage, csUrl);
+        const ourDOM = await extractOurDOM(ourPage, ourUrl);
+
+        const diffs = diffTrees(ourDOM, csDOM);
+        console.log(formatReport(comp, diffs));
+        totalDiffs += diffs.length;
+        if (diffs.length === 0) clean++;
+
+        await csPage.close();
+        await ourPage.close();
+      }
+
+      console.log(`\n═══ Summary ═══`);
+      console.log(`  Clean:       ${clean}/${components.length}`);
+      console.log(`  Differences: ${totalDiffs}`);
+
+      if (totalDiffs > 0) process.exitCode = 1;
     }
-
-    console.log(`\n═══ Summary ═══`);
-    console.log(`  Clean:       ${clean}/${components.length}`);
-    console.log(`  Differences: ${totalDiffs}`);
-
-    if (totalDiffs > 0) process.exitCode = 1;
-
   } finally {
     await browser.close();
-    if (csServer.pid) process.kill(-csServer.pid);
-    if (ourServer.pid) process.kill(-ourServer.pid);
+    for (const s of servers) {
+      if (s.pid) process.kill(-s.pid);
+    }
   }
 }
 

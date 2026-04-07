@@ -46,16 +46,16 @@ test.describe('Checkbox — Integration', () => {
 
   test('checked checkbox has visual indicator', async ({ page }) => {
     const checked = page.locator('cs-checkbox[checked]').first();
-    const control = checked.locator('.checkbox-control');
+    const box = checked.locator('.styled-box');
 
-    await expect(control).toHaveClass(/checkbox-control--checked/);
+    await expect(box).toHaveClass(/styled-box-checked/);
   });
 
   test('indeterminate checkbox has visual indicator', async ({ page }) => {
     const indet = page.locator('cs-checkbox[indeterminate]').first();
-    const control = indet.locator('.checkbox-control');
+    const box = indet.locator('.styled-box');
 
-    await expect(control).toHaveClass(/checkbox-control--indeterminate/);
+    await expect(box).toHaveClass(/styled-box-indeterminate/);
   });
 
   test('description renders when provided', async ({ page }) => {
