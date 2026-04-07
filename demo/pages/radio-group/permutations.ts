@@ -108,6 +108,7 @@ export class RadioGroupPermutationsPage extends LitElement {
       <section>
         <h3>Disabled Group</h3>
         <cs-radio-group
+          disabled
           value="x"
           .items=${[
             { value: 'x', label: 'Selected but disabled' },

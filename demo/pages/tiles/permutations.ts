@@ -94,6 +94,7 @@ export class TilesPermutationsPage extends LitElement {
       <section>
         <h3>Disabled Group</h3>
         <cs-tiles
+          disabled
           value="x"
           .items=${[
             { value: 'x', label: 'Selected', description: 'But the whole group is disabled' },

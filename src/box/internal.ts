@@ -61,7 +61,12 @@ function spacingClasses(
   return {};
 }
 
-const hostStyles = css`:host { display: block; }`;
+const hostStyles = css`
+  :host { display: block; }
+  :host([display="inline"]) { display: inline; }
+  :host([display="inline-block"]) { display: inline-block; }
+  :host([display="none"]) { display: none; }
+`;
 
 export class CsBoxInternal extends LitElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
