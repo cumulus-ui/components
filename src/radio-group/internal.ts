@@ -164,6 +164,7 @@ export class CsRadioGroupInternal extends Base {
     const groupName = this.name || this._groupName;
 
     const groupClasses = {
+      'root': true,
       'radio-group': true,
       'horizontal-group': this.direction === 'horizontal',
     };
@@ -194,8 +195,10 @@ export class CsRadioGroupInternal extends Base {
     const descId = item.description ? `${itemId}-desc` : undefined;
 
     const itemClasses = {
+      'root': true,
       'radio': true,
       'wrapper': true,
+      'selected': isChecked,
       'radio--has-description': !!item.description,
       'horizontal': this.direction === 'horizontal',
     };

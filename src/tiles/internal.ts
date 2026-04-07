@@ -198,7 +198,7 @@ export class CsTilesInternal extends Base {
     const tileClasses = {
       'tile-container': true,
       'refresh': true,
-      'breakpoint-xxs': true,
+      'breakpoint-xs': true,
       'selected': isSelected,
       'disabled': isDisabled,
       'readonly': this.readOnly,
@@ -219,7 +219,12 @@ export class CsTilesInternal extends Base {
         }}
       >
         <div class=${classMap(controlClasses)}>
-          <span class="wrapper">
+          <span class=${classMap({
+              'root': true,
+              'radio-button': true,
+              'wrapper': true,
+              'selected': isSelected,
+            })}>
             <span class="label-wrapper">
               <span class="control radio-control">
                 <svg viewBox="0 0 100 100" aria-hidden="true">

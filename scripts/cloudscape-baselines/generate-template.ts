@@ -66,6 +66,32 @@ const COMPONENTS: Record<string, ComponentConfig> = {
     ],
     slotContent: 'SLOT_DEFAULT',
   },
+  'radio-group': {
+    importPath: '@cloudscape-design/components/radio-group',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/radio-group/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/abstract-switch/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/radio-button/styles.css.js',
+    ],
+    baselineProps: {
+      value: 'opt1',
+      items: [
+        { value: 'opt1', label: 'Option 1' },
+        { value: 'opt2', label: 'Option 2' },
+        { value: 'opt3', label: 'Option 3' },
+      ],
+    },
+    variants: [
+      { name: 'value', value: 'opt2' },
+      { name: 'readOnly', value: true },
+      { name: 'items', value: [
+        { value: 'opt1', label: 'Option 1' },
+        { value: 'opt2', label: 'Option 2', disabled: true },
+        { value: 'opt3', label: 'Option 3' },
+      ]},
+    ],
+    slotContent: '',
+  },
 };
 
 // ─── DOM Parsing ──────────────────────────────────────────────
