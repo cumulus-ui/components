@@ -95,8 +95,8 @@ export class AnchorNavigationPermutationsPage extends LitElement {
         <h3 id="controlled-heading">Controlled (activeHref)</h3>
         <cs-anchor-navigation
           .anchors=${ANCHORS}
-          activeHref="#configuration"
-          ariaLabelledby="controlled-heading"
+          active-href="#configuration"
+          aria-labelledby="controlled-heading"
         ></cs-anchor-navigation>
       </section>
     `;
