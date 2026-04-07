@@ -10,7 +10,7 @@ test.describe('Spinner — Visual Regression', () => {
     await waitForPage(page, 'light/spinner');
     await freezeAnimations(page);
 
-    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'spinner-permutations.png'));
+    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'spinner-light.png'));
     expect(result.match).toBe(true);
   });
 

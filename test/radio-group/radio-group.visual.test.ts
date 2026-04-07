@@ -11,7 +11,7 @@ test.describe('RadioGroup — Visual Regression', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
-    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'radio-group-permutations.png'));
+    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'radio-group-light.png'));
     expect(result.match).toBe(true);
   });
 

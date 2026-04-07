@@ -11,7 +11,7 @@ test.describe('LiveRegion — Visual Regression', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
-    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'live-region-permutations.png'));
+    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'live-region-light.png'));
     expect(result.match).toBe(true);
   });
 

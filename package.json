@@ -44,6 +44,8 @@
     "@cloudscape-design/design-tokens": "^3.0.78",
     "@cloudscape-design/global-styles": "^1.0.56",
     "@cloudscape-design/theming-runtime": "^1.0.106",
+    "@cumulus-ui/design-tokens": "file:../tokens",
+    "@cumulus-ui/styles": "file:../styles",
     "@floating-ui/dom": "^1.7.6",
     "@lit/context": "^1.1.6",
     "lit": "^3.2.0"

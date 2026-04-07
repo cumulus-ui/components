@@ -11,7 +11,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@cloudscape-design': CS,
-      'cloudscape-tokens': resolve(CS, 'components/internal/base-component/styles.scoped.css'),
     },
   },
 });

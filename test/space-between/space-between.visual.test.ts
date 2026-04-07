@@ -11,7 +11,7 @@ test.describe('SpaceBetween — Visual Regression', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
-    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'space-between-permutations.png'));
+    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'space-between-light.png'));
     expect(result.match).toBe(true);
   });
 

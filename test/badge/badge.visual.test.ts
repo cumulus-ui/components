@@ -9,7 +9,7 @@ test.describe('Badge — Visual Regression', () => {
   test('permutations page matches baseline', async ({ page }) => {
     await waitForPage(page, 'light/badge');
 
-    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'badge-permutations.png'));
+    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'badge-light.png'));
     expect(result.match).toBe(true);
   });
 

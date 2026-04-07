@@ -9,7 +9,7 @@ test.describe('Icon — Visual Regression', () => {
   test('permutations page matches baseline', async ({ page }) => {
     await waitForPage(page, 'light/icon');
 
-    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'icon-permutations.png'));
+    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'icon-light.png'));
     expect(result.match).toBe(true);
   });
 

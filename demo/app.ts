@@ -1,5 +1,4 @@
-import '@cloudscape-design/global-styles/index.css';
-import 'cloudscape-tokens';
+import '@cumulus-ui/styles';
 import { LitElement, html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { parseHash, applyMode, type Route } from './router.js';

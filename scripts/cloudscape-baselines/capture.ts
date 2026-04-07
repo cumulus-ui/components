@@ -9,7 +9,16 @@ const COMPONENTS_PKG = resolve(__dirname, '..', '..');
 const PORT = 4173;
 const BASE_URL = `http://localhost:${PORT}`;
 
-const COMPONENTS = [
+interface ComponentConfig {
+  name: string;
+  selector?: string;
+}
+
+function parseComponent(entry: string | ComponentConfig): ComponentConfig {
+  return typeof entry === 'string' ? { name: entry } : entry;
+}
+
+const COMPONENTS: (string | ComponentConfig)[] = [
   'checkbox',
   'icon',
   'box',
@@ -76,12 +85,14 @@ function startViteServer(): Promise<ChildProcess> {
 
 async function capture() {
   const filterArg = process.argv[2];
-  const components = filterArg
-    ? COMPONENTS.filter(c => c === filterArg)
-    : COMPONENTS;
+  const configs = (filterArg
+    ? COMPONENTS.filter(c => (typeof c === 'string' ? c : c.name) === filterArg)
+    : COMPONENTS
+  ).map(parseComponent);
 
-  if (filterArg && components.length === 0) {
-    console.error(`Unknown component: ${filterArg}\nAvailable: ${COMPONENTS.join(', ')}`);
+  if (filterArg && configs.length === 0) {
+    const names = COMPONENTS.map(c => typeof c === 'string' ? c : c.name);
+    console.error(`Unknown component: ${filterArg}\nAvailable: ${names.join(', ')}`);
     process.exit(1);
   }
 
@@ -95,7 +106,7 @@ async function capture() {
       viewport: { width: 1280, height: 720 },
     });
 
-    for (const component of components) {
+    for (const { name: component, selector } of configs) {
       const baselineDir = resolve(COMPONENTS_PKG, 'test', component, 'baselines');
       if (!existsSync(baselineDir)) {
         mkdirSync(baselineDir, { recursive: true });
@@ -117,7 +128,7 @@ async function capture() {
         await page.waitForFunction(
           () => {
             const root = document.querySelector('#root');
-            return root && root.querySelector('h2') !== null;
+            return root && root.children.length > 0;
           },
           { timeout: 5000 },
         );
@@ -133,11 +144,9 @@ async function capture() {
         });
         await page.waitForTimeout(50);
 
-        const filename = mode === 'light'
-          ? `${component}-permutations.png`
-          : `${component}-dark.png`;
+        const filename = `${component}-${mode}.png`;
 
-        await page.locator('body').screenshot({
+        await page.locator(selector ?? 'body').screenshot({
           path: resolve(baselineDir, filename),
         });
 
@@ -146,7 +155,7 @@ async function capture() {
     }
 
     await browser.close();
-    console.log(`\nDone! Captured ${components.length * 2} baselines.`);
+    console.log(`\nDone! Captured ${configs.length * 2} baselines.`);
   } finally {
     server.kill();
   }

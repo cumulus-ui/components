@@ -9,7 +9,7 @@ test.describe('Checkbox — Visual Regression', () => {
   test('permutations page matches baseline', async ({ page }) => {
     await waitForPage(page, 'light/checkbox');
 
-    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'checkbox-permutations.png'));
+    const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'checkbox-light.png'));
     expect(result.match).toBe(true);
   });
 
