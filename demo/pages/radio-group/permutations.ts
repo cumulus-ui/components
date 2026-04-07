@@ -56,7 +56,7 @@ export class RadioGroupPermutationsPage extends LitElement {
             { value: 'option-2', label: 'Option 2' },
             { value: 'option-3', label: 'Option 3' },
           ]}
-          ariaLabel="Default radio group"
+          aria-label="Default radio group"
           @change=${(e: CustomEvent) => { this._value1 = e.detail.value; }}
         ></cs-radio-group>
         <div class="result">Selected: ${this._value1}</div>
@@ -72,7 +72,7 @@ export class RadioGroupPermutationsPage extends LitElement {
             { value: 'md', label: 'Medium' },
             { value: 'lg', label: 'Large' },
           ]}
-          ariaLabel="Size selection"
+          aria-label="Size selection"
           @change=${(e: CustomEvent) => { this._value2 = e.detail.value; }}
         ></cs-radio-group>
         <div class="result">Selected: ${this._value2 || '(none)'}</div>
@@ -87,7 +87,7 @@ export class RadioGroupPermutationsPage extends LitElement {
             { value: 'opt-b', label: 'Option B', description: 'Second option with details' },
             { value: 'opt-c', label: 'Option C', description: 'Third option explained' },
           ]}
-          ariaLabel="Options with descriptions"
+          aria-label="Options with descriptions"
           @change=${(e: CustomEvent) => { this._value3 = e.detail.value; }}
         ></cs-radio-group>
       </section>
@@ -101,7 +101,7 @@ export class RadioGroupPermutationsPage extends LitElement {
             { value: 'disabled-1', label: 'Disabled item', disabled: true },
             { value: 'enabled-2', label: 'Also enabled' },
           ]}
-          ariaLabel="Group with disabled items"
+          aria-label="Group with disabled items"
         ></cs-radio-group>
       </section>
 
@@ -114,20 +114,20 @@ export class RadioGroupPermutationsPage extends LitElement {
             { value: 'x', label: 'Selected but disabled' },
             { value: 'y', label: 'Another disabled' },
           ]}
-          ariaLabel="Fully disabled group"
+          aria-label="Fully disabled group"
         ></cs-radio-group>
       </section>
 
       <section>
         <h3>Read Only</h3>
         <cs-radio-group
-          readOnly
+          read-only
           value="ro-1"
           .items=${[
             { value: 'ro-1', label: 'Read-only selected' },
             { value: 'ro-2', label: 'Read-only unselected' },
           ]}
-          ariaLabel="Read-only group"
+          aria-label="Read-only group"
         ></cs-radio-group>
       </section>
     `;

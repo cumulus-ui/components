@@ -114,7 +114,7 @@ export class GridPermutationsPage extends LitElement {
 
       <section>
         <h3>Disabled Gutters</h3>
-        <cs-grid .gridDefinition=${this._equalCols} disableGutters>
+        <cs-grid .gridDefinition=${this._equalCols} disable-gutters>
           <div class="cell">No gap 1</div>
           <div class="cell">No gap 2</div>
           <div class="cell">No gap 3</div>

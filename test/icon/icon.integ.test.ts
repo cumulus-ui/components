@@ -40,7 +40,7 @@ test.describe('Icon — Integration', () => {
   });
 
   test('accessible icon has role=img and aria-label', async ({ page }) => {
-    const icon = page.locator('cs-icon[ariaLabel="Search"]');
+    const icon = page.locator('cs-icon[aria-label="Search"]');
     const inner = icon.locator('.icon');
     await expect(inner).toHaveAttribute('role', 'img');
     await expect(inner).toHaveAttribute('aria-label', 'Search');

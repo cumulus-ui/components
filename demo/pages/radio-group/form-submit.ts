@@ -70,7 +70,7 @@ export class RadioGroupFormSubmitPage extends LitElement {
             { value: 'standard', label: 'Standard' },
             { value: 'premium', label: 'Premium' },
           ]}
-          ariaLabel="Plan selection"
+          aria-label="Plan selection"
         ></cs-radio-group>
         <button type="submit">Submit</button>
       </form>

@@ -46,13 +46,13 @@ test.describe('SpaceBetween — Integration', () => {
   });
 
   test('alignItems center is applied', async ({ page }) => {
-    const sb = page.locator('cs-space-between[alignitems="center"]').first();
+    const sb = page.locator('cs-space-between[align-items="center"]').first();
     const inner = sb.locator('.root');
     await expect(inner).toHaveClass(/align-center/);
   });
 
   test('alignItems end is applied', async ({ page }) => {
-    const sb = page.locator('cs-space-between[alignitems="end"]').first();
+    const sb = page.locator('cs-space-between[align-items="end"]').first();
     const inner = sb.locator('.root');
     await expect(inner).toHaveClass(/align-end/);
   });

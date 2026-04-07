@@ -61,7 +61,7 @@ test.describe('RadioGroup — Integration', () => {
   });
 
   test('readOnly group blocks selection change', async ({ page }) => {
-    const readOnlyGroup = page.locator('cs-radio-group[readonly]').first();
+    const readOnlyGroup = page.locator('cs-radio-group[read-only]').first();
 
     expect(await readOnlyGroup.evaluate((el: any) => el.value)).toBe('ro-1');
     await readOnlyGroup.locator('.radio').last().click();
@@ -88,7 +88,7 @@ test.describe('RadioGroup — Integration', () => {
   test('description renders when provided', async ({ page }) => {
     const groups = page.locator('cs-radio-group');
     const descGroup = groups.nth(2);
-    const desc = descGroup.locator('.radio-description');
+    const desc = descGroup.locator('.description');
 
     await expect(desc.first()).toBeVisible();
     await expect(desc.first()).toHaveText(/First option with extra info/);
@@ -96,9 +96,9 @@ test.describe('RadioGroup — Integration', () => {
 
   test('checked radio has visual indicator', async ({ page }) => {
     const group = page.locator('cs-radio-group').first();
-    const firstControl = group.locator('.radio-control').first();
+    const firstControl = group.locator('.styled-circle-checked').first();
 
-    await expect(firstControl).toHaveClass(/radio-control--checked/);
+    await expect(firstControl).toBeVisible();
   });
 
   test('has radiogroup role', async ({ page }) => {

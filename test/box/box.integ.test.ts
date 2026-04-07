@@ -35,25 +35,25 @@ test.describe('Box — Integration', () => {
   });
 
   test('applies fontSize class', async ({ page }) => {
-    const box = page.locator('cs-box[fontsize="heading-xl"]').first();
+    const box = page.locator('cs-box[font-size="heading-xl"]').first();
     const inner = box.locator('.box');
     await expect(inner).toHaveClass(/font-size-heading-xl/);
   });
 
   test('applies fontWeight class', async ({ page }) => {
-    const box = page.locator('cs-box[fontweight="bold"]').first();
+    const box = page.locator('cs-box[font-weight="bold"]').first();
     const inner = box.locator('.box');
     await expect(inner).toHaveClass(/font-weight-bold/);
   });
 
   test('applies textAlign class', async ({ page }) => {
-    const box = page.locator('cs-box[textalign="center"]').first();
+    const box = page.locator('cs-box[text-align="center"]').first();
     const inner = box.locator('.box');
     await expect(inner).toHaveClass(/t-center/);
   });
 
   test('tagOverride overrides the inner element tag', async ({ page }) => {
-    const box = page.locator('cs-box[tagoverride="span"]').first();
+    const box = page.locator('cs-box[tag-override="span"]').first();
     const innerTag = await box.evaluate((el) => {
       return el.shadowRoot?.querySelector('.box')?.tagName.toLowerCase();
     });

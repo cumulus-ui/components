@@ -37,7 +37,7 @@ test.describe('Checkbox — Integration', () => {
   });
 
   test('readOnly checkbox blocks toggle', async ({ page }) => {
-    const readOnlyCheckbox = page.locator('cs-checkbox[readonly]').first();
+    const readOnlyCheckbox = page.locator('cs-checkbox[read-only]').first();
 
     expect(await readOnlyCheckbox.evaluate((el: any) => el.checked)).toBe(true);
     await readOnlyCheckbox.click();

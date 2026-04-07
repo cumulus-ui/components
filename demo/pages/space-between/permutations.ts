@@ -109,7 +109,7 @@ export class SpaceBetweenPermutationsPage extends LitElement {
 
       <section>
         <h3>Horizontal - Align Center</h3>
-        <cs-space-between direction="horizontal" size="m" alignItems="center">
+        <cs-space-between direction="horizontal" size="m" align-items="center">
           <div class="item" style="padding: 4px 12px;">Short</div>
           <div class="item" style="padding: 24px 12px;">Tall</div>
           <div class="item" style="padding: 12px;">Medium</div>
@@ -118,7 +118,7 @@ export class SpaceBetweenPermutationsPage extends LitElement {
 
       <section>
         <h3>Horizontal - Align End</h3>
-        <cs-space-between direction="horizontal" size="m" alignItems="end">
+        <cs-space-between direction="horizontal" size="m" align-items="end">
           <div class="item" style="padding: 4px 12px;">Short</div>
           <div class="item" style="padding: 24px 12px;">Tall</div>
           <div class="item" style="padding: 12px;">Medium</div>

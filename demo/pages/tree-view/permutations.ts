@@ -131,7 +131,7 @@ export class TreeViewPermutationsPage extends LitElement {
           .getItemChildren=${this._getItemChildren}
           .expandedItems=${this._expandedWithLines}
           label="File tree with connector lines"
-          connectorLines="vertical"
+          connector-lines="vertical"
           @itemToggle=${this._handleToggleWithLines}
         ></cs-tree-view>
       </section>

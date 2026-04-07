@@ -85,24 +85,24 @@ export class BoxPermutationsPage extends LitElement {
       <section>
         <h3>Font Sizes</h3>
         <div class="row">
-          <cs-box fontSize="body-s">Body small</cs-box>
-          <cs-box fontSize="body-m">Body medium</cs-box>
-          <cs-box fontSize="heading-xs">Heading XS</cs-box>
-          <cs-box fontSize="heading-s">Heading S</cs-box>
-          <cs-box fontSize="heading-m">Heading M</cs-box>
-          <cs-box fontSize="heading-l">Heading L</cs-box>
-          <cs-box fontSize="heading-xl">Heading XL</cs-box>
-          <cs-box fontSize="display-l">Display L</cs-box>
+          <cs-box font-size="body-s">Body small</cs-box>
+          <cs-box font-size="body-m">Body medium</cs-box>
+          <cs-box font-size="heading-xs">Heading XS</cs-box>
+          <cs-box font-size="heading-s">Heading S</cs-box>
+          <cs-box font-size="heading-m">Heading M</cs-box>
+          <cs-box font-size="heading-l">Heading L</cs-box>
+          <cs-box font-size="heading-xl">Heading XL</cs-box>
+          <cs-box font-size="display-l">Display L</cs-box>
         </div>
       </section>
 
       <section>
         <h3>Font Weights</h3>
         <div class="row">
-          <cs-box fontWeight="light">Light weight</cs-box>
-          <cs-box fontWeight="normal">Normal weight</cs-box>
-          <cs-box fontWeight="bold">Bold weight</cs-box>
-          <cs-box fontWeight="heavy">Heavy weight</cs-box>
+          <cs-box font-weight="light">Light weight</cs-box>
+          <cs-box font-weight="normal">Normal weight</cs-box>
+          <cs-box font-weight="bold">Bold weight</cs-box>
+          <cs-box font-weight="heavy">Heavy weight</cs-box>
         </div>
       </section>
 
@@ -118,16 +118,16 @@ export class BoxPermutationsPage extends LitElement {
       <section>
         <h3>Text Alignment</h3>
         <div class="row">
-          <cs-box textAlign="left">Left aligned</cs-box>
-          <cs-box textAlign="center">Center aligned</cs-box>
-          <cs-box textAlign="right">Right aligned</cs-box>
+          <cs-box text-align="left">Left aligned</cs-box>
+          <cs-box text-align="center">Center aligned</cs-box>
+          <cs-box text-align="right">Right aligned</cs-box>
         </div>
       </section>
 
       <section>
         <h3>Tag Override</h3>
         <div class="row">
-          <cs-box variant="h1" tagOverride="span">H1 variant rendered as span</cs-box>
+          <cs-box variant="h1" tag-override="span">H1 variant rendered as span</cs-box>
         </div>
       </section>
     `;

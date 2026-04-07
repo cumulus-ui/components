@@ -55,7 +55,7 @@ export class TilesPermutationsPage extends LitElement {
             { value: 't2', label: 'Tile Two', description: 'Second tile description' },
             { value: 't3', label: 'Tile Three', description: 'Third tile description' },
           ]}
-          ariaLabel="Default tiles"
+          aria-label="Default tiles"
           @change=${(e: CustomEvent) => { this._value1 = e.detail.value; }}
         ></cs-tiles>
         <div class="result">Selected: ${this._value1}</div>
@@ -72,7 +72,7 @@ export class TilesPermutationsPage extends LitElement {
             { value: 'c', label: 'Gamma', description: 'Option Gamma details' },
             { value: 'd', label: 'Delta', description: 'Option Delta details' },
           ]}
-          ariaLabel="Two-column tiles"
+          aria-label="Two-column tiles"
           @change=${(e: CustomEvent) => { this._value2 = e.detail.value; }}
         ></cs-tiles>
         <div class="result">Selected: ${this._value2 || '(none)'}</div>
@@ -87,7 +87,7 @@ export class TilesPermutationsPage extends LitElement {
             { value: 'disabled-a', label: 'Unavailable', description: 'This tile is disabled', disabled: true },
             { value: 'enabled-b', label: 'Also Available', description: 'This tile is selectable too' },
           ]}
-          ariaLabel="Tiles with disabled option"
+          aria-label="Tiles with disabled option"
         ></cs-tiles>
       </section>
 
@@ -100,20 +100,20 @@ export class TilesPermutationsPage extends LitElement {
             { value: 'x', label: 'Selected', description: 'But the whole group is disabled' },
             { value: 'y', label: 'Other', description: 'Also disabled' },
           ]}
-          ariaLabel="Fully disabled tiles"
+          aria-label="Fully disabled tiles"
         ></cs-tiles>
       </section>
 
       <section>
         <h3>Read Only</h3>
         <cs-tiles
-          readOnly
+          read-only
           value="ro-1"
           .items=${[
             { value: 'ro-1', label: 'Read-only selected', description: 'Cannot change' },
             { value: 'ro-2', label: 'Read-only other', description: 'Also cannot change' },
           ]}
-          ariaLabel="Read-only tiles"
+          aria-label="Read-only tiles"
         ></cs-tiles>
       </section>
     `;

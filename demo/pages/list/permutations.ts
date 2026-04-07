@@ -88,7 +88,7 @@ export class ListPermutationsPage extends LitElement {
           .items=${sampleItems.slice(0, 3)}
           .renderItem=${this._renderItem}
           label="Compact list"
-          disablePaddings
+          disable-paddings
         ></cs-list>
       </section>
 
@@ -108,7 +108,7 @@ export class ListPermutationsPage extends LitElement {
           .items=${sampleItems.slice(0, 3)}
           .renderItem=${this._renderItem}
           label="Ordered list"
-          tagOverride="ol"
+          tag-override="ol"
         ></cs-list>
       </section>
 

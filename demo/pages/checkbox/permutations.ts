@@ -90,7 +90,7 @@ export class CheckboxPermutationsPage extends LitElement {
       <section>
         <h3>With ARIA Label</h3>
         <div class="row">
-          <cs-checkbox ariaLabel="Accept terms and conditions">Accept T&amp;C</cs-checkbox>
+          <cs-checkbox aria-label="Accept terms and conditions">Accept T&amp;C</cs-checkbox>
         </div>
       </section>
     `;

@@ -134,16 +134,16 @@ export class IconPermutationsPage extends LitElement {
       <section>
         <h3>With ARIA Label (accessible)</h3>
         <div class="grid">
-          <cs-icon name="search" ariaLabel="Search"></cs-icon>
-          <cs-icon name="close" ariaLabel="Close dialog"></cs-icon>
-          <cs-icon name="notification" ariaLabel="3 new notifications"></cs-icon>
+          <cs-icon name="search" aria-label="Search"></cs-icon>
+          <cs-icon name="close" aria-label="Close dialog"></cs-icon>
+          <cs-icon name="notification" aria-label="3 new notifications"></cs-icon>
         </div>
       </section>
 
       <section>
         <h3>URL-based Icon</h3>
         <div class="grid">
-          <cs-icon url="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='7' fill='%23006ce0'/></svg>" ariaLabel="Custom blue circle"></cs-icon>
+          <cs-icon url="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='7' fill='%23006ce0'/></svg>" aria-label="Custom blue circle"></cs-icon>
         </div>
       </section>
     `;

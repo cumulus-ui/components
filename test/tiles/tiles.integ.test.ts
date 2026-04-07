@@ -61,7 +61,7 @@ test.describe('Tiles — Integration', () => {
   });
 
   test('readOnly group blocks selection change', async ({ page }) => {
-    const readOnlyGroup = page.locator('cs-tiles[readonly]').first();
+    const readOnlyGroup = page.locator('cs-tiles[read-only]').first();
 
     expect(await readOnlyGroup.evaluate((el: any) => el.value)).toBe('ro-1');
     await readOnlyGroup.locator('.tile-container').last().click();
@@ -87,7 +87,7 @@ test.describe('Tiles — Integration', () => {
 
   test('description renders when provided', async ({ page }) => {
     const tiles = page.locator('cs-tiles').first();
-    const desc = tiles.locator('.tile-description');
+    const desc = tiles.locator('.description');
 
     await expect(desc.first()).toBeVisible();
     await expect(desc.first()).toHaveText(/First tile description/);

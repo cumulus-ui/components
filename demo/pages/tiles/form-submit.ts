@@ -72,7 +72,7 @@ export class TilesFormSubmitPage extends LitElement {
             { value: 't3.large', label: 't3.large', description: '2 vCPU, 8 GiB RAM' },
             { value: 't3.xlarge', label: 't3.xlarge', description: '4 vCPU, 16 GiB RAM' },
           ]}
-          ariaLabel="Instance type selection"
+          aria-label="Instance type selection"
         ></cs-tiles>
         <button type="submit">Submit</button>
       </form>

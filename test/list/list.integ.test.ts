@@ -37,7 +37,7 @@ test.describe('List — Integration', () => {
   });
 
   test('uses ol tag when tagOverride is set', async ({ page }) => {
-    const orderedList = page.locator('cs-list[tagOverride="ol"]');
+    const orderedList = page.locator('cs-list[tag-override="ol"]');
     const ol = orderedList.locator('ol');
     await expect(ol).toHaveCount(1);
   });
@@ -55,7 +55,7 @@ test.describe('List — Integration', () => {
   });
 
   test('disablePaddings removes list padding', async ({ page }) => {
-    const noPaddingList = page.locator('cs-list[disablePaddings]').first();
+    const noPaddingList = page.locator('cs-list[disable-paddings]').first();
     const listEl = noPaddingList.locator('.root');
     await expect(listEl).toHaveClass(/disable-paddings/);
   });

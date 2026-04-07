@@ -32,7 +32,7 @@ test.describe('Grid — Integration', () => {
   });
 
   test('disableGutters removes gap', async ({ page }) => {
-    const noGutterGrid = page.locator('cs-grid[disablegutters]').first();
+    const noGutterGrid = page.locator('cs-grid[disable-gutters]').first();
     const inner = noGutterGrid.locator('.grid');
     await expect(inner).toHaveClass(/no-gutters/);
   });

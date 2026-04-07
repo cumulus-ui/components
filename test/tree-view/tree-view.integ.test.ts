@@ -75,7 +75,7 @@ test.describe('TreeView — Integration', () => {
   });
 
   test('connector lines variant adds class', async ({ page }) => {
-    const treeWithLines = page.locator('cs-tree-view[connectorLines="vertical"]');
+    const treeWithLines = page.locator('cs-tree-view[connector-lines="vertical"]');
     const treeEl = treeWithLines.locator('.root');
     await expect(treeEl).toHaveClass(/root--connector-lines/);
   });
