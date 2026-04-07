@@ -19,21 +19,10 @@ function parseComponent(entry: string | ComponentConfig): ComponentConfig {
 }
 
 const COMPONENTS: (string | ComponentConfig)[] = [
+  'badge',
   'checkbox',
   'icon',
-  'box',
-  'grid',
-  'space-between',
-  'text-content',
   'spinner',
-  'badge',
-  'live-region',
-  'radio-group',
-  'tiles',
-  'list',
-  'tree-view',
-  'file-dropzone',
-  'anchor-navigation',
 ];
 
 function startViteServer(): Promise<ChildProcess> {
@@ -107,13 +96,13 @@ async function capture() {
       viewport: { width: 1280, height: 720 },
     });
 
-    for (const { name: component, selector } of configs) {
+    const tasks = configs.flatMap(({ name: component, selector }) => {
       const baselineDir = resolve(COMPONENTS_PKG, 'test', component, 'baselines');
       if (!existsSync(baselineDir)) {
         mkdirSync(baselineDir, { recursive: true });
       }
 
-      for (const mode of ['light', 'dark'] as const) {
+      return (['light', 'dark'] as const).map((mode) => async () => {
         const page = await context.newPage();
         const url = `${BASE_URL}/#/${mode}/${component}/permutations`;
         console.log(`  Capturing ${mode}/${component}...`);
@@ -137,9 +126,7 @@ async function capture() {
         await page.evaluate(async () => {
           await document.fonts.load('400 14px "Open Sans"');
           await document.fonts.load('700 14px "Open Sans"');
-          await document.fonts.ready;
         });
-        await page.waitForTimeout(100);
         await page.addStyleTag({
           content: '*, *::before, *::after { animation: none !important; transition: none !important; }',
         });
@@ -152,7 +139,12 @@ async function capture() {
         });
 
         await page.close();
-      }
+      });
+    });
+
+    const CONCURRENCY = 4;
+    for (let i = 0; i < tasks.length; i += CONCURRENCY) {
+      await Promise.all(tasks.slice(i, i + CONCURRENCY).map((t) => t()));
     }
 
     await browser.close();

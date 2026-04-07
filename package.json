@@ -27,7 +27,7 @@
     "clean": "rm -rf dist",
     "generate:interfaces": "tsx scripts/generate-interfaces.ts",
     "generate:styles": "tsx scripts/generate-styles.ts",
-    "capture:baselines": "cd scripts/cloudscape-baselines && npm install && npx tsx capture.ts"
+    "capture:baselines": "cd scripts/cloudscape-baselines && npm ci && npx tsx capture.ts"
   },
   "keywords": [
     "web-components",
