@@ -4,8 +4,8 @@ test('CDN bundle loads without errors', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (err) => errors.push(err.message));
 
-  await page.goto('/demo/index.html');
+  await page.goto('/');
 
-  await expect(page.locator('#status')).toHaveText('✓ CDN bundle loaded successfully');
+  await expect(page.locator('demo-app h1')).toHaveText('Cumulus UI Demo');
   expect(errors).toHaveLength(0);
 });
