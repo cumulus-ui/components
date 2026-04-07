@@ -4,6 +4,7 @@ dist/
 .DS_Store
 test/.results/
 test/*/baselines/
+scripts/output/
 playwright-report/
 *.actual.png
 *.diff.png
