@@ -264,6 +264,29 @@ function processComponent(name: string): boolean {
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(path.join(outDir, 'styles.ts'), output);
   console.log(`  ✓ ${name}`);
+
+  // Process sub-component styles (e.g. tree-view/tree-item/, anchor-navigation/anchor-item/)
+  const SKIP_SUBDIRS = new Set(['test-classes', 'analytics-metadata', 'keyboard-navigation']);
+  const compDir = path.join(CS, name);
+  const subDirs = fs.readdirSync(compDir, { withFileTypes: true })
+    .filter(d => d.isDirectory() && !SKIP_SUBDIRS.has(d.name))
+    .filter(d =>
+      fs.existsSync(path.join(compDir, d.name, 'styles.scoped.css')) &&
+      fs.existsSync(path.join(compDir, d.name, 'styles.css.js')),
+    );
+
+  for (const sub of subDirs) {
+    const subCssPath = path.join(compDir, sub.name, 'styles.scoped.css');
+    const subCssJsPath = path.join(compDir, sub.name, 'styles.css.js');
+    const subCss = transformCSS(subCssPath, subCssJsPath);
+    const subStyleName = `${name}-${sub.name}`;
+    const subOutput = wrapInternalLitCSS(subCss, subStyleName);
+
+    fs.mkdirSync(OUT_INTERNAL, { recursive: true });
+    fs.writeFileSync(path.join(OUT_INTERNAL, `${subStyleName}.ts`), subOutput);
+    console.log(`    ✓ ${name}/${sub.name} → internal/styles/${subStyleName}.ts`);
+  }
+
   return true;
 }
 

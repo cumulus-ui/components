@@ -5,12 +5,15 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { componentStyles, sharedStyles } from './styles.js';
+import { treeViewTreeItemStyles } from '../internal/styles/tree-view-tree-item.js';
+import { expandToggleButtonStyles } from '../internal/styles/expand-toggle-button.js';
+import { treeViewVerticalConnectorStyles } from '../internal/styles/tree-view-vertical-connector.js';
 import type { TreeViewProps } from './interfaces.js';
 
 const hostStyles = css`:host { display: block; }`;
 
 export class CsTreeViewInternal<T = any> extends CsBaseElement {
-  static override styles = [sharedStyles, componentStyles, hostStyles];
+  static override styles = [sharedStyles, componentStyles, treeViewTreeItemStyles, expandToggleButtonStyles, treeViewVerticalConnectorStyles, hostStyles];
 
   @property({ attribute: false })
   items: ReadonlyArray<T> = [];
@@ -67,14 +70,10 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
       return html`${this.renderItemToggleIcon({ expanded })}`;
     }
 
-    const iconClasses = {
-      'toggle-icon': true,
-      'toggle-icon--expanded': expanded,
-    };
-
     return html`
-      <svg class=${classMap(iconClasses)} width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-        <path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg class="${expanded ? 'expand-toggle-icon expand-toggle-icon-expanded' : 'expand-toggle-icon'}"
+           width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     `;
   }
@@ -91,40 +90,42 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
     const expandLabel = this.i18nStrings?.expandButtonLabel?.(item) ?? 'Expand';
     const collapseLabel = this.i18nStrings?.collapseButtonLabel?.(item) ?? 'Collapse';
 
-    const childrenClasses = {
-      'tree': true,
-      'tree--hidden': !expanded,
-    };
-
     return html`
       <li
-        class="node"
+        class="${level > 0 ? 'treeitem offset' : 'treeitem'}"
         role="treeitem"
         aria-expanded=${hasChildren ? String(expanded) : nothing}
         data-node-id=${id}
       >
-        <div class="node-row" tabindex=${level === 0 ? '0' : '-1'}>
-          ${hasChildren
-            ? html`
-              <button
-                class="toggle"
-                aria-label=${expanded ? collapseLabel : expandLabel}
-                @click=${() => this._handleToggle(item, id, expanded)}
-              >
-                ${this._renderToggleIcon(expanded)}
-              </button>`
-            : html`<span class="toggle-placeholder"></span>`}
-          ${rendered.icon ? html`<span class="node-icon">${rendered.icon}</span>` : nothing}
-          <span class="node-content">
-            <span class="node-primary">${rendered.content}</span>
-            ${rendered.secondaryContent
-              ? html`<span class="node-secondary">${rendered.secondaryContent}</span>`
+        <div class="treeitem-content-wrapper">
+          <div class="expand-toggle-wrapper">
+            ${hasChildren
+              ? html`
+                <button
+                  class="expand-toggle toggle"
+                  aria-label=${expanded ? collapseLabel : expandLabel}
+                  @click=${() => this._handleToggle(item, id, expanded)}
+                  tabindex="-1"
+                >
+                  ${this._renderToggleIcon(expanded)}
+                </button>`
               : nothing}
-          </span>
-          ${rendered.actions ? html`<span class="node-actions">${rendered.actions}</span>` : nothing}
+          </div>
+          <div class="structured-item-wrapper">
+            <span class="tree-item-focus-target" tabindex=${level === 0 ? '0' : '-1'}></span>
+            ${rendered.icon ? html`<span class="node-icon">${rendered.icon}</span>` : nothing}
+            <span class="tree-item-structured-item">
+              <span>${rendered.content}</span>
+              ${rendered.secondaryContent
+                ? html`<span>${rendered.secondaryContent}</span>`
+                : nothing}
+            </span>
+            ${rendered.actions ? html`<span>${rendered.actions}</span>` : nothing}
+          </div>
         </div>
         ${hasChildren ? html`
-          <ul class=${classMap(childrenClasses)} role="group">
+          <ul class="${expanded ? 'treeitem-group' : 'treeitem-group'}" role="group"
+              style="${expanded ? '' : 'display:none'}">
             ${children!.map((child, i) => this._renderNode(child, i, level + 1))}
           </ul>
         ` : nothing}

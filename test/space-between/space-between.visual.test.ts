@@ -1,28 +1,21 @@
-// DISABLED — no baselines yet, enable when component is golden
-// 
-// import { test, expect } from '@playwright/test';
-// import { resolve } from 'node:path';
-// import { fileURLToPath } from 'node:url';
-// import { compareScreenshot } from '../helpers/visual.js';
-// 
-// const BASELINES = resolve(fileURLToPath(import.meta.url), '..', 'baselines');
-// 
-// test.describe('SpaceBetween — Visual Regression', () => {
-//   test('permutations page matches baseline', async ({ page }) => {
-//     await page.goto('/#/light/space-between/permutations');
-//     await page.waitForLoadState('networkidle');
-//     await page.waitForTimeout(500);
-// 
-//     const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'space-between-light.png'));
-//     expect(result.match).toBe(true);
-//   });
-// 
-//   test('dark mode matches baseline', async ({ page }) => {
-//     await page.goto('/#/dark/space-between/permutations');
-//     await page.waitForLoadState('networkidle');
-//     await page.waitForTimeout(500);
-// 
-//     const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'space-between-dark.png'));
-//     expect(result.match).toBe(true);
-//   });
-// });
+import { test, expect } from '@playwright/test';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { compareSections, waitForPage } from '../helpers/visual.js';
+
+const BASELINES = resolve(fileURLToPath(import.meta.url), '..', 'baselines');
+
+for (const mode of ['light', 'dark'] as const) {
+  test.describe(`SpaceBetween — Visual (${mode})`, () => {
+    test.beforeEach(async ({ page }) => {
+      await waitForPage(page, `${mode}/space-between`);
+    });
+
+    test('all sections match baselines', async ({ page }) => {
+      const results = await compareSections(page, BASELINES, 'space-between', mode);
+      for (const { name, result } of results) {
+        expect(result.match, `"${name}" differs by ${result.diffPixels}px`).toBe(true);
+      }
+    });
+  });
+}

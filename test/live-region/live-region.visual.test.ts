@@ -1,28 +1,21 @@
-// DISABLED — no baselines yet, enable when component is golden
-// 
-// import { test, expect } from '@playwright/test';
-// import { resolve } from 'node:path';
-// import { fileURLToPath } from 'node:url';
-// import { compareScreenshot } from '../helpers/visual.js';
-// 
-// const BASELINES = resolve(fileURLToPath(import.meta.url), '..', 'baselines');
-// 
-// test.describe('LiveRegion — Visual Regression', () => {
-//   test('permutations page matches baseline', async ({ page }) => {
-//     await page.goto('/#/light/live-region/permutations');
-//     await page.waitForLoadState('networkidle');
-//     await page.waitForTimeout(500);
-// 
-//     const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'live-region-light.png'));
-//     expect(result.match).toBe(true);
-//   });
-// 
-//   test('dark mode matches baseline', async ({ page }) => {
-//     await page.goto('/#/dark/live-region/permutations');
-//     await page.waitForLoadState('networkidle');
-//     await page.waitForTimeout(500);
-// 
-//     const result = await compareScreenshot(page, 'body', resolve(BASELINES, 'live-region-dark.png'));
-//     expect(result.match).toBe(true);
-//   });
-// });
+import { test, expect } from '@playwright/test';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { compareSections, waitForPage } from '../helpers/visual.js';
+
+const BASELINES = resolve(fileURLToPath(import.meta.url), '..', 'baselines');
+
+for (const mode of ['light', 'dark'] as const) {
+  test.describe(`LiveRegion — Visual (${mode})`, () => {
+    test.beforeEach(async ({ page }) => {
+      await waitForPage(page, `${mode}/live-region`);
+    });
+
+    test('all sections match baselines', async ({ page }) => {
+      const results = await compareSections(page, BASELINES, 'live-region', mode);
+      for (const { name, result } of results) {
+        expect(result.match, `"${name}" differs by ${result.diffPixels}px`).toBe(true);
+      }
+    });
+  });
+}
