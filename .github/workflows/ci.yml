@@ -55,8 +55,11 @@ jobs:
         if: steps.cache-playwright.outputs.cache-hit == 'true'
         run: npx playwright install-deps chromium
 
+      - name: Install baselines dependencies
+        run: cd scripts/cloudscape-baselines && npm ci
+
       - name: Capture Cloudscape baselines
-        run: npm run capture:baselines
+        run: cd scripts/cloudscape-baselines && npx tsx capture.ts
 
       - name: Run tests
         run: npm test

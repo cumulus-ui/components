@@ -47,9 +47,9 @@ function startViteServer(): Promise<ChildProcess> {
     const timeout = setTimeout(() => {
       if (!started) {
         child.kill();
-        reject(new Error('Vite server did not start within 30s'));
+        reject(new Error('Vite server did not start within 120s'));
       }
-    }, 30_000);
+    }, 120_000);
 
     child.stdout?.on('data', (data: Buffer) => {
       const text = data.toString();
