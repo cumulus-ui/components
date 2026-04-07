@@ -435,7 +435,8 @@ if (component === 'radio-group') {
   console.log('\n─── Generated render template ───\n');
   console.log(template);
 
-  const outPath = path.join(ROOT, 'src', component, '_render.generated.ts');
+  const outPath = path.join(ROOT, 'scripts', 'output', `${component}.render.ts`);
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, template + '\n');
   console.log(`\n✓ Written to ${path.relative(ROOT, outPath)}`);
 }
