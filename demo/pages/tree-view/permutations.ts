@@ -76,8 +76,8 @@ export class TreeViewPermutationsPage extends LitElement {
     }
   `;
 
-  @state() private _expandedItems: string[] = ['src', 'components'];
-  @state() private _expandedWithLines: string[] = ['src', 'tests'];
+  @state() private _expandedItems = ['src', 'components'];
+  @state() private _expandedWithLines = ['src', 'tests'];
 
   private _renderItem = (item: TreeNode) => ({
     content: item.label,

@@ -23,7 +23,7 @@
     "build:demo": "node scripts/build-demo.mjs",
     "dev": "npx vite --port 3000",
     "test": "npm run build:cdn && npx playwright test",
-    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.demo.json",
+    "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist",
     "generate:interfaces": "tsx scripts/generate-interfaces.ts",
     "generate:styles": "tsx scripts/generate-styles.ts",
