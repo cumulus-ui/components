@@ -75,7 +75,7 @@ export class CheckboxPermutationsPage extends LitElement {
       <section>
         <h3>Read Only</h3>
         <div class="row">
-          <cs-checkbox readOnly checked>Read-only checked</cs-checkbox>
+          <cs-checkbox read-only checked>Read-only checked</cs-checkbox>
         </div>
       </section>
 
