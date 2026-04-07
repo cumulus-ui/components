@@ -1,0 +1,25 @@
+cumulus-ui
+Copyright 2025 cumulus-ui contributors.
+
+This project includes derived works from:
+
+  Cloudscape Design Components
+  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  SPDX-License-Identifier: Apache-2.0
+  https://github.com/cloudscape-design/components
+
+  Generated files under src/*/styles.ts, src/*/interfaces.ts,
+  src/internal/styles/, and src/internal/generated/ are derived from
+  Cloudscape source files and have been modified for Web Component usage.
+
+This project bundles (in CDN builds):
+
+  Lit
+  Copyright 2017 Google LLC
+  SPDX-License-Identifier: BSD-3-Clause
+  https://github.com/lit/lit
+
+  Floating UI
+  Copyright 2021-present Floating UI contributors
+  SPDX-License-Identifier: MIT
+  https://github.com/floating-ui/floating-ui

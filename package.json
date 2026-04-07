@@ -1,6 +1,6 @@
 {
   "name": "@cumulus-ui/components",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Web components inspired by Cloudscape Design System",
   "type": "module",
   "main": "./dist/index.js",
@@ -41,8 +41,8 @@
     "url": "https://github.com/cumulus-ui/components.git"
   },
   "dependencies": {
-    "@cumulus-ui/design-tokens": "cumulus-ui/design-tokens",
-    "@cumulus-ui/styles": "cumulus-ui/styles",
+    "@cumulus-ui/design-tokens": "^0.1.0",
+    "@cumulus-ui/styles": "^0.1.0",
     "@floating-ui/dom": "^1.7.6",
     "@lit/context": "^1.1.6",
     "lit": "^3.3.2"

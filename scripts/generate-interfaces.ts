@@ -17,7 +17,11 @@ const ROOT = path.resolve(import.meta.dirname, '..');
 const CS = path.join(ROOT, 'node_modules/@cloudscape-design/components');
 const OUT = path.join(ROOT, 'src');
 
-const HEADER = '// AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT\n// @ts-nocheck — references Cloudscape-internal types not yet generated';
+const HEADER = [
+  '// AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT',
+  '// @ts-nocheck — references Cloudscape-internal types not yet generated',
+  '// License: see /NOTICE',
+].join('\n');
 
 // ─── Configuration ────────────────────────────────────────────
 
@@ -461,8 +465,14 @@ function pass6(content: string): string {
 // PIPELINE
 // ════════════════════════════════════════════════════════════════
 
+/** Strip copyright/license header comments from source .d.ts files */
+function stripCopyrightHeaders(content: string): string {
+  return content.replace(/\/\/\s*(?:Copyright|SPDX-License-Identifier|Licensed under)[^\n]*/g, '');
+}
+
 function processFile(raw: string): string {
-  const { text: p1, stripped } = pass1(raw);
+  const clean = stripCopyrightHeaders(raw);
+  const { text: p1, stripped } = pass1(clean);
   const p2 = pass2(p1, stripped);
   const p3 = pass3(p2);
   const p4 = pass4(p3);

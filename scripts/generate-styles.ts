@@ -21,7 +21,10 @@ const CS_INTERNAL = path.join(CS, 'internal/components');
 const OUT = path.join(ROOT, 'src');
 const OUT_INTERNAL = path.join(OUT, 'internal/styles');
 
-const HEADER = '// AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT';
+const HEADER = [
+  '// AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT',
+  '// License: see /NOTICE',
+].join('\n');
 
 const OUR_COMPONENTS = new Set([
   'anchor-navigation', 'badge', 'box', 'checkbox', 'file-dropzone',
@@ -58,9 +61,9 @@ function buildReverseMap(forward: Record<string, string>): Record<string, string
 // CSS TRANSFORMATION PIPELINE
 // ════════════════════════════════════════════════════════════════
 
-/** Strip all copyright header comment blocks */
+/** Strip all copyright/license header comment blocks */
 function stripCopyrightHeaders(css: string): string {
-  return css.replace(/\/\*[\s\S]*?Copyright Amazon[\s\S]*?\*\//g, '');
+  return css.replace(/\/\*[\s\S]*?(?:Copyright|SPDX-License-Identifier|Licensed under)[\s\S]*?\*\//g, '');
 }
 
 /** Strip stylelint disable/enable comments */
