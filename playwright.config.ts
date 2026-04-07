@@ -5,6 +5,7 @@ const PORT = Number(process.env.PORT) || 3000;
 
 export default defineConfig({
   testDir: 'test',
+  outputDir: 'test/.results',
   timeout: 15_000,
   expect: {
     toHaveScreenshot: {

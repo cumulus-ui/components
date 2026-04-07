@@ -2,7 +2,7 @@ node_modules/
 dist/
 *.tsbuildinfo
 .DS_Store
-test-results/
+test/.results/
 playwright-report/
 *.actual.png
 *.diff.png
