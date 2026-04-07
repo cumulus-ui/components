@@ -67,8 +67,8 @@ export class CsCheckboxInternal extends Base {
   @property({ type: String })
   ariaLabel = '';
 
-  @property({ type: Boolean })
-  ariaRequired = false;
+  @property({ type: String })
+  override ariaRequired: string | null = null;
 
   private readonly _labelId = generateUniqueId('checkbox-label');
   private readonly _descriptionId = generateUniqueId('checkbox-desc');
@@ -157,7 +157,7 @@ export class CsCheckboxInternal extends Base {
               ?disabled=${this.disabled}
               ?readonly=${this.readOnly}
               aria-label=${ifDefined(this.ariaLabel || undefined)}
-              aria-required=${ifDefined(this.ariaRequired ? 'true' : undefined)}
+              aria-required=${ifDefined(this.ariaRequired || undefined)}
               aria-describedby=${ifDefined(ariaDescribedBy)}
               aria-checked=${this.indeterminate ? 'mixed' : this.checked}
               @click=${this._preventNativeToggle}
