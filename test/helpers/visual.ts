@@ -125,7 +125,7 @@ export async function compareSections(
 
   for (let i = 0; i < count; i++) {
     const section = sections.nth(i);
-    const title = await section.locator('h3').textContent() ?? `section-${i}`;
+    const title = await section.locator('h3').first().textContent() ?? `section-${i}`;
     const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     const baselinePath = `${baselineDir}/${component}-${mode}-${slug}.png`;
 
