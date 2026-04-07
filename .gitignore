@@ -3,6 +3,7 @@ dist/
 *.tsbuildinfo
 .DS_Store
 test/.results/
+test/*/baselines/
 playwright-report/
 *.actual.png
 *.diff.png

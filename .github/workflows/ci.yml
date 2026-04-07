@@ -11,15 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ── Checkout ──────────────────────────────────────────
       - uses: actions/checkout@v4
 
-      # ── Node setup ────────────────────────────────────────
       - uses: actions/setup-node@v4
         with:
           node-version: 24
 
-      # ── Cache node_modules ────────────────────────────────
       - name: Cache node_modules
         uses: actions/cache@v4
         id: cache-node-modules
@@ -29,20 +26,16 @@ jobs:
           restore-keys: |
             node-modules-${{ runner.os }}-
 
-      # ── Install dependencies ──────────────────────────────
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
 
-      # ── Typecheck (all workspaces) ────────────────────────
       - name: Typecheck
         run: npm run typecheck
 
-      # ── Build (all workspaces) ────────────────────────────
       - name: Build
         run: npm run build
 
-      # ── Cache Playwright browsers ─────────────────────────
       - name: Get Playwright version
         id: playwright-version
         run: echo "version=$(node -e "console.log(require('./package-lock.json').packages['node_modules/@playwright/test'].version)")" >> "$GITHUB_OUTPUT"
@@ -62,17 +55,16 @@ jobs:
         if: steps.cache-playwright.outputs.cache-hit == 'true'
         run: npx playwright install-deps chromium
 
-      # ── Tests (unit + integration + visual + a11y) ────────
+      - name: Capture Cloudscape baselines
+        run: npm run capture:baselines
+
       - name: Run tests
         run: npm test
 
-      # ── Upload artifacts on failure ───────────────────────
       - name: Upload test artifacts
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: |
-            packages/*/test-results/
-            packages/*/playwright-report/
+          path: test/.results/
           retention-days: 7
