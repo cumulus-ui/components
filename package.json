@@ -45,7 +45,7 @@
     "@cumulus-ui/styles": "cumulus-ui/styles",
     "@floating-ui/dom": "^1.7.6",
     "@lit/context": "^1.1.6",
-    "lit": "^3.2.0"
+    "lit": "^3.3.2"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
@@ -56,7 +56,7 @@
     "pixelmatch": "^7.1.0",
     "pngjs": "^7.0.0",
     "tsx": "^4.21.0",
-    "typescript": "~5.7.0",
-    "vite": "^8.0.5"
+    "typescript": "~5.9.3",
+    "vite": "^8.0.6"
   }
 }
