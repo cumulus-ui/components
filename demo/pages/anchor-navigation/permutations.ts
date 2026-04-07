@@ -74,7 +74,7 @@ export class AnchorNavigationPermutationsPage extends LitElement {
         <div class="layout">
           <cs-anchor-navigation
             .anchors=${ANCHORS}
-            ariaLabelledby="scroll-spy-heading"
+            aria-labelledby="scroll-spy-heading"
             @follow=${this._onFollow}
           ></cs-anchor-navigation>
           <div class="content-area" tabindex="0" role="region" aria-label="Documentation content">
