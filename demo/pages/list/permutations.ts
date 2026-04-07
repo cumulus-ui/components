@@ -69,7 +69,7 @@ export class ListPermutationsPage extends LitElement {
         <cs-list
           .items=${sampleItems}
           .renderItem=${this._renderItem}
-          label="Files"
+          aria-label="Files"
         ></cs-list>
       </section>
 
@@ -78,7 +78,7 @@ export class ListPermutationsPage extends LitElement {
         <cs-list
           .items=${sampleItems}
           .renderItem=${this._renderItemWithIcon}
-          label="Files with icons"
+          aria-label="Files with icons"
         ></cs-list>
       </section>
 
@@ -87,7 +87,7 @@ export class ListPermutationsPage extends LitElement {
         <cs-list
           .items=${sampleItems.slice(0, 3)}
           .renderItem=${this._renderItem}
-          label="Compact list"
+          aria-label="Compact list"
           disable-paddings
         ></cs-list>
       </section>
@@ -97,8 +97,8 @@ export class ListPermutationsPage extends LitElement {
         <cs-list
           .items=${sampleItems.slice(0, 3)}
           .renderItem=${this._renderItem}
-          label="No item paddings list"
-          disableItemPaddings
+          aria-label="No item paddings list"
+          disable-item-paddings
         ></cs-list>
       </section>
 
@@ -107,7 +107,7 @@ export class ListPermutationsPage extends LitElement {
         <cs-list
           .items=${sampleItems.slice(0, 3)}
           .renderItem=${this._renderItem}
-          label="Ordered list"
+          aria-label="Ordered list"
           tag-override="ol"
         ></cs-list>
       </section>
@@ -117,7 +117,7 @@ export class ListPermutationsPage extends LitElement {
         <cs-list
           .items=${[]}
           .renderItem=${this._renderItem}
-          label="Empty"
+          aria-label="Empty"
         ></cs-list>
       </section>
     `;

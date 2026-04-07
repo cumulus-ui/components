@@ -31,14 +31,14 @@ export class CsListInternal<T = any> extends CsBaseElement {
   @property({ type: String })
   tagOverride?: 'ol' | 'ul';
 
-  @property({ type: String, attribute: 'label' })
-  listLabel = '';
+  @property({ type: String, attribute: 'aria-label' })
+  controlAriaLabel = '';
 
-  @property({ type: String, attribute: 'labelledby' })
-  listLabelledby = '';
+  @property({ type: String, attribute: 'aria-labelledby' })
+  controlAriaLabelledby = '';
 
-  @property({ type: String, attribute: 'describedby' })
-  listDescribedby = '';
+  @property({ type: String, attribute: 'aria-describedby' })
+  controlAriaDescribedby = '';
 
   @property({ type: Boolean })
   sortable = false;
@@ -98,9 +98,9 @@ export class CsListInternal<T = any> extends CsBaseElement {
         <ol
           class=${classMap(listClasses)}
           role="list"
-          aria-label=${ifDefined(this.listLabel || undefined)}
-          aria-labelledby=${ifDefined(this.listLabelledby || undefined)}
-          aria-describedby=${ifDefined(this.listDescribedby || undefined)}
+          aria-label=${ifDefined(this.controlAriaLabel || undefined)}
+          aria-labelledby=${ifDefined(this.controlAriaLabelledby || undefined)}
+          aria-describedby=${ifDefined(this.controlAriaDescribedby || undefined)}
         >${content}</ol>
       `;
     }
@@ -109,9 +109,9 @@ export class CsListInternal<T = any> extends CsBaseElement {
       <ul
         class=${classMap(listClasses)}
         role="list"
-        aria-label=${ifDefined(this.listLabel || undefined)}
-        aria-labelledby=${ifDefined(this.listLabelledby || undefined)}
-        aria-describedby=${ifDefined(this.listDescribedby || undefined)}
+        aria-label=${ifDefined(this.controlAriaLabel || undefined)}
+        aria-labelledby=${ifDefined(this.controlAriaLabelledby || undefined)}
+        aria-describedby=${ifDefined(this.controlAriaDescribedby || undefined)}
       >${content}</ul>
     `;
   }

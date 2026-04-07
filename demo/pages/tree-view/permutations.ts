@@ -117,7 +117,7 @@ export class TreeViewPermutationsPage extends LitElement {
           .getItemId=${this._getItemId}
           .getItemChildren=${this._getItemChildren}
           .expandedItems=${this._expandedItems}
-          label="File tree"
+          aria-label="File tree"
           @itemToggle=${this._handleToggle}
         ></cs-tree-view>
       </section>
@@ -130,7 +130,7 @@ export class TreeViewPermutationsPage extends LitElement {
           .getItemId=${this._getItemId}
           .getItemChildren=${this._getItemChildren}
           .expandedItems=${this._expandedWithLines}
-          label="File tree with connector lines"
+          aria-label="File tree with connector lines"
           connector-lines="vertical"
           @itemToggle=${this._handleToggleWithLines}
         ></cs-tree-view>
@@ -144,7 +144,7 @@ export class TreeViewPermutationsPage extends LitElement {
           .getItemId=${this._getItemId}
           .getItemChildren=${this._getItemChildren}
           .expandedItems=${[]}
-          label="Collapsed tree"
+          aria-label="Collapsed tree"
         ></cs-tree-view>
       </section>
     `;

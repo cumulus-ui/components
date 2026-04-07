@@ -27,14 +27,14 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
   @property({ attribute: false })
   expandedItems?: ReadonlyArray<string>;
 
-  @property({ type: String, attribute: 'label' })
-  treeLabel = '';
+  @property({ type: String, attribute: 'aria-label' })
+  controlAriaLabel = '';
 
-  @property({ type: String, attribute: 'labelledby' })
-  treeLabelledby = '';
+  @property({ type: String, attribute: 'aria-labelledby' })
+  controlAriaLabelledby = '';
 
-  @property({ type: String, attribute: 'describedby' })
-  treeDescribedby = '';
+  @property({ type: String, attribute: 'aria-describedby' })
+  controlAriaDescribedby = '';
 
   @property({ type: String })
   connectorLines?: TreeViewProps.ConnectorLinesVariant;
@@ -145,9 +145,9 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
       <ul
         class=${classMap(rootClasses)}
         role="tree"
-        aria-label=${ifDefined(this.treeLabel || undefined)}
-        aria-labelledby=${ifDefined(this.treeLabelledby || undefined)}
-        aria-describedby=${ifDefined(this.treeDescribedby || undefined)}
+        aria-label=${ifDefined(this.controlAriaLabel || undefined)}
+        aria-labelledby=${ifDefined(this.controlAriaLabelledby || undefined)}
+        aria-describedby=${ifDefined(this.controlAriaDescribedby || undefined)}
       >
         ${this.items.map((item, i) => this._renderNode(item, i, 0))}
       </ul>
