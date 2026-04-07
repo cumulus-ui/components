@@ -198,10 +198,11 @@ export class CsTilesInternal extends Base {
     const tileClasses = {
       'tile-container': true,
       'refresh': true,
+      'breakpoint-xxs': true,
       'selected': isSelected,
       'disabled': isDisabled,
       'readonly': this.readOnly,
-      'has-metadata': !!item.image,
+      'has-metadata': !!item.description || !!item.image,
     };
 
     const controlClasses = {
@@ -218,40 +219,61 @@ export class CsTilesInternal extends Base {
         }}
       >
         <div class=${classMap(controlClasses)}>
-          <input
-            type="radio"
-            class="native-input"
-            name=${groupName}
-            .value=${item.value}
-            .checked=${isSelected}
-            ?disabled=${isDisabled}
-            ?readonly=${this.readOnly}
-            tabindex=${this._getTabIndex(index)}
-            aria-labelledby=${labelId}
-            aria-describedby=${ifDefined(descId)}
-            @click=${(e: Event) => e.preventDefault()}
-            @focus=${() => this._onFocus(index)}
-          />
-          <span class="tile-label-wrapper">
-            <span
-              id=${labelId}
-              class=${classMap({
-              'tile-label': true,
-              'tile-label--disabled': isDisabled,
-            })}>
-              ${item.label}
-            </span>
-            ${item.description ? html`
-              <span
-                id=${descId!}
-                class=${classMap({
-                  'tile-description': true,
-                  'tile-description--disabled': isDisabled,
-                })}
-              >
-                ${item.description}
+          <span class="wrapper">
+            <span class="label-wrapper">
+              <span class="control radio-control">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                  <circle class=${classMap({
+                    'styled-circle-border': true,
+                    'styled-circle-disabled': isDisabled,
+                    'styled-circle-readonly': this.readOnly,
+                  })} stroke-width="6.25" cx="50" cy="50" r="46" />
+                  <circle class=${classMap({
+                    'styled-circle-fill': true,
+                    'styled-circle-checked': isSelected,
+                    'styled-circle-disabled': isDisabled,
+                    'styled-circle-readonly': this.readOnly,
+                  })} stroke-width="30" cx="50" cy="50" r="35" />
+                </svg>
+                <input
+                  type="radio"
+                  class="native-input"
+                  name=${groupName}
+                  .value=${item.value}
+                  .checked=${isSelected}
+                  ?disabled=${isDisabled}
+                  ?readonly=${this.readOnly}
+                  tabindex=${this._getTabIndex(index)}
+                  aria-labelledby=${labelId}
+                  aria-describedby=${ifDefined(descId)}
+                  @click=${(e: Event) => e.preventDefault()}
+                  @focus=${() => this._onFocus(index)}
+                />
+                <span class="outline"></span>
               </span>
-            ` : ''}
+              <span class="content">
+                <span
+                  id=${labelId}
+                  class=${classMap({
+                    'label': true,
+                    'label-disabled': isDisabled,
+                  })}
+                >
+                  ${item.label}
+                </span>
+                ${item.description ? html`
+                  <span
+                    id=${descId!}
+                    class=${classMap({
+                      'description': true,
+                      'description-disabled': isDisabled,
+                    })}
+                  >
+                    ${item.description}
+                  </span>
+                ` : ''}
+              </span>
+            </span>
           </span>
         </div>
         ${item.image ? html`

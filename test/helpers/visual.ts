@@ -102,3 +102,68 @@ export async function compareScreenshot(
 
   return { match: diffPixels <= maxDiffPixels, diffPixels, diffImagePath };
 }
+
+export interface SectionResult {
+  name: string;
+  slug: string;
+  result: CompareResult;
+}
+
+export async function compareSections(
+  page: Page,
+  baselineDir: string,
+  component: string,
+  mode: 'light' | 'dark',
+  threshold = 0.1,
+  maxDiffPixels = 1,
+): Promise<SectionResult[]> {
+  await freezeAnimations(page);
+
+  const sections = page.locator('section');
+  const count = await sections.count();
+  const results: SectionResult[] = [];
+
+  for (let i = 0; i < count; i++) {
+    const section = sections.nth(i);
+    const title = await section.locator('h3').textContent() ?? `section-${i}`;
+    const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const baselinePath = `${baselineDir}/${component}-${mode}-${slug}.png`;
+
+    const screenshotBuffer = await section.screenshot();
+    const baseDir = dirname(baselinePath);
+    if (!existsSync(baseDir)) mkdirSync(baseDir, { recursive: true });
+
+    if (!existsSync(baselinePath)) {
+      writeFileSync(baselinePath, screenshotBuffer);
+      results.push({ name: title, slug, result: { match: true, diffPixels: 0, diffImagePath: null } });
+      continue;
+    }
+
+    const baseline = PNG.sync.read(readFileSync(baselinePath));
+    const actual = PNG.sync.read(screenshotBuffer);
+
+    if (actual.width !== baseline.width || actual.height !== baseline.height) {
+      writeFileSync(baselinePath.replace('.png', '.actual.png'), screenshotBuffer);
+      results.push({
+        name: title,
+        slug,
+        result: { match: false, diffPixels: baseline.width * baseline.height, diffImagePath: baselinePath.replace('.png', '.actual.png') },
+      });
+      continue;
+    }
+
+    const diff = new PNG({ width: baseline.width, height: baseline.height });
+    const diffPixels = pixelmatch(baseline.data, actual.data, diff.data, baseline.width, baseline.height, { threshold });
+
+    let diffImagePath: string | null = null;
+    if (diffPixels > maxDiffPixels) {
+      diffImagePath = baselinePath.replace('.png', '.diff.png');
+      writeFileSync(diffImagePath, PNG.sync.write(diff));
+      writeFileSync(baselinePath.replace('.png', '.actual.png'), screenshotBuffer);
+    }
+
+    results.push({ name: title, slug, result: { match: diffPixels <= maxDiffPixels, diffPixels, diffImagePath } });
+  }
+
+  return results;
+}

@@ -14,7 +14,6 @@ const Base = FormAssociatedMixin(CsBaseElement);
 
 const hostStyles = css`
   :host { display: block; }
-  .label-wrapper { flex-direction: column; }
   .checkbox-icon {
     position: absolute;
     inline-size: 100%;
@@ -133,49 +132,51 @@ export class CsCheckboxInternal extends Base {
 
     return html`
       <label class="root wrapper" @click=${this._preventNativeToggle}>
-        <span class=${classMap({
-            'control': true,
-            'checkbox-control': true,
-            'checkbox-control--checked': this.checked && !this.indeterminate,
-            'checkbox-control--indeterminate': this.indeterminate,
-          })}>
-          <input
-            type="checkbox"
-            class="native-input"
-            .checked=${this.checked}
-            .indeterminate=${this.indeterminate}
-            ?disabled=${this.disabled}
-            ?readonly=${this.readOnly}
-            aria-label=${ifDefined(this.ariaLabel || undefined)}
-            aria-describedby=${ifDefined(ariaDescribedBy)}
-            aria-checked=${this.indeterminate ? 'mixed' : this.checked}
-            @click=${this._preventNativeToggle}
-          />
-          <svg class="checkbox-icon" viewBox="0 0 16 16" aria-hidden="true"><rect class=${classMap(styledBoxClasses)} x="0.5" y="0.5" width="15" height="15" rx="3" ry="3" />${
-            this.checked && !this.indeterminate
-              ? svg`<polyline class=${classMap(styledLineClasses)} points="3.5,8 7,11 12,4" />`
-              : this.indeterminate
-                ? svg`<polyline class=${classMap(styledLineClasses)} points="3.5,8 12.5,8" />`
-                : ''
-          }</svg>
-          <span class="outline"></span>
-        </span>
         <span class="label-wrapper">
-          <span id=${this._labelId} class=${classMap({
-            'label': true,
-            'label-disabled': this.disabled,
-          })}>
-            <slot></slot>
-          </span>
-          ${hasDescription ? html`
-            <span id=${this._descriptionId} class=${classMap({
-              'description': true,
-              'description-bottom-padding': true,
-              'description-disabled': this.disabled,
+          <span class=${classMap({
+              'control': true,
+              'checkbox-control': true,
+              'checkbox-control--checked': this.checked && !this.indeterminate,
+              'checkbox-control--indeterminate': this.indeterminate,
             })}>
-              ${this.description}
+            <svg class="checkbox-icon" viewBox="0 0 16 16" aria-hidden="true"><rect class=${classMap(styledBoxClasses)} x="0.5" y="0.5" width="15" height="15" rx="3" ry="3" />${
+              this.checked && !this.indeterminate
+                ? svg`<polyline class=${classMap(styledLineClasses)} points="3.5,8 7,11 12,4" />`
+                : this.indeterminate
+                  ? svg`<polyline class=${classMap(styledLineClasses)} points="3.5,8 12.5,8" />`
+                  : ''
+            }</svg>
+            <input
+              type="checkbox"
+              class="native-input"
+              .checked=${this.checked}
+              .indeterminate=${this.indeterminate}
+              ?disabled=${this.disabled}
+              ?readonly=${this.readOnly}
+              aria-label=${ifDefined(this.ariaLabel || undefined)}
+              aria-describedby=${ifDefined(ariaDescribedBy)}
+              aria-checked=${this.indeterminate ? 'mixed' : this.checked}
+              @click=${this._preventNativeToggle}
+            />
+            <span class="outline"></span>
+          </span>
+          <span class="content">
+            <span id=${this._labelId} class=${classMap({
+              'label': true,
+              'label-disabled': this.disabled,
+            })}>
+              <slot></slot>
             </span>
-          ` : ''}
+            ${hasDescription ? html`
+              <span id=${this._descriptionId} class=${classMap({
+                'description': true,
+                'description-bottom-padding': true,
+                'description-disabled': this.disabled,
+              })}>
+                ${this.description}
+              </span>
+            ` : ''}
+          </span>
         </span>
       </label>
     `;

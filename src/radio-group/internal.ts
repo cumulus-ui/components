@@ -195,17 +195,14 @@ export class CsRadioGroupInternal extends Base {
 
     const itemClasses = {
       'radio': true,
+      'wrapper': true,
       'radio--has-description': !!item.description,
       'horizontal': this.direction === 'horizontal',
-      'radio--checked': isChecked,
-      'radio--disabled': isDisabled,
-      'radio--readonly': this.readOnly,
     };
 
     const controlClasses = {
+      'control': true,
       'radio-control': true,
-      'radio-control--checked': isChecked,
-      'radio-control--disabled': isDisabled,
     };
 
     return html`
@@ -216,40 +213,55 @@ export class CsRadioGroupInternal extends Base {
           this._onItemClick(item);
         }}
       >
-        <input
-          type="radio"
-          class="native-input"
-          name=${groupName}
-          .value=${item.value}
-          .checked=${isChecked}
-          ?disabled=${isDisabled}
-          ?readonly=${this.readOnly}
-          tabindex=${this._getTabIndex(index)}
-          aria-describedby=${ifDefined(descId)}
-          @click=${(e: Event) => e.preventDefault()}
-          @focus=${() => this._onFocus(index)}
-        />
-        <span class=${classMap(controlClasses)}>
-          <span class="radio-dot"></span>
-        </span>
-        <span class="radio-content">
-          <span class=${classMap({
-            'radio-label': true,
-            'radio-label--disabled': isDisabled,
-          })}>
-            ${item.label}
+        <span class="label-wrapper">
+          <span class=${classMap(controlClasses)}>
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <circle class=${classMap({
+                'styled-circle-border': true,
+                'styled-circle-disabled': isDisabled,
+                'styled-circle-readonly': this.readOnly,
+              })} stroke-width="6.25" cx="50" cy="50" r="46" />
+              <circle class=${classMap({
+                'styled-circle-fill': true,
+                'styled-circle-checked': isChecked,
+                'styled-circle-disabled': isDisabled,
+                'styled-circle-readonly': this.readOnly,
+              })} stroke-width="30" cx="50" cy="50" r="35" />
+            </svg>
+            <input
+              type="radio"
+              class="native-input"
+              name=${groupName}
+              .value=${item.value}
+              .checked=${isChecked}
+              ?disabled=${isDisabled}
+              ?readonly=${this.readOnly}
+              tabindex=${this._getTabIndex(index)}
+              aria-describedby=${ifDefined(descId)}
+              @click=${(e: Event) => e.preventDefault()}
+              @focus=${() => this._onFocus(index)}
+            />
+            <span class="outline"></span>
           </span>
-          ${item.description ? html`
-            <span
-              id=${descId!}
-              class=${classMap({
-                'radio-description': true,
-                'radio-description--disabled': isDisabled,
-              })}
-            >
-              ${item.description}
+          <span class="content">
+            <span class=${classMap({
+              'label': true,
+              'label-disabled': isDisabled,
+            })}>
+              ${item.label}
             </span>
-          ` : ''}
+            ${item.description ? html`
+              <span
+                id=${descId!}
+                class=${classMap({
+                  'description': true,
+                  'description-disabled': isDisabled,
+                })}
+              >
+                ${item.description}
+              </span>
+            ` : ''}
+          </span>
         </span>
       </label>
     `;

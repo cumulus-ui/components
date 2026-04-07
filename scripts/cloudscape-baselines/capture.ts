@@ -134,6 +134,21 @@ async function capture() {
 
         const filename = `${component}-${mode}.png`;
 
+        const sections = page.locator('section');
+        const count = await sections.count();
+        if (count > 0) {
+          for (let i = 0; i < count; i++) {
+            const section = sections.nth(i);
+            const h3 = section.locator('h3');
+            const title = await h3.textContent() ?? `section-${i}`;
+            const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            await section.screenshot({
+              path: resolve(baselineDir, `${component}-${mode}-${slug}.png`),
+            });
+          }
+          console.log(`    → ${count} sections`);
+        }
+
         await page.locator(selector ?? 'body').screenshot({
           path: resolve(baselineDir, filename),
         });
