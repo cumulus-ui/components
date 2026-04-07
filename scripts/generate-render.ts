@@ -400,7 +400,7 @@ function generateRadioGroupTemplate(classNames: Set<string>): string {
 
 // ─── Main ──────────────────────────────────────────────────────
 
-const component = process.argv.find((_, i) => process.argv[i - 1] === '--component') || 'radio-group';
+const component = process.argv.find((_: string, i: number) => process.argv[i - 1] === '--component') || 'radio-group';
 
 console.log(`\nAnalyzing Cloudscape ${component}...\n`);
 
