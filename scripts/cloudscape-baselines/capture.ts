@@ -53,7 +53,8 @@ function startViteServer(): Promise<ChildProcess> {
 
     child.stdout?.on('data', (data: Buffer) => {
       const text = data.toString();
-      if (text.includes('Local:') || text.includes(`localhost:${PORT}`)) {
+      process.stdout.write(`[vite stdout] ${text}`);
+      if (text.includes('Local:') || text.includes(`localhost:${PORT}`) || text.includes('ready in')) {
         started = true;
         clearTimeout(timeout);
         resolvePromise(child);
@@ -62,7 +63,8 @@ function startViteServer(): Promise<ChildProcess> {
 
     child.stderr?.on('data', (data: Buffer) => {
       const text = data.toString();
-      if (text.includes('Local:') || text.includes(`localhost:${PORT}`)) {
+      process.stderr.write(`[vite stderr] ${text}`);
+      if (text.includes('Local:') || text.includes(`localhost:${PORT}`) || text.includes('ready in')) {
         started = true;
         clearTimeout(timeout);
         resolvePromise(child);
