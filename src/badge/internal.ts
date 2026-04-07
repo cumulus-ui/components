@@ -1,4 +1,5 @@
-import { css, html, LitElement } from 'lit';
+import { css, html } from 'lit';
+import { CsBaseElement } from '../internal/base-element.js';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -16,7 +17,7 @@ const hostStyles = css`
   }
 `;
 
-export class CsBadgeInternal extends LitElement {
+export class CsBadgeInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
   @property({ type: String, reflect: true })

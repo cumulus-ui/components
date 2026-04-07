@@ -1,4 +1,5 @@
-import { css, html, LitElement } from 'lit';
+import { css, html } from 'lit';
+import { CsBaseElement } from '../internal/base-element.js';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -15,7 +16,7 @@ function resolveNumericValue(
 
 const hostStyles = css`:host { display: block; }`;
 
-export class CsGridInternal extends LitElement {
+export class CsGridInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
   @property({ attribute: false })

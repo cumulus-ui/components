@@ -1,4 +1,5 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
+import { CsBaseElement } from '../internal/base-element.js';
 import { property } from 'lit/decorators.js';
 import { provide, createContext } from '@lit/context';
 import type { IconProviderProps } from './interfaces.js';
@@ -9,7 +10,7 @@ export const iconProviderContext = createContext<IconResolverFn | undefined>(
   Symbol('icon-provider-context'),
 );
 
-export class CsIconProviderInternal extends LitElement {
+export class CsIconProviderInternal extends CsBaseElement {
   @property({ attribute: false })
   icons: IconProviderProps.Icons | null = null;
 

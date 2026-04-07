@@ -1,4 +1,5 @@
-import { css, html, LitElement, nothing, type TemplateResult } from 'lit';
+import { css, html, nothing, type TemplateResult } from 'lit';
+import { CsBaseElement } from '../internal/base-element.js';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -18,7 +19,7 @@ interface RenderedItem {
 
 const hostStyles = css`:host { display: block; }`;
 
-export class CsListInternal<T = any> extends LitElement {
+export class CsListInternal<T = any> extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, structuredItemStyles, hostStyles];
 
   @property({ attribute: false })

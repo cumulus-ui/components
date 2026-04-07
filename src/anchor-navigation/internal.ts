@@ -1,4 +1,5 @@
-import { css, html, LitElement, type PropertyValues } from 'lit';
+import { css, html, type PropertyValues } from 'lit';
+import { CsBaseElement } from '../internal/base-element.js';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -8,7 +9,7 @@ import type { AnchorNavigationProps } from './interfaces.js';
 
 const hostStyles = css`:host { display: block; }`;
 
-export class CsAnchorNavigationInternal extends LitElement {
+export class CsAnchorNavigationInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
   @property({ type: Array })

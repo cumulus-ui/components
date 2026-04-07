@@ -1,4 +1,5 @@
-import { css, html, LitElement } from 'lit';
+import { css, html } from 'lit';
+import { CsBaseElement } from '../internal/base-element.js';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -6,7 +7,7 @@ import type { LiveRegionProps } from './interfaces.js';
 
 const hostStyles = css`:host { display: contents; }`;
 
-export class CsLiveRegionInternal extends LitElement {
+export class CsLiveRegionInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
   @property({ type: Boolean, reflect: true })

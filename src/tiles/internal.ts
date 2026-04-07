@@ -2,7 +2,7 @@ import { css, html, type PropertyValues, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { LitElement } from 'lit';
+import { CsBaseElement } from '../internal/base-element.js';
 import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { generateUniqueId } from '../internal/hooks/use-unique-id.js';
@@ -11,7 +11,7 @@ import { abstractSwitchStyles } from '../internal/styles/abstract-switch.js';
 import { radioButtonStyles } from '../internal/styles/radio-button.js';
 import type { TilesProps } from './interfaces.js';
 
-const Base = FormAssociatedMixin(LitElement);
+const Base = FormAssociatedMixin(CsBaseElement);
 
 const hostStyles = css`:host { display: block; }`;
 

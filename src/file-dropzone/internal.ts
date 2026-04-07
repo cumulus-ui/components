@@ -1,4 +1,5 @@
-import { css, html, LitElement } from 'lit';
+import { css, html } from 'lit';
+import { CsBaseElement } from '../internal/base-element.js';
 import { state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
@@ -7,7 +8,7 @@ import type { FileDropzoneProps } from './interfaces.js';
 
 const hostStyles = css`:host { display: block; }`;
 
-export class CsFileDropzoneInternal extends LitElement {
+export class CsFileDropzoneInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
   @state()

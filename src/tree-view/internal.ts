@@ -1,4 +1,5 @@
-import { css, html, LitElement, nothing, type TemplateResult } from 'lit';
+import { css, html, nothing, type TemplateResult } from 'lit';
+import { CsBaseElement } from '../internal/base-element.js';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -8,7 +9,7 @@ import type { TreeViewProps } from './interfaces.js';
 
 const hostStyles = css`:host { display: block; }`;
 
-export class CsTreeViewInternal<T = any> extends LitElement {
+export class CsTreeViewInternal<T = any> extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
   @property({ attribute: false })

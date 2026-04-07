@@ -2,7 +2,7 @@ import { css, html, svg, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { LitElement } from 'lit';
+import { CsBaseElement } from '../internal/base-element.js';
 import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { generateUniqueId } from '../internal/hooks/use-unique-id.js';
@@ -10,7 +10,7 @@ import { componentStyles, sharedStyles } from './styles.js';
 import { abstractSwitchStyles } from '../internal/styles/abstract-switch.js';
 import type { CheckboxProps } from './interfaces.js';
 
-const Base = FormAssociatedMixin(LitElement);
+const Base = FormAssociatedMixin(CsBaseElement);
 
 const hostStyles = css`
   :host { display: block; }
