@@ -133,7 +133,12 @@ export class CsCheckboxInternal extends Base {
 
     return html`
       <label class="root wrapper" @click=${this._preventNativeToggle}>
-        <span class="control checkbox-control">
+        <span class=${classMap({
+            'control': true,
+            'checkbox-control': true,
+            'checkbox-control--checked': this.checked && !this.indeterminate,
+            'checkbox-control--indeterminate': this.indeterminate,
+          })}>
           <input
             type="checkbox"
             class="native-input"
