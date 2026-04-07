@@ -398,45 +398,220 @@ function generateRadioGroupTemplate(classNames: Set<string>): string {
   }`;
 }
 
-// ─── Main ──────────────────────────────────────────────────────
+// ─── Audit: @property vs Interface Comparison ─────────────────
 
-const component = process.argv.find((_: string, i: number) => process.argv[i - 1] === '--component') || 'radio-group';
-
-console.log(`\nAnalyzing Cloudscape ${component}...\n`);
-
-const { allSemanticNames } = collectClassNames(component);
-console.log(`Found ${allSemanticNames.size} CSS class names across all layers:`);
-for (const name of [...allSemanticNames].sort()) {
-  console.log(`  • ${name}`);
+interface ActualProp {
+  name: string;
+  explicitAttribute?: string;
+  hasReflect: boolean;
+  attributeFalse: boolean;
 }
 
-const radioGroupSrc = fs.readFileSync(path.join(CS, component, 'internal.js'), 'utf-8');
-const usedInGroup = extractClsxUsage(radioGroupSrc);
-console.log(`\nclsx() calls in ${component}/internal.js:`);
-for (const classes of usedInGroup) {
-  console.log(`  clsx(${classes.map(c => `'${c}'`).join(', ')})`);
+function parseActualProperties(component: string): ActualProp[] {
+  const filePath = path.join(ROOT, 'src', component, 'internal.ts');
+  if (!fs.existsSync(filePath)) return [];
+
+  const src = fs.readFileSync(filePath, 'utf-8');
+  const results: ActualProp[] = [];
+
+  const re = /@property\(\{([^}]*)\}\)\s*\n\s*(?:override\s+)?(\w+)/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(src)) !== null) {
+    const opts = m[1];
+    const name = m[2];
+
+    const attrMatch = opts.match(/attribute:\s*['"]([^'"]+)['"]/);
+    const attrFalse = /attribute:\s*false/.test(opts);
+    const hasReflect = /reflect:\s*true/.test(opts);
+
+    results.push({
+      name,
+      explicitAttribute: attrMatch?.[1],
+      hasReflect: hasReflect,
+      attributeFalse: attrFalse,
+    });
+  }
+
+  return results;
 }
 
-// Phase 2: Property extraction and ARIA classification
-const props = extractInterfaceProps(component);
-if (props.length > 0) {
-  console.log(`\n─── Properties from interfaces.ts ───\n`);
-  for (const prop of props) {
-    const ariaClass = classifyProp(prop.name, prop.typeStr);
-    const decorator = generateDecorator(prop.name, prop.typeStr, ariaClass);
-    const tag = ariaClass !== 'none' ? ` [ARIA: ${ariaClass}]` : '';
-    console.log(`  ${prop.name}${prop.optional ? '?' : ''}: ${prop.typeStr}${tag}`);
-    console.log(`    → ${decorator}`);
+interface AuditIssue {
+  component: string;
+  property: string;
+  severity: 'error' | 'warning';
+  message: string;
+}
+
+function auditComponent(component: string): AuditIssue[] {
+  const issues: AuditIssue[] = [];
+  const interfaceProps = extractInterfaceProps(component);
+  const actualProps = parseActualProperties(component);
+  const actualMap = new Map(actualProps.map(p => [p.name, p]));
+
+  for (const iProp of interfaceProps) {
+    const ariaClass = classifyProp(iProp.name, iProp.typeStr);
+    if (ariaClass === 'none') continue;
+
+    const actual = actualMap.get(iProp.name);
+
+    // Check if the interface declares a native ARIA prop
+    if (ariaClass === 'native') {
+      if (!actual) {
+        // Might be using a controlAria* rename — check for that
+        const controlName = 'control' + iProp.name.charAt(0).toUpperCase() + iProp.name.slice(1);
+        const controlActual = actualMap.get(controlName);
+        if (controlActual) {
+          // Verify the forwarded prop has correct attribute
+          const expectedAttr = toKebab(iProp.name);
+          if (controlActual.explicitAttribute !== expectedAttr) {
+            issues.push({
+              component,
+              property: controlName,
+              severity: 'error',
+              message: `Forwarded ARIA prop has attribute '${controlActual.explicitAttribute ?? '(auto: ' + toKebab(controlName) + ')'}', expected '${expectedAttr}'`,
+            });
+          }
+        } else {
+          // Not implemented at all — warning for implemented components
+          issues.push({
+            component,
+            property: iProp.name,
+            severity: 'warning',
+            message: `Interface declares ${iProp.name} (native ARIA) but no @property found`,
+          });
+        }
+        continue;
+      }
+
+      // Has direct @property — check it doesn't have a wrong explicit attribute
+      if (actual.explicitAttribute) {
+        const expectedAttr = toKebab(iProp.name);
+        if (actual.explicitAttribute !== expectedAttr) {
+          issues.push({
+            component,
+            property: iProp.name,
+            severity: 'error',
+            message: `Explicit attribute '${actual.explicitAttribute}' doesn't match expected '${expectedAttr}' — CsBaseElement would auto-derive correctly without it`,
+          });
+        }
+      }
+    }
+
+    if (ariaClass === 'custom') {
+      if (actual && !actual.attributeFalse && iProp.typeStr === 'complex') {
+        issues.push({
+          component,
+          property: iProp.name,
+          severity: 'warning',
+          message: `Complex ARIA object should probably use attribute: false`,
+        });
+      }
+    }
+  }
+
+  // Check for stale non-standard attribute mappings
+  for (const actual of actualProps) {
+    if (actual.attributeFalse) continue;
+    if (!actual.explicitAttribute) continue;
+
+    const attr = actual.explicitAttribute;
+    const isStandard = attr.startsWith('aria-') || ['role'].includes(attr);
+    const isKebabOfName = attr === toKebab(actual.name);
+    const isNativeCollisionWorkaround = actual.name.endsWith('_') && attr === toKebab(actual.name.slice(0, -1));
+
+    if (!isStandard && !isKebabOfName && !isNativeCollisionWorkaround) {
+      issues.push({
+        component,
+        property: actual.name,
+        severity: 'warning',
+        message: `Non-standard explicit attribute '${attr}' — consider using standard aria-* or letting CsBaseElement auto-derive`,
+      });
+    }
+  }
+
+  return issues;
+}
+
+function runAudit(): void {
+  const srcDir = path.join(ROOT, 'src');
+  const components = fs.readdirSync(srcDir).filter(d => {
+    return fs.existsSync(path.join(srcDir, d, 'internal.ts')) &&
+           fs.existsSync(path.join(srcDir, d, 'interfaces.ts'));
+  });
+
+  console.log(`\n═══ ARIA Property Audit ═══\n`);
+  console.log(`Scanning ${components.length} implemented components...\n`);
+
+  let totalErrors = 0;
+  let totalWarnings = 0;
+
+  for (const comp of components.sort()) {
+    const issues = auditComponent(comp);
+    if (issues.length === 0) {
+      console.log(`  ✅ ${comp}`);
+      continue;
+    }
+
+    console.log(`  ❌ ${comp}`);
+    for (const issue of issues) {
+      const icon = issue.severity === 'error' ? '🔴' : '🟡';
+      console.log(`     ${icon} ${issue.property}: ${issue.message}`);
+      if (issue.severity === 'error') totalErrors++;
+      else totalWarnings++;
+    }
+  }
+
+  console.log(`\n${totalErrors} error(s), ${totalWarnings} warning(s)\n`);
+
+  if (totalErrors > 0) {
+    process.exitCode = 1;
   }
 }
 
-if (component === 'radio-group') {
-  const template = generateRadioGroupTemplate(allSemanticNames);
-  console.log('\n─── Generated render template ───\n');
-  console.log(template);
+// ─── Main ──────────────────────────────────────────────────────
 
-  const outPath = path.join(ROOT, 'scripts', 'output', `${component}.render.ts`);
-  fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  fs.writeFileSync(outPath, template + '\n');
-  console.log(`\n✓ Written to ${path.relative(ROOT, outPath)}`);
+const isAudit = process.argv.includes('--audit');
+
+if (isAudit) {
+  runAudit();
+} else {
+  const component = process.argv.find((_: string, i: number) => process.argv[i - 1] === '--component') || 'radio-group';
+
+  console.log(`\nAnalyzing Cloudscape ${component}...\n`);
+
+  const { allSemanticNames } = collectClassNames(component);
+  console.log(`Found ${allSemanticNames.size} CSS class names across all layers:`);
+  for (const name of [...allSemanticNames].sort()) {
+    console.log(`  • ${name}`);
+  }
+
+  const radioGroupSrc = fs.readFileSync(path.join(CS, component, 'internal.js'), 'utf-8');
+  const usedInGroup = extractClsxUsage(radioGroupSrc);
+  console.log(`\nclsx() calls in ${component}/internal.js:`);
+  for (const classes of usedInGroup) {
+    console.log(`  clsx(${classes.map(c => `'${c}'`).join(', ')})`);
+  }
+
+  const props = extractInterfaceProps(component);
+  if (props.length > 0) {
+    console.log(`\n─── Properties from interfaces.ts ───\n`);
+    for (const prop of props) {
+      const ariaClass = classifyProp(prop.name, prop.typeStr);
+      const decorator = generateDecorator(prop.name, prop.typeStr, ariaClass);
+      const tag = ariaClass !== 'none' ? ` [ARIA: ${ariaClass}]` : '';
+      console.log(`  ${prop.name}${prop.optional ? '?' : ''}: ${prop.typeStr}${tag}`);
+      console.log(`    → ${decorator}`);
+    }
+  }
+
+  if (component === 'radio-group') {
+    const template = generateRadioGroupTemplate(allSemanticNames);
+    console.log('\n─── Generated render template ───\n');
+    console.log(template);
+
+    const outPath = path.join(ROOT, 'scripts', 'output', `${component}.render.ts`);
+    fs.mkdirSync(path.dirname(outPath), { recursive: true });
+    fs.writeFileSync(outPath, template + '\n');
+    console.log(`\n✓ Written to ${path.relative(ROOT, outPath)}`);
+  }
 }
