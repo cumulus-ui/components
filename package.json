@@ -41,8 +41,8 @@
     "url": "https://github.com/cumulus-ui/components.git"
   },
   "dependencies": {
-    "@cumulus-ui/design-tokens": "file:../design-tokens",
-    "@cumulus-ui/styles": "file:../styles",
+    "@cumulus-ui/design-tokens": "cumulus-ui/design-tokens",
+    "@cumulus-ui/styles": "cumulus-ui/styles",
     "@floating-ui/dom": "^1.7.6",
     "@lit/context": "^1.1.6",
     "lit": "^3.2.0"
