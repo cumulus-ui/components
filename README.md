@@ -18,7 +18,7 @@ Built with [Lit 3](https://lit.dev) + TypeScript.
 ## References
 
 - [Cloudscape Design System](https://cloudscape.design) — AWS's open-source design system
-- [Rainforest](https://github.com/krhoyt/Rainforest) — Kevin Hoyt's Cloudscape-inspired web components ([fork](https://github.com/krhoyt/Rainforest/fork))
+- [Rainforest](https://github.com/krhoyt/Rainforest) — Kevin Hoyt's Cloudscape-inspired web components
 
 ## License
 
