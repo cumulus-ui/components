@@ -24,7 +24,7 @@
  * @example  Ad-hoc token wrapping (when you import directly from the package)
  * ```ts
  * import { token } from '../internal/token-utils.js';
- * import { colorTextAccent } from '@cloudscape-design/design-tokens';
+ * import { colorTextAccent } from '@cumulus-ui/design-tokens';
  *
  * static styles = css`
  *   a { color: ${token(colorTextAccent)}; }

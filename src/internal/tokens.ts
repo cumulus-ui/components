@@ -8,7 +8,7 @@
  *
  * To add a new token:
  * ```ts
- * import * as awsui from '@cloudscape-design/design-tokens';
+ * import * as awsui from '@cumulus-ui/design-tokens';
  * import { token } from './token-utils.js';
  *
  * export const myNewToken = token(awsui.myNewToken);
@@ -29,7 +29,7 @@
  * ```
  */
 
-import * as awsui from '@cloudscape-design/design-tokens';
+import * as awsui from '@cumulus-ui/design-tokens';
 import { token } from './token-utils.js';
 
 // ── Colors: Background ──────────────────────────────────────────────────────
