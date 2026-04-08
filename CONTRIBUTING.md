@@ -288,6 +288,18 @@ components/
   dist/                   # Build output (git-ignored)
 ```
 
+## Releasing
+
+Releases are handled entirely through GitHub Actions. Never publish to npm directly.
+
+1. Bump version: `npm version patch --no-git-tag-version` (or `minor`/`major`)
+2. Rebuild dist: `npm run build`
+3. Commit: `git commit -am "chore: vX.Y.Z"`
+4. Push to main
+5. Create a GitHub release with tag `vX.Y.Z` — this triggers the `release.yml` workflow which publishes to npm
+
+The publish workflow uses `--provenance` for supply chain attestation via Sigstore. If a publish attempt fails mid-flight, the Sigstore transparency log entry becomes stale — bump to the next patch version rather than retrying the same version.
+
 ## License
 
 By contributing, you agree that your contributions will be licensed under the [Apache-2.0 License](./LICENSE).
