@@ -58,6 +58,13 @@ const pageLoaders: Record<string, PageLoader> = {
   'breadcrumb-group/permutations': () => import('./pages/breadcrumb-group/permutations.js') as Promise<PageModule>,
   'autosuggest/permutations': () => import('./pages/autosuggest/permutations.js') as Promise<PageModule>,
   'segmented-control/permutations': () => import('./pages/segmented-control/permutations.js') as Promise<PageModule>,
+  'cards/permutations': () => import('./pages/cards/permutations.js') as Promise<PageModule>,
+  'collection-preferences/permutations': () => import('./pages/collection-preferences/permutations.js') as Promise<PageModule>,
+  'progress-bar/permutations': () => import('./pages/progress-bar/permutations.js') as Promise<PageModule>,
+  'steps/permutations': () => import('./pages/steps/permutations.js') as Promise<PageModule>,
+  'key-value-pairs/permutations': () => import('./pages/key-value-pairs/permutations.js') as Promise<PageModule>,
+  'property-filter/permutations': () => import('./pages/property-filter/permutations.js') as Promise<PageModule>,
+  'table/permutations': () => import('./pages/table/permutations.js') as Promise<PageModule>,
 };
 
 @customElement('demo-app')

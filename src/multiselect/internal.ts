@@ -586,7 +586,7 @@ export class CsMultiselectInternal extends Base {
           />
         </div>
       ` : nothing}
-      <ul class="option-list" role="listbox" aria-label=${ifDefined(this.ariaLabel || undefined)}>
+      <ul class="option-list" role="listbox" aria-multiselectable="true" aria-label=${ifDefined(this.ariaLabel || undefined)}>
         ${items}
       </ul>
     `;

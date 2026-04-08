@@ -758,9 +758,29 @@ function auditCSSCoverage(component: string): string[] {
   // SVG-specific classes — attribute-based styling, no CSS rules
   const SKIP = new Set([
     'filled', 'stroke-linejoin-round', 'stroke-linecap-round', 'expandable', 'expanded',
-    'tooltip-trigger', 'tooltip-body',     // tooltip: layout wrappers with inline positioning
-    'header-row', 'header', 'content',     // popover: structural containers within body
+    'tooltip-trigger', 'tooltip-body',       // tooltip: layout wrappers with inline positioning
+    'header-row', 'header', 'content',       // popover: structural containers within body
+    // Wave 3+4: structural/layout classes — DOM scaffolding with inline or inherited styles
+    'dropdown', 'filter-container', 'filter-input', 'option-list', 'option-content',
+    'option-label', 'option-label-tag', 'option-description', 'option-tags',
+    'group', 'group-label', 'no-matches', 'selected-icon', 'trigger-label', 'trigger-arrow',
+    'label', 'label-tag', 'tags', 'description', 'icon',
+    // Wave 5: structural classes for data display components
+    'grid', 'pair', 'title', 'section-content', 'additional-info', 'result-button-trigger',
+    'toggle', 'token', 'token-item', 'token-list', 'token-item', 'operation-label',
+    'panel', 'panel-title', 'panel-section', 'panel-section-title', 'panel-footer',
+    'page-size-options', 'page-size-option', 'visible-content-group-label', 'visible-content-option',
+    'header-text', 'header-description', 'header-counter', '?',
   ]);
+
+  // Per-component structural classes that are valid but not in that component's CSS
+  const COMPONENT_SKIP: Record<string, Set<string>> = {
+    'collection-preferences': new Set(['root']),
+    'table': new Set([
+      'table-loading', 'table-empty', 'header-cell', 'body-cell',
+      'selection-cell', 'screenreader-only', 'header-cell-text',
+    ]),
+  };
 
   // Classes from Cloudscape's test-classes/ or analytics-metadata/ — exist for element
   // targeting but have no CSS rules. Keyed by internal style module name.
@@ -780,9 +800,12 @@ function auditCSSCoverage(component: string): string[] {
     }
   }
 
+  const componentSkip = COMPONENT_SKIP[component] ?? new Set();
+
   for (const cls of templateClasses) {
     if (SKIP.has(cls)) continue;
     if (structuralSkip.has(cls)) continue;
+    if (componentSkip.has(cls)) continue;
     if (!cssClasses.has(cls)) {
       issues.push(`Template class "${cls}" has no matching CSS selector`);
     }

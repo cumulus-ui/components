@@ -271,6 +271,729 @@ const COMPONENTS: Record<string, ComponentConfig> = {
     ],
     slotContent: '',
   },
+
+  // ─── Auto-generated configs for remaining components ────────
+
+  alert: {
+    importPath: '@cloudscape-design/components/alert',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/alert/styles.css.js',
+      'node_modules/@cloudscape-design/components/alert/actions-wrapper/styles.css.js',
+    ],
+    baselineProps: { type: 'info', children: 'SLOT_DEFAULT' },
+    variants: [
+      { name: 'type', value: 'error' },
+      { name: 'type', value: 'warning' },
+      { name: 'type', value: 'success' },
+      { name: 'dismissible', value: true },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  autosuggest: {
+    importPath: '@cloudscape-design/components/autosuggest',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/autosuggest/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/autosuggest-input/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/button-trigger/styles.css.js',
+    ],
+    baselineProps: {
+      value: '',
+      options: [
+        { value: 'Option 1' },
+        { value: 'Option 2' },
+      ],
+    },
+    variants: [
+      { name: 'disabled', value: true },
+      { name: 'invalid', value: true },
+      { name: 'readOnly', value: true },
+    ],
+    slotContent: '',
+  },
+  'breadcrumb-group': {
+    importPath: '@cloudscape-design/components/breadcrumb-group',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/breadcrumb-group/styles.css.js',
+      'node_modules/@cloudscape-design/components/breadcrumb-group/item/styles.css.js',
+    ],
+    baselineProps: {
+      items: [
+        { text: 'Home', href: '#' },
+        { text: 'Service', href: '#' },
+        { text: 'Resource', href: '#' },
+      ],
+      ariaLabel: 'Breadcrumbs',
+    },
+    variants: [],
+    slotContent: '',
+  },
+  button: {
+    importPath: '@cloudscape-design/components/button',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/button/styles.css.js',
+    ],
+    baselineProps: { children: 'SLOT_DEFAULT' },
+    variants: [
+      { name: 'variant', value: 'primary' },
+      { name: 'variant', value: 'link' },
+      { name: 'variant', value: 'icon' },
+      { name: 'variant', value: 'inline-link' },
+      { name: 'disabled', value: true },
+      { name: 'loading', value: true },
+      { name: 'fullWidth', value: true },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  'button-dropdown': {
+    importPath: '@cloudscape-design/components/button-dropdown',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/button-dropdown/styles.css.js',
+      'node_modules/@cloudscape-design/components/button-dropdown/category-elements/styles.css.js',
+      'node_modules/@cloudscape-design/components/button-dropdown/item-element/styles.css.js',
+    ],
+    baselineProps: {
+      items: [
+        { id: '1', text: 'Action 1' },
+        { id: '2', text: 'Action 2' },
+      ],
+      children: 'SLOT_DEFAULT',
+    },
+    variants: [
+      { name: 'variant', value: 'primary' },
+      { name: 'disabled', value: true },
+      { name: 'loading', value: true },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  'button-group': {
+    importPath: '@cloudscape-design/components/button-group',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/button-group/styles.css.js',
+    ],
+    baselineProps: {
+      variant: 'icon',
+      items: [
+        { type: 'icon-button', id: 'copy', iconName: 'copy', text: 'Copy' },
+        { type: 'icon-button', id: 'edit', iconName: 'edit', text: 'Edit' },
+      ],
+      ariaLabel: 'Actions',
+    },
+    variants: [],
+    slotContent: '',
+  },
+  cards: {
+    importPath: '@cloudscape-design/components/cards',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/cards/styles.css.js',
+    ],
+    baselineProps: {
+      items: [
+        { name: 'Item 1', description: 'Desc 1' },
+        { name: 'Item 2', description: 'Desc 2' },
+      ],
+      cardDefinition: {
+        header: (item: any) => item.name,
+        sections: [
+          { id: 'desc', header: 'Description', content: (item: any) => item.description },
+        ],
+      },
+    },
+    variants: [
+      { name: 'loading', value: true },
+    ],
+    slotContent: '',
+  },
+  'collection-preferences': {
+    importPath: '@cloudscape-design/components/collection-preferences',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/collection-preferences/styles.css.js',
+    ],
+    baselineProps: {
+      title: 'Preferences',
+      confirmLabel: 'Confirm',
+      cancelLabel: 'Cancel',
+    },
+    variants: [],
+    slotContent: '',
+  },
+  'column-layout': {
+    importPath: '@cloudscape-design/components/column-layout',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/column-layout/styles.css.js',
+      'node_modules/@cloudscape-design/components/column-layout/flexible-column-layout/styles.css.js',
+    ],
+    baselineProps: {
+      columns: 2,
+      children: ['Col 1', 'Col 2'].map(t =>
+        require('react').createElement('div', null, t)
+      ),
+    },
+    variants: [
+      { name: 'columns', value: 3 },
+      { name: 'columns', value: 4 },
+      { name: 'variant', value: 'text-grid' },
+      { name: 'borders', value: 'vertical' },
+      { name: 'borders', value: 'horizontal' },
+    ],
+    slotContent: '',
+  },
+  container: {
+    importPath: '@cloudscape-design/components/container',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/container/styles.css.js',
+    ],
+    baselineProps: {
+      header: require('react').createElement('span', null, 'Header'),
+      children: 'SLOT_DEFAULT',
+    },
+    variants: [
+      { name: 'variant', value: 'stacked' },
+      { name: 'fitHeight', value: true },
+      { name: 'disableContentPaddings', value: true },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  'content-layout': {
+    importPath: '@cloudscape-design/components/content-layout',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/content-layout/styles.css.js',
+    ],
+    baselineProps: {
+      header: require('react').createElement('span', null, 'Header'),
+      children: 'SLOT_DEFAULT',
+    },
+    variants: [
+      { name: 'defaultPadding', value: true },
+      { name: 'disableOverlap', value: true },
+      { name: 'headerVariant', value: 'divider' },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  'copy-to-clipboard': {
+    importPath: '@cloudscape-design/components/copy-to-clipboard',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/copy-to-clipboard/styles.css.js',
+    ],
+    baselineProps: {
+      copyButtonText: 'Copy',
+      copySuccessText: 'Copied',
+      copyErrorText: 'Failed to copy',
+      textToCopy: 'Hello',
+      variant: 'button',
+    },
+    variants: [
+      { name: 'variant', value: 'inline' },
+    ],
+    slotContent: '',
+  },
+  'error-boundary': {
+    importPath: '@cloudscape-design/components/error-boundary',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/error-boundary/styles.css.js',
+    ],
+    baselineProps: {
+      onError: () => {},
+      children: 'SLOT_DEFAULT',
+    },
+    variants: [],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  'expandable-section': {
+    importPath: '@cloudscape-design/components/expandable-section',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/expandable-section/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/expand-toggle-button/styles.css.js',
+    ],
+    baselineProps: {
+      headerText: 'Section Header',
+      children: 'SLOT_DEFAULT',
+    },
+    variants: [
+      { name: 'expanded', value: true },
+      { name: 'variant', value: 'container' },
+      { name: 'variant', value: 'navigation' },
+      { name: 'variant', value: 'footer' },
+      { name: 'variant', value: 'compact' },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  'file-input': {
+    importPath: '@cloudscape-design/components/file-input',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/file-input/styles.css.js',
+    ],
+    baselineProps: {
+      value: [],
+      onChange: () => {},
+      ariaLabel: 'Choose file',
+    },
+    variants: [],
+    slotContent: '',
+  },
+  flashbar: {
+    importPath: '@cloudscape-design/components/flashbar',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/flashbar/styles.css.js',
+    ],
+    baselineProps: {
+      items: [
+        { type: 'success', content: 'Success message' },
+      ],
+    },
+    variants: [
+      { name: 'items', value: [{ type: 'error', content: 'Error message' }] },
+      { name: 'items', value: [{ type: 'warning', content: 'Warning message' }] },
+      { name: 'items', value: [{ type: 'info', content: 'Info message' }] },
+      { name: 'items', value: [{ type: 'in-progress', content: 'Loading message' }] },
+    ],
+    slotContent: '',
+  },
+  'form-field': {
+    importPath: '@cloudscape-design/components/form-field',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/form-field/styles.css.js',
+    ],
+    baselineProps: {
+      label: 'Label',
+      children: 'SLOT_DEFAULT',
+    },
+    variants: [
+      { name: 'errorText', value: 'Error message' },
+      { name: 'warningText', value: 'Warning message' },
+      { name: 'description', value: 'Description text' },
+      { name: 'constraintText', value: 'Constraint text' },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  header: {
+    importPath: '@cloudscape-design/components/header',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/header/styles.css.js',
+    ],
+    baselineProps: { children: 'SLOT_DEFAULT' },
+    variants: [
+      { name: 'variant', value: 'h1' },
+      { name: 'variant', value: 'h3' },
+      { name: 'counter', value: '(10)' },
+      { name: 'description', value: 'Description text' },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  icon: {
+    importPath: '@cloudscape-design/components/icon',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/icon/styles.css.js',
+    ],
+    baselineProps: { name: 'settings' },
+    variants: [
+      { name: 'size', value: 'small' },
+      { name: 'size', value: 'medium' },
+      { name: 'size', value: 'big' },
+      { name: 'size', value: 'large' },
+      { name: 'variant', value: 'disabled' },
+      { name: 'variant', value: 'error' },
+      { name: 'variant', value: 'success' },
+      { name: 'variant', value: 'warning' },
+      { name: 'variant', value: 'link' },
+    ],
+    slotContent: '',
+  },
+  // icon-provider: Skipped — context provider only, no styles.css.js
+  input: {
+    importPath: '@cloudscape-design/components/input',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/input/styles.css.js',
+    ],
+    baselineProps: { value: '' },
+    variants: [
+      { name: 'disabled', value: true },
+      { name: 'invalid', value: true },
+      { name: 'warning', value: true },
+      { name: 'readOnly', value: true },
+      { name: 'type', value: 'search' },
+    ],
+    slotContent: '',
+  },
+  'key-value-pairs': {
+    importPath: '@cloudscape-design/components/key-value-pairs',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/key-value-pairs/styles.css.js',
+    ],
+    baselineProps: {
+      items: [
+        { label: 'Key 1', value: 'Value 1' },
+        { label: 'Key 2', value: 'Value 2' },
+      ],
+    },
+    variants: [
+      { name: 'columns', value: 3 },
+    ],
+    slotContent: '',
+  },
+  link: {
+    importPath: '@cloudscape-design/components/link',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/link/styles.css.js',
+    ],
+    baselineProps: { href: '#', children: 'SLOT_DEFAULT' },
+    variants: [
+      { name: 'variant', value: 'primary' },
+      { name: 'variant', value: 'info' },
+      { name: 'variant', value: 'value-large' },
+      { name: 'external', value: true },
+      { name: 'fontSize', value: 'body-s' },
+      { name: 'fontSize', value: 'heading-m' },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  multiselect: {
+    importPath: '@cloudscape-design/components/multiselect',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/multiselect/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/button-trigger/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/token-list/styles.css.js',
+    ],
+    baselineProps: {
+      selectedOptions: [],
+      options: [
+        { label: 'Option 1', value: '1' },
+        { label: 'Option 2', value: '2' },
+      ],
+      placeholder: 'Choose options',
+    },
+    variants: [
+      { name: 'disabled', value: true },
+      { name: 'invalid', value: true },
+    ],
+    slotContent: '',
+  },
+  pagination: {
+    importPath: '@cloudscape-design/components/pagination',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/pagination/styles.css.js',
+    ],
+    baselineProps: {
+      currentPageIndex: 1,
+      pagesCount: 10,
+    },
+    variants: [
+      { name: 'currentPageIndex', value: 5 },
+      { name: 'disabled', value: true },
+    ],
+    slotContent: '',
+  },
+  popover: {
+    importPath: '@cloudscape-design/components/popover',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/popover/styles.css.js',
+    ],
+    baselineProps: {
+      triggerType: 'text',
+      content: 'Popover content',
+      children: 'SLOT_DEFAULT',
+    },
+    variants: [
+      { name: 'size', value: 'small' },
+      { name: 'size', value: 'large' },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  'progress-bar': {
+    importPath: '@cloudscape-design/components/progress-bar',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/progress-bar/styles.css.js',
+    ],
+    baselineProps: { value: 50 },
+    variants: [
+      { name: 'status', value: 'error' },
+      { name: 'status', value: 'success' },
+      { name: 'variant', value: 'flash' },
+      { name: 'variant', value: 'key-value' },
+    ],
+    slotContent: '',
+  },
+  'prompt-input': {
+    importPath: '@cloudscape-design/components/prompt-input',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/prompt-input/styles.css.js',
+    ],
+    baselineProps: {
+      value: '',
+      actionButtonIconName: 'send',
+    },
+    variants: [
+      { name: 'disabled', value: true },
+      { name: 'invalid', value: true },
+      { name: 'readOnly', value: true },
+      { name: 'warning', value: true },
+    ],
+    slotContent: '',
+  },
+  'property-filter': {
+    importPath: '@cloudscape-design/components/property-filter',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/property-filter/styles.css.js',
+      'node_modules/@cloudscape-design/components/property-filter/filtering-token/styles.css.js',
+    ],
+    baselineProps: {
+      query: { tokens: [], operation: 'and' },
+      onChange: () => {},
+      filteringProperties: [
+        {
+          key: 'name',
+          operators: ['=', '!=', ':', '!:'],
+          propertyLabel: 'Name',
+          groupValuesLabel: 'Name values',
+        },
+      ],
+    },
+    variants: [],
+    slotContent: '',
+  },
+  'segmented-control': {
+    importPath: '@cloudscape-design/components/segmented-control',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/segmented-control/styles.css.js',
+    ],
+    baselineProps: {
+      selectedId: 'seg1',
+      options: [
+        { id: 'seg1', text: 'Segment 1' },
+        { id: 'seg2', text: 'Segment 2' },
+        { id: 'seg3', text: 'Segment 3' },
+      ],
+    },
+    variants: [
+      { name: 'selectedId', value: 'seg2' },
+      { name: 'disabled', value: true },
+    ],
+    slotContent: '',
+  },
+  select: {
+    importPath: '@cloudscape-design/components/select',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/select/styles.css.js',
+      'node_modules/@cloudscape-design/components/select/parts/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/button-trigger/styles.css.js',
+    ],
+    baselineProps: {
+      selectedOption: { label: 'Option 1', value: '1' },
+      options: [
+        { label: 'Option 1', value: '1' },
+        { label: 'Option 2', value: '2' },
+      ],
+    },
+    variants: [
+      { name: 'disabled', value: true },
+      { name: 'invalid', value: true },
+    ],
+    slotContent: '',
+  },
+  slider: {
+    importPath: '@cloudscape-design/components/slider',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/slider/styles.css.js',
+    ],
+    baselineProps: { value: 50, min: 0, max: 100 },
+    variants: [
+      { name: 'disabled', value: true },
+      { name: 'readOnly', value: true },
+    ],
+    slotContent: '',
+  },
+  spinner: {
+    importPath: '@cloudscape-design/components/spinner',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/spinner/styles.css.js',
+    ],
+    baselineProps: {},
+    variants: [
+      { name: 'size', value: 'big' },
+      { name: 'size', value: 'large' },
+      { name: 'variant', value: 'disabled' },
+      { name: 'variant', value: 'inverted' },
+    ],
+    slotContent: '',
+  },
+  'status-indicator': {
+    importPath: '@cloudscape-design/components/status-indicator',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/status-indicator/styles.css.js',
+    ],
+    baselineProps: { type: 'success', children: 'SLOT_DEFAULT' },
+    variants: [
+      { name: 'type', value: 'error' },
+      { name: 'type', value: 'warning' },
+      { name: 'type', value: 'info' },
+      { name: 'type', value: 'stopped' },
+      { name: 'type', value: 'pending' },
+      { name: 'type', value: 'in-progress' },
+      { name: 'type', value: 'loading' },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  steps: {
+    importPath: '@cloudscape-design/components/steps',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/steps/styles.css.js',
+    ],
+    baselineProps: {
+      steps: [
+        { header: 'Step 1', status: 'success' },
+        { header: 'Step 2', status: 'info' },
+        { header: 'Step 3', status: 'pending' },
+      ],
+    },
+    variants: [
+      { name: 'orientation', value: 'horizontal' },
+    ],
+    slotContent: '',
+  },
+  table: {
+    importPath: '@cloudscape-design/components/table',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/table/styles.css.js',
+      'node_modules/@cloudscape-design/components/table/header-cell/styles.css.js',
+      'node_modules/@cloudscape-design/components/table/body-cell/styles.css.js',
+      'node_modules/@cloudscape-design/components/table/selection/styles.css.js',
+    ],
+    baselineProps: {
+      items: [
+        { name: 'Item 1', value: '100' },
+        { name: 'Item 2', value: '200' },
+      ],
+      columnDefinitions: [
+        { id: 'name', header: 'Name', cell: (item: any) => item.name },
+        { id: 'value', header: 'Value', cell: (item: any) => item.value },
+      ],
+    },
+    variants: [
+      { name: 'loading', value: true },
+      { name: 'variant', value: 'stacked' },
+      { name: 'variant', value: 'embedded' },
+      { name: 'variant', value: 'borderless' },
+    ],
+    slotContent: '',
+  },
+  tabs: {
+    importPath: '@cloudscape-design/components/tabs',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/tabs/styles.css.js',
+    ],
+    baselineProps: {
+      tabs: [
+        { id: 'tab1', label: 'Tab 1', content: 'Tab 1 content' },
+        { id: 'tab2', label: 'Tab 2', content: 'Tab 2 content' },
+      ],
+      activeTabId: 'tab1',
+    },
+    variants: [
+      { name: 'activeTabId', value: 'tab2' },
+      { name: 'variant', value: 'container' },
+    ],
+    slotContent: '',
+  },
+  'text-filter': {
+    importPath: '@cloudscape-design/components/text-filter',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/text-filter/styles.css.js',
+    ],
+    baselineProps: {
+      filteringText: '',
+      filteringPlaceholder: 'Find items',
+    },
+    variants: [
+      { name: 'disabled', value: true },
+    ],
+    slotContent: '',
+  },
+  textarea: {
+    importPath: '@cloudscape-design/components/textarea',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/textarea/styles.css.js',
+    ],
+    baselineProps: { value: '' },
+    variants: [
+      { name: 'disabled', value: true },
+      { name: 'invalid', value: true },
+      { name: 'readOnly', value: true },
+      { name: 'warning', value: true },
+    ],
+    slotContent: '',
+  },
+  'time-input': {
+    importPath: '@cloudscape-design/components/time-input',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/time-input/styles.css.js',
+    ],
+    baselineProps: { value: '12:00', format: 'hh:mm' },
+    variants: [
+      { name: 'disabled', value: true },
+      { name: 'invalid', value: true },
+      { name: 'readOnly', value: true },
+    ],
+    slotContent: '',
+  },
+  toggle: {
+    importPath: '@cloudscape-design/components/toggle',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/toggle/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/abstract-switch/styles.css.js',
+    ],
+    baselineProps: { checked: false, children: 'SLOT_DEFAULT' },
+    variants: [
+      { name: 'checked', value: true },
+      { name: 'disabled', value: true },
+      { name: 'readOnly', value: true },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  'toggle-button': {
+    importPath: '@cloudscape-design/components/toggle-button',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/toggle-button/styles.css.js',
+    ],
+    baselineProps: { pressed: false, children: 'SLOT_DEFAULT' },
+    variants: [
+      { name: 'pressed', value: true },
+      { name: 'variant', value: 'icon' },
+      { name: 'disabled', value: true },
+    ],
+    slotContent: 'SLOT_DEFAULT',
+  },
+  token: {
+    importPath: '@cloudscape-design/components/token',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/token/styles.css.js',
+    ],
+    baselineProps: { label: 'Token label' },
+    variants: [
+      { name: 'disabled', value: true },
+      { name: 'readOnly', value: true },
+      { name: 'dismissLabel', value: 'Remove' },
+      { name: 'variant', value: 'inline' },
+    ],
+    slotContent: '',
+  },
+  'token-group': {
+    importPath: '@cloudscape-design/components/token-group',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/token-group/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/token-list/styles.css.js',
+    ],
+    baselineProps: {
+      items: [
+        { label: 'Token 1', dismissLabel: 'Remove Token 1' },
+        { label: 'Token 2', dismissLabel: 'Remove Token 2' },
+      ],
+    },
+    variants: [
+      { name: 'readOnly', value: true },
+      { name: 'alignment', value: 'vertical' },
+    ],
+    slotContent: '',
+  },
+  // tooltip: Skipped — requires getTrack() returning HTMLElement, cannot SSR render
 };
 
 // ─── DOM Parsing ──────────────────────────────────────────────
