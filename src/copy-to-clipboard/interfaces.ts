@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface CopyToClipboardProps {
   /** Determines the general styling of the copy button as follows:
    *
@@ -59,12 +59,12 @@ export interface CopyToClipboardProps {
    * Called when the text is successfully copied to the clipboard.
    * The event `detail` contains the text that was copied.
    */
-  onCopySuccess?: EventDetail<CopyToClipboardProps.CopySuccessDetail>;
+  onCopySuccess?: EventHandler<CopyToClipboardProps.CopySuccessDetail>;
   /**
    * Called when the copy operation fails.
    * The event `detail` contains the text that failed to copy.
    */
-  onCopyFailure?: EventDetail<CopyToClipboardProps.CopyFailureDetail>;
+  onCopyFailure?: EventHandler<CopyToClipboardProps.CopyFailureDetail>;
 }
 export declare namespace CopyToClipboardProps {
   type Variant = 'button' | 'icon' | 'inline';

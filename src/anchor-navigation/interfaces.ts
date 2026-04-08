@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface AnchorNavigationProps {
   /**
    * Adds `aria-labelledby` to the component.
@@ -37,14 +37,14 @@ export interface AnchorNavigationProps {
   /**
    * Fired when an anchor link is clicked without any modifier keys.
    */
-  onFollow?: EventDetail<AnchorNavigationProps.Anchor>;
+  onFollow?: EventHandler<AnchorNavigationProps.Anchor>;
   /**
    * Fired when an active anchor link changes.
    *
    * Note: This event is triggered both by the component's internal scroll-spy logic,
    * or when the `activeHref` prop is manually updated.
    */
-  onActiveHrefChange?: EventDetail<AnchorNavigationProps.Anchor>;
+  onActiveHrefChange?: EventHandler<AnchorNavigationProps.Anchor>;
 }
 export declare namespace AnchorNavigationProps {
   interface Anchor {

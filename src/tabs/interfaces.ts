@@ -3,7 +3,7 @@
 // License: see /NOTICE
 import { ButtonProps } from '../button/interfaces.js';
 import { ContainerProps } from '../container/interfaces.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface TabsProps {
   /**
    * Specifies the tabs to display. Each tab object has the following properties:
@@ -50,7 +50,7 @@ export interface TabsProps {
    * Called whenever the user selects a different tab.
    * The event's `detail` contains the new `activeTabId`.
    */
-  onChange?: EventDetail<TabsProps.ChangeDetail>;
+  onChange?: EventHandler<TabsProps.ChangeDetail>;
   /**
    * The `id` of the currently active tab.
    * * If you don't set this property, the component activates the first tab and switches tabs automatically when a tab header is clicked (that is, uncontrolled behavior).

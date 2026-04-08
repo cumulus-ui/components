@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { ColumnLayoutBreakpoint } from './internal.js';
-import type { SlotContent } from '../internal/types.js';
+import { SlotContent } from '../internal/generated/cloudscape-types.js';
 export interface ColumnLayoutProps {
   /**
    * Specifies the number of columns in each grid row.

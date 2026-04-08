@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface TutorialPanelProps {
   /**
    * Whether the content of the panel is currently loading. If this property
@@ -63,7 +63,7 @@ export interface TutorialPanelProps {
   /**
    * Fired when the user clicks on the feedback link at the end of a tutorial.
    */
-  onFeedbackClick?: EventDetail<TutorialPanelProps.TutorialDetail>;
+  onFeedbackClick?: EventHandler<TutorialPanelProps.TutorialDetail>;
 }
 export declare namespace TutorialPanelProps {
   interface TutorialDetail {

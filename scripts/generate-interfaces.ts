@@ -46,6 +46,8 @@ const SHARED_TYPE_EXPORTS: Record<string, string> = {
   Optional:              'Optional',
   OptionDefinition:      'OptionDefinition',
   OptionGroupDefinition: 'OptionGroup as OptionGroupDefinition',
+  SlotContent:           'SlotContent',
+  EventHandler:          'EventHandler',
 };
 const SHARED_TYPES_REL = '../internal/generated/cloudscape-types.js';
 
@@ -286,7 +288,7 @@ function pass3(content: string): string {
           const fullProp = lines.slice(peek, skipMultilineProp(lines, peek)).map(l => l.trim()).join(' ');
           const det = extractDetail(fullProp);
           out.push(...stripAwsui(jsdoc));
-          out.push(`  ${pName}?: EventDetail<${det}>;`);
+          out.push(`  ${pName}?: EventHandler<${det}>;`);
           i = skipMultilineProp(lines, peek); continue;
         }
       }
@@ -313,7 +315,7 @@ function pass3(content: string): string {
         const end = skipMultilineProp(lines, i);
         const fullProp = lines.slice(i, end).map(l => l.trim()).join(' ');
         const det = extractDetail(fullProp);
-        out.push(`  ${pName}?: EventDetail<${det}>;`);
+        out.push(`  ${pName}?: EventHandler<${det}>;`);
         i = end;
         continue;
       }
@@ -430,21 +432,13 @@ function pass5(content: string, stripped: Set<string>): string {
     if (re.test(body)) needed.push(spec);
   }
 
-  const imports: string[] = [];
-  if (needed.length > 0) {
-    imports.push(`import { ${[...new Set(needed)].join(', ')} } from '${SHARED_TYPES_REL}';`);
-  }
-
   const body = content.split('\n').filter(l => !l.trim().startsWith('import ')).join('\n');
-  const typesNeeded: string[] = [];
-  if (/\bSlotContent\b/.test(body)) typesNeeded.push('SlotContent');
-  if (/\bEventDetail\b/.test(body)) typesNeeded.push('EventDetail');
-  if (typesNeeded.length > 0) {
-    imports.push(`import type { ${typesNeeded.join(', ')} } from '../internal/types.js';`);
-  }
+  if (/\bSlotContent\b/.test(body) && !needed.includes('SlotContent')) needed.push('SlotContent');
+  if (/\bEventHandler\b/.test(body) && !needed.includes('EventHandler')) needed.push('EventHandler');
 
-  if (imports.length === 0) return content;
+  if (needed.length === 0) return content;
 
+  const importLine = `import { ${[...new Set(needed)].join(', ')} } from '${SHARED_TYPES_REL}';`;
   const lines = content.split('\n');
   let insertIdx = 0;
   for (let j = 0; j < lines.length; j++) {
@@ -452,7 +446,7 @@ function pass5(content: string, stripped: Set<string>): string {
     if (t.startsWith('import ') || t === '') insertIdx = j + 1;
     else break;
   }
-  lines.splice(insertIdx, 0, ...imports);
+  lines.splice(insertIdx, 0, importLine);
   return lines.join('\n');
 }
 
@@ -545,6 +539,11 @@ export interface BaseKeyDetail {
 // ─── From internal/types ──────────────────────────────────────
 
 export type Optional<T> = T | undefined;
+
+// ─── Web Component slot/event marker types ────────────────────
+
+export type SlotContent = unknown;
+export type EventHandler<T = void> = (event: CustomEvent<T>) => void;
 
 // ─── From internal/components/option/interfaces ───────────────
 

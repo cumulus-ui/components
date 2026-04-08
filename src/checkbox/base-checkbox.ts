@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface BaseCheckboxProps {
   /**
    * Specifies if the component is selected.
@@ -38,11 +38,11 @@ export interface BaseCheckboxProps {
   /**
    * Called when input focus is moved to the UI control.
    */
-  onFocus?: EventDetail<void>;
+  onFocus?: EventHandler<void>;
   /**
    * Called when input focus is removed from the UI control.
    */
-  onBlur?: EventDetail<void>;
+  onBlur?: EventHandler<void>;
   children?: SlotContent;
   /**
    * Description that appears below the label.

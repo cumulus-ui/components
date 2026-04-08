@@ -3,14 +3,13 @@
 // License: see /NOTICE
 import { IconProps } from '../icon/interfaces.js';
 import { BaseChangeDetail, BaseInputProps, InputAutoComplete, InputAutoCorrect, InputKeyEvents, InputSpellcheck } from '../input/interfaces.js';
-import { BaseKeyDetail } from '../internal/generated/cloudscape-types.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { BaseKeyDetail, SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface PromptInputProps extends Omit<BaseInputProps, 'nativeInputAttributes'>, InputKeyEvents, InputAutoCorrect, InputAutoComplete, InputSpellcheck {
   /**
    * Called whenever a user clicks the action button or presses the "Enter" key.
    * The event `detail` contains the current value of the field.
    */
-  onAction?: EventDetail<PromptInputProps.ActionDetail>;
+  onAction?: EventHandler<PromptInputProps.ActionDetail>;
   /**
    * Determines what icon to display in the action button.
    */

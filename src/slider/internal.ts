@@ -30,6 +30,9 @@ export class CsSliderInternal extends CsBaseElement {
   @property({ type: String })
   override ariaLabel: string | null = null;
 
+  @property({ type: String })
+  override ariaDescription: string | null = null;
+
   focus(options?: FocusOptions): void {
     const input = this.shadowRoot?.querySelector<HTMLInputElement>('input[type="range"]');
     input?.focus(options);
@@ -85,6 +88,7 @@ export class CsSliderInternal extends CsBaseElement {
             step=${this.step}
             ?disabled=${this.disabled}
             aria-label=${ifDefined(this.ariaLabel || undefined)}
+            aria-description=${ifDefined(this.ariaDescription || undefined)}
             aria-valuemin=${this.min}
             aria-valuemax=${this.max}
             aria-valuenow=${this.value}

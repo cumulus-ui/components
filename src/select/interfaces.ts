@@ -2,8 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { BaseDropdownHostProps, OptionsFilteringType, OptionsLoadItemsDetail } from '../dropdown/interfaces.js';
-import { OptionDefinition, OptionGroup as OptionGroupDefinition } from '../internal/generated/cloudscape-types.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { OptionDefinition, OptionGroup as OptionGroupDefinition, SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface BaseSelectProps extends BaseDropdownHostProps {
   /**
    * Specifies an array of options that are displayed to the user as a dropdown list.
@@ -126,11 +125,11 @@ export interface BaseSelectProps extends BaseDropdownHostProps {
   /**
    * Called when input focus is removed from the UI control.
    */
-  onBlur?: EventDetail<void>;
+  onBlur?: EventHandler<void>;
   /**
    * Called when input focus is set onto the UI control.
    */
-  onFocus?: EventDetail<void>;
+  onFocus?: EventHandler<void>;
   /**
    * Specifies if the control is read-only, which prevents the
    * user from both modifying the value and opening the dropdown. A read-only control is still focusable.
@@ -166,7 +165,7 @@ export interface SelectProps extends BaseSelectProps {
    * Called when the user selects an option.
    * The event `detail` contains the current `selectedOption`.
    */
-  onChange?: EventDetail<SelectProps.ChangeDetail>;
+  onChange?: EventHandler<SelectProps.ChangeDetail>;
   /**
    * Automatically focuses the trigger when component is mounted.
    */

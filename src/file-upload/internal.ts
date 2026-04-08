@@ -142,6 +142,9 @@ export class CsFileUploadInternal extends CsBaseElement {
   @property({ type: String })
   override ariaLabel: string | null = null;
 
+  @property({ type: Boolean })
+  override ariaRequired: string | null = null;
+
   @property({ type: String })
   label = '';
 
@@ -286,6 +289,7 @@ export class CsFileUploadInternal extends CsBaseElement {
           ?multiple=${this.multiple}
           ?disabled=${this.disabled}
           aria-label=${this.ariaLabel || uploadButtonText}
+          aria-required=${ifDefined(this.ariaRequired || undefined)}
           @change=${this._onFileInputChange}
         >${uploadButtonText}</cs-file-input>
 

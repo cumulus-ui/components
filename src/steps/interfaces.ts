@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { StatusIndicatorProps } from '../status-indicator/interfaces.js';
-import type { SlotContent } from '../internal/types.js';
+import { SlotContent } from '../internal/generated/cloudscape-types.js';
 export interface StepsProps {
   /**
    * An array of individual steps

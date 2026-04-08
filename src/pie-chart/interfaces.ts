@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { PopoverProps } from '../popover/interfaces.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface SeriesInfo {
   label: string;
   color: string;
@@ -152,16 +152,16 @@ export interface PieChartProps<T extends PieChartProps.Datum = PieChartProps.Dat
    * Use this to enable the user to retry a failed request or provide another option for the user
    * to recover from the error.
    */
-  onRecoveryClick?: EventDetail<void>;
+  onRecoveryClick?: EventHandler<void>;
   /**
    * Called when the highlighted segmented changes because of a user interaction.
    */
-  onHighlightChange?: EventDetail<PieChartProps.HighlightChangeDetail<T>>;
+  onHighlightChange?: EventHandler<PieChartProps.HighlightChangeDetail<T>>;
   /**
    * Called when the values of the internal filter component changes.
    * This isn't called for any custom filter components you've defined in `additionalFilters`.
    */
-  onFilterChange?: EventDetail<PieChartProps.FilterChangeDetail<T>>;
+  onFilterChange?: EventHandler<PieChartProps.FilterChangeDetail<T>>;
   /**
    * ARIA label that's assigned to the chart. It should match the visible label on the page
    * (for example, in the container header). Use either `ariaLabel` or `ariaLabelledby` (you can't use both).

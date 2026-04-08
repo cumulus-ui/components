@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export type OptionsFilteringType = 'none' | 'auto' | 'manual';
 export declare namespace DropdownProps {
   interface Style {
@@ -67,7 +67,7 @@ export interface BaseDropdownHostProps extends ExpandToViewport {
    * * `firstPage` - Indicates that you should fetch the first page of options that match the `filteringText`.
    * * `samePage` - Indicates that you should fetch the same page that you have previously fetched (for example, when the user clicks on the recovery button).
    **/
-  onLoadItems?: EventDetail<OptionsLoadItemsDetail>;
+  onLoadItems?: EventHandler<OptionsLoadItemsDetail>;
 }
 export interface DropdownProps extends ExpandToViewport {
   /**
@@ -98,7 +98,7 @@ export interface DropdownProps extends ExpandToViewport {
    * close automatically - the `open` prop needs to be updated to actually close
    * the dropdown.
    */
-  onOutsideClick?: EventDetail<null>;
+  onOutsideClick?: EventHandler<null>;
   /**
    * Minimum width for the dropdown in pixels. If no value is specified, the
    * dropdown will shrink to fit its content.
@@ -114,16 +114,16 @@ export interface DropdownProps extends ExpandToViewport {
    * The dropdown does not close automatically - the `open` prop needs to be
    * updated to actually close the dropdown.
    */
-  onEscape?: EventDetail<void>;
+  onEscape?: EventHandler<void>;
   /**
    * Called when any element inside the dropdown content gains focus.
    * This includes nested interactive elements like buttons, links, or inputs.
    */
-  onFocusEnter?: EventDetail<Pick<FocusEvent, 'target' | 'relatedTarget'>>;
+  onFocusEnter?: EventHandler<Pick<FocusEvent, 'target' | 'relatedTarget'>>;
   /**
    * Called when focus leaves the dropdown content entirely.
    */
-  onFocusLeave?: EventDetail<Pick<FocusEvent, 'target' | 'relatedTarget'>>;
+  onFocusLeave?: EventHandler<Pick<FocusEvent, 'target' | 'relatedTarget'>>;
   /**
    * Adds `role` to the dropdown content element.
    */

@@ -2,8 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { BaseSelectProps } from '../select/interfaces.js';
-import { OptionDefinition, OptionGroup as OptionGroupDefinition } from '../internal/generated/cloudscape-types.js';
-import type { EventDetail } from '../internal/types.js';
+import { OptionDefinition, OptionGroup as OptionGroupDefinition, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface MultiselectProps extends BaseSelectProps {
   /**
    * Specifies the currently selected options.
@@ -50,7 +49,7 @@ export interface MultiselectProps extends BaseSelectProps {
    * Called when the user selects or deselects an option.
    * The event `detail` contains the current `selectedOptions`.
    */
-  onChange?: EventDetail<MultiselectProps.MultiselectChangeDetail>;
+  onChange?: EventHandler<MultiselectProps.MultiselectChangeDetail>;
   /**
    * Automatically focuses the trigger when component is mounted.
    */

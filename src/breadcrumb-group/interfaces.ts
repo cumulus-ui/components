@@ -2,8 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { LinkItem } from '../button-dropdown/interfaces.js';
-import { BaseNavigationDetail } from '../internal/generated/cloudscape-types.js';
-import type { EventDetail } from '../internal/types.js';
+import { BaseNavigationDetail, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface BreadcrumbGroupProps<T extends BreadcrumbGroupProps.Item = BreadcrumbGroupProps.Item> {
   /**
    * An array of breadcrumb items that describes the link hierarchy for this navigation.
@@ -28,12 +27,12 @@ export interface BreadcrumbGroupProps<T extends BreadcrumbGroupProps.Item = Brea
   /**
    * Called when the user clicks on a breadcrumb item.
    */
-  onClick?: EventDetail<BreadcrumbGroupProps.ClickDetail<T>>;
+  onClick?: EventHandler<BreadcrumbGroupProps.ClickDetail<T>>;
   /**
    * Called when the user clicks on a breadcrumb item with the left mouse button
    * without pressing modifier keys (that is, CTRL, ALT, SHIFT, META).
    */
-  onFollow?: EventDetail<BreadcrumbGroupProps.ClickDetail<T>>;
+  onFollow?: EventHandler<BreadcrumbGroupProps.ClickDetail<T>>;
 }
 export declare namespace BreadcrumbGroupProps {
   interface Item {
@@ -55,13 +54,13 @@ export interface BreadcrumbItemProps<T extends BreadcrumbGroupProps.Item> {
   totalCount: number;
   isTruncated?: boolean;
   isGhost?: boolean;
-  onClick?: EventDetail<BreadcrumbGroupProps.ClickDetail<T>>;
-  onFollow?: EventDetail<BreadcrumbGroupProps.ClickDetail<T>>;
+  onClick?: EventHandler<BreadcrumbGroupProps.ClickDetail<T>>;
+  onFollow?: EventHandler<BreadcrumbGroupProps.ClickDetail<T>>;
 }
 export interface EllipsisDropdownProps {
   ariaLabel?: BreadcrumbGroupProps['expandAriaLabel'];
   dropdownItems: ReadonlyArray<LinkItem>;
-  onDropdownItemClick?: EventDetail<{ id: string; }>;
-  onDropdownItemFollow?: EventDetail<{ id: string; }>;
+  onDropdownItemClick?: EventHandler<{ id: string; }>;
+  onDropdownItemFollow?: EventHandler<{ id: string; }>;
   visible?: boolean;
 }

@@ -1,8 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import { BaseKeyDetail } from '../internal/generated/cloudscape-types.js';
-import type { EventDetail } from '../internal/types.js';
+import { BaseKeyDetail, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface BaseInputProps {
   /**
    * Specifies the text entered into the form element.
@@ -52,16 +51,16 @@ export interface BaseInputProps {
   /**
    * Called when input focus is removed from the UI control.
    */
-  onBlur?: EventDetail<null>;
+  onBlur?: EventHandler<null>;
   /**
    * Called when input focus is moved to the UI control.
    */
-  onFocus?: EventDetail<null>;
+  onFocus?: EventHandler<null>;
   /**
    * Called whenever a user changes the input value (by typing or pasting).
    * The event `detail` contains the current value of the field.
    */
-  onChange?: EventDetail<InputProps.ChangeDetail>;
+  onChange?: EventHandler<InputProps.ChangeDetail>;
 }
 export interface InputAutoCorrect {
   /**
@@ -103,13 +102,13 @@ export interface InputKeyEvents {
    * The event `detail` contains the `keyCode` and information
    * about modifiers (that is, CTRL, ALT, SHIFT, META, etc.).
    */
-  onKeyDown?: EventDetail<InputProps.KeyDetail>;
+  onKeyDown?: EventHandler<InputProps.KeyDetail>;
   /**
    * Called when the underlying native textarea emits a `keyup` event.
    * The event `detail` contains the `keyCode` and information
    * about modifiers (that is, CTRL, ALT, SHIFT, META, etc.).
    */
-  onKeyUp?: EventDetail<InputProps.KeyDetail>;
+  onKeyUp?: EventHandler<InputProps.KeyDetail>;
 }
 export interface InputClearLabel {
   /**

@@ -37,6 +37,11 @@ export interface BaseKeyDetail {
 
 export type Optional<T> = T | undefined;
 
+// ─── Web Component slot/event marker types ────────────────────
+
+export type SlotContent = unknown;
+export type EventHandler<T = void> = (event: CustomEvent<T>) => void;
+
 // ─── From internal/components/option/interfaces ───────────────
 
 interface BaseOption {

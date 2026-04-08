@@ -3,7 +3,7 @@
 // License: see /NOTICE
 import { BaseButtonProps } from '../button/interfaces.js';
 import { IconProps } from '../icon/interfaces.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface ToggleButtonProps extends Omit<BaseButtonProps, 'nativeAnchorAttributes'> {
   /** Determines the general styling of the toggle button as follows:
    * * `normal` for secondary buttons.
@@ -62,7 +62,7 @@ export interface ToggleButtonProps extends Omit<BaseButtonProps, 'nativeAnchorAt
    * Called when the user changes their selection.
    * The event `detail` contains the current value for the `pressed` property.
    */
-  onChange?: EventDetail<ToggleButtonProps.ChangeDetail>;
+  onChange?: EventHandler<ToggleButtonProps.ChangeDetail>;
 }
 export declare namespace ToggleButtonProps {
   type Variant = 'normal' | 'icon';

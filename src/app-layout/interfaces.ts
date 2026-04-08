@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { IconProps } from '../icon/interfaces.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface BaseLayoutProps {
   /**
    * Specifies additional analytics-related metadata.
@@ -47,7 +47,7 @@ export interface BaseLayoutProps {
   /**
    * Fired when the active drawer is toggled.
    */
-  onDrawerChange?: EventDetail<AppLayoutProps.DrawerChangeDetail>;
+  onDrawerChange?: EventHandler<AppLayoutProps.DrawerChangeDetail>;
   /**
    * If `true`, disables outer paddings for the content slot.
    */
@@ -175,11 +175,11 @@ export interface BaseLayoutProps {
   /**
    * Fired when the navigation drawer is toggled.
    */
-  onNavigationChange?: EventDetail<AppLayoutProps.ChangeDetail>;
+  onNavigationChange?: EventHandler<AppLayoutProps.ChangeDetail>;
   /**
    * Fired when the tools drawer is toggled.
    */
-  onToolsChange?: EventDetail<AppLayoutProps.ChangeDetail>;
+  onToolsChange?: EventHandler<AppLayoutProps.ChangeDetail>;
   /**
    * Use this slot to add the [split panel component](/components/split-panel/) to the app layout.
    *
@@ -205,15 +205,15 @@ export interface BaseLayoutProps {
   /**
    * Fired when the split panel is resized.
    */
-  onSplitPanelResize?: EventDetail<AppLayoutProps.SplitPanelResizeDetail>;
+  onSplitPanelResize?: EventHandler<AppLayoutProps.SplitPanelResizeDetail>;
   /**
    * Fired when the split panel is toggled.
    */
-  onSplitPanelToggle?: EventDetail<AppLayoutProps.ChangeDetail>;
+  onSplitPanelToggle?: EventHandler<AppLayoutProps.ChangeDetail>;
   /**
    * Fired when the split panel preferences change.
    */
-  onSplitPanelPreferencesChange?: EventDetail<AppLayoutProps.SplitPanelPreferences>;
+  onSplitPanelPreferencesChange?: EventHandler<AppLayoutProps.SplitPanelPreferences>;
 }
 export interface AppLayoutProps extends BaseLayoutProps {
   /**

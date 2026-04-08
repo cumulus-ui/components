@@ -1,8 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import { ClickDetail as _ClickDetail, BaseNavigationDetail } from '../internal/generated/cloudscape-types.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { ClickDetail as _ClickDetail, BaseNavigationDetail, SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface LinkProps {
   /**
    * Determines the visual style of the link as follows:
@@ -78,11 +77,11 @@ export interface LinkProps {
    * If you want to implement client-side routing yourself, use this event and prevent default browser navigation
    * (by calling `preventDefault`).
    */
-  onFollow?: EventDetail<LinkProps.FollowDetail>;
+  onFollow?: EventHandler<LinkProps.FollowDetail>;
   /**
    * Called when the user clicks on the link. Do not use this handler for navigation, use the `onFollow` event instead.
    */
-  onClick?: EventDetail<LinkProps.ClickDetail>;
+  onClick?: EventHandler<LinkProps.ClickDetail>;
   /**
    * Adds a `rel` attribute to the link. If the `rel` property is provided, it overrides the default behaviour.
    * By default, the component sets the `rel` attribute to "noopener noreferrer" when `external` is `true` or `target` is `"_blank"`.

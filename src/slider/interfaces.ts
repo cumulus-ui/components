@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface SliderProps {
   /**
    * Indicates the current value.
@@ -23,7 +23,7 @@ export interface SliderProps {
    * Called when the user selects a value.
    * The event `detail` contains the current `value`.
    */
-  onChange?: EventDetail<SliderProps.ChangeDetail>;
+  onChange?: EventHandler<SliderProps.ChangeDetail>;
   /**
    * How big the step size is.
    */

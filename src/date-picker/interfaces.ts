@@ -3,7 +3,7 @@
 // License: see /NOTICE
 import { CalendarProps } from '../calendar/interfaces.js';
 import { ExpandToViewport } from '../dropdown/interfaces.js';
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface DatePickerProps extends ExpandToViewport, CalendarProps {
   /**
    * Specifies the placeholder text rendered when the value is an empty string.
@@ -75,11 +75,11 @@ export interface DatePickerProps extends ExpandToViewport, CalendarProps {
   /**
    * Called when input focus is moved to the UI control.
    */
-  onFocus?: EventDetail<null>;
+  onFocus?: EventHandler<null>;
   /**
    * Called when input focus is removed from the UI control.
    */
-  onBlur?: EventDetail<null>;
+  onBlur?: EventHandler<null>;
   /**
    * An object containing all the necessary localized strings required by
    * the component.

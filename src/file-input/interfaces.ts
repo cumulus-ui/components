@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface FileInputProps {
   /**
    * Variant of the file input. Defaults to "button".
@@ -33,7 +33,7 @@ export interface FileInputProps {
    * Called when the user selects new file(s), or removes a file.
    * The event `detail` contains the current value of the component.
    */
-  onChange?: EventDetail<FileInputProps.ChangeDetail>;
+  onChange?: EventHandler<FileInputProps.ChangeDetail>;
   /**
    * Specifies the currently selected file(s).
    * If you want to clear the selection, use empty array.

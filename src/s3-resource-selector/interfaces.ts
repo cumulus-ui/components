@@ -4,7 +4,7 @@
 import { BaseModalProps } from '../modal/interfaces.js';
 import { PaginationProps } from '../pagination/interfaces.js';
 import { TableProps } from '../table/interfaces.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface S3ResourceSelectorProps extends BaseModalProps {
   /**
    * Specifies additional information about component status.
@@ -137,16 +137,16 @@ export interface S3ResourceSelectorProps extends BaseModalProps {
   /**
    * Called when input focus is removed from the S3 URI input.
    */
-  onInputBlur?: EventDetail<null>;
+  onInputBlur?: EventHandler<null>;
   /**
    * Called when input focus is moved to the S3 URI input.
    */
-  onInputFocus?: EventDetail<null>;
+  onInputFocus?: EventHandler<null>;
   /**
    * Fired when the resource selection is changed. The event detail object contains resource that represents the full
    * path of the selected resource and `errorText` that may contain a validation error.
    */
-  onChange?: EventDetail<S3ResourceSelectorProps.ChangeDetail>;
+  onChange?: EventHandler<S3ResourceSelectorProps.ChangeDetail>;
 }
 interface SelectionLabels<T> {
   itemSelectionLabel: (data: TableProps.SelectionState<T>, row: T) => string;

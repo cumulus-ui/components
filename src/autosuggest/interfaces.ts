@@ -3,8 +3,7 @@
 // License: see /NOTICE
 import { BaseDropdownHostProps, OptionsFilteringType, OptionsLoadItemsDetail } from '../dropdown/interfaces.js';
 import { BaseInputProps, InputAutoCorrect, InputClearLabel, InputKeyEvents, InputProps } from '../input/interfaces.js';
-import { OptionDefinition } from '../internal/generated/cloudscape-types.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { OptionDefinition, SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface AutosuggestProps extends BaseInputProps, InputAutoCorrect, BaseDropdownHostProps, InputKeyEvents, InputClearLabel {
   /**
    * Specifies an array of options that are displayed to the user as a dropdown list.
@@ -117,7 +116,7 @@ export interface AutosuggestProps extends BaseInputProps, InputAutoCorrect, Base
    * Called whenever a user selects an option in the dropdown. Don't use this event as the only way to handle user input.
    * Instead, use `onSelect` in combination with the `onChange` handler only as an optional convenience for the user.
    */
-  onSelect?: EventDetail<AutosuggestProps.SelectDetail>;
+  onSelect?: EventHandler<AutosuggestProps.SelectDetail>;
   /**
    * Specifies the localized string that describes an option as being selected.
    * This is required to provide a good screen reader experience. For more information, see the

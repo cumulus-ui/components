@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export declare namespace AlertProps {
   type Type = 'success' | 'error' | 'warning' | 'info';
   interface Ref {
@@ -107,12 +107,12 @@ export interface AlertProps {
    * Fired when the user clicks the close icon that is displayed
    * when the `dismissible` property is set to `true`.
    */
-  onDismiss?: EventDetail<void>;
+  onDismiss?: EventHandler<void>;
   /**
    * Fired when the user clicks the action button.
    * **Deprecated** Replaced by `action`.
    */
-  onButtonClick?: EventDetail<void>;
+  onButtonClick?: EventHandler<void>;
   /**
    * An object containing all the necessary localized strings required by the component.
    * @property {AlertProps.I18nStrings} [i18nStrings] - optional

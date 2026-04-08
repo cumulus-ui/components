@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { TutorialPanelProps } from '../tutorial-panel/interfaces.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface AnnotationContextProps {
   /**
    * The currently launched tutorial. This should be the object received
@@ -19,20 +19,20 @@ export interface AnnotationContextProps {
    * Use the `reason` property of the event detail to determine why
    * this event was fired.
    */
-  onStepChange?: EventDetail<AnnotationContextProps.StepChangeDetail>;
+  onStepChange?: EventHandler<AnnotationContextProps.StepChangeDetail>;
   /**
    * Fired when the user selects a tutorial from the list.
    */
-  onStartTutorial?: EventDetail<TutorialPanelProps.TutorialDetail>;
+  onStartTutorial?: EventHandler<TutorialPanelProps.TutorialDetail>;
   /**
    * Fired when the user exits the current tutorial.
    */
-  onExitTutorial?: EventDetail<TutorialPanelProps.TutorialDetail>;
+  onExitTutorial?: EventHandler<TutorialPanelProps.TutorialDetail>;
   /**
    * Fired when the user clicks the "Finish" button on the last step of
    * the tutorial.
    */
-  onFinish?: EventDetail<void>;
+  onFinish?: EventHandler<void>;
   /**
    * Put all page content inside this component's children. This component
    * will provide a context which is used by the Hotspot elements throughout

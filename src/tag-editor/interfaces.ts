@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { AutosuggestProps } from '../autosuggest/interfaces.js';
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface TagEditorProps {
   /**
    * Specifies an array of tags that are displayed to the user. Each tag item has the following properties:
@@ -54,7 +54,7 @@ export interface TagEditorProps {
    * The event `detail` object contains the full updated state of `tags`,
    * and whether the component is in a `valid` state.
    */
-  onChange?: EventDetail<TagEditorProps.ChangeDetail>;
+  onChange?: EventHandler<TagEditorProps.ChangeDetail>;
 }
 export declare namespace TagEditorProps {
   interface Tag {

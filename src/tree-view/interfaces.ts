@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface TreeViewProps<T = any> {
   /**
    * Specifies the top-level items to display in the tree view. Use `getItemChildren` to provide nested items.
@@ -50,7 +50,7 @@ export interface TreeViewProps<T = any> {
   /**
    * Called when an item expands or collapses.
    */
-  onItemToggle?: EventDetail<TreeViewProps.ItemToggleDetail<T>>;
+  onItemToggle?: EventHandler<TreeViewProps.ItemToggleDetail<T>>;
   /**
    * An object containing all the necessary localized strings required by the component.
    * @i18n

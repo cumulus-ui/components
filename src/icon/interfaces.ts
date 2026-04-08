@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { BuiltInIconName, IconRegistryIconName } from '../icon-provider/interfaces.js';
-import type { SlotContent } from '../internal/types.js';
+import { SlotContent } from '../internal/generated/cloudscape-types.js';
 export interface IconProps {
   /**
    * Specifies the icon to be displayed.

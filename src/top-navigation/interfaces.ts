@@ -4,7 +4,7 @@
 import { ButtonProps } from '../button/interfaces.js';
 import { ButtonDropdownProps } from '../button-dropdown/interfaces.js';
 import { IconProps } from '../icon/interfaces.js';
-import type { SlotContent } from '../internal/types.js';
+import { SlotContent } from '../internal/generated/cloudscape-types.js';
 export interface TopNavigationProps {
   /**
    * Properties describing the product identity. They are as follows:

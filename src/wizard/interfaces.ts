@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export declare namespace WizardProps {
   interface AnalyticsMetadata {
     instanceIdentifier?: string;
@@ -104,11 +104,11 @@ export interface WizardProps {
    * Called when a user clicks the *cancel* button.
    * If a user has entered data in the form, you should prompt the user with a modal before exiting the wizard flow.
    */
-  onCancel?: EventDetail<void>;
+  onCancel?: EventHandler<void>;
   /**
    * Called when a user clicks the *submit* button.
    */
-  onSubmit?: EventDetail<void>;
+  onSubmit?: EventHandler<void>;
   /**
    * Called when a user clicks the *next* button, the *previous* button, or an enabled step link in the navigation pane.
    *
@@ -118,7 +118,7 @@ export interface WizardProps {
    * `previous` (when the user clicks the *previous* button), `step` (an enabled step link in the navigation pane),
    * or `skip` (when navigated using navigation pane or the *skip-to* button to the previously unvisited step).
    */
-  onNavigate?: EventDetail<WizardProps.NavigateDetail>;
+  onNavigate?: EventHandler<WizardProps.NavigateDetail>;
 }
 export declare namespace WizardProps {
   interface StepAnalyticsMetadata {

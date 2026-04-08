@@ -77,6 +77,9 @@ export class CsDatePickerInternal extends Base {
   @property({ type: String })
   override ariaLabel: string | null = null;
 
+  @property({ type: Boolean })
+  override ariaRequired: string | null = null;
+
   @property({ attribute: false })
   i18nStrings?: DatePickerProps.I18nStrings;
 
@@ -236,6 +239,7 @@ export class CsDatePickerInternal extends Base {
                 ?invalid=${this._isInvalid}
                 ?warning=${this._isWarning}
                 aria-label=${ifDefined(this.ariaLabel || undefined)}
+                aria-required=${ifDefined(this.ariaRequired || undefined)}
                 @change=${this._onInputChange}
               ></cs-date-input>
             </div>

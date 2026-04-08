@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface ProgressBarProps {
   /**
    * Indicates the current progress as a percentage. The value must be between 0 and 100. Decimals are rounded.
@@ -69,7 +69,7 @@ export interface ProgressBarProps {
    * Note: If you are using the `flash` variant, the result button isn't displayed.
    * Use the `buttonText` property and the `onButtonClick` event listener of the flashbar item instead.
    */
-  onResultButtonClick?: EventDetail<void>;
+  onResultButtonClick?: EventHandler<void>;
   /**
    * An object containing CSS properties to customize the progress bar's visual appearance.
    * Refer to the [style](/components/progress-bar/?tabId=style) tab for more details.

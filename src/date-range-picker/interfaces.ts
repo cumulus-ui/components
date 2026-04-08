@@ -4,7 +4,7 @@
 import { CalendarProps } from '../calendar/interfaces.js';
 import { ExpandToViewport } from '../dropdown/interfaces.js';
 import { TimeInputProps } from '../time-input/interfaces.js';
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface DateRangePickerBaseProps {
   /**
    * The current date range value. Can be either an absolute time range
@@ -88,7 +88,7 @@ export interface DateRangePickerBaseProps {
    * Fired whenever a user changes the component's value.
    * The event `detail` contains the current value of the field.
    */
-  onChange?: EventDetail<DateRangePickerProps.ChangeDetail>;
+  onChange?: EventHandler<DateRangePickerProps.ChangeDetail>;
   /**
    * The time offset from UTC in minutes that should be used to
    * display and produce values.
@@ -131,11 +131,11 @@ export interface DateRangePickerProps extends ExpandToViewport, DateRangePickerB
   /**
    * Fired when keyboard focus is set onto the UI control.
    */
-  onFocus?: EventDetail<null>;
+  onFocus?: EventHandler<null>;
   /**
    * Fired when keyboard focus is removed from the UI control.
    */
-  onBlur?: EventDetail<null>;
+  onBlur?: EventHandler<null>;
   /**
    * A function that defines whether a particular range is valid or not.
    *

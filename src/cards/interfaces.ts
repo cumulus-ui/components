@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface CardsProps<T = any> {
   /**
    * Displayed only when the list of items is empty.
@@ -148,7 +148,7 @@ export interface CardsProps<T = any> {
    * Called when a user interaction causes a change in the list of selected items.
    * The event `detail` contains the current list of `selectedItems`.
    */
-  onSelectionChange?: EventDetail<CardsProps.SelectionChangeDetail<T>>;
+  onSelectionChange?: EventHandler<CardsProps.SelectionChangeDetail<T>>;
   /**
    * If set to true, the cards header remains visible when the user scrolls down.
    */

@@ -200,6 +200,12 @@ export class CsSelectInternal extends Base {
   @property({ type: String })
   override ariaLabel: string | null = null;
 
+  @property({ type: String })
+  override ariaRequired: string | null = null;
+
+  @property({ type: String })
+  ariaLabelledby: string | null = null;
+
   @property({ type: Boolean })
   invalid = false;
 
@@ -536,6 +542,7 @@ export class CsSelectInternal extends Base {
           aria-haspopup="listbox"
           aria-expanded=${this._open}
           aria-label=${ifDefined(this.ariaLabel || undefined)}
+          aria-required=${ifDefined(this.ariaRequired || undefined)}
           aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
           ?disabled=${false}
           tabindex=${this.disabled ? -1 : 0}

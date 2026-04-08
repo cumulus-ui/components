@@ -2,8 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import ColumnDisplayProperties = TableProps.ColumnDisplayProperties;
-import { Optional } from '../internal/generated/cloudscape-types.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { Optional, SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface TableProps<T = any> {
   /**
    * Specifies additional analytics-related metadata.
@@ -230,17 +229,17 @@ export interface TableProps<T = any> {
    * Fired when the user resizes a table column. The event detail contains an array of column widths in pixels,
    * including the hidden via preferences columns. Use this event to persist the column widths.
    */
-  onColumnWidthsChange?: EventDetail<TableProps.ColumnWidthsChangeDetail>;
+  onColumnWidthsChange?: EventHandler<TableProps.ColumnWidthsChangeDetail>;
   /**
    * Called when either the column to sort by or the direction of sorting changes upon user interaction.
    * The event detail contains the current sortingColumn and isDescending.
    */
-  onSortingChange?: EventDetail<TableProps.SortingState<T>>;
+  onSortingChange?: EventHandler<TableProps.SortingState<T>>;
   /**
    * Fired when a user interaction triggers a change in the list of selected items.
    * The event `detail` contains the new state for `selectedItems`.
    */
-  onSelectionChange?: EventDetail<TableProps.SelectionChangeDetail<T>>;
+  onSelectionChange?: EventHandler<TableProps.SelectionChangeDetail<T>>;
   /**
    * Note: This feature is provided for backwards compatibility. Its use is not recommended,
    * and it may be deprecated in the future.
@@ -248,7 +247,7 @@ export interface TableProps<T = any> {
    * Called when the user clicked at a table row. The event detail contains the index of the
    * clicked row and the row object itself. Use this event to define a row click behavior.
    */
-  onRowClick?: EventDetail<TableProps.OnRowClickDetail<T>>;
+  onRowClick?: EventHandler<TableProps.OnRowClickDetail<T>>;
   /**
    * Note: This feature is provided for backwards compatibility. Its use is not recommended,
    * and it may be deprecated in the future.
@@ -257,7 +256,7 @@ export interface TableProps<T = any> {
    * contains the index of the clicked row and the row object itself. Use this event to override
    * the default browser context menu behavior.
    */
-  onRowContextMenu?: EventDetail<TableProps.OnRowContextMenuDetail<T>>;
+  onRowContextMenu?: EventHandler<TableProps.OnRowContextMenuDetail<T>>;
   /**
    * If set to `true`, the table header remains visible when the user scrolls down.
    *
@@ -313,7 +312,7 @@ export interface TableProps<T = any> {
    * Called whenever user cancels an inline edit. Use this function to reset any
    * validation states, or show warning for unsaved changes.
    */
-  onEditCancel?: EventDetail<void>;
+  onEditCancel?: EventHandler<void>;
   /**
    * Use this property to activate advanced keyboard navigation and focusing behaviors.
    * When set to `true`, table cells become navigable with arrow keys, and the entire table has a single tab stop.

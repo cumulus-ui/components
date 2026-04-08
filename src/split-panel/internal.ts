@@ -16,6 +16,9 @@ export class CsSplitPanelInternal extends CsBaseElement {
   @property({ type: String })
   header = '';
 
+  @property({ type: String })
+  override ariaLabel: string | null = null;
+
   @property({ type: Boolean, reflect: true })
   hidePreferencesButton = false;
 
@@ -54,7 +57,7 @@ export class CsSplitPanelInternal extends CsBaseElement {
   };
 
   private get _regionLabel(): string {
-    return this.panelAriaLabel || this.header;
+    return this.ariaLabel || this.panelAriaLabel || this.header;
   }
 
   override render(): TemplateResult {

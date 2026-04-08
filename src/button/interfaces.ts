@@ -2,8 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { IconProps } from '../icon/interfaces.js';
-import { ClickDetail as _ClickDetail, BaseNavigationDetail } from '../internal/generated/cloudscape-types.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { ClickDetail as _ClickDetail, BaseNavigationDetail, SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface BaseButtonProps {
   /**
    * Renders the button as disabled and prevents clicks.
@@ -137,12 +136,12 @@ export interface ButtonProps extends BaseButtonProps {
   /**
    * Called when the user clicks on the button and the button is not disabled or in loading state.
    */
-  onClick?: EventDetail<ButtonProps.ClickDetail>;
+  onClick?: EventHandler<ButtonProps.ClickDetail>;
   /**
    * Called when the user clicks on the button with the left mouse button without pressing
    * modifier keys (that is, CTRL, ALT, SHIFT, META), and the button has an `href` set.
    */
-  onFollow?: EventDetail<ButtonProps.FollowDetail>;
+  onFollow?: EventHandler<ButtonProps.FollowDetail>;
   /**
    * Sets the button width to be 100% of the parent container width. Button content is centered.
    */

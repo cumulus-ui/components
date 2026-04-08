@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface FileTokenGroupProps {
   /**
    * Show file size in the token. Use `i18nStrings.formatFileSize` to customize it.
@@ -19,7 +19,7 @@ export interface FileTokenGroupProps {
    *  Called when the user clicks on the dismiss button. The token won't be automatically removed.
    *  Make sure that you add a listener to this event to update your application state.
    */
-  onDismiss?: EventDetail<FileTokenGroupProps.DismissDetail>;
+  onDismiss?: EventHandler<FileTokenGroupProps.DismissDetail>;
   /**
    * Specifies the maximum number of displayed tokens. If the property isn't set, all of the tokens are displayed.
    */

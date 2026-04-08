@@ -1,6 +1,7 @@
 import { css, html, nothing, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -25,6 +26,12 @@ export class CsTabsInternal extends CsBaseElement {
 
   @property({ type: Boolean, reflect: true })
   fitHeight = false;
+
+  @property({ type: String })
+  override ariaLabel: string | null = null;
+
+  @property({ type: String })
+  ariaLabelledby: string | null = null;
 
   @state()
   private _internalActiveTabId = '';
@@ -156,7 +163,9 @@ export class CsTabsInternal extends CsBaseElement {
       <div class=${classMap(rootClasses)}>
         <div class=${classMap(headerClasses)}>
           <div class="tab-header-scroll-container">
-            <ul class="tabs-header-list" role="tablist">
+            <ul class="tabs-header-list" role="tablist"
+              aria-label=${ifDefined(this.ariaLabel || undefined)}
+              aria-labelledby=${ifDefined(!this.ariaLabel && this.ariaLabelledby ? this.ariaLabelledby : undefined)}>
               ${this.tabs.map(tab => this._renderTab(tab))}
             </ul>
           </div>

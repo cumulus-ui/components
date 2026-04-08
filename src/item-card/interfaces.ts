@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { SlotContent } from '../internal/types.js';
+import { SlotContent } from '../internal/generated/cloudscape-types.js';
 export interface ItemCardProps {
   /**
    * Heading element of the item card. Use this to add a title or header text.

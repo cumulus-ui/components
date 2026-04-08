@@ -5,8 +5,7 @@ import { GeneratedAnalyticsMetadataFragment } from '@cloudscape-design/component
 import { ButtonProps } from '../button/interfaces.js';
 import { ExpandToViewport } from '../dropdown/interfaces.js';
 import { IconProps } from '../icon/interfaces.js';
-import { BaseNavigationDetail } from '../internal/generated/cloudscape-types.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { BaseNavigationDetail, SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface ButtonDropdownProps extends ExpandToViewport {
   /**
    * Array of objects with a number of supported types.
@@ -139,12 +138,12 @@ export interface ButtonDropdownProps extends ExpandToViewport {
   /**
    * Called when the user clicks on an item, and the item is not disabled.  The event detail object contains the id of the clicked item.
    */
-  onItemClick?: EventDetail<ButtonDropdownProps.ItemClickDetails>;
+  onItemClick?: EventHandler<ButtonDropdownProps.ItemClickDetails>;
   /**
    * Called when the user clicks on an item with the left mouse button without pressing
    * modifier keys (that is, CTRL, ALT, SHIFT, META), and the item has an `href` set.
    */
-  onItemFollow?: EventDetail<ButtonDropdownProps.ItemClickDetails>;
+  onItemFollow?: EventHandler<ButtonDropdownProps.ItemClickDetails>;
   /**
    * A standalone action that is shown prior to the dropdown trigger.
    * Use it with "primary" and "normal" variant only.

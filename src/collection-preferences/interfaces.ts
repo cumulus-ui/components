@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { BaseModalProps } from '../modal/interfaces.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface CollectionPreferencesProps<CustomPreferenceType = any> extends BaseModalProps {
   /**
    * Specifies the title of the preferences modal dialog. It is also used as an `aria-label` for the trigger button.
@@ -185,7 +185,7 @@ export interface CollectionPreferencesProps<CustomPreferenceType = any> extends 
   /**
    * Called when the user cancels a preference change using the cancel button in the modal footer or by dismissing the modal.
    */
-  onCancel?: EventDetail<void>;
+  onCancel?: EventHandler<void>;
   /**
    * Called when the user confirms a preference change using the confirm button in the modal footer.
    *
@@ -201,7 +201,7 @@ export interface CollectionPreferencesProps<CustomPreferenceType = any> extends 
    *
    * The values for all configured preferences are present even if the user didn't change their values.
    */
-  onConfirm?: EventDetail<CollectionPreferencesProps.Preferences<CustomPreferenceType>>;
+  onConfirm?: EventHandler<CollectionPreferencesProps.Preferences<CustomPreferenceType>>;
   /**
    * Content displayed before the preferences. Use it to display additional information relating to the preferences.
    */

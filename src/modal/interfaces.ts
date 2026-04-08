@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { PortalProps } from '@cloudscape-design/component-toolkit/internal';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface BaseModalProps {
   /**
    * Use this property to specify a different dynamic modal root for the dialog.
@@ -79,7 +79,7 @@ export interface ModalProps extends BaseModalProps {
    * The event detail contains the `reason`, which can be any of the following:
    * `['closeButton', 'overlay', 'keyboard']`.
    */
-  onDismiss?: EventDetail<ModalProps.DismissDetail>;
+  onDismiss?: EventHandler<ModalProps.DismissDetail>;
   /**
    * Specifies the HTML element where the modal is rendered.
    * If neither `modalRoot` or `getModalRoot` properties are provided, the modal will

@@ -1,8 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import { BaseNavigationDetail } from '../internal/generated/cloudscape-types.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { BaseNavigationDetail, SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface SideNavigationProps {
   /**
    * Controls the header that appears at the top of the navigation component.
@@ -101,7 +100,7 @@ export interface SideNavigationProps {
    * If the event is prevented the `activeHref` property won't be automatically set
    * to the href of the clicked item so you'll have to do it yourself.
    */
-  onFollow?: EventDetail<SideNavigationProps.FollowDetail>;
+  onFollow?: EventHandler<SideNavigationProps.FollowDetail>;
   /**
    * Fired when the expansion state of `Section` or `ExpandablePageGroup` items changes
    * as a result of a user interaction. The event `detail` contains an object with information about the changed item.
@@ -116,7 +115,7 @@ export interface SideNavigationProps {
    * Note: If the expansion is a result of the activation of a nested link
    * upon changing the `activeHref` property, this event isn't raised.
    */
-  onChange?: EventDetail<SideNavigationProps.ChangeDetail>;
+  onChange?: EventHandler<SideNavigationProps.ChangeDetail>;
 }
 export declare namespace SideNavigationProps {
   interface Logo {

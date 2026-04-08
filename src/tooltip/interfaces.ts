@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { PopoverProps } from '../popover/interfaces.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface TooltipProps {
   /**
    * Content to display in the tooltip.
@@ -20,7 +20,7 @@ export interface TooltipProps {
   /**
    * Callback fired when the user presses the Escape key while the tooltip is visible.
    */
-  onEscape?: EventDetail<void>;
+  onEscape?: EventHandler<void>;
 }
 export declare namespace TooltipProps {
   /**

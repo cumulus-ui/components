@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export declare namespace ExpandableSectionProps {
   interface AnalyticsMetadata {
     instanceIdentifier?: string;
@@ -83,7 +83,7 @@ export interface ExpandableSectionProps {
    * Called when the state changes (that is, when the user expands or collapses the component).
    * The event `detail` contains the current value of the `expanded` property.
    */
-  onChange?: EventDetail<ExpandableSectionProps.ChangeDetail>;
+  onChange?: EventHandler<ExpandableSectionProps.ChangeDetail>;
   /**
    * The area next to the heading, used to display an Info link. Use with the container variant.
    */

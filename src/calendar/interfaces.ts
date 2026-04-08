@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface CalendarProps {
   /**
    * The current input value, in YYYY-MM-DD format.
@@ -64,7 +64,7 @@ export interface CalendarProps {
    * Called whenever a user changes the input value (by typing, pasting, or selecting a value).
    * The event `detail` contains the current value of the field.
    */
-  onChange?: EventDetail<CalendarProps.ChangeDetail>;
+  onChange?: EventHandler<CalendarProps.ChangeDetail>;
   /**
    * An object containing all the necessary localized strings required by
    * the component.

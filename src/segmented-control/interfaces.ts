@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { IconProps } from '../icon/interfaces.js';
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface SegmentedControlProps {
   /**
    * ID of the selected option. If you want to clear the selection, use `null`.
@@ -36,7 +36,7 @@ export interface SegmentedControlProps {
   /**
    * Called when the user selects a different segment.
    */
-  onChange?: EventDetail<SegmentedControlProps.ChangeDetail>;
+  onChange?: EventHandler<SegmentedControlProps.ChangeDetail>;
   /**
    * An object containing CSS properties to customize the segmented control's visual appearance.
    * Refer to the [style](/components/segmented-control/?tabId=style) tab for more details.

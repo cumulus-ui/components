@@ -717,20 +717,30 @@ function auditCSSCoverage(component: string): string[] {
   const templateSrc = fs.readFileSync(internalPath, 'utf-8');
 
   const templateClasses = new Set<string>();
-  const classRe = /class[=\s]*["'`]([^"'`]+)["'`]|class=\$\{classMap\(\{([^}]+)\}\)/g;
+
+  // Static class="foo bar" — only match simple string values
+  const staticClassRe = /class\s*=\s*["']([a-z][a-z0-9 -]*)["']/g;
   let m: RegExpExecArray | null;
-  while ((m = classRe.exec(templateSrc)) !== null) {
-    const raw = m[1] || m[2];
-    if (!raw) continue;
-    if (m[1]) {
-      raw.split(/\s+/).forEach(c => { if (c && !c.includes('$')) templateClasses.add(c); });
-    } else {
-      const keyRe = /'([^']+)'/g;
-      let km;
-      while ((km = keyRe.exec(raw)) !== null) {
-        templateClasses.add(km[1]);
-      }
+  while ((m = staticClassRe.exec(templateSrc)) !== null) {
+    m[1].split(/\s+/).forEach(c => { if (c) templateClasses.add(c); });
+  }
+
+  // classMap({ 'foo': expr, 'bar-baz': expr })
+  const classMapRe = /classMap\(\{([^}]+)\}\)/g;
+  while ((m = classMapRe.exec(templateSrc)) !== null) {
+    const keyRe = /'([a-z][a-z0-9-]*)'/g;
+    let km;
+    while ((km = keyRe.exec(m[1])) !== null) {
+      templateClasses.add(km[1]);
     }
+  }
+
+  // class=${expression} with template literal — e.g. class=${`foo ${bar}`}
+  const exprClassRe = /class=\$\{`([^`]+)`\}/g;
+  while ((m = exprClassRe.exec(templateSrc)) !== null) {
+    m[1].split(/\s+/).forEach(c => {
+      if (c && /^[a-z][a-z0-9-]*$/.test(c)) templateClasses.add(c);
+    });
   }
 
   const styleFiles: string[] = [];
@@ -755,59 +765,90 @@ function auditCSSCoverage(component: string): string[] {
     }
   }
 
-  // SVG-specific classes — attribute-based styling, no CSS rules
+  const SVG_SKIP = new Set(['filled', 'stroke-linejoin-round', 'stroke-linecap-round']);
+
+  // Generic classes used by 10+ components — reviewed in Step 4
   const SKIP = new Set([
-    'filled', 'stroke-linejoin-round', 'stroke-linecap-round', 'expandable', 'expanded',
-    'tooltip-trigger', 'tooltip-body',       // tooltip: layout wrappers with inline positioning
-    'header-row', 'header', 'content',       // popover: structural containers within body
-    // Wave 3+4: structural/layout classes — DOM scaffolding with inline or inherited styles
-    'dropdown', 'filter-container', 'filter-input', 'option-list', 'option-content',
-    'option-label', 'option-label-tag', 'option-description', 'option-tags',
-    'group', 'group-label', 'no-matches', 'selected-icon', 'trigger-label', 'trigger-arrow',
-    'label', 'label-tag', 'tags', 'description', 'icon',
-    // Wave 5: structural classes for data display components
-    'grid', 'pair', 'title', 'section-content', 'additional-info', 'result-button-trigger',
-    'toggle', 'token', 'token-item', 'token-list', 'token-item', 'operation-label',
-    'panel', 'panel-title', 'panel-section', 'panel-section-title', 'panel-footer',
-    'page-size-options', 'page-size-option', 'visible-content-group-label', 'visible-content-option',
-    'header-text', 'header-description', 'header-counter', '?',
-    // Wave 6: date/form/editor structural classes
-    'input-container', 'calendar-grid', 'calendar-grid-header', 'calendar-grid-wrapper',
-    'calendar-grids', 'calendar-week', 'calendar-day', 'calendar-day-empty', 'calendar-day-header',
-    'calendar-day-number', 'dropdown-body', 'mode-switch', 'mode-tab', 'mode-tab-active',
-    'absolute', 'absolute-mode', 'relative', 'relative-mode', 'relative-heading',
-    'relative-option', 'relative-option-label', 'relative-option-selected', 'relative-options',
-    'relative-radio', 'dismiss-button', 'file-upload-root', 'file-name', 'file-info',
-    'file-metadata', 'file-thumbnail', 'file-error', 'error-text', 'error-message',
-    'constraint-text', 'action-cell', 'add-section', 'tag-list',
-    'navigation-link', 'step-content', 'action-buttons-left', 'action-buttons-right',
-    'editor-textarea', 'editor-wrapper', 'icon-open', 'line-number', 'line-numbers',
-    'overflow-menu-control', 'overflow-menu-control-expandable-menu-trigger', 'overflow-menu-list-item-text',
-    // Wave 6+: tutorial/hotspot/date/file structural classes with inline CSS
-    'annotation-actions', 'annotation-content', 'annotation-header', 'annotation-popover',
-    'annotation-step-counter', 'completed-actions', 'completed-screen', 'detail-actions',
-    'detail-header', 'detail-title', 'download-link', 'loading-state', 'prerequisites-alert',
-    'step-item', 'step-list', 'task-item', 'task-list', 'task-title', 'tutorial-completed',
-    'tutorial-description', 'tutorial-item', 'tutorial-list', 'tutorial-list-description',
-    'tutorial-list-title', 'tutorial-meta', 'tutorial-title',
-    'true', 'true,', '})}', '[placementClass]:', 'markerWrapper:',
-    'actions', 'file-error-text', 'file-warning-text', 'handle-bar', 'handle-wrapper',
+    'header', 'content', 'label', 'description', 'icon', 'title', 'actions',
+    'group', 'grid', 'toggle', 'token', 'panel', 'dropdown', 'tags',
+    'expandable', 'expanded', 'dismiss-button', 'absolute', 'relative',
   ]);
 
-  // Per-component structural classes that are valid but not in that component's CSS
   const COMPONENT_SKIP: Record<string, Set<string>> = {
-    'collection-preferences': new Set(['root']),
-    'date-input': new Set(['root']),
+    'autosuggest': new Set(['filter-input']),
+    'calendar': new Set(['calendar-grid']),
+    'cards': new Set(['section-content']),
+    'code-editor': new Set(['editor-textarea', 'editor-wrapper', 'line-number', 'line-numbers']),
+    'collection-preferences': new Set([
+      'root', 'panel-title', 'panel-section', 'panel-section-title', 'panel-footer',
+      'page-size-options', 'page-size-option', 'visible-content-group-label',
+      'visible-content-option', 'group-label',
+    ]),
+    'date-input': new Set(['root', 'input-container']),
+    'date-range-picker': new Set([
+      'calendar-grid', 'calendar-grid-header', 'calendar-grid-wrapper', 'calendar-grids',
+      'calendar-week', 'calendar-day', 'calendar-day-empty', 'calendar-day-header',
+      'calendar-day-number', 'dropdown-body', 'mode-switch', 'mode-tab', 'mode-tab-active',
+      'absolute-mode', 'relative-mode', 'relative-heading', 'relative-option',
+      'relative-option-label', 'relative-option-selected', 'relative-options',
+      'relative-radio', 'option-label', 'error-message',
+    ]),
     'error-boundary': new Set(['error-boundary']),
-    'progress-bar': new Set(['result-container-error', 'result-container-success', 'error', 'success', 'key-value']),
+    'expandable-section': new Set(['header-text', 'header-description', 'header-counter']),
+    'file-token-group': new Set(['file-name', 'file-thumbnail', 'file-error', 'file-error-text', 'file-warning-text', 'error-text']),
+    'file-upload': new Set([
+      'file-upload-root', 'file-name', 'file-info', 'file-metadata', 'file-thumbnail',
+      'file-error', 'error-text', 'constraint-text',
+    ]),
+    'flashbar': new Set(['dismiss-button']),
+    'hotspot': new Set([
+      'annotation-actions', 'annotation-content', 'annotation-header', 'annotation-popover',
+      'annotation-step-counter',
+    ]),
+    'input': new Set(['input-container']),
+    'key-value-pairs': new Set(['pair']),
+    'multiselect': new Set([
+      'filter-container', 'filter-input', 'option-list', 'option-content', 'option-label',
+      'option-label-tag', 'option-description', 'group-label', 'no-matches',
+      'trigger-label', 'trigger-arrow', 'label-tag',
+    ]),
+    'panel-layout': new Set(['handle-bar', 'handle-wrapper']),
+    'popover': new Set(['header-row']),
+    'progress-bar': new Set([
+      'result-container-error', 'result-container-success', 'error', 'success',
+      'key-value', 'additional-info', 'result-button-trigger',
+    ]),
+    'property-filter': new Set(['token-item', 'token-list', 'operation-label', 'filter-input']),
+    'select': new Set([
+      'filter-container', 'filter-input', 'option-list', 'option-content', 'option-label',
+      'option-label-tag', 'option-description', 'option-tags', 'group-label', 'no-matches',
+      'selected-icon', 'trigger-label', 'trigger-arrow', 'label-tag',
+    ]),
+    'side-navigation': new Set([
+      'icon-open', 'overflow-menu-control', 'overflow-menu-control-expandable-menu-trigger',
+      'overflow-menu-list-item-text',
+    ]),
+    'split-panel': new Set(['header-text']),
     'table': new Set([
       'table-loading', 'table-empty', 'header-cell', 'body-cell',
       'selection-cell', 'screenreader-only', 'header-cell-text', 'body-cell-content',
     ]),
+    'tag-editor': new Set(['action-cell', 'add-section', 'tag-list']),
+    'time-input': new Set(['input-container']),
+    'token': new Set(['label-tag']),
+    'token-group': new Set(['label-tag']),
+    'tooltip': new Set(['tooltip-trigger', 'tooltip-body']),
+    'top-navigation': new Set(['overflow-menu-control']),
+    'tutorial-panel': new Set([
+      'completed-actions', 'completed-screen', 'detail-actions', 'detail-header',
+      'detail-title', 'download-link', 'loading-state', 'prerequisites-alert',
+      'step-item', 'step-list', 'task-item', 'task-list', 'task-title',
+      'tutorial-completed', 'tutorial-description', 'tutorial-item', 'tutorial-list',
+      'tutorial-list-description', 'tutorial-list-title', 'tutorial-meta', 'tutorial-title',
+    ]),
+    'wizard': new Set(['navigation-link', 'step-content', 'action-buttons-left', 'action-buttons-right']),
   };
 
-  // Classes from Cloudscape's test-classes/ or analytics-metadata/ — exist for element
-  // targeting but have no CSS rules. Keyed by internal style module name.
   const STRUCTURAL_CLASSES: Record<string, Set<string>> = {
     'structured-item': new Set([
       'structured-item--icon',       // from test-classes/styles.css.js
@@ -827,6 +868,7 @@ function auditCSSCoverage(component: string): string[] {
   const componentSkip = COMPONENT_SKIP[component] ?? new Set();
 
   for (const cls of templateClasses) {
+    if (SVG_SKIP.has(cls)) continue;
     if (SKIP.has(cls)) continue;
     if (structuralSkip.has(cls)) continue;
     if (componentSkip.has(cls)) continue;

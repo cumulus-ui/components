@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface FileUploadProps {
   /**
    * Specifies the native file input `accept` attribute to describe the allow-list of file types.
@@ -31,7 +31,7 @@ export interface FileUploadProps {
    * Called when the user selects new file(s), or removes a file.
    * The event `detail` contains the current value of the component.
    */
-  onChange?: EventDetail<FileUploadProps.ChangeDetail>;
+  onChange?: EventHandler<FileUploadProps.ChangeDetail>;
   /**
    * Specifies the currently selected file(s).
    * If you want to clear the selection, use empty array.

@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface TokenProps {
   /** Slot for the label of the token as text or an element.
    *
@@ -48,7 +48,7 @@ export interface TokenProps {
    *
    * Make sure that you add a listener to this event to update your application state.
    */
-  onDismiss?: EventDetail<void>;
+  onDismiss?: EventHandler<void>;
   /**
    * Content to display in the tooltip when `variant="inline"`. The tooltip appears when the token label is truncated due to insufficient space.
    *

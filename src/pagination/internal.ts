@@ -24,7 +24,7 @@ export class CsPaginationInternal extends CsBaseElement {
   @property({ type: Boolean, reflect: true })
   disabled = false;
 
-  @property({ type: Object })
+  @property({ attribute: false })
   ariaLabels?: PaginationProps.Labels;
 
   private _onPrev(): void {

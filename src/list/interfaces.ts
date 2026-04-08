@@ -1,7 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface ListProps<T = any> {
   /**
    * The items to display in the list.
@@ -60,7 +60,7 @@ export interface ListProps<T = any> {
   /**
    * Called when items are reordered in a sortable list.
    */
-  onSortingChange?: EventDetail<ListProps.SortingState<T>>;
+  onSortingChange?: EventHandler<ListProps.SortingState<T>>;
   /**
    * An object containing all the localized strings required by the component.
    *

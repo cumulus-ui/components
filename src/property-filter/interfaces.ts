@@ -4,7 +4,7 @@
 import { PropertyFilterFreeTextFiltering, PropertyFilterOperation, PropertyFilterOperator, PropertyFilterOperatorExtended, PropertyFilterOperatorForm, PropertyFilterOperatorFormat, PropertyFilterOperatorFormProps, PropertyFilterOption, PropertyFilterProperty, PropertyFilterQuery, PropertyFilterToken, PropertyFilterTokenGroup, PropertyFilterTokenType } from '@cloudscape-design/collection-hooks';
 import { AutosuggestProps } from '../autosuggest/interfaces.js';
 import { ExpandToViewport } from '../dropdown/interfaces.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface PropertyFilterProps extends ExpandToViewport {
   /**
    * If set to `true`, the filtering input will be disabled.
@@ -65,7 +65,7 @@ export interface PropertyFilterProps extends ExpandToViewport {
   /**
    * Fired when the `query` gets changed. Filter the dataset in response to this event using the values in the `detail` object.
    */
-  onChange?: EventDetail<PropertyFilterProps.Query>;
+  onChange?: EventHandler<PropertyFilterProps.Query>;
   /**
    * An array of properties by which the data set can be filtered. Each element has the following properties:
    *
@@ -130,7 +130,7 @@ export interface PropertyFilterProps extends ExpandToViewport {
    * * `firstPage` - Indicates that you should fetch the first page of options for a `filteringProperty` that match the `filteringText`.
    * * `samePage` - Indicates that you should fetch the same page that you have previously fetched (for example, when the user clicks on the recovery button).
    */
-  onLoadItems?: EventDetail<PropertyFilterProps.LoadItemsDetail>;
+  onLoadItems?: EventHandler<PropertyFilterProps.LoadItemsDetail>;
   /**
    * If you have more than 500 `filteringOptions`, enable this flag to apply a performance optimization that makes
    * the filtering experience smoother. We don't recommend enabling the feature if you have less than 500 options,

@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { BaseCheckboxProps } from './base-checkbox.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface CheckboxProps extends BaseCheckboxProps {
   /**
    * The control's label that's displayed next to the checkbox. A state change occurs when a user clicks on it.
@@ -18,7 +18,7 @@ export interface CheckboxProps extends BaseCheckboxProps {
   /**
    * Called when the user changes the component state. The event `detail` contains the current value for the `checked` property.
    */
-  onChange?: EventDetail<CheckboxProps.ChangeDetail>;
+  onChange?: EventHandler<CheckboxProps.ChangeDetail>;
   /**
    * Specifies whether to add `aria-required` to the native control.
    */

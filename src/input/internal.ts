@@ -55,6 +55,9 @@ export class CsInputInternal extends Base {
   @property({ type: String })
   override ariaLabel: string | null = null;
 
+  @property({ type: Boolean })
+  override ariaRequired: string | null = null;
+
   @property({ type: String })
   ariaDescribedby: string | null = null;
 
@@ -179,6 +182,7 @@ export class CsInputInternal extends Base {
             aria-label=${ifDefined(this.ariaLabel || undefined)}
             aria-labelledby=${ifDefined(!this.ariaLabel ? ariaLabelledby : undefined)}
             aria-describedby=${ifDefined(this._resolvedAriaDescribedby)}
+            aria-required=${ifDefined(this.ariaRequired || undefined)}
             aria-invalid=${ifDefined(this._isInvalid ? 'true' : undefined)}
             @input=${this._onInput}
             @blur=${this._onBlur}

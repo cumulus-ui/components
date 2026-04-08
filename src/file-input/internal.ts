@@ -25,6 +25,9 @@ export class CsFileInputInternal extends CsBaseElement {
   @property({ type: String })
   override ariaLabel: string | null = 'Choose file';
 
+  @property({ type: Boolean })
+  override ariaRequired: string | null = null;
+
   @property({ type: Boolean, reflect: true })
   disabled = false;
 
@@ -75,6 +78,7 @@ export class CsFileInputInternal extends CsBaseElement {
           icon-name=${isIconOnly ? 'upload' : ''}
           ?disabled=${this.disabled}
           aria-label=${label}
+          aria-required=${ifDefined(this.ariaRequired || undefined)}
           @click=${this._onButtonClick}
         >${!isIconOnly ? html`<slot>${label}</slot>` : ''}</cs-button>
       </span>

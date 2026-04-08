@@ -2,7 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { ButtonDropdownProps } from '../button-dropdown/interfaces.js';
-import type { SlotContent, EventDetail } from '../internal/types.js';
+import { SlotContent, EventHandler } from '../internal/generated/cloudscape-types.js';
 export declare namespace AttributeEditorProps {
   interface IsItemRemovableFunction<T> {
     (item: T): boolean;
@@ -165,12 +165,12 @@ export interface AttributeEditorProps<T> {
   /**
    * Called when add button is clicked.
    */
-  onAddButtonClick?: EventDetail<void>;
+  onAddButtonClick?: EventHandler<void>;
   /**
    * Called when remove button is clicked.
    * The event `detail` contains the index of the corresponding item.
    */
-  onRemoveButtonClick?: EventDetail<AttributeEditorProps.RemoveButtonClickDetail>;
+  onRemoveButtonClick?: EventHandler<AttributeEditorProps.RemoveButtonClickDetail>;
   /**
    * An object containing all the necessary localized strings required by the component.
    * @i18n

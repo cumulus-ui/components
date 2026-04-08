@@ -5,7 +5,7 @@ import { Ace } from 'ace-builds';
 import { BaseModalProps } from '../modal/interfaces.js';
 import { AceModes } from './ace-modes.js';
 import { DarkThemes, LightThemes } from './ace-themes.js';
-import type { EventDetail } from '../internal/types.js';
+import { EventHandler } from '../internal/generated/cloudscape-types.js';
 export interface CodeEditorProps extends BaseModalProps {
   /**
    * The ace object.
@@ -30,17 +30,17 @@ export interface CodeEditorProps extends BaseModalProps {
    * The event `detail` contains the current value of the code editor content.
    * **Deprecated** Replaced by `onDelayedChange`.
    */
-  onChange?: EventDetail<CodeEditorProps.ChangeDetail>;
+  onChange?: EventHandler<CodeEditorProps.ChangeDetail>;
   /**
    * An event handler called when the value changes.
    * The event `detail` contains the current value of the code editor content.
    * A user interaction can cause multiple change events to be emitted by the Ace editor. They are batched together into a single `onDelayedChange` event to avoid bugs when controlling the `value` field.
    */
-  onDelayedChange?: EventDetail<CodeEditorProps.ChangeDetail>;
+  onDelayedChange?: EventHandler<CodeEditorProps.ChangeDetail>;
   /**
    * Annotations returned from Ace syntax checker after code validation.
    */
-  onValidate?: EventDetail<CodeEditorProps.ValidateDetail>;
+  onValidate?: EventHandler<CodeEditorProps.ValidateDetail>;
   /**
    * Specifies the component preferences.
    *
@@ -67,7 +67,7 @@ export interface CodeEditorProps extends BaseModalProps {
    * The event `detail` contains the value of all the preferences as submitted by the user.
    *
    */
-  onPreferencesChange?: EventDetail<CodeEditorProps.Preferences>;
+  onPreferencesChange?: EventHandler<CodeEditorProps.Preferences>;
   /**
    * Renders the code editor in a loading state.
    */
@@ -76,7 +76,7 @@ export interface CodeEditorProps extends BaseModalProps {
    * Called when the user clicks the recovery button in the error state.
    * Use this to retry loading the code editor or to provide another option for the user to recover from the error.
    */
-  onRecoveryClick?: EventDetail<void>;
+  onRecoveryClick?: EventHandler<void>;
   /**
    * An object containing all the necessary localized strings required by the component.
    * The object should contain, among others:
@@ -96,7 +96,7 @@ export interface CodeEditorProps extends BaseModalProps {
    * Called when the user resizes the editor by dragging the resize icon.
    * The event `detail` contains the new height of the editor in pixels.
    */
-  onEditorContentResize?: EventDetail<CodeEditorProps.ResizeDetail>;
+  onEditorContentResize?: EventHandler<CodeEditorProps.ResizeDetail>;
   /**
    * Adds `aria-label` to the code editor's textarea element.
    */
