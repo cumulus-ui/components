@@ -683,9 +683,87 @@ function runAudit(): void {
 
   console.log(`\n${totalErrors} error(s), ${totalWarnings} warning(s)\n`);
 
-  if (totalErrors > 0) {
+  console.log(`═══ CSS Coverage Audit ═══\n`);
+
+  let cssErrors = 0;
+  for (const comp of components.sort()) {
+    const cssIssues = auditCSSCoverage(comp);
+    if (cssIssues.length === 0) {
+      console.log(`  ✅ ${comp}`);
+      continue;
+    }
+
+    console.log(`  ❌ ${comp}`);
+    for (const issue of cssIssues) {
+      console.log(`     🔴 ${issue}`);
+      cssErrors++;
+    }
+  }
+
+  console.log(`\n${cssErrors} CSS coverage error(s)\n`);
+
+  if (totalErrors > 0 || cssErrors > 0) {
     process.exitCode = 1;
   }
+}
+
+function auditCSSCoverage(component: string): string[] {
+  const issues: string[] = [];
+  const srcDir = path.join(ROOT, 'src');
+
+  const internalPath = path.join(srcDir, component, 'internal.ts');
+  if (!fs.existsSync(internalPath)) return issues;
+  const templateSrc = fs.readFileSync(internalPath, 'utf-8');
+
+  const templateClasses = new Set<string>();
+  const classRe = /class[=\s]*["'`]([^"'`]+)["'`]|class=\$\{classMap\(\{([^}]+)\}\)/g;
+  let m: RegExpExecArray | null;
+  while ((m = classRe.exec(templateSrc)) !== null) {
+    const raw = m[1] || m[2];
+    if (!raw) continue;
+    if (m[1]) {
+      raw.split(/\s+/).forEach(c => { if (c && !c.includes('$')) templateClasses.add(c); });
+    } else {
+      const keyRe = /'([^']+)'/g;
+      let km;
+      while ((km = keyRe.exec(raw)) !== null) {
+        templateClasses.add(km[1]);
+      }
+    }
+  }
+
+  const styleFiles: string[] = [];
+  const stylesPath = path.join(srcDir, component, 'styles.ts');
+  if (fs.existsSync(stylesPath)) styleFiles.push(stylesPath);
+
+  const staticStylesRe = /import\s*\{[^}]*\}\s*from\s*'([^']*styles[^']*)'/g;
+  let sm;
+  while ((sm = staticStylesRe.exec(templateSrc)) !== null) {
+    const importPath = sm[1].replace(/\.js$/, '.ts');
+    const resolved = path.resolve(path.join(srcDir, component), importPath);
+    if (fs.existsSync(resolved)) styleFiles.push(resolved);
+  }
+
+  const cssClasses = new Set<string>();
+  for (const sf of styleFiles) {
+    const css = fs.readFileSync(sf, 'utf-8');
+    const selectorRe = /\.([a-zA-Z][\w-]*)/g;
+    let cm;
+    while ((cm = selectorRe.exec(css)) !== null) {
+      cssClasses.add(cm[1]);
+    }
+  }
+
+  const SKIP = new Set(['filled', 'stroke-linejoin-round', 'stroke-linecap-round', 'expandable', 'expanded']);
+
+  for (const cls of templateClasses) {
+    if (SKIP.has(cls)) continue;
+    if (!cssClasses.has(cls)) {
+      issues.push(`Template class "${cls}" has no matching CSS selector`);
+    }
+  }
+
+  return issues;
 }
 
 // ─── Main ──────────────────────────────────────────────────────
