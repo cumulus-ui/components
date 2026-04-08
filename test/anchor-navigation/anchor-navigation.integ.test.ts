@@ -18,14 +18,12 @@ test.describe('AnchorNavigation — Integration', () => {
     await expect(firstLink).toContainText('Overview');
   });
 
-  test('nested anchors are indented', async ({ page }) => {
+  test('nested anchors are inside parent list item', async ({ page }) => {
     const firstNav = page.locator('cs-anchor-navigation').first();
-    const items = firstNav.locator('.anchor-item');
-    const thirdItem = items.nth(2);
-    const paddingLeft = await thirdItem.evaluate((el) =>
-      getComputedStyle(el).paddingLeft
-    );
-    expect(parseInt(paddingLeft, 10)).toBeGreaterThan(0);
+    const nestedList = firstNav.locator('.anchor-item > .anchor-list');
+    await expect(nestedList.first()).toBeVisible();
+    const nestedItems = nestedList.first().locator('.anchor-item');
+    await expect(nestedItems).toHaveCount(2);
   });
 
   test('controlled mode shows active anchor', async ({ page }) => {

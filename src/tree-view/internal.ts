@@ -71,14 +71,22 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
     }
 
     return html`
-      <svg class="${expanded ? 'expand-toggle-icon expand-toggle-icon-expanded' : 'expand-toggle-icon'}"
-           width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-        <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <span class=${classMap({
+        'expand-toggle-icon': true,
+        'expand-toggle-icon-expanded': expanded,
+        'icon': true,
+        'size-small': true,
+        'size-small-mapped-height': true,
+        'variant-normal': true,
+      })}>
+        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+          <path class="filled stroke-linejoin-round" d="m8 11 4-6H4l4 6Z"></path>
+        </svg>
+      </span>
     `;
   }
 
-  private _renderNode(item: T, index: number, level: number): TemplateResult {
+  private _renderNode(item: T, index: number, level: number, globalIndex: { value: number }): TemplateResult {
     if (!this.renderItem || !this.getItemId || !this.getItemChildren) return html``;
 
     const id = this.getItemId(item, index);
@@ -86,47 +94,62 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
     const children = this.getItemChildren(item, index);
     const hasChildren = children !== undefined && children.length > 0;
     const expanded = this._isExpanded(id);
+    globalIndex.value++;
 
-    const expandLabel = this.i18nStrings?.expandButtonLabel?.(item) ?? 'Expand';
-    const collapseLabel = this.i18nStrings?.collapseButtonLabel?.(item) ?? 'Collapse';
+    const contentLabel = typeof rendered.content === 'string' ? rendered.content : id;
 
     return html`
       <li
-        class="${level > 0 ? 'treeitem offset' : 'treeitem'}"
+        class=${classMap({ 'treeitem': true, 'offset': level > 0, 'expandable': hasChildren, 'expanded': hasChildren && expanded })}
         role="treeitem"
         aria-expanded=${hasChildren ? String(expanded) : nothing}
+        aria-level=${level + 1}
         data-node-id=${id}
       >
         <div class="treeitem-content-wrapper">
           <div class="expand-toggle-wrapper">
-            ${hasChildren
-              ? html`
-                <button
-                  class="expand-toggle toggle"
-                  aria-label=${expanded ? collapseLabel : expandLabel}
-                  @click=${() => this._handleToggle(item, id, expanded)}
-                  tabindex="-1"
-                >
-                  ${this._renderToggleIcon(expanded)}
-                </button>`
-              : nothing}
+            <div class="toggle">
+              ${hasChildren
+                ? html`
+                  <button
+                    class="expand-toggle disable-focus-highlight tree-item-focus-target"
+                    type="button"
+                    tabindex="-1"
+                    aria-label=${contentLabel}
+                    aria-expanded=${String(expanded)}
+                    @click=${() => this._handleToggle(item, id, expanded)}
+                  >
+                    ${this._renderToggleIcon(expanded)}
+                  </button>`
+                : html`
+                  <div class="tree-item-focus-target"
+                    role="group"
+                    tabindex="-1"
+                    aria-label=${contentLabel}
+                  ></div>`}
+            </div>
           </div>
           <div class="structured-item-wrapper">
-            <span class="tree-item-focus-target" tabindex=${level === 0 ? '0' : '-1'}></span>
-            ${rendered.icon ? html`<span class="node-icon">${rendered.icon}</span>` : nothing}
-            <span class="tree-item-structured-item">
-              <span>${rendered.content}</span>
-              ${rendered.secondaryContent
-                ? html`<span>${rendered.secondaryContent}</span>`
-                : nothing}
-            </span>
-            ${rendered.actions ? html`<span>${rendered.actions}</span>` : nothing}
+            <div class="root tree-item-structured-item">
+              ${rendered.icon ? html`<div class="icon">${rendered.icon}</div>` : nothing}
+              <div class="main">
+                <div class="content-wrap">
+                  <div class="content">
+                    ${rendered.content}
+                  </div>
+                </div>
+                ${rendered.secondaryContent
+                  ? html`<div>${rendered.secondaryContent}</div>`
+                  : nothing}
+              </div>
+              ${rendered.actions ? html`<div class="actions">${rendered.actions}</div>` : nothing}
+            </div>
           </div>
         </div>
         ${hasChildren ? html`
-          <ul class="${expanded ? 'treeitem-group' : 'treeitem-group'}" role="group"
+          <ul class="treeitem-group" role="group"
               style="${expanded ? '' : 'display:none'}">
-            ${children!.map((child, i) => this._renderNode(child, i, level + 1))}
+            ${children!.map((child, i) => this._renderNode(child, i, level + 1, globalIndex))}
           </ul>
         ` : nothing}
       </li>
@@ -138,20 +161,23 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
 
     const rootClasses = {
       'root': true,
-      'tree': true,
       'root--connector-lines': this.connectorLines === 'vertical',
     };
 
+    const globalIndex = { value: 0 };
+
     return html`
-      <ul
-        class=${classMap(rootClasses)}
-        role="tree"
-        aria-label=${ifDefined(this.controlAriaLabel || undefined)}
-        aria-labelledby=${ifDefined(this.controlAriaLabelledby || undefined)}
-        aria-describedby=${ifDefined(this.controlAriaDescribedby || undefined)}
-      >
-        ${this.items.map((item, i) => this._renderNode(item, i, 0))}
-      </ul>
+      <div class=${classMap(rootClasses)}>
+        <ul
+          class="tree"
+          role="tree"
+          aria-label=${ifDefined(this.controlAriaLabel || undefined)}
+          aria-labelledby=${ifDefined(this.controlAriaLabelledby || undefined)}
+          aria-describedby=${ifDefined(this.controlAriaDescribedby || undefined)}
+        >
+          ${this.items.map((item, i) => this._renderNode(item, i, 0, globalIndex))}
+        </ul>
+      </div>
     `;
   }
 }

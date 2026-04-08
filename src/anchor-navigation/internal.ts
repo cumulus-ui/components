@@ -1,4 +1,4 @@
-import { css, html, type PropertyValues } from 'lit';
+import { css, html, nothing, type PropertyValues, type TemplateResult } from 'lit';
 import { CsBaseElement } from '../internal/base-element.js';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
@@ -122,27 +122,72 @@ export class CsAnchorNavigationInternal extends CsBaseElement {
     fireNonCancelableEvent(this, 'follow', anchor);
   }
 
+  private _buildTree(anchors: AnchorNavigationProps.Anchor[]): { anchor: AnchorNavigationProps.Anchor; children: AnchorNavigationProps.Anchor[] }[] {
+    const groups: { anchor: AnchorNavigationProps.Anchor; children: AnchorNavigationProps.Anchor[] }[] = [];
+
+    for (const anchor of anchors) {
+      if (anchor.level <= 1) {
+        groups.push({ anchor, children: [] });
+      } else if (groups.length > 0) {
+        groups[groups.length - 1].children.push(anchor);
+      }
+    }
+
+    return groups;
+  }
+
+  private _renderAnchorLink(anchor: AnchorNavigationProps.Anchor): TemplateResult {
+    const isActive = this._currentHref === anchor.href;
+
+    return html`
+      <li class=${classMap({
+        'anchor-item': true,
+        'anchor-item--active': isActive,
+      })}>
+        <a
+          class=${classMap({
+            'anchor-link': true,
+            'anchor-link--active': isActive,
+          })}
+          href=${anchor.href}
+          aria-current=${ifDefined(isActive ? 'location' : undefined)}
+          @click=${(e: MouseEvent) => this._onAnchorClick(e, anchor)}
+        >
+          <span class="anchor-link-text">${anchor.text}</span>
+          ${anchor.info
+            ? html`<span class="anchor-link-info">${anchor.info}</span>`
+            : nothing}
+        </a>
+      </li>
+    `;
+  }
+
   override render() {
+    const groups = this._buildTree(this.anchors);
+
     return html`
       <nav
         class="root"
         aria-labelledby=${ifDefined(this.ariaLabelledby)}
       >
         <ol class="anchor-list" role="list">
-          ${this.anchors.map((anchor) => {
+          ${groups.map(({ anchor, children }) => {
             const isActive = this._currentHref === anchor.href;
-            const indent = Math.max(0, anchor.level - 1) * 16;
-            const linkClasses = {
-              'anchor-link': true,
-              'anchor-link--active': isActive,
-            };
+
+            if (children.length === 0) {
+              return this._renderAnchorLink(anchor);
+            }
+
             return html`
               <li class=${classMap({
                 'anchor-item': true,
                 'anchor-item--active': isActive,
-              })} style="padding-left: ${indent}px">
+              })}>
                 <a
-                  class=${classMap(linkClasses)}
+                  class=${classMap({
+                    'anchor-link': true,
+                    'anchor-link--active': isActive,
+                  })}
                   href=${anchor.href}
                   aria-current=${ifDefined(isActive ? 'location' : undefined)}
                   @click=${(e: MouseEvent) => this._onAnchorClick(e, anchor)}
@@ -150,8 +195,11 @@ export class CsAnchorNavigationInternal extends CsBaseElement {
                   <span class="anchor-link-text">${anchor.text}</span>
                   ${anchor.info
                     ? html`<span class="anchor-link-info">${anchor.info}</span>`
-                    : ''}
+                    : nothing}
                 </a>
+                <ol class="anchor-list">
+                  ${children.map(child => this._renderAnchorLink(child))}
+                </ol>
               </li>
             `;
           })}

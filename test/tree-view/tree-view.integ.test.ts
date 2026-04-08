@@ -8,7 +8,7 @@ test.describe('TreeView — Integration', () => {
 
   test('renders top-level tree nodes', async ({ page }) => {
     const tree = page.locator('cs-tree-view').first();
-    const topNodes = tree.locator(':scope > .root > .treeitem');
+    const topNodes = tree.locator(':scope > .root > .tree > .treeitem');
     await expect(topNodes).toHaveCount(4);
   });
 
@@ -76,8 +76,8 @@ test.describe('TreeView — Integration', () => {
 
   test('connector lines variant adds class', async ({ page }) => {
     const treeWithLines = page.locator('cs-tree-view[connector-lines="vertical"]');
-    const treeEl = treeWithLines.locator('.root');
-    await expect(treeEl).toHaveClass(/root--connector-lines/);
+    const rootEl = treeWithLines.locator(':scope > div.root');
+    await expect(rootEl).toHaveClass(/root--connector-lines/);
   });
 
   test('toggle button has aria-label', async ({ page }) => {

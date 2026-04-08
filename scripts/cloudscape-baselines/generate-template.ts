@@ -130,6 +130,54 @@ const COMPONENTS: Record<string, ComponentConfig> = {
     ],
     slotContent: '',
   },
+  'anchor-navigation': {
+    importPath: '@cloudscape-design/components/anchor-navigation',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/anchor-navigation/styles.css.js',
+    ],
+    baselineProps: {
+      anchors: [
+        { text: 'Overview', href: '#overview', level: 1 },
+        { text: 'Getting Started', href: '#getting-started', level: 1 },
+        { text: 'Installation', href: '#installation', level: 2 },
+        { text: 'Configuration', href: '#configuration', level: 2 },
+        { text: 'Advanced Usage', href: '#advanced-usage', level: 1 },
+      ],
+      activeHref: '#getting-started',
+      ariaLabel: 'Page navigation',
+    },
+    variants: [
+      { name: 'activeHref', value: '#configuration' },
+    ],
+    slotContent: '',
+  },
+  'tree-view': {
+    importPath: '@cloudscape-design/components/tree-view',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/tree-view/styles.css.js',
+      'node_modules/@cloudscape-design/components/tree-view/tree-item/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/expand-toggle-button/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/structured-item/styles.css.js',
+      'node_modules/@cloudscape-design/components/tree-view/vertical-connector/styles.css.js',
+    ],
+    baselineProps: {
+      items: [
+        { id: 'src', label: 'src', children: [
+          { id: 'index', label: 'index.ts' },
+        ]},
+        { id: 'readme', label: 'README.md' },
+      ],
+      renderItem: (item: any) => ({ content: item.label }),
+      getItemId: (item: any) => item.id,
+      getItemChildren: (item: any) => item.children,
+      expandedItems: ['src'],
+      ariaLabel: 'File tree',
+    },
+    variants: [
+      { name: 'expandedItems', value: [] },
+    ],
+    slotContent: '',
+  },
 };
 
 // ─── DOM Parsing ──────────────────────────────────────────────
