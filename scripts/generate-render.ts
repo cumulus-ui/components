@@ -791,6 +791,7 @@ function auditCSSCoverage(component: string): string[] {
     'tutorial-description', 'tutorial-item', 'tutorial-list', 'tutorial-list-description',
     'tutorial-list-title', 'tutorial-meta', 'tutorial-title',
     'true', 'true,', '})}', '[placementClass]:', 'markerWrapper:',
+    'actions', 'file-error-text', 'file-warning-text', 'handle-bar', 'handle-wrapper',
   ]);
 
   // Per-component structural classes that are valid but not in that component's CSS

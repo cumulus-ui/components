@@ -44,7 +44,7 @@ test.describe('File Token Group — Integration', () => {
   });
 
   test('error state shows error text', async ({ page }) => {
-    const group = page.locator('cs-file-token-group[alignment="vertical"]').first();
+    const group = page.locator('cs-file-token-group[alignment="vertical"]').nth(1);
 
     const hasErrorText = await group.evaluate((el) => {
       return el.shadowRoot?.querySelector('.file-error-text') !== null;
@@ -54,7 +54,7 @@ test.describe('File Token Group — Integration', () => {
   });
 
   test('warning state shows warning text', async ({ page }) => {
-    const group = page.locator('cs-file-token-group[alignment="vertical"]').first();
+    const group = page.locator('cs-file-token-group[alignment="vertical"]').nth(1);
 
     const hasWarningText = await group.evaluate((el) => {
       return el.shadowRoot?.querySelector('.file-warning-text') !== null;
