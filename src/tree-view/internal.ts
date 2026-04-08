@@ -146,9 +146,8 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
             </div>
           </div>
         </div>
-        ${hasChildren ? html`
-          <ul class="treeitem-group" role="group"
-              style="${expanded ? '' : 'display:none'}">
+        ${hasChildren && expanded ? html`
+          <ul class="treeitem-group" role="group">
             ${children!.map((child, i) => this._renderNode(child, i, level + 1, globalIndex))}
           </ul>
         ` : nothing}
