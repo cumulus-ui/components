@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
-import type { PortalProps } from '@cloudscape-design/component-toolkit/internal';
+// License: see /NOTICE
+import { PortalProps } from '@cloudscape-design/component-toolkit/internal';
 export interface BaseModalProps {
   /**
    * Use this property to specify a different dynamic modal root for the dialog.

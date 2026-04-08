@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 export interface FileTokenGroupProps {
   /**
    * Show file size in the token. Use `i18nStrings.formatFileSize` to customize it.

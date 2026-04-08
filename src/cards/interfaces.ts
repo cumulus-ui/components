@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 export interface CardsProps<T = any> {
   /** @slot empty — Displayed only when the list of items is empty */
   /** @slot header — Heading element of the table container */

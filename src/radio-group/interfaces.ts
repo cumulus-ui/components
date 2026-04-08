@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 export interface RadioGroupProps {
   /**
    * Specify a custom name for the radio buttons. If not provided, the radio group generates a random name.

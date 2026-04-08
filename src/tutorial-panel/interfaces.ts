@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 export interface TutorialPanelProps {
   /**
    * Whether the content of the panel is currently loading. If this property

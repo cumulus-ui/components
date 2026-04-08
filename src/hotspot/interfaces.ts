@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 export interface HotspotProps {
   /**
    * ID of this hotspot. Use this ID in your tutorial data to refer to this

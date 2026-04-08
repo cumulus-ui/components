@@ -13,6 +13,9 @@
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { parseClassMap, buildReverseMap } from './lib/css-module-map.js';
+import { getImplementedComponents } from './lib/component-registry.js';
+import { prefixClasses } from './lib/prefix-classes.js';
 
 // ─── Paths ────────────────────────────────────────────────────
 const ROOT = path.resolve(import.meta.dirname, '..');
@@ -25,37 +28,6 @@ const HEADER = [
   '// AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT',
   '// License: see /NOTICE',
 ].join('\n');
-
-const OUR_COMPONENTS = new Set([
-  'anchor-navigation', 'badge', 'box', 'checkbox', 'file-dropzone',
-  'grid', 'icon', 'list', 'live-region', 'radio-group',
-  'space-between', 'spinner', 'text-content', 'tiles', 'tree-view',
-]);
-
-// ════════════════════════════════════════════════════════════════
-// CLASS NAME MAPPING
-// ════════════════════════════════════════════════════════════════
-
-/** Parse styles.css.js → { semanticName: hashedName } */
-function parseClassMap(cssJsPath: string): Record<string, string> {
-  const content = fs.readFileSync(cssJsPath, 'utf-8');
-  const map: Record<string, string> = {};
-  const re = /"([^"]+)":\s*"([^"]+)"/g;
-  let m;
-  while ((m = re.exec(content)) !== null) {
-    map[m[1]] = m[2];
-  }
-  return map;
-}
-
-/** Build reverse map: hashedName → semanticName */
-function buildReverseMap(forward: Record<string, string>): Record<string, string> {
-  const rev: Record<string, string> = {};
-  for (const [semantic, hashed] of Object.entries(forward)) {
-    rev[hashed] = semantic;
-  }
-  return rev;
-}
 
 // ════════════════════════════════════════════════════════════════
 // CSS TRANSFORMATION PIPELINE
@@ -182,18 +154,6 @@ function transformCSS(cssPath: string, cssJsPath: string, classPrefix?: string):
   return css;
 }
 
-/**
- * Prefix all semantic class selectors to avoid collisions when multiple
- * sub-component styles are merged into a single shadow DOM.
- * E.g. with prefix "structured-item": .root → .structured-item--root
- */
-function prefixClasses(css: string, fwd: Record<string, string>, prefix: string): string {
-  const semanticNames = Object.keys(fwd);
-  const escaped = semanticNames.map(n => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-  const pattern = new RegExp(`\\.(?:${escaped.join('|')})(?=[^a-zA-Z0-9-]|$)`, 'g');
-  return css.replace(pattern, (match) => `.${prefix}--${match.slice(1)}`);
-}
-
 // ════════════════════════════════════════════════════════════════
 // OUTPUT GENERATION
 // ════════════════════════════════════════════════════════════════
@@ -240,8 +200,9 @@ function wrapInternalLitCSS(css: string, component: string): string {
 
 /** Find all public components that have styles.scoped.css */
 function findComponents(): string[] {
+  const implemented = new Set(getImplementedComponents());
   return fs.readdirSync(CS, { withFileTypes: true })
-    .filter(d => d.isDirectory() && OUR_COMPONENTS.has(d.name))
+    .filter(d => d.isDirectory() && implemented.has(d.name))
     .filter(d => fs.existsSync(path.join(CS, d.name, 'styles.scoped.css')))
     .map(d => d.name)
     .sort();

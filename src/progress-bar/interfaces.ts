@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 export interface ProgressBarProps {
   /**
    * Indicates the current progress as a percentage. The value must be between 0 and 100. Decimals are rounded.

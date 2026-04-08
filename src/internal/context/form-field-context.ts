@@ -6,6 +6,7 @@ export interface FormFieldContext {
   ariaLabelledby: string;
   ariaDescribedby: string;
   invalid: boolean;
+  warning: boolean;
 }
 
 export const formFieldContext = createContext<FormFieldContext>(
@@ -17,4 +18,5 @@ export const defaultFormFieldContext: FormFieldContext = {
   ariaLabelledby: '',
   ariaDescribedby: '',
   invalid: false,
+  warning: false,
 };

@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 export interface AreaChartProps<T extends AreaChartProps.DataTypes> {
   /**
    * Array that represents the source of data for the displayed chart.

@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 import { CalendarProps } from '../calendar/interfaces.js';
 import { ExpandToViewport } from '../dropdown/interfaces.js';
 export interface DatePickerProps extends ExpandToViewport, CalendarProps {

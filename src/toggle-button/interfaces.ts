@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 import { BaseButtonProps } from '../button/interfaces.js';
 import { IconProps } from '../icon/interfaces.js';
 export interface ToggleButtonProps extends Omit<BaseButtonProps, 'nativeAnchorAttributes'> {

@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 export interface TreeViewProps<T = any> {
   /**
    * Specifies the top-level items to display in the tree view. Use `getItemChildren` to provide nested items.

@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 export interface ItemCardProps {
   /** @slot header — Heading element of the item card */
   /** @slot description — A description or subtitle displayed below the header */

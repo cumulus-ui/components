@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 import { BaseDropdownHostProps, OptionsFilteringType, OptionsLoadItemsDetail } from '../dropdown/interfaces.js';
 import { OptionDefinition, OptionGroup as OptionGroupDefinition } from '../internal/generated/cloudscape-types.js';
 export interface BaseSelectProps extends BaseDropdownHostProps {

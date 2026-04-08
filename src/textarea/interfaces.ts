@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 import { BaseInputProps, InputAutoComplete, InputAutoCorrect, InputKeyEvents, InputSpellcheck } from '../input/interfaces.js';
 import { BaseKeyDetail } from '../internal/generated/cloudscape-types.js';
 export interface TextareaProps extends Omit<BaseInputProps, 'nativeInputAttributes'>, InputKeyEvents, InputAutoCorrect, InputAutoComplete, InputSpellcheck {

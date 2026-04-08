@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 import { BaseCheckboxProps } from '../checkbox/base-checkbox.js';
 export interface ToggleProps extends BaseCheckboxProps {
   /** @slot default — The control's label that's displayed next to the toggle */

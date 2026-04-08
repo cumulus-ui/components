@@ -1,6 +1,6 @@
 {
   "name": "@cumulus-ui/components",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "Web components inspired by Cloudscape Design System",
   "type": "module",
   "main": "./dist/index.js",
@@ -27,6 +27,7 @@
     "clean": "rm -rf dist",
     "generate:interfaces": "tsx scripts/generate-interfaces.ts",
     "generate:styles": "tsx scripts/generate-styles.ts",
+    "generate:component": "tsx scripts/generate-component.ts",
     "capture:baselines": "cd scripts/cloudscape-baselines && npm ci && npx tsx capture.ts"
   },
   "keywords": [

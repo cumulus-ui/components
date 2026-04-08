@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 import { ButtonProps } from '../button/interfaces.js';
 import { ContainerProps } from '../container/interfaces.js';
 export interface TabsProps {

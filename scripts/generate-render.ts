@@ -17,6 +17,7 @@
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { parseClassMap } from './lib/css-module-map.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const CS = path.join(ROOT, 'node_modules/@cloudscape-design/components');
@@ -291,17 +292,17 @@ function generatePropBlock(component: string): string {
 
 // ─── CSS Module Map Extractor ──────────────────────────────────
 
-/** Parse a styles.css.js file and return a map of semantic name → scoped name */
+/** Parse a styles.css.js file and return a map of semantic name → scoped name (awsui_ prefixed only) */
 function parseCssModuleMap(filePath: string): Record<string, string> {
   if (!fs.existsSync(filePath)) return {};
-  const src = fs.readFileSync(filePath, 'utf-8');
-  const map: Record<string, string> = {};
-  const re = /"([^"]+)":\s*"(awsui_[^"]+)"/g;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(src)) !== null) {
-    map[m[1]] = m[2];
+  const full = parseClassMap(filePath);
+  const filtered: Record<string, string> = {};
+  for (const [key, value] of Object.entries(full)) {
+    if (value.startsWith('awsui_')) {
+      filtered[key] = value;
+    }
   }
-  return map;
+  return filtered;
 }
 
 /** Collect all CSS class names used by a component across all its style layers */
@@ -754,10 +755,34 @@ function auditCSSCoverage(component: string): string[] {
     }
   }
 
-  const SKIP = new Set(['filled', 'stroke-linejoin-round', 'stroke-linecap-round', 'expandable', 'expanded']);
+  // SVG-specific classes — attribute-based styling, no CSS rules
+  const SKIP = new Set([
+    'filled', 'stroke-linejoin-round', 'stroke-linecap-round', 'expandable', 'expanded',
+    'tooltip-trigger', 'tooltip-body',     // tooltip: layout wrappers with inline positioning
+    'header-row', 'header', 'content',     // popover: structural containers within body
+  ]);
+
+  // Classes from Cloudscape's test-classes/ or analytics-metadata/ — exist for element
+  // targeting but have no CSS rules. Keyed by internal style module name.
+  const STRUCTURAL_CLASSES: Record<string, Set<string>> = {
+    'structured-item': new Set([
+      'structured-item--icon',       // from test-classes/styles.css.js
+      'structured-item--secondary',  // from test-classes/styles.css.js
+    ]),
+  };
+
+  const structuralSkip = new Set<string>();
+  for (const sf of styleFiles) {
+    const basename = path.basename(sf, '.ts');
+    const structural = STRUCTURAL_CLASSES[basename];
+    if (structural) {
+      for (const cls of structural) structuralSkip.add(cls);
+    }
+  }
 
   for (const cls of templateClasses) {
     if (SKIP.has(cls)) continue;
+    if (structuralSkip.has(cls)) continue;
     if (!cssClasses.has(cls)) {
       issues.push(`Template class "${cls}" has no matching CSS selector`);
     }

@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 import { ButtonDropdownProps } from '../button-dropdown/interfaces.js';
 import { IconProps } from '../icon/interfaces.js';
 export interface ButtonGroupProps {

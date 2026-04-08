@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 import { AppLayoutProps, BaseLayoutProps } from '../app-layout/interfaces.js';
 export interface AppLayoutToolbarProps extends BaseLayoutProps {
   /**

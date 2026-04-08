@@ -221,7 +221,6 @@ export class CsTilesInternal extends Base {
         <div class=${classMap(controlClasses)}>
           <span class=${classMap({
               'root': true,
-              'radio-button': true,
               'abstract-switch--wrapper': true,
               'selected': isSelected,
             })}>

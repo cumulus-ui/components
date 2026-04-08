@@ -1,5 +1,6 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
+// License: see /NOTICE
 import ColumnDisplayProperties = TableProps.ColumnDisplayProperties;
 import { Optional } from '../internal/generated/cloudscape-types.js';
 export interface TableProps<T = any> {

@@ -9,6 +9,7 @@ type PageLoader = () => Promise<PageModule>;
 // Add new demo pages here — esbuild needs static import paths for code splitting
 const pageLoaders: Record<string, PageLoader> = {
   '_test/permutations': () => import('./pages/_test/permutations.js') as Promise<PageModule>,
+  'button/permutations': () => import('./pages/button/permutations.js') as Promise<PageModule>,
   'checkbox/permutations': () => import('./pages/checkbox/permutations.js') as Promise<PageModule>,
   'checkbox/form-submit': () => import('./pages/checkbox/form-submit.js') as Promise<PageModule>,
   'spinner/permutations': () => import('./pages/spinner/permutations.js') as Promise<PageModule>,
@@ -27,6 +28,17 @@ const pageLoaders: Record<string, PageLoader> = {
   'text-content/permutations': () => import('./pages/text-content/permutations.js') as Promise<PageModule>,
   'file-dropzone/permutations': () => import('./pages/file-dropzone/permutations.js') as Promise<PageModule>,
   'anchor-navigation/permutations': () => import('./pages/anchor-navigation/permutations.js') as Promise<PageModule>,
+  'alert/permutations': () => import('./pages/alert/permutations.js') as Promise<PageModule>,
+  'tooltip/permutations': () => import('./pages/tooltip/permutations.js') as Promise<PageModule>,
+  'popover/permutations': () => import('./pages/popover/permutations.js') as Promise<PageModule>,
+  'error-boundary/permutations': () => import('./pages/error-boundary/permutations.js') as Promise<PageModule>,
+  'link/permutations': () => import('./pages/link/permutations.js') as Promise<PageModule>,
+  'status-indicator/permutations': () => import('./pages/status-indicator/permutations.js') as Promise<PageModule>,
+  'toggle/permutations': () => import('./pages/toggle/permutations.js') as Promise<PageModule>,
+  'pagination/permutations': () => import('./pages/pagination/permutations.js') as Promise<PageModule>,
+  'column-layout/permutations': () => import('./pages/column-layout/permutations.js') as Promise<PageModule>,
+  'content-layout/permutations': () => import('./pages/content-layout/permutations.js') as Promise<PageModule>,
+  'form-field/permutations': () => import('./pages/form-field/permutations.js') as Promise<PageModule>,
 };
 
 @customElement('demo-app')
