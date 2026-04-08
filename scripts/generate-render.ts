@@ -772,7 +772,7 @@ function auditCSSCoverage(component: string): string[] {
 
   const COMPONENT_SKIP: Record<string, Set<string>> = {
     'alert': new Set(['content']),
-    'autosuggest': new Set(['dropdown', 'filter-input']),
+    'autosuggest': new Set(['dropdown']),
     'button': new Set(['content']),
     'button-dropdown': new Set(['dropdown', 'icon']),
     'cards': new Set(['header', 'section-content']),
@@ -840,7 +840,6 @@ function auditCSSCoverage(component: string): string[] {
     'toggle-button': new Set(['icon']),
     'token': new Set(['description', 'label-tag']),
     'token-group': new Set(['description', 'dismiss-button', 'icon', 'label-tag', 'token']),
-    'tooltip': new Set(['tooltip-body', 'tooltip-trigger']),
     'tree-view': new Set(['expanded']),
     'tutorial-panel': new Set([
       'completed-actions', 'completed-screen', 'detail-actions', 'detail-header',

@@ -1,5 +1,6 @@
 import { css, html, nothing, type TemplateResult } from 'lit';
-import { property, state, query as queryDecorator } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
+import { createRef, ref, type Ref } from 'lit/directives/ref.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -95,11 +96,10 @@ export class CsPropertyFilterInternal extends CsBaseElement {
   @state()
   private _inputValue = '';
 
-  @queryDecorator('.filter-input')
-  private _inputEl!: HTMLInputElement;
+  private _inputRef: Ref<HTMLInputElement> = createRef();
 
   focus(options?: FocusOptions): void {
-    this._inputEl?.focus(options);
+    this._inputRef.value?.focus(options);
   }
 
   private _onInput(e: Event): void {
@@ -161,6 +161,7 @@ export class CsPropertyFilterInternal extends CsBaseElement {
         <div class="search-field">
           <div class="input-wrapper">
             <input
+              ${ref(this._inputRef)}
               class="filter-input"
               type="text"
               .value=${this._inputValue}

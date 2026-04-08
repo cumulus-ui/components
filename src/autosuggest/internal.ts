@@ -2,6 +2,7 @@ import { css, html, nothing, type PropertyValues, type TemplateResult } from 'li
 import { property, state, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { createRef, ref, type Ref } from 'lit/directives/ref.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
@@ -82,8 +83,7 @@ export class CsAutosuggestInternal extends Base {
   @state()
   private _highlightedIndex = -1;
 
-  @query('.input-element')
-  private _inputEl!: HTMLInputElement;
+  private _inputRef: Ref<HTMLInputElement> = createRef();
 
   @query('.dropdown')
   private _dropdownEl!: HTMLElement;
@@ -124,11 +124,11 @@ export class CsAutosuggestInternal extends Base {
   }
 
   focus(options?: FocusOptions): void {
-    this._inputEl?.focus(options);
+    this._inputRef.value?.focus(options);
   }
 
   select(): void {
-    this._inputEl?.select();
+    this._inputRef.value?.select();
   }
 
   private _onInput = (e: Event): void => {
@@ -228,16 +228,16 @@ export class CsAutosuggestInternal extends Base {
 
   override async updated(changed: PropertyValues): Promise<void> {
     super.updated(changed);
-    if (this._open && this._inputEl && this._dropdownEl) {
+    if (this._open && this._inputRef.value && this._dropdownEl) {
       await this._updatePosition();
     }
   }
 
   private async _updatePosition(): Promise<void> {
-    if (!this._inputEl || !this._dropdownEl) return;
+    if (!this._inputRef.value || !this._dropdownEl) return;
 
     const { x, y } = await computePosition(
-      this._inputEl,
+      this._inputRef.value,
       this._dropdownEl,
       {
         placement: 'bottom-start',
@@ -253,7 +253,7 @@ export class CsAutosuggestInternal extends Base {
     Object.assign(this._dropdownEl.style, {
       left: `${x}px`,
       top: `${y}px`,
-      inlineSize: `${this._inputEl.offsetWidth}px`,
+      inlineSize: `${this._inputRef.value.offsetWidth}px`,
     });
   }
 
@@ -263,7 +263,6 @@ export class CsAutosuggestInternal extends Base {
 
     const inputClasses = {
       'input': true,
-      'input-element': true,
       'input-readonly': this.readOnly,
       'input-invalid': this.invalid,
       'input-disabled': this.disabled,
@@ -273,6 +272,7 @@ export class CsAutosuggestInternal extends Base {
       <div class="root">
         <div class="layout-strut">
           <input
+            ${ref(this._inputRef)}
             class=${classMap(inputClasses)}
             type="text"
             .value=${this.value}

@@ -2,6 +2,7 @@ import { css, html, nothing, type PropertyValues, type TemplateResult } from 'li
 import { property, state, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { createRef, ref, type Ref } from 'lit/directives/ref.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { computePosition, flip, offset, shift } from '@floating-ui/dom';
 import { fireNonCancelableEvent } from '../internal/events.js';
@@ -64,8 +65,7 @@ export class CsButtonDropdownInternal extends CsBaseElement {
   @state()
   private _highlightedIndex = -1;
 
-  @query('.trigger-btn')
-  private _triggerEl!: HTMLElement;
+  private _triggerRef: Ref<HTMLElement> = createRef();
 
   @query('.dropdown')
   private _dropdownEl!: HTMLElement;
@@ -97,7 +97,7 @@ export class CsButtonDropdownInternal extends CsBaseElement {
   }
 
   focus(options?: FocusOptions): void {
-    this._triggerEl?.focus(options);
+    this._triggerRef.value?.focus(options);
   }
 
   private _flatItems(): ButtonDropdownProps.Item[] {
@@ -134,7 +134,7 @@ export class CsButtonDropdownInternal extends CsBaseElement {
     }
 
     this._open = false;
-    this._triggerEl?.focus();
+    this._triggerRef.value?.focus();
   }
 
   private _onKeyDown = (e: KeyboardEvent): void => {
@@ -155,7 +155,7 @@ export class CsButtonDropdownInternal extends CsBaseElement {
       case 'Escape':
         e.stopPropagation();
         this._open = false;
-        this._triggerEl?.focus();
+        this._triggerRef.value?.focus();
         break;
       case 'ArrowDown':
         e.preventDefault();
@@ -180,10 +180,10 @@ export class CsButtonDropdownInternal extends CsBaseElement {
 
   private async _updatePosition(): Promise<void> {
     await this.updateComplete;
-    if (!this._triggerEl || !this._dropdownEl) return;
+    if (!this._triggerRef.value || !this._dropdownEl) return;
 
     const { x, y } = await computePosition(
-      this._triggerEl,
+      this._triggerRef.value,
       this._dropdownEl,
       {
         placement: 'bottom-start',
@@ -231,7 +231,6 @@ export class CsButtonDropdownInternal extends CsBaseElement {
 
     const buttonClasses = {
       'button': true,
-      'trigger-btn': true,
       [`variant-${this.variant}`]: true,
       'disabled': isDisabled,
       'button-no-text': isIcon,
@@ -243,6 +242,7 @@ export class CsButtonDropdownInternal extends CsBaseElement {
     if (isIcon) {
       return html`
         <button
+          ${ref(this._triggerRef)}
           class=${classMap(buttonClasses)}
           type="button"
           aria-haspopup="true"
@@ -264,6 +264,7 @@ export class CsButtonDropdownInternal extends CsBaseElement {
 
     return html`
       <button
+        ${ref(this._triggerRef)}
         class=${classMap(buttonClasses)}
         type="button"
         aria-haspopup="true"

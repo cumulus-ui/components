@@ -2,6 +2,7 @@ import { css, html, nothing, type PropertyValues, type TemplateResult } from 'li
 import { property, state, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { createRef, ref, type Ref } from 'lit/directives/ref.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
@@ -230,8 +231,7 @@ export class CsSelectInternal extends Base {
   @query('.dropdown')
   private _dropdownEl!: HTMLElement;
 
-  @query('.filter-input')
-  private _filterInputEl!: HTMLInputElement;
+  private _filterInputRef: Ref<HTMLInputElement> = createRef();
 
   private _cleanupOutsideClick: (() => void) | null = null;
 
@@ -254,7 +254,7 @@ export class CsSelectInternal extends Base {
         this._addOutsideClickListener();
         if (this._hasFiltering()) {
           this.updateComplete.then(() => {
-            this._filterInputEl?.focus();
+            this._filterInputRef.value?.focus();
           });
         }
       } else {
@@ -507,6 +507,7 @@ export class CsSelectInternal extends Base {
       ${this._hasFiltering() ? html`
         <div class="filter-container select-parts--filter">
           <input
+            ${ref(this._filterInputRef)}
             class="filter-input"
             type="text"
             placeholder=${this.filteringPlaceholder || 'Filter'}

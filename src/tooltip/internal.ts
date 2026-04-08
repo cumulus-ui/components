@@ -1,5 +1,6 @@
 import { css, html, nothing, type TemplateResult } from 'lit';
-import { property, query, state } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
+import { createRef, ref, type Ref } from 'lit/directives/ref.js';
 import { computePosition, flip, offset, shift, type Placement } from '@floating-ui/dom';
 import { CsBaseElement } from '../internal/base-element.js';
 import { generateUniqueId } from '../internal/hooks/use-unique-id.js';
@@ -26,11 +27,8 @@ export class CsTooltipInternal extends CsBaseElement {
   @state()
   private _visible = false;
 
-  @query('.tooltip-trigger')
-  private _triggerEl!: HTMLElement;
-
-  @query('.tooltip-body')
-  private _bodyEl!: HTMLElement | null;
+  private _triggerRef: Ref<HTMLElement> = createRef();
+  private _bodyRef: Ref<HTMLElement> = createRef();
 
   private _tooltipId = generateUniqueId('tooltip');
   private _showTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -61,26 +59,24 @@ export class CsTooltipInternal extends CsBaseElement {
   };
 
   override async updated(): Promise<void> {
-    if (this._visible && this._triggerEl && this._bodyEl) {
+    if (this._visible && this._triggerRef.value && this._bodyRef.value) {
       await this._updatePosition();
     }
   }
 
   private async _updatePosition(): Promise<void> {
-    if (!this._triggerEl || !this._bodyEl) return;
+    const trigger = this._triggerRef.value;
+    const body = this._bodyRef.value;
+    if (!trigger || !body) return;
 
     const placement: Placement = this.position;
 
-    const { x, y } = await computePosition(
-      this._triggerEl,
-      this._bodyEl,
-      {
-        placement,
-        middleware: [offset(8), flip(), shift({ padding: 8 })],
-      }
-    );
+    const { x, y } = await computePosition(trigger, body, {
+      placement,
+      middleware: [offset(8), flip(), shift({ padding: 8 })],
+    });
 
-    Object.assign(this._bodyEl.style, {
+    Object.assign(body.style, {
       position: 'absolute',
       left: `${x}px`,
       top: `${y}px`,
@@ -91,7 +87,7 @@ export class CsTooltipInternal extends CsBaseElement {
     return html`
       <div class="tooltip--root">
         <div
-          class="tooltip-trigger"
+          ${ref(this._triggerRef)}
           aria-describedby=${this._visible ? this._tooltipId : nothing}
           @mouseenter=${this._show}
           @mouseleave=${this._hide}
@@ -103,9 +99,10 @@ export class CsTooltipInternal extends CsBaseElement {
         ${this._visible && this.content
           ? html`
             <div
-              class="tooltip-body"
+              ${ref(this._bodyRef)}
               role="tooltip"
               id=${this._tooltipId}
+              style="position: absolute"
             >
               ${this.content}
             </div>
