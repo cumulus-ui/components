@@ -202,9 +202,9 @@ async function extractCloudscapeDOM(page: Page, url: string): Promise<DOMNode | 
         const w = walk(child, depth + 1);
         if (w) children.push(w);
       }
-      const classes = [...el.classList]
+      const classes = [...new Set([...el.classList]
         .map(c => { const m = c.match(/^awsui_([^_]+)_/); return m ? m[1] : c; })
-        .sort();
+      )].sort();
       return {
         tag: el.tagName.toLowerCase(),
         classes,
@@ -237,9 +237,9 @@ async function captureCloudscapeSections(page: Page, url: string): Promise<Captu
         const w = walk(child, depth + 1);
         if (w) children.push(w);
       }
-      const classes = [...el.classList]
+      const classes = [...new Set([...el.classList]
         .map(c => { const m = c.match(/^awsui_([^_]+)_/); return m ? m[1] : c; })
-        .sort();
+      )].sort();
       return {
         tag: el.tagName.toLowerCase(),
         classes,
