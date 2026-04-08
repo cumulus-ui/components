@@ -62,16 +62,29 @@ export class CsListInternal<T = any> extends CsBaseElement {
       'disable-paddings': this.disablePaddings,
     };
 
+    const structuredRootClasses = {
+      'root': true,
+      'disable-paddings': this.disableItemPaddings,
+    };
+
+    const hasActions = !!rendered.actions;
+
     return html`
       <li class=${classMap(itemClasses)} data-item-id=${rendered.id}>
-        ${rendered.icon ? html`<span class="item-icon">${rendered.icon}</span>` : nothing}
-        <span class="item-content">
-          <span class="item-primary">${rendered.content}</span>
-          ${rendered.secondaryContent
-            ? html`<span class="item-secondary">${rendered.secondaryContent}</span>`
-            : nothing}
-        </span>
-        ${rendered.actions ? html`<span class="item-actions">${rendered.actions}</span>` : nothing}
+        <div class=${classMap(structuredRootClasses)}>
+          ${rendered.icon ? html`<div class="icon">${rendered.icon}</div>` : nothing}
+          <div class="main">
+            <div class="content-wrap wrap-actions">
+              <div class="content">
+                ${rendered.content}
+              </div>
+              ${hasActions ? html`<div class="actions">${rendered.actions}</div>` : nothing}
+            </div>
+            ${rendered.secondaryContent
+              ? html`<div class="secondary">${rendered.secondaryContent}</div>`
+              : nothing}
+          </div>
+        </div>
       </li>
     `;
   }

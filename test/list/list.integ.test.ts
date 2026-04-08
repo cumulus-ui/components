@@ -14,19 +14,19 @@ test.describe('List — Integration', () => {
 
   test('renders item primary content', async ({ page }) => {
     const firstItem = page.locator('cs-list').first().locator('.item').first();
-    const primary = firstItem.locator('.item-primary');
-    await expect(primary).toHaveText('report-2024.pdf');
+    const content = firstItem.locator('.content');
+    await expect(content).toHaveText('report-2024.pdf');
   });
 
   test('renders item secondary content', async ({ page }) => {
     const firstItem = page.locator('cs-list').first().locator('.item').first();
-    const secondary = firstItem.locator('.item-secondary');
+    const secondary = firstItem.locator('.main > div:last-child');
     await expect(secondary).toHaveText('2.4 MB · PDF');
   });
 
   test('renders icons when provided', async ({ page }) => {
     const listWithIcons = page.locator('cs-list').nth(1);
-    const icon = listWithIcons.locator('.item-icon').first();
+    const icon = listWithIcons.locator('.icon').first();
     await expect(icon).toBeVisible();
   });
 
@@ -56,7 +56,7 @@ test.describe('List — Integration', () => {
 
   test('disablePaddings removes list padding', async ({ page }) => {
     const noPaddingList = page.locator('cs-list[disable-paddings]').first();
-    const listEl = noPaddingList.locator('.root');
+    const listEl = noPaddingList.locator('ul.root, ol.root');
     await expect(listEl).toHaveClass(/disable-paddings/);
   });
 });

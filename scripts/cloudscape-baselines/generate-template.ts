@@ -110,6 +110,26 @@ const COMPONENTS: Record<string, ComponentConfig> = {
     ],
     slotContent: '',
   },
+  list: {
+    importPath: '@cloudscape-design/components/list',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/list/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/structured-item/styles.css.js',
+      'node_modules/@cloudscape-design/components/internal/components/drag-handle/styles.css.js',
+    ],
+    baselineProps: {
+      items: ['Item 1', 'Item 2', 'Item 3'],
+      renderItem: (item: string) => ({ id: item, content: item }),
+      ariaLabel: 'Files',
+    },
+    variants: [
+      { name: 'variant', value: 'compact' },
+      { name: 'disablePaddings', value: true },
+      { name: 'disableItemPaddings', value: true },
+      { name: 'renderItem', value: (item: string) => ({ id: item, content: item, secondaryContent: 'sec' }) },
+    ],
+    slotContent: '',
+  },
 };
 
 // ─── DOM Parsing ──────────────────────────────────────────────
