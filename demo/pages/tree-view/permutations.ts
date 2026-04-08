@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import '../../../src/tree-view/index.js';
+import '../../../src/icon/index.js';
 
 interface TreeNode {
   id: string;
@@ -81,7 +82,7 @@ export class TreeViewPermutationsPage extends LitElement {
 
   private _renderItem = (item: TreeNode) => ({
     content: item.label,
-    icon: item.children ? html`<span style="font-size:14px">📁</span>` : html`<span style="font-size:14px">📄</span>`,
+    icon: item.children ? html`<cs-icon name="folder"></cs-icon>` : html`<cs-icon name="file"></cs-icon>`,
   });
 
   private _getItemId = (item: TreeNode) => item.id;

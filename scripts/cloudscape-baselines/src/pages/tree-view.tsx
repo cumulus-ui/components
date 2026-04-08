@@ -1,4 +1,5 @@
 import TreeView from '@cloudscape-design/components/tree-view';
+import Icon from '@cloudscape-design/components/icon';
 import { useState } from 'react';
 
 const sectionStyle: React.CSSProperties = { marginBottom: 24, padding: 16, border: '1px solid #e9ebed', borderRadius: 8 };
@@ -49,7 +50,7 @@ const fileTree: TreeNode[] = [
 
 const renderItem = (item: TreeNode) => ({
   content: item.label,
-  icon: item.children ? <span style={{ fontSize: 14 }}>📁</span> : <span style={{ fontSize: 14 }}>📄</span>,
+  icon: item.children ? <Icon name="folder" /> : <Icon name="file" />,
 });
 
 const getItemId = (item: TreeNode) => item.id;
