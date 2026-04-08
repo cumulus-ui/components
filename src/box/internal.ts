@@ -112,9 +112,9 @@ export class CsBoxInternal extends CsBaseElement {
       ...(this.display ? { [`d-${this.display}`]: true } : {}),
       ...(this.textAlign ? { [`t-${this.textAlign}`]: true } : {}),
       ...(this.float ? { [`f-${this.float}`]: true } : {}),
-      ...(this.fontSize ? { [`font-size-${this.fontSize}`]: true } : {}),
-      ...(this.fontWeight ? { [`font-weight-${this.fontWeight}`]: true } : {}),
-      ...(this.color ? { [`color-${this.color}`]: true } : {}),
+      [`font-size-${this.fontSize || 'default'}`]: true,
+      [`font-weight-${this.fontWeight || 'default'}`]: true,
+      [`color-${this.color || 'default'}`]: true,
       ...spacingClasses('m', this.margin),
       ...spacingClasses('p', this.padding),
     };
