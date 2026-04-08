@@ -8,7 +8,7 @@ test.describe('TreeView — Integration', () => {
 
   test('renders top-level tree nodes', async ({ page }) => {
     const tree = page.locator('cs-tree-view').first();
-    const topNodes = tree.locator(':scope > .root > .tree > .treeitem');
+    const topNodes = tree.locator(':scope > .root > .tree > .tree-view-tree-item--treeitem');
     await expect(topNodes).toHaveCount(4);
   });
 
@@ -27,22 +27,22 @@ test.describe('TreeView — Integration', () => {
   test('expanded node shows children', async ({ page }) => {
     const tree = page.locator('cs-tree-view').first();
     const srcNode = tree.locator('[data-node-id="src"]');
-    const children = srcNode.locator(':scope > .treeitem-group');
+    const children = srcNode.locator(':scope > .tree-view-tree-item--treeitem-group');
     await expect(children).toBeVisible();
   });
 
   test('collapsed node hides children', async ({ page }) => {
     const collapsedTree = page.locator('cs-tree-view').nth(2);
     const srcNode = collapsedTree.locator('[data-node-id="src"]');
-    const children = srcNode.locator(':scope > .treeitem-group');
+    const children = srcNode.locator(':scope > .tree-view-tree-item--treeitem-group');
     await expect(children).toBeHidden();
   });
 
   test('clicking toggle expands/collapses node', async ({ page }) => {
     const tree = page.locator('cs-tree-view').first();
     const testsNode = tree.locator('[data-node-id="tests"]');
-    const toggle = testsNode.locator(':scope > .treeitem-content-wrapper .expand-toggle');
-    const children = testsNode.locator(':scope > .treeitem-group');
+    const toggle = testsNode.locator(':scope > .tree-view-tree-item--treeitem-content-wrapper .expand-toggle-button--expand-toggle');
+    const children = testsNode.locator(':scope > .tree-view-tree-item--treeitem-group');
 
     await expect(children).toBeHidden();
 
@@ -56,7 +56,7 @@ test.describe('TreeView — Integration', () => {
   test('fires itemToggle event on toggle click', async ({ page }) => {
     const tree = page.locator('cs-tree-view').first();
     const testsNode = tree.locator('[data-node-id="tests"]');
-    const toggle = testsNode.locator(':scope > .treeitem-content-wrapper .expand-toggle');
+    const toggle = testsNode.locator(':scope > .tree-view-tree-item--treeitem-content-wrapper .expand-toggle-button--expand-toggle');
 
     const detailPromise = tree.evaluate((el) => {
       return new Promise<{ id: string; expanded: boolean }>((resolve) => {
@@ -82,7 +82,7 @@ test.describe('TreeView — Integration', () => {
 
   test('toggle button has aria-label', async ({ page }) => {
     const tree = page.locator('cs-tree-view').first();
-    const toggle = tree.locator('.expand-toggle').first();
+    const toggle = tree.locator('.expand-toggle-button--expand-toggle').first();
     const label = await toggle.getAttribute('aria-label');
     expect(label).toBeTruthy();
   });
@@ -90,15 +90,15 @@ test.describe('TreeView — Integration', () => {
   test('nodes without children have no toggle button', async ({ page }) => {
     const tree = page.locator('cs-tree-view').first();
     const readmeNode = tree.locator('[data-node-id="readme"]');
-    const toggle = readmeNode.locator('.expand-toggle');
+    const toggle = readmeNode.locator('.expand-toggle-button--expand-toggle');
     await expect(toggle).toHaveCount(0);
   });
 
   test('leaf nodes have no expand-toggle-wrapper content', async ({ page }) => {
     const tree = page.locator('cs-tree-view').first();
     const readmeNode = tree.locator('[data-node-id="readme"]');
-    const wrapper = readmeNode.locator('.expand-toggle-wrapper');
-    const toggle = wrapper.locator('.expand-toggle');
+    const wrapper = readmeNode.locator('.tree-view-tree-item--expand-toggle-wrapper');
+    const toggle = wrapper.locator('.expand-toggle-button--expand-toggle');
     await expect(toggle).toHaveCount(0);
   });
 });

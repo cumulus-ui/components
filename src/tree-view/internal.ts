@@ -73,12 +73,8 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
 
     return html`
       <span class=${classMap({
-        'expand-toggle-icon': true,
-        'expand-toggle-icon-expanded': expanded,
-        'icon': true,
-        'size-small': true,
-        'size-small-mapped-height': true,
-        'variant-normal': true,
+        'expand-toggle-button--expand-toggle-icon': true,
+        'expand-toggle-button--expand-toggle-icon-expanded': expanded,
       })}>
         <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
           <path class="filled stroke-linejoin-round" d="m8 11 4-6H4l4 6Z"></path>
@@ -101,19 +97,24 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
 
     return html`
       <li
-        class=${classMap({ 'treeitem': true, 'offset': level > 0, 'expandable': hasChildren, 'expanded': hasChildren && expanded })}
+        class=${classMap({
+          'tree-view-tree-item--treeitem': true,
+          'tree-view-tree-item--offset': level > 0,
+          'expandable': hasChildren,
+          'expanded': hasChildren && expanded,
+        })}
         role="treeitem"
         aria-expanded=${hasChildren ? String(expanded) : nothing}
         aria-level=${level + 1}
         data-node-id=${id}
       >
-        <div class="treeitem-content-wrapper">
-          <div class="expand-toggle-wrapper">
-            <div class="toggle">
+        <div class="tree-view-tree-item--treeitem-content-wrapper">
+          <div class="tree-view-tree-item--expand-toggle-wrapper">
+            <div class="tree-view-tree-item--toggle">
               ${hasChildren
                 ? html`
                   <button
-                    class="expand-toggle disable-focus-highlight tree-item-focus-target"
+                    class="expand-toggle-button--expand-toggle expand-toggle-button--disable-focus-highlight tree-view-tree-item--tree-item-focus-target"
                     type="button"
                     tabindex="-1"
                     aria-label=${contentLabel}
@@ -123,15 +124,15 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
                     ${this._renderToggleIcon(expanded)}
                   </button>`
                 : html`
-                  <div class="tree-item-focus-target"
+                  <div class="tree-view-tree-item--tree-item-focus-target"
                     role="group"
                     tabindex="-1"
                     aria-label=${contentLabel}
                   ></div>`}
             </div>
           </div>
-          <div class="structured-item-wrapper">
-            <div class="structured-item--root tree-item-structured-item">
+          <div class="tree-view-tree-item--structured-item-wrapper">
+            <div class="structured-item--root tree-view-tree-item--tree-item-structured-item">
               ${rendered.icon ? html`<div class="structured-item--icon">${rendered.icon}</div>` : nothing}
               <div class="structured-item--main">
                 <div class="structured-item--content-wrap">
@@ -148,7 +149,7 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
           </div>
         </div>
         ${hasChildren && expanded ? html`
-          <ul class="treeitem-group" role="group">
+          <ul class="tree-view-tree-item--treeitem-group" role="group">
             ${children!.map((child, i) => this._renderNode(child, i, level + 1, globalIndex))}
           </ul>
         ` : nothing}

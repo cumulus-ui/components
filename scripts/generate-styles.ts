@@ -188,12 +188,10 @@ function transformCSS(cssPath: string, cssJsPath: string, classPrefix?: string):
  * E.g. with prefix "structured-item": .root → .structured-item--root
  */
 function prefixClasses(css: string, fwd: Record<string, string>, prefix: string): string {
-  const semanticNames = Object.keys(fwd).sort((a, b) => b.length - a.length);
-  let result = css;
-  for (const name of semanticNames) {
-    result = result.replaceAll(`.${name}`, `.${prefix}--${name}`);
-  }
-  return result;
+  const semanticNames = Object.keys(fwd);
+  const escaped = semanticNames.map(n => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const pattern = new RegExp(`\\.(?:${escaped.join('|')})(?=[^a-zA-Z0-9-]|$)`, 'g');
+  return css.replace(pattern, (match) => `.${prefix}--${match.slice(1)}`);
 }
 
 // ════════════════════════════════════════════════════════════════

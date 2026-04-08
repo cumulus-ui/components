@@ -13,7 +13,7 @@ export const chartFilterStyles = css`
   -moz-osx-font-smoothing: auto;
 }
 
-.chart-filter--chart-filter--custom-icon-wrapper {
+.chart-filter--custom-icon-wrapper {
   display: flex;
   align-items: flex-start;
   align-self: stretch;

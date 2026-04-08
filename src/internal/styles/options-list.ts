@@ -29,14 +29,14 @@ export const optionsListStyles = css`
   -webkit-user-select: none;
           user-select: none;
 }
-.options-list--options-list--options-list-embedded {
+.options-list--options-list-embedded {
   border-start-start-radius: 0px;
   border-start-end-radius: 0px;
   border-end-start-radius: 0px;
   border-end-end-radius: 0px;
 }
 
-.options-list--options-list--decrease-block-margin {
+.options-list--decrease-block-margin {
   margin-block: -1px;
 }
 `;

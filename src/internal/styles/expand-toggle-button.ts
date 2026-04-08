@@ -3,32 +3,32 @@
 import { css } from 'lit';
 
 export const expandToggleButtonStyles = css`
-.expand-toggle-button--expand-toggle-button--expand-toggle-icon {
+.expand-toggle-button--expand-toggle-icon {
   transition: transform var(--motion-duration-rotate-90-lyzb0k, 135ms) var(--motion-easing-rotate-90-jhbqg9, cubic-bezier(0.165, 0.84, 0.44, 1));
 }
 @media (prefers-reduced-motion: reduce) {
-  .expand-toggle-button--expand-toggle-button--expand-toggle-icon {
+  .expand-toggle-button--expand-toggle-icon {
     animation: none;
     transition: none;
   }
 }
-.awsui-motion-disabled .expand-toggle-button--expand-toggle-button--expand-toggle-icon, .awsui-mode-entering .expand-toggle-button--expand-toggle-button--expand-toggle-icon {
+.awsui-motion-disabled .expand-toggle-button--expand-toggle-icon, .awsui-mode-entering .expand-toggle-button--expand-toggle-icon {
   animation: none;
   transition: none;
 }
 
-.expand-toggle-button--expand-toggle-button--expand-toggle-icon {
+.expand-toggle-button--expand-toggle-icon {
   transform: rotate(-90deg);
 
 }
-.expand-toggle-button--expand-toggle-button--expand-toggle-icon:dir(rtl) {
+.expand-toggle-button--expand-toggle-icon:dir(rtl) {
   transform: rotate(90deg);
 }
-.expand-toggle-button--expand-toggle-button--expand-toggle-icon-expanded {
+.expand-toggle-button--expand-toggle-icon-expanded {
   transform: rotate(0deg);
 
 }
-.expand-toggle-button--expand-toggle-button--expand-toggle-icon-expanded:dir(rtl) {
+.expand-toggle-button--expand-toggle-icon-expanded:dir(rtl) {
   transform: rotate(0deg);
 }
 
@@ -53,14 +53,14 @@ export const expandToggleButtonStyles = css`
   outline: 0;
   color: var(--color-text-interactive-default-ugh9wp, #424650);
 }
-:host-context([data-awsui-focus-visible=true]) .expand-toggle-button--expand-toggle:not(.expand-toggle-button--expand-toggle-button--disable-focus-highlight):focus {
+:host-context([data-awsui-focus-visible=true]) .expand-toggle-button--expand-toggle:not(.expand-toggle-button--disable-focus-highlight):focus {
   position: relative;
 }
-:host-context([data-awsui-focus-visible=true]) .expand-toggle-button--expand-toggle:not(.expand-toggle-button--expand-toggle-button--disable-focus-highlight):focus {
+:host-context([data-awsui-focus-visible=true]) .expand-toggle-button--expand-toggle:not(.expand-toggle-button--disable-focus-highlight):focus {
   outline: 2px dotted transparent;
   outline-offset: calc(var(--space-button-focus-outline-gutter-jj138g, 4px) - 1px);
 }
-:host-context([data-awsui-focus-visible=true]) .expand-toggle-button--expand-toggle:not(.expand-toggle-button--expand-toggle-button--disable-focus-highlight):focus::before {
+:host-context([data-awsui-focus-visible=true]) .expand-toggle-button--expand-toggle:not(.expand-toggle-button--disable-focus-highlight):focus::before {
   content: " ";
   display: block;
   position: absolute;

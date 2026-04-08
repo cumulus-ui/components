@@ -138,6 +138,7 @@ export class CsAnchorNavigationInternal extends CsBaseElement {
 
   private _renderAnchorLink(anchor: AnchorNavigationProps.Anchor): TemplateResult {
     const isActive = this._currentHref === anchor.href;
+    const indent = 18 + Math.max(0, anchor.level - 1) * 16;
 
     return html`
       <li class=${classMap({
@@ -153,7 +154,7 @@ export class CsAnchorNavigationInternal extends CsBaseElement {
           aria-current=${ifDefined(isActive ? 'location' : undefined)}
           @click=${(e: MouseEvent) => this._onAnchorClick(e, anchor)}
         >
-          <span class="anchor-link-text">${anchor.text}</span>
+          <span class="anchor-link-text" style="padding-inline-start:${indent}px">${anchor.text}</span>
           ${anchor.info
             ? html`<span class="anchor-link-info">${anchor.info}</span>`
             : nothing}
@@ -192,7 +193,7 @@ export class CsAnchorNavigationInternal extends CsBaseElement {
                   aria-current=${ifDefined(isActive ? 'location' : undefined)}
                   @click=${(e: MouseEvent) => this._onAnchorClick(e, anchor)}
                 >
-                  <span class="anchor-link-text">${anchor.text}</span>
+                  <span class="anchor-link-text" style="padding-inline-start:18px">${anchor.text}</span>
                   ${anchor.info
                     ? html`<span class="anchor-link-info">${anchor.info}</span>`
                     : nothing}
