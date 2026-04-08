@@ -11,12 +11,125 @@
         line-height: var(--line-height-body-m-2mh3ke, 20px);
         color: var(--color-text-body-default-vvtq8u, #0f141a);
         background: var(--color-background-layout-main-dy20e5, #ffffff);
-        padding: 16px;
+        padding: 0;
+        margin: 0;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
       .awsui-dark-mode {
         background: var(--color-background-layout-main-dy20e5, #0f1b2a);
+      }
+
+      /* --- Toolbar --- */
+      .demo-toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        height: 48px;
+        background: var(--color-background-container-content-ljv8l6, #ffffff);
+        border-bottom: 1px solid var(--color-border-divider-default-cx07f2, #e9ebed);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      }
+      .awsui-dark-mode .demo-toolbar {
+        background: var(--color-background-container-content-ljv8l6, #1a2332);
+        border-bottom-color: var(--color-border-divider-default-cx07f2, #2a3f5f);
+      }
+      .demo-toolbar__title {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        text-decoration: none;
+        color: inherit;
+      }
+      .demo-toolbar__controls {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+      .demo-toolbar__toggle {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        user-select: none;
+      }
+      .demo-toolbar__toggle input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        accent-color: var(--color-background-button-primary-default-pwn1ik, #0972d3);
+      }
+
+      /* --- Gallery --- */
+      .demo-gallery {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 24px 64px;
+      }
+      .demo-gallery__hero {
+        margin-bottom: 32px;
+      }
+      .demo-gallery__heading {
+        margin: 0 0 4px;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .demo-gallery__subtitle {
+        margin: 0;
+        color: var(--color-text-body-secondary-fdstdf, #5f6b7a);
+        font-size: 14px;
+      }
+      .demo-gallery__grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      /* --- Category --- */
+      .demo-category {
+        margin: 0;
+      }
+      .demo-category__heading {
+        margin: 0 0 12px;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--color-text-body-secondary-fdstdf, #5f6b7a);
+      }
+      .demo-category__list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 8px;
+      }
+
+      /* --- Component card --- */
+      .demo-component-card {
+        display: flex;
+        align-items: center;
+        padding: 10px 14px;
+        border: 1px solid var(--color-border-divider-default-cx07f2, #e9ebed);
+        border-radius: 8px;
+        text-decoration: none;
+        color: inherit;
+        font-size: 13px;
+        transition: border-color 0.12s, box-shadow 0.12s;
+      }
+      .demo-component-card:hover {
+        border-color: var(--color-background-button-primary-default-pwn1ik, #0972d3);
+        box-shadow: 0 0 0 1px var(--color-background-button-primary-default-pwn1ik, #0972d3);
+      }
+      .demo-component-card__name {
+        font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+        font-weight: 500;
+      }
+      .awsui-dark-mode .demo-component-card {
+        border-color: var(--color-border-divider-default-cx07f2, #2a3f5f);
       }
     </style>
   </head>

@@ -1,5 +1,5 @@
 import '@cumulus-ui/styles/index.css';
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { parseHash, applyMode, type Route } from './router.js';
 
@@ -82,15 +82,90 @@ const pageLoaders: Record<string, PageLoader> = {
   'drawer/permutations': () => import('./pages/drawer/permutations.js') as Promise<PageModule>,
   'split-panel/permutations': () => import('./pages/split-panel/permutations.js') as Promise<PageModule>,
   'annotation-context/permutations': () => import('./pages/annotation-context/permutations.js') as Promise<PageModule>,
+  'app-layout/permutations': () => import('./pages/app-layout/permutations.js') as Promise<PageModule>,
   'hotspot/permutations': () => import('./pages/hotspot/permutations.js') as Promise<PageModule>,
   'tutorial-panel/permutations': () => import('./pages/tutorial-panel/permutations.js') as Promise<PageModule>,
+  'file-token-group/permutations': () => import('./pages/file-token-group/permutations.js') as Promise<PageModule>,
+  'item-card/permutations': () => import('./pages/item-card/permutations.js') as Promise<PageModule>,
+  'panel-layout/permutations': () => import('./pages/panel-layout/permutations.js') as Promise<PageModule>,
 };
+
+interface ComponentCategory {
+  label: string;
+  items: string[];
+}
+
+const componentCategories: ComponentCategory[] = [
+  {
+    label: 'Layout',
+    items: ['app-layout', 'column-layout', 'content-layout', 'grid', 'panel-layout', 'space-between', 'split-panel'],
+  },
+  {
+    label: 'Navigation',
+    items: [
+      'breadcrumb-group', 'side-navigation', 'tabs', 'top-navigation',
+      'pagination', 'anchor-navigation', 'segmented-control',
+    ],
+  },
+  {
+    label: 'Inputs',
+    items: [
+      'select', 'multiselect', 'autosuggest', 'slider', 'toggle',
+      'checkbox', 'radio-group', 'tiles', 'toggle-button', 'file-input',
+      'prompt-input', 'date-input', 'date-picker', 'date-range-picker',
+      'calendar',
+    ],
+  },
+  {
+    label: 'Display',
+    items: [
+      'badge', 'box', 'icon', 'spinner', 'status-indicator', 'link',
+      'token', 'token-group', 'file-token-group', 'progress-bar', 'steps', 'key-value-pairs',
+      'table', 'cards', 'item-card', 'flashbar', 'alert', 'list', 'tree-view',
+    ],
+  },
+  {
+    label: 'Containers',
+    items: [
+      'container', 'header', 'expandable-section', 'modal', 'form',
+      'form-field', 'wizard', 'popover', 'tooltip',
+    ],
+  },
+  {
+    label: 'Actions',
+    items: ['button', 'button-dropdown', 'button-group', 'copy-to-clipboard'],
+  },
+  {
+    label: 'Editors',
+    items: [
+      'attribute-editor', 'tag-editor', 'code-editor', 'file-upload',
+      'file-dropzone', 'collection-preferences', 'property-filter',
+    ],
+  },
+  {
+    label: 'Tutorial',
+    items: ['annotation-context', 'hotspot', 'tutorial-panel', 'help-panel'],
+  },
+  {
+    label: 'Utilities',
+    items: ['error-boundary', 'live-region', 'text-content', 'drawer'],
+  },
+];
+
+const availableComponents = new Set(
+  Object.keys(pageLoaders)
+    .filter(k => k.endsWith('/permutations'))
+    .map(k => k.replace('/permutations', ''))
+    .filter(k => k !== '_test'),
+);
 
 @customElement('demo-app')
 export class DemoApp extends LitElement {
   @state() private _route: Route | null = null;
   @state() private _error = '';
   @state() private _pageElement: HTMLElement | null = null;
+  @state() private _darkMode = false;
+  @state() private _compactMode = false;
 
   // Light DOM: Playwright needs to query through demo page elements
   override createRenderRoot(): this {
@@ -116,10 +191,13 @@ export class DemoApp extends LitElement {
 
     if (!route) {
       applyMode('light');
+      this._syncBodyClasses();
       return;
     }
 
     applyMode(route.mode);
+    this._darkMode = route.mode === 'dark';
+    this._syncBodyClasses();
     this._loadPage(route.component, route.variant);
   };
 
@@ -139,6 +217,21 @@ export class DemoApp extends LitElement {
     }
   }
 
+  private _onDarkToggle = (e: Event): void => {
+    this._darkMode = (e.target as HTMLInputElement).checked;
+    this._syncBodyClasses();
+  };
+
+  private _onCompactToggle = (e: Event): void => {
+    this._compactMode = (e.target as HTMLInputElement).checked;
+    this._syncBodyClasses();
+  };
+
+  private _syncBodyClasses(): void {
+    document.body.classList.toggle('awsui-dark-mode', this._darkMode);
+    document.body.classList.toggle('awsui-compact-mode', this._compactMode);
+  }
+
   override updated(): void {
     const slot = this.querySelector('#page-slot');
     if (slot) {
@@ -149,36 +242,86 @@ export class DemoApp extends LitElement {
     }
   }
 
+  private _renderToolbar() {
+    return html`
+      <div class="demo-toolbar">
+        <a class="demo-toolbar__title" href="#/">Cumulus UI</a>
+        <div class="demo-toolbar__controls">
+          <label class="demo-toolbar__toggle">
+            <input
+              type="checkbox"
+              .checked=${this._darkMode}
+              @change=${this._onDarkToggle}
+            />
+            Dark mode
+          </label>
+          <label class="demo-toolbar__toggle">
+            <input
+              type="checkbox"
+              .checked=${this._compactMode}
+              @change=${this._onCompactToggle}
+            />
+            Compact
+          </label>
+        </div>
+      </div>
+    `;
+  }
+
+  private _renderGallery() {
+    return html`
+      <div class="demo-gallery">
+        <div class="demo-gallery__hero">
+          <h1 class="demo-gallery__heading">Component Gallery</h1>
+          <p class="demo-gallery__subtitle">
+            ${availableComponents.size} components &middot;
+            Pick a component to view its permutations
+          </p>
+        </div>
+
+        <div class="demo-gallery__grid">
+          ${componentCategories.map(cat => this._renderCategory(cat))}
+        </div>
+      </div>
+    `;
+  }
+
+  private _renderCategory(cat: ComponentCategory) {
+    const available = cat.items.filter(name => availableComponents.has(name));
+    if (available.length === 0) return nothing;
+
+    return html`
+      <section class="demo-category">
+        <h2 class="demo-category__heading">${cat.label}</h2>
+        <div class="demo-category__list">
+          ${available.map(name => html`
+            <a class="demo-component-card" href=${`#/light/${name}/permutations`}>
+              <span class="demo-component-card__name">${name}</span>
+            </a>
+          `)}
+        </div>
+      </section>
+    `;
+  }
+
   override render(): unknown {
     if (!this._route) {
-      const components = Object.keys(pageLoaders)
-        .filter(k => k.endsWith('/permutations'))
-        .map(k => k.replace('/permutations', ''))
-        .filter(k => k !== '_test')
-        .sort();
-
       return html`
-        <div style="padding:24px">
-          <h1>Cumulus UI Demo</h1>
-          <p>Navigate to a component page using the hash route:</p>
-          <code>#/light/checkbox</code>
-          <ul>
-            ${components.map(name => html`
-              <li>
-                <a href=${`#/light/${name}`}>${name}</a>
-                ${' | '}
-                <a href=${`#/dark/${name}`}>${name} (dark)</a>
-              </li>
-            `)}
-          </ul>
-        </div>
+        ${this._renderToolbar()}
+        ${this._renderGallery()}
       `;
     }
 
     if (this._error) {
-      return html`<p style="color:red">${this._error}</p>`;
+      return html`
+        ${this._renderToolbar()}
+        <p style="color:red; padding: 24px;">${this._error}</p>
+      `;
     }
 
-    return html`<div id="page-slot"></div>`;
+    return html`
+      ${this._renderToolbar()}
+      <div id="page-slot"></div>
+    `;
   }
 }

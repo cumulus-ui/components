@@ -1,6 +1,6 @@
 {
   "name": "@cumulus-ui/components",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Web components inspired by Cloudscape Design System",
   "type": "module",
   "main": "./dist/index.js",
