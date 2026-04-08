@@ -13,7 +13,7 @@ test.describe('Tooltip — Integration', () => {
     await page.waitForTimeout(200);
 
     const hasTooltipBody = await tooltip.evaluate((el) => {
-      return el.shadowRoot?.querySelector('.tooltip-body') !== null;
+      return el.shadowRoot?.querySelector('[role="tooltip"]') !== null;
     });
 
     expect(hasTooltipBody).toBe(true);
@@ -30,7 +30,7 @@ test.describe('Tooltip — Integration', () => {
     await page.waitForTimeout(100);
 
     const hasTooltipBody = await tooltip.evaluate((el) => {
-      return el.shadowRoot?.querySelector('.tooltip-body') !== null;
+      return el.shadowRoot?.querySelector('[role="tooltip"]') !== null;
     });
 
     expect(hasTooltipBody).toBe(false);
@@ -43,7 +43,7 @@ test.describe('Tooltip — Integration', () => {
     await page.waitForTimeout(200);
 
     const role = await tooltip.evaluate((el) => {
-      return el.shadowRoot?.querySelector('.tooltip-body')?.getAttribute('role');
+      return el.shadowRoot?.querySelector('[role="tooltip"]')?.getAttribute('role');
     });
 
     expect(role).toBe('tooltip');
@@ -56,8 +56,8 @@ test.describe('Tooltip — Integration', () => {
     await page.waitForTimeout(200);
 
     const { describedby, tooltipId } = await tooltip.evaluate((el) => {
-      const trigger = el.shadowRoot?.querySelector('.tooltip-trigger');
-      const body = el.shadowRoot?.querySelector('.tooltip-body');
+      const trigger = el.shadowRoot?.querySelector('.tooltip--root > div:first-child');
+      const body = el.shadowRoot?.querySelector('[role="tooltip"]');
       return {
         describedby: trigger?.getAttribute('aria-describedby') ?? null,
         tooltipId: body?.getAttribute('id') ?? null,
@@ -75,7 +75,7 @@ test.describe('Tooltip — Integration', () => {
     await page.waitForTimeout(200);
 
     const text = await tooltip.evaluate((el) => {
-      return el.shadowRoot?.querySelector('.tooltip-body')?.textContent?.trim();
+      return el.shadowRoot?.querySelector('[role="tooltip"]')?.textContent?.trim();
     });
 
     expect(text).toBe('Tooltip on top');

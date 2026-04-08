@@ -18,7 +18,7 @@ test.describe('ButtonDropdown — Integration', () => {
     const dropdown = page.locator('cs-button-dropdown[variant="normal"]').first();
 
     await dropdown.evaluate((el) => {
-      el.shadowRoot?.querySelector<HTMLElement>('.trigger-btn')?.click();
+      el.shadowRoot?.querySelector<HTMLElement>('.button')?.click();
     });
 
     const menuVisible = await dropdown.evaluate((el) => {
@@ -36,7 +36,7 @@ test.describe('ButtonDropdown — Integration', () => {
           resolve((e as CustomEvent).detail);
         }) as EventListener, { once: true });
 
-        el.shadowRoot?.querySelector<HTMLElement>('.trigger-btn')?.click();
+        el.shadowRoot?.querySelector<HTMLElement>('.button')?.click();
         setTimeout(() => {
           const items = el.shadowRoot?.querySelectorAll('[role="menuitem"]');
           (items?.[0] as HTMLElement)?.click();
@@ -61,7 +61,7 @@ test.describe('ButtonDropdown — Integration', () => {
           resolve((e as CustomEvent).detail);
         }) as EventListener, { once: true });
 
-        el.shadowRoot?.querySelector<HTMLElement>('.trigger-btn')?.click();
+        el.shadowRoot?.querySelector<HTMLElement>('.button')?.click();
         setTimeout(() => {
           const items = el.shadowRoot?.querySelectorAll('[role="menuitem"]');
           (items?.[4] as HTMLElement)?.click();
@@ -77,7 +77,7 @@ test.describe('ButtonDropdown — Integration', () => {
     const dropdown = page.locator('cs-button-dropdown[disabled]').first();
 
     await dropdown.evaluate((el) => {
-      el.shadowRoot?.querySelector<HTMLElement>('.trigger-btn')?.click();
+      el.shadowRoot?.querySelector<HTMLElement>('.button')?.click();
     });
 
     const menuVisible = await dropdown.evaluate((el) => {
@@ -90,7 +90,7 @@ test.describe('ButtonDropdown — Integration', () => {
     const dropdown = page.locator('cs-button-dropdown[variant="normal"]').first();
 
     await dropdown.evaluate((el) => {
-      el.shadowRoot?.querySelector<HTMLElement>('.trigger-btn')?.click();
+      el.shadowRoot?.querySelector<HTMLElement>('.button')?.click();
     });
 
     await dropdown.evaluate((el) => {
@@ -111,7 +111,7 @@ test.describe('ButtonDropdown — Integration', () => {
         let clicked = false;
         el.addEventListener('itemClick', () => { clicked = true; }, { once: true });
 
-        el.shadowRoot?.querySelector<HTMLElement>('.trigger-btn')?.click();
+        el.shadowRoot?.querySelector<HTMLElement>('.button')?.click();
         setTimeout(() => {
           const items = el.shadowRoot?.querySelectorAll('[role="menuitem"]');
           (items?.[3] as HTMLElement)?.click();
@@ -127,7 +127,7 @@ test.describe('ButtonDropdown — Integration', () => {
     const dropdown = page.locator('cs-button-dropdown[variant="icon"]').first();
 
     const hasIcon = await dropdown.evaluate((el) => {
-      return !!el.shadowRoot?.querySelector('.trigger-btn cs-icon[name="ellipsis"]');
+      return !!el.shadowRoot?.querySelector('.button cs-icon[name="ellipsis"]');
     });
     expect(hasIcon).toBe(true);
   });
@@ -136,7 +136,7 @@ test.describe('ButtonDropdown — Integration', () => {
     const dropdown = page.locator('cs-button-dropdown[variant="normal"]').first();
 
     const attrs = await dropdown.evaluate((el) => {
-      const trigger = el.shadowRoot?.querySelector('.trigger-btn');
+      const trigger = el.shadowRoot?.querySelector('.button');
       return {
         haspopup: trigger?.getAttribute('aria-haspopup'),
         expanded: trigger?.getAttribute('aria-expanded'),

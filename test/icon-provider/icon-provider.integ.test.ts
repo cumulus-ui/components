@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const url = 'http://localhost:4174/#/light/icon-provider/permutations';
+const url = '/#/light/icon-provider/permutations';
 
 test.describe('icon-provider', () => {
   test.beforeEach(async ({ page }) => {

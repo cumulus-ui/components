@@ -6,6 +6,6 @@ test('CDN bundle loads without errors', async ({ page }) => {
 
   await page.goto('/');
 
-  await expect(page.locator('demo-app h1')).toHaveText('Cumulus UI Demo');
+  await expect(page.locator('demo-app h1')).toHaveText('Component Gallery');
   expect(errors).toHaveLength(0);
 });
