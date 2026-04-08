@@ -89,7 +89,7 @@ test.describe('AnchorNavigation — Integration', () => {
     const firstNav = page.locator('cs-anchor-navigation').first();
     const nav = firstNav.locator('nav');
     await expect(nav).toBeVisible();
-    const list = nav.locator('ul[role="list"]');
+    const list = nav.locator('ol[role="list"]');
     await expect(list).toBeVisible();
   });
 });

@@ -128,7 +128,7 @@ export class CsAnchorNavigationInternal extends CsBaseElement {
         class="root"
         aria-labelledby=${ifDefined(this.ariaLabelledby)}
       >
-        <ul class="anchor-list" role="list">
+        <ol class="anchor-list" role="list">
           ${this.anchors.map((anchor) => {
             const isActive = this._currentHref === anchor.href;
             const indent = Math.max(0, anchor.level - 1) * 16;
@@ -155,7 +155,7 @@ export class CsAnchorNavigationInternal extends CsBaseElement {
               </li>
             `;
           })}
-        </ul>
+        </ol>
       </nav>
     `;
   }

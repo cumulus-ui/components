@@ -92,6 +92,24 @@ const COMPONENTS: Record<string, ComponentConfig> = {
     ],
     slotContent: '',
   },
+  'space-between': {
+    importPath: '@cloudscape-design/components/space-between',
+    stylesPaths: [
+      'node_modules/@cloudscape-design/components/space-between/styles.css.js',
+    ],
+    baselineProps: {
+      size: 's',
+      children: ['CHILD_1', 'CHILD_2', 'CHILD_3'].map(t =>
+        require('react').createElement('div', null, t)
+      ),
+    },
+    variants: [
+      { name: 'direction', value: 'horizontal' },
+      { name: 'size', value: 'l' },
+      { name: 'alignItems', value: 'center' },
+    ],
+    slotContent: '',
+  },
 };
 
 // ─── DOM Parsing ──────────────────────────────────────────────

@@ -5,7 +5,17 @@ import { classMap } from 'lit/directives/class-map.js';
 import { componentStyles, sharedStyles } from './styles.js';
 import type { SpaceBetweenProps } from './interfaces.js';
 
-const hostStyles = css`:host { display: block; }`;
+/**
+ * Cloudscape wraps each child in <div class="child"> for spacing.
+ * In shadow DOM we can't wrap slotted content, so we apply the
+ * .child spacing rules directly to slotted elements via ::slotted(*).
+ */
+const hostStyles = css`
+  :host { display: block; }
+  ::slotted(*) {
+    /* Mirrors .child styles from Cloudscape's space-between CSS */
+  }
+`;
 
 export class CsSpaceBetweenInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
