@@ -240,3 +240,6 @@ export type { ItemCardProps } from './item-card/index.js';
 
 export { CsPanelLayout } from './panel-layout/index.js';
 export type { PanelLayoutProps } from './panel-layout/index.js';
+
+export { CsS3ResourceSelector } from './s3-resource-selector/index.js';
+export type { S3ResourceSelectorProps } from './s3-resource-selector/index.js';

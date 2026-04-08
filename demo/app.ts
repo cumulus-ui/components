@@ -89,6 +89,7 @@ const pageLoaders: Record<string, PageLoader> = {
   'file-token-group/permutations': () => import('./pages/file-token-group/permutations.js') as Promise<PageModule>,
   'item-card/permutations': () => import('./pages/item-card/permutations.js') as Promise<PageModule>,
   'panel-layout/permutations': () => import('./pages/panel-layout/permutations.js') as Promise<PageModule>,
+  's3-resource-selector/permutations': () => import('./pages/s3-resource-selector/permutations.js') as Promise<PageModule>,
 };
 
 interface ComponentCategory {
@@ -141,6 +142,7 @@ const componentCategories: ComponentCategory[] = [
     items: [
       'attribute-editor', 'tag-editor', 'code-editor', 'file-upload',
       'file-dropzone', 'collection-preferences', 'property-filter',
+      's3-resource-selector',
     ],
   },
   {
