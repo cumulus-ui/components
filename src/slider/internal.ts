@@ -1,4 +1,4 @@
-import { css, html, type TemplateResult } from 'lit';
+import { css, html, nothing, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -26,6 +26,12 @@ export class CsSliderInternal extends CsBaseElement {
 
   @property({ type: Boolean, reflect: true })
   disabled = false;
+
+  @property({ type: Boolean, reflect: true })
+  hideFillLine = false;
+
+  @property({ attribute: false })
+  tickMarks: number[] = [];
 
   @property({ type: String })
   override ariaLabel: string | null = null;
@@ -75,10 +81,18 @@ export class CsSliderInternal extends CsBaseElement {
       <div class="root">
         <div class="slider">
           <div class=${classMap(trackClasses)}></div>
-          <div
-            class=${classMap(rangeClasses)}
-            style="--awsui-slider-range-inline-size-6b9ypa: ${percent}%"
-          ></div>
+          ${this.hideFillLine
+            ? nothing
+            : html`<div
+                class=${classMap(rangeClasses)}
+                style="--awsui-slider-range-inline-size-6b9ypa: ${percent}%"
+              ></div>`}
+          ${this.tickMarks.length > 0
+            ? html`<div class="tick-marks">${this.tickMarks.map(tick => {
+                const tickPercent = this.max === this.min ? 0 : ((tick - this.min) / (this.max - this.min)) * 100;
+                return html`<div class="tick-mark" style="inset-inline-start: ${tickPercent}%"></div>`;
+              })}</div>`
+            : nothing}
           <input
             type="range"
             class=${classMap(thumbClasses)}

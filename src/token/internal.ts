@@ -41,6 +41,9 @@ export class CsTokenInternal extends CsBaseElement {
   @property({ type: Boolean, reflect: true })
   readOnly = false;
 
+  @property({ type: Boolean, reflect: true })
+  dismissible = false;
+
   @property({ type: String })
   dismissLabel = 'Remove';
 
@@ -54,7 +57,7 @@ export class CsTokenInternal extends CsBaseElement {
 
   override render(): TemplateResult {
     const isInline = this.variant === 'inline';
-    const showDismiss = !this.disabled && !this.readOnly;
+    const showDismiss = this.dismissible && !this.disabled && !this.readOnly;
 
     const boxClasses = {
       'token-box': !isInline,

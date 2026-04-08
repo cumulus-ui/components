@@ -93,8 +93,19 @@ export class CsPropertyFilterInternal extends CsBaseElement {
   @property({ type: String })
   countText?: string;
 
+  @property({ type: String })
+  filteringConstraintText = '';
+
   @state()
   private _inputValue = '';
+
+  private _hasCustomControl = false;
+
+  private _onCustomControlSlotChange = (e: Event): void => {
+    const slot = e.target as HTMLSlotElement;
+    this._hasCustomControl = slot.assignedNodes({ flatten: true }).length > 0;
+    this.requestUpdate();
+  };
 
   private _inputRef: Ref<HTMLInputElement> = createRef();
 
@@ -159,6 +170,9 @@ export class CsPropertyFilterInternal extends CsBaseElement {
     return html`
       <div class="root">
         <div class="search-field">
+          ${this._hasCustomControl
+            ? html`<div class="custom-control"><slot name="custom-control" @slotchange=${this._onCustomControlSlotChange}></slot></div>`
+            : html`<slot name="custom-control" @slotchange=${this._onCustomControlSlotChange} style="display:none"></slot>`}
           <div class="input-wrapper">
             <input
               ${ref(this._inputRef)}
@@ -173,6 +187,10 @@ export class CsPropertyFilterInternal extends CsBaseElement {
             />
           </div>
         </div>
+
+        ${this.filteringConstraintText ? html`
+          <div class="filtering-constraint-text">${this.filteringConstraintText}</div>
+        ` : nothing}
 
         ${hasTokens ? html`
           <div class="tokens">

@@ -43,6 +43,21 @@ export class CsPromptInputInternal extends CsBaseElement {
   @property({ type: String })
   override ariaLabel: string | null = null;
 
+  private _hasSecondaryContent = false;
+  private _hasSecondaryActions = false;
+
+  private _onSecondaryContentSlotChange = (e: Event): void => {
+    const slot = e.target as HTMLSlotElement;
+    this._hasSecondaryContent = slot.assignedNodes({ flatten: true }).length > 0;
+    this.requestUpdate();
+  };
+
+  private _onSecondaryActionsSlotChange = (e: Event): void => {
+    const slot = e.target as HTMLSlotElement;
+    this._hasSecondaryActions = slot.assignedNodes({ flatten: true }).length > 0;
+    this.requestUpdate();
+  };
+
   focus(options?: FocusOptions): void {
     const textarea = this.shadowRoot?.querySelector<HTMLTextAreaElement>('.textarea');
     textarea?.focus(options);
@@ -88,6 +103,9 @@ export class CsPromptInputInternal extends CsBaseElement {
 
     return html`
       <div class=${classMap(rootClasses)}>
+        ${this._hasSecondaryContent
+          ? html`<div class="secondary-content"><slot name="secondary-content" @slotchange=${this._onSecondaryContentSlotChange}></slot></div>`
+          : html`<slot name="secondary-content" @slotchange=${this._onSecondaryContentSlotChange} style="display:none"></slot>`}
         <div class="textarea-wrapper">
           <textarea
             class=${classMap(textareaClasses)}
@@ -100,6 +118,9 @@ export class CsPromptInputInternal extends CsBaseElement {
             @input=${this._onTextareaInput}
             @keydown=${this._onTextareaKeyDown}
           ></textarea>
+          ${this._hasSecondaryActions
+            ? html`<span class="secondary-actions"><slot name="secondary-actions" @slotchange=${this._onSecondaryActionsSlotChange}></slot></span>`
+            : html`<slot name="secondary-actions" @slotchange=${this._onSecondaryActionsSlotChange} style="display:none"></slot>`}
           <span class="primary-action">
             <cs-button
               class="action-button"

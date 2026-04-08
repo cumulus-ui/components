@@ -83,10 +83,10 @@ export class TokenPermutationsPage extends LitElement {
       </section>
 
       <section>
-        <h3>With Dismiss</h3>
+        <h3>Dismissible</h3>
         <div class="row">
-          <cs-token dismiss-label="Remove option A">Option A</cs-token>
-          <cs-token dismiss-label="Remove option B">Option B</cs-token>
+          <cs-token dismissible dismiss-label="Remove option A">Option A</cs-token>
+          <cs-token dismissible dismiss-label="Remove option B">Option B</cs-token>
         </div>
       </section>
     `;

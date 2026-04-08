@@ -17,7 +17,7 @@ test.describe('Token — Integration', () => {
   });
 
   test('dismiss button fires dismiss event', async ({ page }) => {
-    const token = page.locator('cs-token').first();
+    const token = page.locator('cs-token[dismissible]').first();
 
     const fired = await token.evaluate((el) => {
       return new Promise<boolean>((resolve) => {
@@ -80,8 +80,18 @@ test.describe('Token — Integration', () => {
     expect(hasDescription).toBe(true);
   });
 
+  test('non-dismissible token does not show dismiss button', async ({ page }) => {
+    const token = page.locator('cs-token:not([dismissible]):not([disabled]):not([read-only]):not([variant="inline"])').first();
+
+    const hasDismiss = await token.evaluate((el) => {
+      return el.shadowRoot?.querySelector('.dismiss-button') !== null;
+    });
+
+    expect(hasDismiss).toBe(false);
+  });
+
   test('dismiss button has correct aria-label', async ({ page }) => {
-    const token = page.locator('cs-token[dismiss-label="Remove option A"]');
+    const token = page.locator('cs-token[dismissible][dismiss-label="Remove option A"]');
 
     const ariaLabel = await token.evaluate((el) => {
       const btn = el.shadowRoot?.querySelector('.dismiss-button');

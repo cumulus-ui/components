@@ -40,6 +40,7 @@ export class CsItemCardInternal extends CsBaseElement {
   private _hasFooter = false;
   private _hasActions = false;
   private _hasDescription = false;
+  private _hasIcon = false;
 
   private _onHeaderSlotChange = (e: Event): void => {
     const slot = e.target as HTMLSlotElement;
@@ -62,6 +63,12 @@ export class CsItemCardInternal extends CsBaseElement {
   private _onDescriptionSlotChange = (e: Event): void => {
     const slot = e.target as HTMLSlotElement;
     this._hasDescription = slot.assignedNodes({ flatten: true }).length > 0;
+    this.requestUpdate();
+  };
+
+  private _onIconSlotChange = (e: Event): void => {
+    const slot = e.target as HTMLSlotElement;
+    this._hasIcon = slot.assignedNodes({ flatten: true }).length > 0;
     this.requestUpdate();
   };
 
@@ -106,9 +113,12 @@ export class CsItemCardInternal extends CsBaseElement {
     return html`
       <div class=${classMap(rootClasses)} style=${styleMap(rootStyleOverrides)}>
         <div class="inner-card">
-          ${this._hasHeader || this._hasActions || this._hasDescription
+          ${this._hasHeader || this._hasActions || this._hasDescription || this._hasIcon
             ? html`
               <div class=${classMap(headerClasses)}>
+                ${this._hasIcon
+                  ? html`<div class="icon"><slot name="icon" @slotchange=${this._onIconSlotChange}></slot></div>`
+                  : html`<slot name="icon" @slotchange=${this._onIconSlotChange} style="display:none"></slot>`}
                 <div class="header-inner">
                   <slot name="header" @slotchange=${this._onHeaderSlotChange}></slot>
                 </div>
@@ -121,6 +131,7 @@ export class CsItemCardInternal extends CsBaseElement {
               </div>
             `
             : html`
+              <slot name="icon" @slotchange=${this._onIconSlotChange} style="display:none"></slot>
               <slot name="header" @slotchange=${this._onHeaderSlotChange} style="display:none"></slot>
               <slot name="description" @slotchange=${this._onDescriptionSlotChange} style="display:none"></slot>
               <slot name="actions" @slotchange=${this._onActionsSlotChange} style="display:none"></slot>

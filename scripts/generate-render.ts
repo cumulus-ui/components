@@ -882,13 +882,256 @@ function auditCSSCoverage(component: string): string[] {
   return issues;
 }
 
+// ─── Audit: Conditional Rendering ─────────────────────────────
+
+interface ConditionalPattern {
+  guard: string;
+  isCallback: boolean;
+  context: string;
+}
+
+interface ConditionalAuditIssue {
+  component: string;
+  guard: string;
+  severity: 'error' | 'warning';
+  message: string;
+}
+
+/** Known callback → expected Cumulus boolean property */
+const CALLBACK_BOOLEAN_MAP: Record<string, string> = {
+  onDismiss: 'dismissible',
+};
+
+/**
+ * Derive candidate boolean property names a Cumulus component might use
+ * to gate the same UI that Cloudscape gates with a callback presence.
+ *
+ * Example: onDismiss → ['dismissible', 'dismissable', 'showDismiss', 'hasDismiss']
+ */
+function deriveBooleanCandidates(callbackName: string): string[] {
+  const known = CALLBACK_BOOLEAN_MAP[callbackName];
+  if (known) return [known];
+
+  const action = callbackName.replace(/^on/, '');
+  const lower = action.charAt(0).toLowerCase() + action.slice(1);
+
+  return [
+    `${lower}ible`,
+    `${lower}able`,
+    `show${action}`,
+    `has${action}`,
+    lower,
+  ];
+}
+
+/**
+ * Extract destructured prop names from a Cloudscape React component function
+ * signature. Handles both `function InternalX({ ... })` and
+ * `React.forwardRef(({ ... }, ref) => {` patterns.
+ */
+function extractCloudscapeProps(source: string): Set<string> {
+  const props = new Set<string>();
+
+  const sigMatch =
+    source.match(/function\s+\w+\s*\(\s*\{/) ??
+    source.match(/React\.forwardRef\s*\(\s*\(\s*\{/);
+
+  if (!sigMatch || sigMatch.index === undefined) return props;
+
+  const braceStart = sigMatch.index + sigMatch[0].length;
+  let depth = 1;
+  let pos = braceStart;
+  while (depth > 0 && pos < source.length) {
+    if (source[pos] === '{') depth++;
+    if (source[pos] === '}') depth--;
+    pos++;
+  }
+
+  const block = source.substring(braceStart, pos - 1);
+  const cleaned = block.replace(/\/\/[^\n]*/g, '').replace(/\/\*[\s\S]*?\*\//g, '');
+
+  for (const part of cleaned.split(',')) {
+    const trimmed = part.trim();
+    if (!trimmed || trimmed.startsWith('...')) continue;
+
+    const renameMatch = trimmed.match(/^(\w+)\s*:\s*(\w+)/);
+    if (renameMatch) {
+      props.add(renameMatch[1]);
+      props.add(renameMatch[2]);
+      continue;
+    }
+
+    const defaultMatch = trimmed.match(/^(\w+)\s*=/);
+    if (defaultMatch) {
+      props.add(defaultMatch[1]);
+      continue;
+    }
+
+    const simpleMatch = trimmed.match(/^(\w+)$/);
+    if (simpleMatch) {
+      props.add(simpleMatch[1]);
+    }
+  }
+
+  return props;
+}
+
+/**
+ * Find `guard && (React.createElement(` patterns in compiled Cloudscape source,
+ * filtering to only guards that are actual component props.
+ */
+function findConditionalPatterns(source: string, propNames: Set<string>): ConditionalPattern[] {
+  const patterns: ConditionalPattern[] = [];
+  const seen = new Set<string>();
+
+  const re = /\b(\w+)\s*&&\s*\(?\s*React\.createElement\b/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(source)) !== null) {
+    const guard = m[1];
+    if (!propNames.has(guard)) continue;
+    if (seen.has(guard)) continue;
+    if (guard.startsWith('__')) continue;
+    seen.add(guard);
+
+    const isCallback = /^on[A-Z]/.test(guard);
+    const lineStart = source.lastIndexOf('\n', m.index) + 1;
+    const lineEnd = source.indexOf('\n', m.index);
+    const context = source.substring(lineStart, lineEnd > -1 ? lineEnd : undefined).trim();
+
+    patterns.push({ guard, isCallback, context });
+  }
+
+  return patterns;
+}
+
+/** Extract slot names declared in a Cumulus component's render template */
+function extractSlotNames(component: string): Set<string> {
+  const slots = new Set<string>();
+  const filePath = path.join(ROOT, 'src', component, 'internal.ts');
+  if (!fs.existsSync(filePath)) return slots;
+  const src = fs.readFileSync(filePath, 'utf-8');
+
+  const slotTagRe = /<slot(\s[^>]*)?\s*>/g;
+  let m: RegExpExecArray | null;
+  while ((m = slotTagRe.exec(src)) !== null) {
+    const attrs = m[1] || '';
+    const nameMatch = attrs.match(/\bname\s*=\s*["']([^"']+)["']/);
+    if (nameMatch) {
+      slots.add(nameMatch[1]);
+    } else if (!/\bname\s*=\s*\$/.test(attrs)) {
+      slots.add('children');
+    }
+  }
+
+  return slots;
+}
+
+/**
+ * Audit a single component for conditional rendering mismatches.
+ *
+ * Reads Cloudscape's compiled React source, finds props used to gate
+ * React.createElement() calls, then verifies Cumulus has an equivalent
+ * boolean @property() or <slot> to control the same rendering.
+ */
+function auditConditionalRendering(component: string): ConditionalAuditIssue[] {
+  const issues: ConditionalAuditIssue[] = [];
+
+  const internalPath = path.join(CS, component, 'internal.js');
+  if (!fs.existsSync(internalPath)) return issues;
+  const csSource = fs.readFileSync(internalPath, 'utf-8');
+
+  const csProps = extractCloudscapeProps(csSource);
+  if (csProps.size === 0) return issues;
+
+  const patterns = findConditionalPatterns(csSource, csProps);
+  if (patterns.length === 0) return issues;
+
+  const cumulusProps = parseActualProperties(component);
+  const cumulusPropNames = new Set(cumulusProps.map(p => p.name));
+  const cumulusSlots = extractSlotNames(component);
+
+  for (const pattern of patterns) {
+    if (pattern.isCallback) {
+      const candidates = deriveBooleanCandidates(pattern.guard);
+      const found = candidates.find(c => cumulusPropNames.has(c));
+
+      if (!found) {
+        issues.push({
+          component,
+          guard: pattern.guard,
+          severity: 'error',
+          message: `Cloudscape gates rendering on '${pattern.guard}' callback — Cumulus has no boolean gate (expected: ${candidates.join(' | ')})`,
+        });
+      }
+    } else {
+      if (!cumulusPropNames.has(pattern.guard)) {
+        if (cumulusSlots.has(pattern.guard) || cumulusSlots.has(toKebab(pattern.guard))) {
+          continue;
+        }
+
+        const interfaceProps = extractInterfaceProps(component);
+        const isInterfaceProp = interfaceProps.some(p => p.name === pattern.guard);
+
+        if (isInterfaceProp) {
+          issues.push({
+            component,
+            guard: pattern.guard,
+            severity: 'warning',
+            message: `Cloudscape gates rendering on '${pattern.guard}' prop — Cumulus doesn't declare a matching @property or <slot>`,
+          });
+        }
+      }
+    }
+  }
+
+  return issues;
+}
+
+function runConditionalAudit(): void {
+  const srcDir = path.join(ROOT, 'src');
+  const components = fs.readdirSync(srcDir).filter(d => {
+    return fs.existsSync(path.join(srcDir, d, 'internal.ts'));
+  });
+
+  console.log(`\n═══ Conditional Rendering Audit ═══\n`);
+  console.log(`Scanning ${components.length} implemented components for callback/prop-gated rendering...\n`);
+
+  let totalErrors = 0;
+  let totalWarnings = 0;
+
+  for (const comp of components.sort()) {
+    const issues = auditConditionalRendering(comp);
+    if (issues.length === 0) {
+      console.log(`  ✅ ${comp}`);
+      continue;
+    }
+
+    console.log(`  ❌ ${comp}`);
+    for (const issue of issues) {
+      const icon = issue.severity === 'error' ? '🔴' : '🟡';
+      console.log(`     ${icon} ${issue.guard}: ${issue.message}`);
+      if (issue.severity === 'error') totalErrors++;
+      else totalWarnings++;
+    }
+  }
+
+  console.log(`\n${totalErrors} error(s), ${totalWarnings} warning(s)\n`);
+
+  if (totalErrors > 0) {
+    process.exitCode = 1;
+  }
+}
+
 // ─── Main ──────────────────────────────────────────────────────
 
 const isAudit = process.argv.includes('--audit');
+const isConditionalAudit = process.argv.includes('--audit-conditionals');
 const isProps = process.argv.includes('--props');
 
 if (isAudit) {
   runAudit();
+} else if (isConditionalAudit) {
+  runConditionalAudit();
 } else {
   const component = process.argv.find((_: string, i: number) => process.argv[i - 1] === '--component') || 'radio-group';
 

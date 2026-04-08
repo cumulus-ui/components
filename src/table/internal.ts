@@ -185,12 +185,16 @@ export class CsTableInternal extends CsBaseElement {
   @property({ type: String })
   contentDensity: 'comfortable' | 'compact' = 'comfortable';
 
+  @property({ type: Boolean, reflect: true })
+  resizableColumns = false;
+
   @property({ attribute: false })
   ariaLabels?: TableProps.AriaLabels<any>;
 
   private _hasHeader = false;
   private _hasFilter = false;
   private _hasPagination = false;
+  private _hasFooter = false;
 
   private _onHeaderSlotChange = (e: Event): void => {
     const slot = e.target as HTMLSlotElement;
@@ -207,6 +211,12 @@ export class CsTableInternal extends CsBaseElement {
   private _onPaginationSlotChange = (e: Event): void => {
     const slot = e.target as HTMLSlotElement;
     this._hasPagination = slot.assignedNodes({ flatten: true }).length > 0;
+    this.requestUpdate();
+  };
+
+  private _onFooterSlotChange = (e: Event): void => {
+    const slot = e.target as HTMLSlotElement;
+    this._hasFooter = slot.assignedNodes({ flatten: true }).length > 0;
     this.requestUpdate();
   };
 
@@ -354,6 +364,9 @@ export class CsTableInternal extends CsBaseElement {
             ? this._renderEmpty()
             : this._renderTable()
         }
+        ${this._hasFooter
+          ? html`<div class="footer"><slot name="footer" @slotchange=${this._onFooterSlotChange}></slot></div>`
+          : html`<slot name="footer" @slotchange=${this._onFooterSlotChange} style="display:none"></slot>`}
       </div>
     `;
   }
