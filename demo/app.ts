@@ -84,6 +84,7 @@ const pageLoaders: Record<string, PageLoader> = {
   'split-panel/permutations': () => import('./pages/split-panel/permutations.js') as Promise<PageModule>,
   'annotation-context/permutations': () => import('./pages/annotation-context/permutations.js') as Promise<PageModule>,
   'app-layout/permutations': () => import('./pages/app-layout/permutations.js') as Promise<PageModule>,
+  'app-layout-toolbar/permutations': () => import('./pages/app-layout-toolbar/permutations.js') as Promise<PageModule>,
   'hotspot/permutations': () => import('./pages/hotspot/permutations.js') as Promise<PageModule>,
   'tutorial-panel/permutations': () => import('./pages/tutorial-panel/permutations.js') as Promise<PageModule>,
   'file-token-group/permutations': () => import('./pages/file-token-group/permutations.js') as Promise<PageModule>,
@@ -100,7 +101,7 @@ interface ComponentCategory {
 const componentCategories: ComponentCategory[] = [
   {
     label: 'Layout',
-    items: ['app-layout', 'column-layout', 'content-layout', 'grid', 'panel-layout', 'space-between', 'split-panel'],
+    items: ['app-layout', 'app-layout-toolbar', 'column-layout', 'content-layout', 'grid', 'panel-layout', 'space-between', 'split-panel'],
   },
   {
     label: 'Navigation',
