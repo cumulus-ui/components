@@ -8,7 +8,7 @@ export const componentStyles = css`
   display: flex;
   flex-direction: column;
   position: relative;
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  color: var(--color-text-body-default, #0f141a);
 }
 
 .root-no-scroll {
@@ -20,7 +20,7 @@ export const componentStyles = css`
   flex: 1 1 auto;
   display: flex;
   align-items: stretch;
-  background-color: var(--color-background-layout-main-5ilwcb, #ffffff);
+  background-color: var(--color-background-layout-main, #ffffff);
 }
 .layout-no-scroll {
   overflow: hidden;
@@ -29,7 +29,7 @@ export const componentStyles = css`
 .layout-main {
   flex: 1;
   min-inline-size: 0;
-  background-color: var(--color-background-layout-main-5ilwcb, #ffffff);
+  background-color: var(--color-background-layout-main, #ffffff);
   position: relative;
 }
 .layout-main-scrollable {
@@ -41,24 +41,24 @@ export const componentStyles = css`
 }
 
 .breadcrumbs-desktop {
-  padding-block-start: var(--space-scaled-m-m892r9, 16px);
-  padding-block-end: var(--space-scaled-s-8ozaad, 12px);
+  padding-block-start: var(--space-scaled-m, 16px);
+  padding-block-end: var(--space-scaled-s, 12px);
 }
 
 .content-header-wrapper {
-  padding-block-end: var(--space-content-header-padding-bottom-rvy5xz, 16px);
+  padding-block-end: var(--space-content-header-padding-bottom, 16px);
 }
 
 .content-wrapper {
-  padding-block-end: var(--space-layout-content-bottom-zeb1g9, 40px);
+  padding-block-end: var(--space-layout-content-bottom, 40px);
 }
 
 .content-overlapped {
-  margin-block-start: calc(-1 * var(--space-dark-header-overlap-distance-ld45ap, 36px));
+  margin-block-start: calc(-1 * var(--space-dark-header-overlap-distance, 36px));
 }
 
 .content-extra-top-padding {
-  padding-block-start: var(--space-scaled-m-m892r9, 16px);
+  padding-block-start: var(--space-scaled-m, 16px);
 }
 `;
 

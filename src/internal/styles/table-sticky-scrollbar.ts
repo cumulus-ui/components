@@ -13,7 +13,7 @@ export const tableStickyScrollbarStyles = css`
   inline-size: 100%;
 }
 .table-sticky-scrollbar--sticky-scrollbar[data-stuck=false] {
-  clip-path: inset(-9999px 0 0 0 round var(--border-radius-container-nsfwmm, 16px));
+  clip-path: inset(-9999px 0 0 0 round var(--border-radius-container, 16px));
 }
 .table-sticky-scrollbar--sticky-scrollbar-content {
   block-size: 15px;
@@ -28,10 +28,10 @@ export const tableStickyScrollbarStyles = css`
   z-index: 799;
 }
 .table-sticky-scrollbar--sticky-scrollbar-offset:not(.table-sticky-scrollbar--is-visual-refresh) {
-  background-color: var(--color-background-container-content-6u8rvp, #ffffff);
+  background-color: var(--color-background-container-content, #ffffff);
   block-size: 15px;
-  margin-block-start: calc(-1 * var(--border-divider-section-width-uwo8my, 1px));
-  border-block-start: var(--border-divider-section-width-uwo8my, 1px) solid var(--color-border-divider-default-nr68jt, #c6c6cd);
+  margin-block-start: calc(-1 * var(--border-divider-section-width, 1px));
+  border-block-start: var(--border-divider-section-width, 1px) solid var(--color-border-divider-default, #c6c6cd);
 }
 .table-sticky-scrollbar--sticky-scrollbar-offset.table-sticky-scrollbar--is-visual-refresh {
   margin-block-start: -5px;

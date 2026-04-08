@@ -5,7 +5,7 @@ import { sharedStyles } from '../internal/styles/shared.js';
 
 export const componentStyles = css`
 .alert {
-  animation: awsui_awsui-motion-fade-in_mx3cw_84tu2_1 var(--motion-duration-show-paced-otsjh8, 180ms) var(--motion-easing-show-paced-ym6eyn, ease-out);
+  animation: awsui_awsui-motion-fade-in_mx3cw_84tu2_1 var(--motion-duration-show-paced, 180ms) var(--motion-easing-show-paced, ease-out);
 }
 @keyframes awsui_awsui-motion-fade-in_mx3cw_84tu2_1 {
   from {
@@ -27,11 +27,11 @@ export const componentStyles = css`
 }
 
 .root {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
   word-wrap: break-word;
@@ -44,28 +44,28 @@ export const componentStyles = css`
 }
 
 .alert {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
   position: relative;
   display: flex;
   flex-direction: row;
-  border-block-start: var(--border-width-alert-block-start-5wbfsk, 2px) solid;
-  border-block-end: var(--border-width-alert-block-end-q8rr42, 2px) solid;
-  border-inline-start: var(--border-width-alert-inline-start-gjm6m1, 2px) solid;
-  border-inline-end: var(--border-width-alert-inline-end-9s426v, 2px) solid;
-  border-start-start-radius: var(--border-radius-alert-syagf6, 12px);
-  border-start-end-radius: var(--border-radius-alert-syagf6, 12px);
-  border-end-start-radius: var(--border-radius-alert-syagf6, 12px);
-  border-end-end-radius: var(--border-radius-alert-syagf6, 12px);
-  padding-block: var(--space-alert-vertical-dlp5wr, 8px);
-  padding-inline: var(--space-alert-horizontal-ul364s, 16px);
-  background-color: var(--color-background-container-content-6u8rvp, #ffffff);
-  --awsui-alert-focus-ring-box-shadow-6b9ypa: 0 0 0 var(--awsui-alert-focus-ring-border-width-6b9ypa, 2px) var(--awsui-alert-focus-ring-border-color-6b9ypa, var(--color-border-item-focused-uk47pl, #006ce0));
+  border-block-start: var(--border-width-alert-block-start, 2px) solid;
+  border-block-end: var(--border-width-alert-block-end, 2px) solid;
+  border-inline-start: var(--border-width-alert-inline-start, 2px) solid;
+  border-inline-end: var(--border-width-alert-inline-end, 2px) solid;
+  border-start-start-radius: var(--border-radius-alert, 12px);
+  border-start-end-radius: var(--border-radius-alert, 12px);
+  border-end-start-radius: var(--border-radius-alert, 12px);
+  border-end-end-radius: var(--border-radius-alert, 12px);
+  padding-block: var(--space-alert-vertical, 8px);
+  padding-inline: var(--space-alert-horizontal, 16px);
+  background-color: var(--color-background-container-content, #ffffff);
+  --awsui-alert-focus-ring-box-shadow: 0 0 0 var(--awsui-alert-focus-ring-border-width, 2px) var(--awsui-alert-focus-ring-border-color, var(--color-border-item-focused, #006ce0));
 }
 
 .alert-wrapper {
@@ -73,7 +73,7 @@ export const componentStyles = css`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  column-gap: var(--space-alert-action-left-4s8zo5, 12px);
+  column-gap: var(--space-alert-action-left, 12px);
 }
 
 .hidden {
@@ -87,7 +87,7 @@ export const componentStyles = css`
 
 .header,
 .header-replacement {
-  font-weight: var(--font-weight-alert-header-zg25o1, 700);
+  font-weight: var(--font-weight-alert-header, 700);
 }
 
 .action {
@@ -108,88 +108,88 @@ export const componentStyles = css`
 }
 :host-context([data-awsui-focus-visible=true]) .alert-focus-wrapper:focus {
   outline: 2px dotted transparent;
-  outline-offset: calc(var(--space-button-focus-outline-gutter-jj138g, 4px) - 1px);
+  outline-offset: calc(var(--space-button-focus-outline-gutter, 4px) - 1px);
 }
 :host-context([data-awsui-focus-visible=true]) .alert-focus-wrapper:focus::before {
   content: " ";
   display: block;
   position: absolute;
-  inset-inline-start: calc(-1 * var(--space-button-focus-outline-gutter-jj138g, 4px));
-  inset-block-start: calc(-1 * var(--space-button-focus-outline-gutter-jj138g, 4px));
-  inline-size: calc(100% + var(--space-button-focus-outline-gutter-jj138g, 4px) + var(--space-button-focus-outline-gutter-jj138g, 4px));
-  block-size: calc(100% + var(--space-button-focus-outline-gutter-jj138g, 4px) + var(--space-button-focus-outline-gutter-jj138g, 4px));
-  border-start-start-radius: var(--awsui-alert-focus-ring-border-radius-6b9ypa, var(--border-radius-control-default-focus-ring-1uabki, 4px));
-  border-start-end-radius: var(--awsui-alert-focus-ring-border-radius-6b9ypa, var(--border-radius-control-default-focus-ring-1uabki, 4px));
-  border-end-start-radius: var(--awsui-alert-focus-ring-border-radius-6b9ypa, var(--border-radius-control-default-focus-ring-1uabki, 4px));
-  border-end-end-radius: var(--awsui-alert-focus-ring-border-radius-6b9ypa, var(--border-radius-control-default-focus-ring-1uabki, 4px));
-  box-shadow: var(--awsui-alert-focus-ring-box-shadow-6b9ypa);
+  inset-inline-start: calc(-1 * var(--space-button-focus-outline-gutter, 4px));
+  inset-block-start: calc(-1 * var(--space-button-focus-outline-gutter, 4px));
+  inline-size: calc(100% + var(--space-button-focus-outline-gutter, 4px) + var(--space-button-focus-outline-gutter, 4px));
+  block-size: calc(100% + var(--space-button-focus-outline-gutter, 4px) + var(--space-button-focus-outline-gutter, 4px));
+  border-start-start-radius: var(--awsui-alert-focus-ring-border-radius, var(--border-radius-control-default-focus-ring, 4px));
+  border-start-end-radius: var(--awsui-alert-focus-ring-border-radius, var(--border-radius-control-default-focus-ring, 4px));
+  border-end-start-radius: var(--awsui-alert-focus-ring-border-radius, var(--border-radius-control-default-focus-ring, 4px));
+  border-end-end-radius: var(--awsui-alert-focus-ring-border-radius, var(--border-radius-control-default-focus-ring, 4px));
+  box-shadow: var(--awsui-alert-focus-ring-box-shadow);
 }
 
 .text {
   min-inline-size: 0;
-  padding-block: var(--border-width-button-jm0qg7, 2px);
+  padding-block: var(--border-width-button, 2px);
   padding-inline: 0;
-  margin-block: var(--space-scaled-xxs-pfm1nx, 4px);
-  margin-inline: var(--space-xxs-hwfkai, 4px);
+  margin-block: var(--space-scaled-xxs, 4px);
+  margin-inline: var(--space-xxs, 4px);
 }
 .text.icon {
   margin-inline-start: 0;
 }
 .text.message {
-  margin-inline-end: var(--space-alert-message-right-mrjbnn, 4px);
+  margin-inline-end: var(--space-alert-message-right, 4px);
 }
 
 .action-wrapped {
-  margin-block-end: var(--space-xxs-hwfkai, 4px);
+  margin-block-end: var(--space-xxs, 4px);
 }
 
 .icon-size-medium > .alert-wrapper > .action-wrapped {
-  margin-inline-start: calc(var(--size-icon-medium-uv8xcz, 20px) + var(--space-xs-ymlm0b, 8px));
+  margin-inline-start: calc(var(--size-icon-medium, 20px) + var(--space-xs, 8px));
 }
 
 .icon-size-big > .alert-wrapper > .action-wrapped {
-  margin-inline-start: calc(var(--size-icon-big-7pq9l3, 32px) + var(--space-xs-ymlm0b, 8px));
+  margin-inline-start: calc(var(--size-icon-big, 32px) + var(--space-xs, 8px));
 }
 
 .icon-size-normal > .alert-wrapper > .action-wrapped {
-  margin-inline-start: calc(var(--size-icon-normal-levt08, 16px) + var(--space-xs-ymlm0b, 8px));
+  margin-inline-start: calc(var(--size-icon-normal, 16px) + var(--space-xs, 8px));
 }
 
 .dismiss {
-  margin-inline-end: calc(-1 * var(--space-xxs-hwfkai, 4px));
-  margin-inline-start: var(--space-s-tvghoh, 12px);
+  margin-inline-end: calc(-1 * var(--space-xxs, 4px));
+  margin-inline-start: var(--space-s, 12px);
 }
 
 .type-error {
-  border-color: var(--color-border-status-error-j8acpp, #db0000);
-  background-color: var(--color-background-status-error-mu3lcw, #fff5f5);
+  border-color: var(--color-border-status-error, #db0000);
+  background-color: var(--color-background-status-error, #fff5f5);
 }
 .type-error > .alert-wrapper > .alert-focus-wrapper > .icon {
-  color: var(--awsui-alert-icon-color-6b9ypa, var(--color-text-status-error-ksqavh, #db0000));
+  color: var(--awsui-alert-icon-color, var(--color-text-status-error, #db0000));
 }
 
 .type-warning {
-  border-color: var(--color-border-status-warning-j40pg7, #855900);
-  background-color: var(--color-background-status-warning-cv83up, #fffef0);
+  border-color: var(--color-border-status-warning, #855900);
+  background-color: var(--color-background-status-warning, #fffef0);
 }
 .type-warning > .alert-wrapper > .alert-focus-wrapper > .icon {
-  color: var(--awsui-alert-icon-color-6b9ypa, var(--color-text-status-warning-6meo06, #855900));
+  color: var(--awsui-alert-icon-color, var(--color-text-status-warning, #855900));
 }
 
 .type-success {
-  border-color: var(--color-border-status-success-8z5f8u, #00802f);
-  background-color: var(--color-background-status-success-h6b8bh, #effff1);
+  border-color: var(--color-border-status-success, #00802f);
+  background-color: var(--color-background-status-success, #effff1);
 }
 .type-success > .alert-wrapper > .alert-focus-wrapper > .icon {
-  color: var(--awsui-alert-icon-color-6b9ypa, var(--color-text-status-success-ybmii8, #00802f));
+  color: var(--awsui-alert-icon-color, var(--color-text-status-success, #00802f));
 }
 
 .type-info {
-  border-color: var(--color-border-status-info-qf6jok, #006ce0);
-  background-color: var(--color-background-status-info-sfobba, #f0fbff);
+  border-color: var(--color-border-status-info, #006ce0);
+  background-color: var(--color-background-status-info, #f0fbff);
 }
 .type-info > .alert-wrapper > .alert-focus-wrapper > .icon {
-  color: var(--awsui-alert-icon-color-6b9ypa, var(--color-text-status-info-ue8bd2, #006ce0));
+  color: var(--awsui-alert-icon-color, var(--color-text-status-info, #006ce0));
 }
 `;
 

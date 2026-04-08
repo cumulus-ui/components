@@ -115,6 +115,20 @@ function stripNotId9(css: string): string {
 }
 
 /**
+ * Strip Cloudscape's 6-char content hashes from CSS custom property names.
+ *
+ * Cloudscape hashes every CSS variable: --color-text-body-default-vvtq8u
+ * We strip the hash to get clean names: --color-text-body-default
+ *
+ * Matches both var() references and property definitions:
+ *   var(--color-text-body-default-vvtq8u, #0f141a)  →  var(--color-text-body-default, #0f141a)
+ *   --awsui-style-background-default-6b9ypa: ...     →  --awsui-style-background-default: ...
+ */
+function dehashVariableNames(css: string): string {
+  return css.replace(/--((?:[a-z0-9]+-)*[a-z][a-z0-9]*)-[a-z0-9]{6}\b/g, '--$1');
+}
+
+/**
  * Transform body[data-awsui-focus-visible=true] selectors for Shadow DOM.
  * In Cloudscape (React), focus-visible is tracked on `body`. In Shadow DOM
  * we use `:host-context()` to reach through the shadow boundary.
@@ -156,6 +170,7 @@ function transformCSS(cssPath: string, cssJsPath: string, classPrefix?: string):
   css = replaceClassNames(css, rev);
   css = stripNotId9(css);
   css = transformFocusVisible(css);
+  css = dehashVariableNames(css);
   if (classPrefix) {
     css = prefixClasses(css, fwd, classPrefix);
   }

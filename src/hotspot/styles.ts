@@ -19,16 +19,16 @@ export const componentStyles = css`
 
 .placement-right {
   inset-inline-start: 100%;
-  margin-inline-start: var(--space-xxs-hwfkai, 4px);
+  margin-inline-start: var(--space-xxs, 4px);
 }
 
 .placement-left {
   inset-inline-end: 100%;
-  margin-inline-end: var(--space-xxs-hwfkai, 4px);
+  margin-inline-end: var(--space-xxs, 4px);
 }
 
 .inlineWrapper {
-  margin-inline: var(--space-xxs-hwfkai, 4px);
+  margin-inline: var(--space-xxs, 4px);
 }
 `;
 

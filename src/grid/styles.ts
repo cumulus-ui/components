@@ -5,17 +5,17 @@ import { sharedStyles } from '../internal/styles/shared.js';
 
 export const componentStyles = css`
 .grid {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
   display: flex;
   flex-wrap: wrap;
-  margin-block: calc(var(--space-grid-gutter-whc3jp, 20px) / -2);
-  margin-inline: calc(var(--space-grid-gutter-whc3jp, 20px) / -2);
+  margin-block: calc(var(--space-grid-gutter, 20px) / -2);
+  margin-inline: calc(var(--space-grid-gutter, 20px) / -2);
   pointer-events: none;
 }
 .grid.no-gutters {
@@ -26,8 +26,8 @@ export const componentStyles = css`
 .grid-column {
   box-sizing: border-box;
   position: relative;
-  padding-block: calc(var(--space-grid-gutter-whc3jp, 20px) / 2);
-  padding-inline: calc(var(--space-grid-gutter-whc3jp, 20px) / 2);
+  padding-block: calc(var(--space-grid-gutter, 20px) / 2);
+  padding-inline: calc(var(--space-grid-gutter, 20px) / 2);
   display: flex;
 }
 .grid.no-gutters > .grid-column {

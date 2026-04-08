@@ -13,8 +13,8 @@ export const componentStyles = css`
   }
 }
 .dialog {
-  animation: awsui_modal-slide-up_1d2i7_rypew_1 var(--motion-duration-slow-zji5vl, 180ms) ease-out, awsui_awsui-motion-fade-in-0_1d2i7_rypew_1 var(--motion-duration-slow-zji5vl, 180ms) ease-out;
-  animation-delay: var(--motion-duration-fast-unntf6, 90ms);
+  animation: awsui_modal-slide-up_1d2i7_rypew_1 var(--motion-duration-slow, 180ms) ease-out, awsui_awsui-motion-fade-in-0_1d2i7_rypew_1 var(--motion-duration-slow, 180ms) ease-out;
+  animation-delay: var(--motion-duration-fast, 90ms);
   animation-fill-mode: both;
 }
 @keyframes awsui_awsui-motion-fade-in-0_1d2i7_rypew_1 {
@@ -37,8 +37,8 @@ export const componentStyles = css`
 }
 .dialog.refresh {
   animation: awsui_awsui-motion-scale-popup_1d2i7_rypew_1, awsui_awsui-motion-fade-in-0_1d2i7_rypew_1;
-  animation-duration: var(--motion-duration-refresh-only-fast-zfibh6, 115ms);
-  animation-timing-function: var(--motion-easing-refresh-only-a-ccyqaz, cubic-bezier(0, 0, 0, 1));
+  animation-duration: var(--motion-duration-refresh-only-fast, 115ms);
+  animation-timing-function: var(--motion-easing-refresh-only-a, cubic-bezier(0, 0, 0, 1));
   animation-fill-mode: both;
 }
 @keyframes awsui_awsui-motion-fade-in-0_1d2i7_rypew_1 {
@@ -69,7 +69,7 @@ export const componentStyles = css`
 }
 
 .root {
-  animation: awsui_awsui-motion-fade-in_1d2i7_rypew_1 var(--motion-duration-extra-slow-29bqym, 270ms) ease-out;
+  animation: awsui_awsui-motion-fade-in_1d2i7_rypew_1 var(--motion-duration-extra-slow, 270ms) ease-out;
   animation-fill-mode: both;
 }
 @keyframes awsui_awsui-motion-fade-in_1d2i7_rypew_1 {
@@ -91,7 +91,7 @@ export const componentStyles = css`
   transition: none;
 }
 .root.refresh {
-  animation-duration: var(--motion-duration-refresh-only-fast-zfibh6, 115ms);
+  animation-duration: var(--motion-duration-refresh-only-fast, 115ms);
 }
 @media (prefers-reduced-motion: reduce) {
   .root.refresh {
@@ -105,14 +105,14 @@ export const componentStyles = css`
 }
 
 .root {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
-  background-color: var(--color-background-modal-overlay-d7uby0, rgba(35, 43, 55, 0.7));
+  background-color: var(--color-background-modal-overlay, rgba(35, 43, 55, 0.7));
   display: flex;
   align-items: center;
   justify-items: center;
@@ -130,7 +130,7 @@ export const componentStyles = css`
 .focus-lock {
   align-self: flex-start;
   margin-inline: auto;
-  padding-block: var(--space-s-tvghoh, 12px);
+  padding-block: var(--space-s, 12px);
   padding-inline: 0;
   z-index: 5000;
   pointer-events: none;
@@ -146,7 +146,7 @@ export const componentStyles = css`
   position: static;
   inset-block-start: 0;
   transform: translate(0, 0);
-  inline-size: calc(100vw - var(--space-s-tvghoh, 12px) * 2);
+  inline-size: calc(100vw - var(--space-s, 12px) * 2);
   box-sizing: border-box;
   outline: none;
   z-index: 5000;
@@ -168,35 +168,35 @@ export const componentStyles = css`
   max-inline-size: 1280px;
 }
 .dialog.custom-width {
-  max-inline-size: var(--awsui-modal-custom-width-6b9ypa);
+  max-inline-size: var(--awsui-modal-custom-width);
 }
 .dialog.max.breakpoint-xs {
-  max-inline-size: calc(100vw - (8 * 10px + var(--space-xxxl-aut1u7, 40px)));
+  max-inline-size: calc(100vw - (8 * 10px + var(--space-xxxl, 40px)));
   margin-block: auto;
   margin-inline: auto;
 }
 .dialog.custom-height {
-  block-size: var(--awsui-modal-custom-height-6b9ypa);
-  max-block-size: calc(100vh - 2 * var(--space-s-tvghoh, 12px));
+  block-size: var(--awsui-modal-custom-height);
+  max-block-size: calc(100vh - 2 * var(--space-s, 12px));
 }
 
 .container {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
   display: block;
-  background-color: var(--color-background-container-content-6u8rvp, #ffffff);
+  background-color: var(--color-background-container-content, #ffffff);
   word-wrap: break-word;
-  border-block-start: var(--border-container-top-width-n1eke6, 0px) solid var(--color-border-container-top-k3vmoz, transparent);
-  border-start-start-radius: var(--border-radius-container-nsfwmm, 16px);
-  border-start-end-radius: var(--border-radius-container-nsfwmm, 16px);
-  border-end-start-radius: var(--border-radius-container-nsfwmm, 16px);
-  border-end-end-radius: var(--border-radius-container-nsfwmm, 16px);
-  box-shadow: var(--shadow-modal-kwgqht, 0px 4px 20px 1px rgba(0, 7, 22, 0.1));
+  border-block-start: var(--border-container-top-width, 0px) solid var(--color-border-container-top, transparent);
+  border-start-start-radius: var(--border-radius-container, 16px);
+  border-start-end-radius: var(--border-radius-container, 16px);
+  border-end-start-radius: var(--border-radius-container, 16px);
+  border-end-end-radius: var(--border-radius-container, 16px);
+  box-shadow: var(--shadow-modal, 0px 4px 20px 1px rgba(0, 7, 22, 0.1));
 }
 .container.custom-height-container {
   display: flex;
@@ -205,9 +205,9 @@ export const componentStyles = css`
 }
 
 .content {
-  padding-block-start: var(--space-container-content-top-1wtqrc, 4px);
-  padding-block-end: var(--space-modal-content-bottom-nl6ceq, 16px);
-  padding-inline: var(--space-modal-horizontal-y5hnwp, 20px);
+  padding-block-start: var(--space-container-content-top, 4px);
+  padding-block-end: var(--space-modal-content-bottom, 16px);
+  padding-inline: var(--space-modal-horizontal, 20px);
 }
 .content.no-paddings {
   padding-block: 0;
@@ -219,22 +219,22 @@ export const componentStyles = css`
 }
 
 .header {
-  padding-block-start: var(--space-container-header-top-am4vzw, 12px);
-  padding-block-end: var(--space-container-header-bottom-2taq8v, 8px);
-  padding-inline: var(--space-modal-horizontal-y5hnwp, 20px);
-  background-color: var(--color-background-container-header-gs3mbe, #ffffff);
-  border-block-end: 1px solid var(--color-border-container-divider-9huz1a, transparent);
-  border-start-start-radius: var(--border-radius-container-nsfwmm, 16px);
-  border-start-end-radius: var(--border-radius-container-nsfwmm, 16px);
+  padding-block-start: var(--space-container-header-top, 12px);
+  padding-block-end: var(--space-container-header-bottom, 8px);
+  padding-inline: var(--space-modal-horizontal, 20px);
+  background-color: var(--color-background-container-header, #ffffff);
+  border-block-end: 1px solid var(--color-border-container-divider, transparent);
+  border-start-start-radius: var(--border-radius-container, 16px);
+  border-start-end-radius: var(--border-radius-container, 16px);
   border-end-start-radius: 0;
   border-end-end-radius: 0;
 }
 
 .footer {
-  border-block-start: var(--border-divider-section-width-uwo8my, 1px) solid var(--color-border-divider-default-nr68jt, #c6c6cd);
-  padding-block: var(--space-scaled-s-8ozaad, 12px);
-  padding-inline: var(--space-container-horizontal-nqrzyh, 20px);
-  background-color: var(--color-background-container-content-6u8rvp, #ffffff);
+  border-block-start: var(--border-divider-section-width, 1px) solid var(--color-border-divider-default, #c6c6cd);
+  padding-block: var(--space-scaled-s, 12px);
+  padding-inline: var(--space-container-horizontal, 20px);
+  background-color: var(--color-background-container-content, #ffffff);
   position: sticky;
   inset-block-end: 0;
   z-index: 800;
@@ -242,8 +242,8 @@ export const componentStyles = css`
 .footer--rounded {
   border-start-start-radius: 0;
   border-start-end-radius: 0;
-  border-end-start-radius: var(--border-radius-container-nsfwmm, 16px);
-  border-end-end-radius: var(--border-radius-container-nsfwmm, 16px);
+  border-end-start-radius: var(--border-radius-container, 16px);
+  border-end-end-radius: var(--border-radius-container, 16px);
 }
 .footer:after {
   content: "";

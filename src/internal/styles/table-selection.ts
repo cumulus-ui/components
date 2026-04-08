@@ -12,7 +12,7 @@ export const tableSelectionStyles = css`
   align-items: center;
   justify-content: center;
   position: absolute;
-  padding-block-end: var(--space-xxs-hwfkai, 4px);
+  padding-block-end: var(--space-xxs, 4px);
   block-size: 100%;
   inset-block-start: 0;
   inline-size: 100%;
@@ -23,7 +23,7 @@ export const tableSelectionStyles = css`
 
 .table-selection--label-top {
   align-items: baseline;
-  padding-block-start: var(--space-xs-ymlm0b, 8px);
+  padding-block-start: var(--space-xs, 8px);
 }
 
 .table-selection--stud {

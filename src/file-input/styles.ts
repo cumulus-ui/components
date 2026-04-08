@@ -28,42 +28,42 @@ export const componentStyles = css`
 }
 :host-context([data-awsui-focus-visible=true]) .file-input-button.force-focus-outline-icon {
   outline: 2px dotted transparent;
-  outline-offset: calc(var(--space-button-focus-outline-gutter-jj138g, 4px) - 1px);
+  outline-offset: calc(var(--space-button-focus-outline-gutter, 4px) - 1px);
 }
 :host-context([data-awsui-focus-visible=true]) .file-input-button.force-focus-outline-icon::before {
   content: " ";
   display: block;
   position: absolute;
-  inset-inline-start: calc(-1 * var(--space-button-focus-outline-gutter-jj138g, 4px));
-  inset-block-start: calc(-1 * var(--space-button-icon-focus-outline-gutter-vertical-r44mtq, 0px));
-  inline-size: calc(100% + var(--space-button-focus-outline-gutter-jj138g, 4px) + var(--space-button-focus-outline-gutter-jj138g, 4px));
-  block-size: calc(100% + var(--space-button-icon-focus-outline-gutter-vertical-r44mtq, 0px) + var(--space-button-icon-focus-outline-gutter-vertical-r44mtq, 0px));
-  border-start-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-start-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  box-shadow: 0 0 0 2px var(--color-border-item-focused-uk47pl, #006ce0);
+  inset-inline-start: calc(-1 * var(--space-button-focus-outline-gutter, 4px));
+  inset-block-start: calc(-1 * var(--space-button-icon-focus-outline-gutter-vertical, 0px));
+  inline-size: calc(100% + var(--space-button-focus-outline-gutter, 4px) + var(--space-button-focus-outline-gutter, 4px));
+  block-size: calc(100% + var(--space-button-icon-focus-outline-gutter-vertical, 0px) + var(--space-button-icon-focus-outline-gutter-vertical, 0px));
+  border-start-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-start-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  box-shadow: 0 0 0 2px var(--color-border-item-focused, #006ce0);
 }
 :host-context([data-awsui-focus-visible=true]) .file-input-button.force-focus-outline-button {
   position: relative;
 }
 :host-context([data-awsui-focus-visible=true]) .file-input-button.force-focus-outline-button {
   outline: 2px dotted transparent;
-  outline-offset: calc(var(--space-button-focus-outline-gutter-jj138g, 4px) - 1px);
+  outline-offset: calc(var(--space-button-focus-outline-gutter, 4px) - 1px);
 }
 :host-context([data-awsui-focus-visible=true]) .file-input-button.force-focus-outline-button::before {
   content: " ";
   display: block;
   position: absolute;
-  inset-inline-start: calc(-1 * var(--space-button-focus-outline-gutter-jj138g, 4px));
-  inset-block-start: calc(-1 * var(--space-button-focus-outline-gutter-jj138g, 4px));
-  inline-size: calc(100% + var(--space-button-focus-outline-gutter-jj138g, 4px) + var(--space-button-focus-outline-gutter-jj138g, 4px));
-  block-size: calc(100% + var(--space-button-focus-outline-gutter-jj138g, 4px) + var(--space-button-focus-outline-gutter-jj138g, 4px));
-  border-start-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-start-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  box-shadow: 0 0 0 2px var(--color-border-item-focused-uk47pl, #006ce0);
+  inset-inline-start: calc(-1 * var(--space-button-focus-outline-gutter, 4px));
+  inset-block-start: calc(-1 * var(--space-button-focus-outline-gutter, 4px));
+  inline-size: calc(100% + var(--space-button-focus-outline-gutter, 4px) + var(--space-button-focus-outline-gutter, 4px));
+  block-size: calc(100% + var(--space-button-focus-outline-gutter, 4px) + var(--space-button-focus-outline-gutter, 4px));
+  border-start-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-start-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  box-shadow: 0 0 0 2px var(--color-border-item-focused, #006ce0);
 }
 `;
 

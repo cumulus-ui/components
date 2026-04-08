@@ -5,7 +5,7 @@ import { sharedStyles } from '../internal/styles/shared.js';
 
 export const componentStyles = css`
 .hints {
-  margin-block-start: var(--space-static-xxs-ns94dp, 4px);
+  margin-block-start: var(--space-static-xxs, 4px);
 }
 `;
 

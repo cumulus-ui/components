@@ -5,7 +5,7 @@ import { css } from 'lit';
 export const dragHandleStyles = css`
 .drag-handle--handle {
   appearance: none;
-  color: var(--color-text-interactive-default-ugh9wp, #424650);
+  color: var(--color-text-interactive-default, #424650);
   background: transparent;
   inline-size: -moz-fit-content;
   inline-size: fit-content;
@@ -13,11 +13,11 @@ export const dragHandleStyles = css`
   touch-action: none;
 }
 .drag-handle--handle-size-normal {
-  block-size: var(--line-height-body-m-2mh3ke, 20px);
-  padding-inline: var(--space-scaled-xxxs-oo06c7, 2px);
+  block-size: var(--line-height-body-m, 20px);
+  padding-inline: var(--space-scaled-xxxs, 2px);
 }
 .drag-handle--handle-size-small {
-  block-size: var(--line-height-body-s-nu5hx1, 16px);
+  block-size: var(--line-height-body-s, 16px);
 }
 .drag-handle--handle-drag-indicator:not(.drag-handle--handle-disabled) {
   cursor: grab;
@@ -39,7 +39,7 @@ export const dragHandleStyles = css`
   cursor: ns-resize;
 }
 .drag-handle--handle:hover {
-  color: var(--color-text-interactive-hover-6naf7i, #0f141a);
+  color: var(--color-text-interactive-hover, #0f141a);
 }
 .drag-handle--handle:focus {
   outline: none;
@@ -60,18 +60,18 @@ export const dragHandleStyles = css`
   inset-block-start: calc(-1 * 0px);
   inline-size: calc(100% + 0px + 0px);
   block-size: calc(100% + 0px + 0px);
-  border-start-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-start-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  box-shadow: 0 0 0 2px var(--color-border-item-focused-uk47pl, #006ce0);
+  border-start-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-start-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  box-shadow: 0 0 0 2px var(--color-border-item-focused, #006ce0);
 }
 
 .drag-handle--resize-icon {
-  stroke: var(--color-text-interactive-default-ugh9wp, #424650);
+  stroke: var(--color-text-interactive-default, #424650);
 }
 .drag-handle--resize-icon:hover {
-  stroke: var(--color-text-interactive-hover-6naf7i, #0f141a);
+  stroke: var(--color-text-interactive-hover, #0f141a);
 }
 .drag-handle--resize-icon-vertical {
   margin-block: auto;

@@ -4,22 +4,22 @@ import { css } from 'lit';
 
 export const chartWrapperStyles = css`
 .chart-wrapper--wrapper {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
   position: relative;
   display: block;
 }
-.chart-wrapper--wrapper--fit-height {
+.wrapper--fit {
   block-size: 100%;
   overflow-y: auto;
 }
 
-.chart-wrapper--inner-wrapper--fit-height {
+.inner-wrapper--fit {
   display: flex;
   flex-direction: column;
   block-size: 100%;
@@ -36,15 +36,15 @@ export const chartWrapperStyles = css`
   align-items: center;
 }
 
-.chart-wrapper--content--reserve-filter {
-  margin-block-start: calc(2 * var(--line-height-body-m-2mh3ke, 20px));
+.content--reserve {
+  margin-block-start: calc(2 * var(--line-height-body-m, 20px));
 }
 
-.chart-wrapper--content--reserve-legend {
-  margin-block-end: calc(2 * var(--line-height-body-m-2mh3ke, 20px));
+.content--reserve {
+  margin-block-end: calc(2 * var(--line-height-body-m, 20px));
 }
 
-.chart-wrapper--content--fit-height {
+.content--fit {
   flex: 1;
 }
 `;

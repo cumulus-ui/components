@@ -4,7 +4,7 @@ import { css } from 'lit';
 
 export const chartLegendStyles = css`
 .chart-legend--marker {
-  transition: opacity var(--motion-duration-transition-quick-mcm2y0, 90ms) var(--motion-easing-transition-quick-qxak3i, linear);
+  transition: opacity var(--motion-duration-transition-quick, 90ms) var(--motion-easing-transition-quick, linear);
 }
 @media (prefers-reduced-motion: reduce) {
   .chart-legend--marker {
@@ -18,11 +18,11 @@ export const chartLegendStyles = css`
 }
 
 .chart-legend--root {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
 }
@@ -42,7 +42,7 @@ export const chartLegendStyles = css`
   margin-inline: 0;
   padding-block: 0;
   padding-inline: 0;
-  gap: var(--space-scaled-xxs-pfm1nx, 4px) var(--space-m-dsumyt, 16px);
+  gap: var(--space-scaled-xxs, 4px) var(--space-m, 16px);
 }
 
 .chart-legend--marker {
@@ -74,11 +74,11 @@ export const chartLegendStyles = css`
   inset-block-start: calc(-1 * 2px);
   inline-size: calc(100% + 2px + 2px);
   block-size: calc(100% + 2px + 2px);
-  border-start-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-start-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  box-shadow: 0 0 0 2px var(--color-border-item-focused-uk47pl, #006ce0);
+  border-start-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-start-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  box-shadow: 0 0 0 2px var(--color-border-item-focused, #006ce0);
 }
 .chart-legend--marker.chart-legend--marker--dimmed {
   opacity: 0.35;

@@ -4,6 +4,6 @@ import { css } from 'lit';
 
 export const chartStatusContainerStyles = css`
 .chart-status-container--empty {
-  color: var(--color-text-empty-tlohug, #656871);
+  color: var(--color-text-empty, #656871);
 }
 `;

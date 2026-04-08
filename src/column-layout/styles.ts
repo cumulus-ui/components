@@ -5,18 +5,18 @@ import { sharedStyles } from '../internal/styles/shared.js';
 
 export const componentStyles = css`
 div.column-layout {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
   word-wrap: break-word;
 }
 div.column-layout > .grid {
-  margin-block: calc(var(--space-grid-gutter-whc3jp, 20px) / -2);
-  margin-inline: calc(var(--space-grid-gutter-whc3jp, 20px) / -2);
+  margin-block: calc(var(--space-grid-gutter, 20px) / -2);
+  margin-inline: calc(var(--space-grid-gutter, 20px) / -2);
 
 
 }
@@ -25,12 +25,12 @@ div.column-layout > .grid.grid-no-gutters {
   margin-inline: 0;
 }
 div.column-layout > .grid.grid-variant-text-grid {
-  margin-block: calc(-1 * var(--space-grid-gutter-whc3jp, 20px) / 2);
-  margin-inline: calc(-1 * var(--space-grid-gutter-whc3jp, 20px));
+  margin-block: calc(-1 * var(--space-grid-gutter, 20px) / 2);
+  margin-inline: calc(-1 * var(--space-grid-gutter, 20px));
 
 }
 div.column-layout > .grid.grid-variant-text-grid > * {
-  border-inline-start: var(--border-divider-section-width-uwo8my, 1px) solid var(--color-border-divider-default-nr68jt, #c6c6cd);
+  border-inline-start: var(--border-divider-section-width, 1px) solid var(--color-border-divider-default, #c6c6cd);
 }
 div.column-layout > .grid.grid-variant-text-grid.grid-breakpoint-default > *:nth-child(1n+1) {
   border-inline-start-width: 0;
@@ -60,17 +60,17 @@ div.column-layout > .grid.grid-variant-text-grid.grid-columns-4.grid-breakpoint-
   border-inline-start-width: 0;
 }
 div.column-layout > .grid:not(.grid-no-gutters) > * {
-  padding-block: calc(var(--space-grid-gutter-whc3jp, 20px) / 2);
-  padding-inline: calc(var(--space-grid-gutter-whc3jp, 20px) / 2);
+  padding-block: calc(var(--space-grid-gutter, 20px) / 2);
+  padding-inline: calc(var(--space-grid-gutter, 20px) / 2);
 }
 div.column-layout > .grid:not(.grid-no-gutters).grid-variant-text-grid > * {
   padding-block: 0;
-  padding-inline: var(--space-grid-gutter-whc3jp, 20px);
-  margin-block: calc(var(--space-grid-gutter-whc3jp, 20px) / 2);
+  padding-inline: var(--space-grid-gutter, 20px);
+  margin-block: calc(var(--space-grid-gutter, 20px) / 2);
   margin-inline: 0;
 }
 div.column-layout > .grid.grid-vertical-borders > * {
-  border-inline-end: var(--border-divider-section-width-uwo8my, 1px) solid var(--color-border-divider-default-nr68jt, #c6c6cd);
+  border-inline-end: var(--border-divider-section-width, 1px) solid var(--color-border-divider-default, #c6c6cd);
 }
 div.column-layout > .grid.grid-vertical-borders.grid-breakpoint-default > *:nth-child(1n) {
   border-inline-end-width: 0;
@@ -100,7 +100,7 @@ div.column-layout > .grid.grid-vertical-borders.grid-columns-4.grid-breakpoint-x
   border-inline-end-width: 0;
 }
 div.column-layout > .grid.grid-horizontal-borders > * {
-  border-block-end: var(--border-divider-section-width-uwo8my, 1px) solid var(--color-border-divider-default-nr68jt, #c6c6cd);
+  border-block-end: var(--border-divider-section-width, 1px) solid var(--color-border-divider-default, #c6c6cd);
 }
 div.column-layout > .grid.grid-horizontal-borders > *:last-child {
   border-block-end-width: 0;

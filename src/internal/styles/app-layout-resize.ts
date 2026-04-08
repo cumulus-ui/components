@@ -5,7 +5,7 @@ import { css } from 'lit';
 export const appLayoutResizeStyles = css`
 @media (min-width: 689px) {
   .app-layout-resize--with-motion-vertical {
-    transition: var(--motion-duration-refresh-only-medium-5rbn3k, 165ms);
+    transition: var(--motion-duration-refresh-only-medium, 165ms);
     transition-property: border-color, opacity, block-size, inset-block-start, inset-block-end;
   }
 }
@@ -24,7 +24,7 @@ export const appLayoutResizeStyles = css`
 
 @media (min-width: 689px) {
   .app-layout-resize--with-motion-horizontal {
-    transition: var(--motion-duration-refresh-only-medium-5rbn3k, 165ms);
+    transition: var(--motion-duration-refresh-only-medium, 165ms);
     transition-property: border-color, opacity, inline-size, inset-inline-start;
   }
 }

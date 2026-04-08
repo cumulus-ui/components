@@ -5,16 +5,16 @@ import { sharedStyles } from '../internal/styles/shared.js';
 
 export const componentStyles = css`
 .root {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
 }
 .root.has-items:not(.no-padding) {
-  padding-block-start: var(--space-xs-ymlm0b, 8px);
+  padding-block-start: var(--space-xs, 8px);
 }
 `;
 

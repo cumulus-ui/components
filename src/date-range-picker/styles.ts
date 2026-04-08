@@ -5,7 +5,7 @@ import { sharedStyles } from '../internal/styles/shared.js';
 
 export const componentStyles = css`
 .calendar {
-  animation: awsui_awsui-motion-fade-in-0_mgja0_1ueys_1 var(--motion-duration-show-quick-tyvnyw, 135ms) var(--motion-easing-show-quick-9hlj8q, ease-out);
+  animation: awsui_awsui-motion-fade-in-0_mgja0_1ueys_1 var(--motion-duration-show-quick, 135ms) var(--motion-easing-show-quick, ease-out);
   animation-fill-mode: both;
 }
 @keyframes awsui_awsui-motion-fade-in-0_mgja0_1ueys_1 {
@@ -28,11 +28,11 @@ export const componentStyles = css`
 }
 
 .root {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
 }
@@ -52,10 +52,10 @@ export const componentStyles = css`
 }
 
 .calendar-container {
-  inline-size: calc(2 * var(--size-calendar-grid-width-hv3136, 238px) + var(--space-xs-ymlm0b, 8px));
+  inline-size: calc(2 * var(--size-calendar-grid-width, 238px) + var(--space-xs, 8px));
 }
 .calendar-container.one-grid {
-  inline-size: var(--size-calendar-grid-width-hv3136, 238px);
+  inline-size: var(--size-calendar-grid-width, 238px);
 }
 
 .calendar-header {
@@ -76,24 +76,24 @@ export const componentStyles = css`
   pointer-events: none;
 }
 .calendar-header-page {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
   font-weight: 700;
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  color: var(--color-text-body-default, #0f141a);
   display: flex;
   pointer-events: auto;
 }
 
 .date-and-time-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--size-calendar-grid-width-hv3136, 238px), 1fr));
-  gap: var(--space-xs-ymlm0b, 8px);
+  grid-template-columns: repeat(auto-fit, minmax(var(--size-calendar-grid-width, 238px), 1fr));
+  gap: var(--space-xs, 8px);
 }
 
 .date-and-time-wrapper {
-  inline-size: var(--size-calendar-grid-width-hv3136, 238px);
+  inline-size: var(--size-calendar-grid-width, 238px);
   display: grid;
-  gap: var(--space-xs-ymlm0b, 8px);
+  gap: var(--space-xs, 8px);
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 }
 
@@ -101,30 +101,30 @@ export const componentStyles = css`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  border-block-start: 1px solid var(--color-border-dropdown-item-default-kape37, #c6c6cd);
+  border-block-start: 1px solid var(--color-border-dropdown-item-default, #c6c6cd);
   padding-block-start: 0;
-  padding-block-end: var(--space-s-tvghoh, 12px);
-  padding-inline: var(--space-l-2ud1p3, 20px);
+  padding-block-end: var(--space-s, 12px);
+  padding-inline: var(--space-l, 20px);
 }
 .footer.has-clear-button {
   justify-content: space-between;
 }
 .footer.one-grid {
   padding-block-start: 0;
-  padding-block-end: var(--space-s-tvghoh, 12px);
-  padding-inline: var(--space-xs-ymlm0b, 8px);
+  padding-block-end: var(--space-s, 12px);
+  padding-inline: var(--space-xs, 8px);
 }
 
 .footer-button-wrapper {
-  padding-block-start: var(--space-s-tvghoh, 12px);
+  padding-block-start: var(--space-s, 12px);
 }
 .footer-button-wrapper:last-child {
   margin-inline-start: auto;
 }
 
 .icon-wrapper {
-  color: var(--color-text-interactive-default-ugh9wp, #424650);
-  margin-inline-end: var(--space-xs-ymlm0b, 8px);
+  color: var(--color-text-interactive-default, #424650);
+  margin-inline-end: var(--space-xs, 8px);
 }
 
 .label {
@@ -132,11 +132,11 @@ export const componentStyles = css`
 }
 
 .label.label-enabled:hover > .trigger-flexbox > .icon-wrapper {
-  color: var(--color-text-interactive-hover-6naf7i, #0f141a);
+  color: var(--color-text-interactive-hover, #0f141a);
 }
 
 .label-text {
-  color: var(--color-text-input-placeholder-dclg8u, #656871);
+  color: var(--color-text-input-placeholder, #656871);
   font-style: italic;
 }
 
@@ -146,12 +146,12 @@ export const componentStyles = css`
 
 .dropdown {
   overflow: auto;
-  border-block-start: 1px solid var(--color-border-container-top-k3vmoz, transparent);
-  border-block-end: 1px solid var(--color-border-container-top-k3vmoz, transparent);
-  border-start-start-radius: var(--border-radius-dropdown-fgc2a1, 8px);
-  border-start-end-radius: var(--border-radius-dropdown-fgc2a1, 8px);
-  border-end-start-radius: var(--border-radius-dropdown-fgc2a1, 8px);
-  border-end-end-radius: var(--border-radius-dropdown-fgc2a1, 8px);
+  border-block-start: 1px solid var(--color-border-container-top, transparent);
+  border-block-end: 1px solid var(--color-border-container-top, transparent);
+  border-start-start-radius: var(--border-radius-dropdown, 8px);
+  border-start-end-radius: var(--border-radius-dropdown, 8px);
+  border-end-start-radius: var(--border-radius-dropdown, 8px);
+  border-end-end-radius: var(--border-radius-dropdown, 8px);
 }
 .dropdown:focus {
   outline: none;
@@ -159,19 +159,19 @@ export const componentStyles = css`
 :host-context([data-awsui-focus-visible=true]) .dropdown:focus {
   outline: 2px dotted transparent;
   outline-offset: 2px;
-  border-start-start-radius: var(--border-radius-dropdown-fgc2a1, 8px);
-  border-start-end-radius: var(--border-radius-dropdown-fgc2a1, 8px);
-  border-end-start-radius: var(--border-radius-dropdown-fgc2a1, 8px);
-  border-end-end-radius: var(--border-radius-dropdown-fgc2a1, 8px);
-  box-shadow: 0 0 0 2px var(--color-border-item-focused-uk47pl, #006ce0);
+  border-start-start-radius: var(--border-radius-dropdown, 8px);
+  border-start-end-radius: var(--border-radius-dropdown, 8px);
+  border-end-start-radius: var(--border-radius-dropdown, 8px);
+  border-end-end-radius: var(--border-radius-dropdown, 8px);
+  box-shadow: 0 0 0 2px var(--color-border-item-focused, #006ce0);
 }
 
 .dropdown-content {
-  background-color: var(--color-background-container-content-6u8rvp, #ffffff);
-  inline-size: calc(2 * var(--size-calendar-grid-width-hv3136, 238px) + var(--space-xs-ymlm0b, 8px) + 2 * var(--space-l-2ud1p3, 20px));
+  background-color: var(--color-background-container-content, #ffffff);
+  inline-size: calc(2 * var(--size-calendar-grid-width, 238px) + var(--space-xs, 8px) + 2 * var(--space-l, 20px));
 }
 .dropdown-content.one-grid {
-  inline-size: calc(var(--size-calendar-grid-width-hv3136, 238px) + 2 * var(--space-l-2ud1p3, 20px));
+  inline-size: calc(var(--size-calendar-grid-width, 238px) + 2 * var(--space-l, 20px));
 }
 `;
 

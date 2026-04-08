@@ -5,11 +5,11 @@ import { sharedStyles } from '../internal/styles/shared.js';
 
 export const componentStyles = css`
 .root {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
   list-style: none;
@@ -21,10 +21,10 @@ export const componentStyles = css`
 }
 
 .item:not(:last-child) {
-  border-block-end: var(--border-divider-list-width-tdfx1x, 1px) solid var(--color-border-divider-secondary-qoitch, #ebebf0);
+  border-block-end: var(--border-divider-list-width, 1px) solid var(--color-border-divider-secondary, #ebebf0);
 }
 .item:not(.disable-item-paddings) {
-  padding-block: var(--space-scaled-xs-xwoogq, 8px);
+  padding-block: var(--space-scaled-xs, 8px);
 }
 .item:first-child.disable-paddings {
   padding-block-start: 0;
@@ -38,7 +38,7 @@ export const componentStyles = css`
   align-items: baseline;
 }
 .sortable-item:not(.disable-item-paddings) {
-  column-gap: var(--space-xxs-hwfkai, 4px);
+  column-gap: var(--space-xxs, 4px);
 }
 `;
 

@@ -12,13 +12,13 @@ dl.column-layout-flexible-column-layout--css-grid {
 
 .column-layout-flexible-column-layout--css-grid {
   display: grid;
-  gap: var(--space-grid-gutter-whc3jp, 20px);
+  gap: var(--space-grid-gutter, 20px);
 }
 .column-layout-flexible-column-layout--css-grid.column-layout-flexible-column-layout--grid-no-gutters {
   gap: 0;
 }
 .column-layout-flexible-column-layout--css-grid.column-layout-flexible-column-layout--grid-variant-text-grid > .column-layout-flexible-column-layout--item {
-  padding-inline: var(--space-grid-gutter-whc3jp, 20px);
+  padding-inline: var(--space-grid-gutter, 20px);
   position: relative;
 
 }
@@ -28,11 +28,11 @@ dl.column-layout-flexible-column-layout--css-grid {
   inset-block-start: 0;
   inset-block-end: 0;
   inset-inline-start: 0;
-  border-inline-start: var(--border-divider-section-width-uwo8my, 1px) solid var(--color-border-divider-default-nr68jt, #c6c6cd);
-  transform: translateX(calc(-0.5 * var(--space-grid-gutter-whc3jp, 20px)));
+  border-inline-start: var(--border-divider-section-width, 1px) solid var(--color-border-divider-default, #c6c6cd);
+  transform: translateX(calc(-0.5 * var(--space-grid-gutter, 20px)));
 }
 .column-layout-flexible-column-layout--css-grid.column-layout-flexible-column-layout--grid-variant-text-grid > .column-layout-flexible-column-layout--item:dir(rtl)::before {
-  transform: translateX(calc(0.5 * var(--space-grid-gutter-whc3jp, 20px)));
+  transform: translateX(calc(0.5 * var(--space-grid-gutter, 20px)));
 }
 .column-layout-flexible-column-layout--css-grid.column-layout-flexible-column-layout--grid-variant-text-grid > .column-layout-flexible-column-layout--item.column-layout-flexible-column-layout--first-column {
   padding-inline-start: 0;

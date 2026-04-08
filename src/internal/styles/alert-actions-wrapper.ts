@@ -7,7 +7,7 @@ export const alertActionsWrapperStyles = css`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: var(--space-xs-ymlm0b, 8px);
+  gap: var(--space-xs, 8px);
 }
 .alert-actions-wrapper--root > :empty {
   display: none;

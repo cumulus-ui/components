@@ -14,8 +14,8 @@ export const breadcrumbGroupItemStyles = css`
 .breadcrumb-group-item--breadcrumb > .breadcrumb-group-item--icon,
 .breadcrumb-group-item--ghost-breadcrumb > .breadcrumb-group-item--icon {
   margin-block: 0;
-  margin-inline: var(--space-xs-ymlm0b, 8px);
-  color: var(--color-text-breadcrumb-icon-9j48ot, #8c8c94);
+  margin-inline: var(--space-xs, 8px);
+  color: var(--color-text-breadcrumb-icon, #8c8c94);
 }
 .breadcrumb-group-item--breadcrumb > .breadcrumb-group-item--anchor,
 .breadcrumb-group-item--ghost-breadcrumb > .breadcrumb-group-item--anchor {
@@ -23,7 +23,7 @@ export const breadcrumbGroupItemStyles = css`
   overflow: hidden;
   text-underline-offset: 0.25em;
   text-decoration-thickness: 1px;
-  color: var(--awsui-style-color-default-6b9ypa, var(--color-text-link-default-hude44, #006ce0));
+  color: var(--awsui-style-color-default, var(--color-text-link-default, #006ce0));
   font-weight: inherit;
   letter-spacing: normal;
   text-decoration-line: underline;
@@ -31,7 +31,7 @@ export const breadcrumbGroupItemStyles = css`
   transition-property: color, -webkit-text-decoration;
   transition-property: color, text-decoration;
   transition-property: color, text-decoration, -webkit-text-decoration;
-  transition-duration: var(--motion-duration-refresh-only-medium-5rbn3k, 165ms);
+  transition-duration: var(--motion-duration-refresh-only-medium, 165ms);
 }
 @media (prefers-reduced-motion: reduce) {
   .breadcrumb-group-item--breadcrumb > .breadcrumb-group-item--anchor,
@@ -47,7 +47,7 @@ export const breadcrumbGroupItemStyles = css`
 .breadcrumb-group-item--breadcrumb > .breadcrumb-group-item--anchor:hover,
 .breadcrumb-group-item--ghost-breadcrumb > .breadcrumb-group-item--anchor:hover {
   cursor: pointer;
-  color: var(--awsui-style-color-hover-6b9ypa, var(--color-text-link-hover-2hfec2, #002b66));
+  color: var(--awsui-style-color-hover, var(--color-text-link-hover, #002b66));
 }
 .breadcrumb-group-item--breadcrumb > .breadcrumb-group-item--anchor:focus,
 .breadcrumb-group-item--ghost-breadcrumb > .breadcrumb-group-item--anchor:focus {
@@ -55,7 +55,7 @@ export const breadcrumbGroupItemStyles = css`
 }
 .breadcrumb-group-item--breadcrumb > .breadcrumb-group-item--anchor:active,
 .breadcrumb-group-item--ghost-breadcrumb > .breadcrumb-group-item--anchor:active {
-  color: var(--awsui-style-color-active-6b9ypa, var(--color-text-link-hover-2hfec2, #002b66));
+  color: var(--awsui-style-color-active, var(--color-text-link-hover, #002b66));
 }
 .breadcrumb-group-item--breadcrumb > .breadcrumb-group-item--anchor:active, .breadcrumb-group-item--breadcrumb > .breadcrumb-group-item--anchor:focus, .breadcrumb-group-item--breadcrumb > .breadcrumb-group-item--anchor:hover, .breadcrumb-group-item--ghost-breadcrumb > .breadcrumb-group-item--anchor:active, .breadcrumb-group-item--ghost-breadcrumb > .breadcrumb-group-item--anchor:focus, .breadcrumb-group-item--ghost-breadcrumb > .breadcrumb-group-item--anchor:hover {
   text-decoration-line: underline;
@@ -71,14 +71,14 @@ export const breadcrumbGroupItemStyles = css`
 :host-context([data-awsui-focus-visible=true]) .breadcrumb-group-item--breadcrumb > .breadcrumb-group-item--anchor:focus,
 :host-context([data-awsui-focus-visible=true]) .breadcrumb-group-item--ghost-breadcrumb > .breadcrumb-group-item--anchor:focus {
   outline: thin dotted;
-  outline: var(--border-link-focus-ring-outline-1p0hnu, 0);
+  outline: var(--border-link-focus-ring-outline, 0);
   outline-offset: 2px;
-  outline-color: var(--color-border-item-focused-uk47pl, #006ce0);
-  border-start-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-start-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  box-shadow: 0 0 0 var(--border-link-focus-ring-shadow-spread-39uvxr, 2px) var(--color-border-item-focused-uk47pl, #006ce0);
+  outline-color: var(--color-border-item-focused, #006ce0);
+  border-start-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-start-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  box-shadow: 0 0 0 var(--border-link-focus-ring-shadow-spread, 2px) var(--color-border-item-focused, #006ce0);
 }
 .breadcrumb-group-item--breadcrumb.breadcrumb-group-item--last > .breadcrumb-group-item--icon,
 .breadcrumb-group-item--ghost-breadcrumb.breadcrumb-group-item--last > .breadcrumb-group-item--icon {
@@ -86,7 +86,7 @@ export const breadcrumbGroupItemStyles = css`
 }
 .breadcrumb-group-item--breadcrumb.breadcrumb-group-item--last > .breadcrumb-group-item--anchor,
 .breadcrumb-group-item--ghost-breadcrumb.breadcrumb-group-item--last > .breadcrumb-group-item--anchor {
-  color: var(--color-text-breadcrumb-current-2mqnkk, #656871);
+  color: var(--color-text-breadcrumb-current, #656871);
   font-weight: 700;
   text-decoration: none;
   cursor: default;

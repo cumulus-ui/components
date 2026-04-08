@@ -4,12 +4,12 @@ import { css } from 'lit';
 
 export const appLayoutContentWrapperStyles = css`
 .app-layout-content-wrapper--content-wrapper {
-  padding-inline-start: var(--space-layout-content-horizontal-buc0zz, 24px);
-  padding-inline-end: var(--space-layout-content-horizontal-buc0zz, 24px);
+  padding-inline-start: var(--space-layout-content-horizontal, 24px);
+  padding-inline-end: var(--space-layout-content-horizontal, 24px);
 }
 .app-layout-content-wrapper--content-wrapper-mobile {
-  padding-inline-start: var(--space-l-2ud1p3, 20px);
-  padding-inline-end: var(--space-l-2ud1p3, 20px);
+  padding-inline-start: var(--space-l, 20px);
+  padding-inline-end: var(--space-l, 20px);
 }
 
 .app-layout-content-wrapper--content-type-dashboard {

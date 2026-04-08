@@ -5,22 +5,22 @@ import { sharedStyles } from '../internal/styles/shared.js';
 
 export const componentStyles = css`
 .root {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
 }
 
 .file-loading-overlay {
   position: absolute;
-  inset-inline-end: var(--space-static-xs-gnm0mz, 8px);
-  inset-block-end: var(--space-static-xxs-ns94dp, 4px);
+  inset-inline-end: var(--space-static-xs, 8px);
+  inset-block-end: var(--space-static-xxs, 4px);
 }
 .file-loading-overlay-single-row {
-  inset-inline-end: var(--space-static-xxl-ifa9j8, 32px);
+  inset-inline-end: var(--space-static-xxl, 32px);
 }
 
 .file-name-container {
@@ -36,21 +36,21 @@ export const componentStyles = css`
 }
 :host-context([data-awsui-focus-visible=true]) .file-name-container:focus-visible:focus {
   outline: 2px dotted transparent;
-  outline-offset: calc(var(--space-button-focus-outline-gutter-jj138g, 4px) - 1px);
+  outline-offset: calc(var(--space-button-focus-outline-gutter, 4px) - 1px);
 }
 :host-context([data-awsui-focus-visible=true]) .file-name-container:focus-visible:focus::before {
   content: " ";
   display: block;
   position: absolute;
-  inset-inline-start: calc(-1 * var(--space-button-focus-outline-gutter-jj138g, 4px));
-  inset-block-start: calc(-1 * var(--space-button-focus-outline-gutter-jj138g, 4px));
-  inline-size: calc(100% + var(--space-button-focus-outline-gutter-jj138g, 4px) + var(--space-button-focus-outline-gutter-jj138g, 4px));
-  block-size: calc(100% + var(--space-button-focus-outline-gutter-jj138g, 4px) + var(--space-button-focus-outline-gutter-jj138g, 4px));
-  border-start-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-start-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  box-shadow: 0 0 0 2px var(--color-border-item-focused-uk47pl, #006ce0);
+  inset-inline-start: calc(-1 * var(--space-button-focus-outline-gutter, 4px));
+  inset-block-start: calc(-1 * var(--space-button-focus-outline-gutter, 4px));
+  inline-size: calc(100% + var(--space-button-focus-outline-gutter, 4px) + var(--space-button-focus-outline-gutter, 4px));
+  block-size: calc(100% + var(--space-button-focus-outline-gutter, 4px) + var(--space-button-focus-outline-gutter, 4px));
+  border-start-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-start-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  box-shadow: 0 0 0 2px var(--color-border-item-focused, #006ce0);
 }
 
 .file-option-name,
@@ -65,17 +65,17 @@ export const componentStyles = css`
   inline-size: 100%;
   min-inline-size: 0;
   display: flex;
-  gap: var(--space-scaled-xs-xwoogq, 8px);
+  gap: var(--space-scaled-xs, 8px);
 }
 
 .file-option-thumbnail {
-  margin-block-start: var(--space-static-xxs-ns94dp, 4px);
+  margin-block-start: var(--space-static-xxs, 4px);
 }
 
 .file-option-thumbnail-image {
-  font-size: var(--font-size-body-s-smc8cv, 12px);
-  line-height: var(--line-height-body-s-nu5hx1, 16px);
-  letter-spacing: var(--letter-spacing-body-s-gq78ok, 0.005em);
+  font-size: var(--font-size-body-s, 12px);
+  line-height: var(--line-height-body-s, 16px);
+  letter-spacing: var(--letter-spacing-body-s, 0.005em);
   inline-size: 48px;
   block-size: 48px;
   object-fit: cover;
@@ -92,7 +92,7 @@ export const componentStyles = css`
   inline-size: calc(100% - 48px);
 }
 .file-option-metadata.single-row-loading {
-  inline-size: calc(100% - var(--size-icon-normal-levt08, 16px));
+  inline-size: calc(100% - var(--size-icon-normal, 16px));
 }
 
 .token {
@@ -100,7 +100,7 @@ export const componentStyles = css`
   block-size: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--space-xxs-hwfkai, 4px);
+  gap: var(--space-xxs, 4px);
 }
 .token-grid {
   display: grid;
@@ -118,20 +118,20 @@ export const componentStyles = css`
 .token-box {
   position: relative;
   block-size: 100%;
-  border-block: var(--border-width-token-2ukdpu, 2px) solid var(--awsui-token-style-border-color-default-6b9ypa, var(--color-border-item-selected-wl5ttm, #006ce0));
-  border-inline: var(--border-width-token-2ukdpu, 2px) solid var(--awsui-token-style-border-color-default-6b9ypa, var(--color-border-item-selected-wl5ttm, #006ce0));
-  padding-block-start: var(--space-scaled-xxs-pfm1nx, 4px);
-  padding-block-end: var(--space-scaled-xxs-pfm1nx, 4px);
-  padding-inline-start: var(--space-field-horizontal-0aq2ch, 12px);
-  padding-inline-end: var(--space-xxs-hwfkai, 4px);
+  border-block: var(--border-width-token, 2px) solid var(--awsui-token-style-border-color-default, var(--color-border-item-selected, #006ce0));
+  border-inline: var(--border-width-token, 2px) solid var(--awsui-token-style-border-color-default, var(--color-border-item-selected, #006ce0));
+  padding-block-start: var(--space-scaled-xxs, 4px);
+  padding-block-end: var(--space-scaled-xxs, 4px);
+  padding-inline-start: var(--space-field-horizontal, 12px);
+  padding-inline-end: var(--space-xxs, 4px);
   display: flex;
   align-items: flex-start;
-  background: var(--awsui-token-style-background-default-6b9ypa, var(--color-background-item-selected-9gppru, #f0fbff));
-  border-start-start-radius: var(--border-radius-token-ycnemh, 8px);
-  border-start-end-radius: var(--border-radius-token-ycnemh, 8px);
-  border-end-start-radius: var(--border-radius-token-ycnemh, 8px);
-  border-end-end-radius: var(--border-radius-token-ycnemh, 8px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  background: var(--awsui-token-style-background-default, var(--color-background-item-selected, #f0fbff));
+  border-start-start-radius: var(--border-radius-token, 8px);
+  border-start-end-radius: var(--border-radius-token, 8px);
+  border-end-start-radius: var(--border-radius-token, 8px);
+  border-end-end-radius: var(--border-radius-token, 8px);
+  color: var(--color-text-body-default, #0f141a);
   box-sizing: border-box;
 }
 .token-box.horizontal {
@@ -143,41 +143,41 @@ export const componentStyles = css`
   }
 }
 .token-box.error {
-  border-color: var(--color-border-status-error-j8acpp, #db0000);
-  border-inline-start-width: var(--border-invalid-width-3xd6e1, 8px);
+  border-color: var(--color-border-status-error, #db0000);
+  border-inline-start-width: var(--border-invalid-width, 8px);
 }
 .token-box.error > .dismiss-button {
-  color: var(--color-text-interactive-default-ugh9wp, #424650);
+  color: var(--color-text-interactive-default, #424650);
 }
 .token-box.error > .dismiss-button:hover {
-  color: var(--color-text-interactive-hover-6naf7i, #0f141a);
+  color: var(--color-text-interactive-hover, #0f141a);
 }
 .token-box.warning {
-  border-color: var(--color-border-status-warning-j40pg7, #855900);
-  border-inline-start-width: var(--border-invalid-width-3xd6e1, 8px);
+  border-color: var(--color-border-status-warning, #855900);
+  border-inline-start-width: var(--border-invalid-width, 8px);
 }
 .token-box.warning > .dismiss-button {
-  color: var(--color-text-interactive-default-ugh9wp, #424650);
+  color: var(--color-text-interactive-default, #424650);
 }
 .token-box.warning > .dismiss-button:hover {
-  color: var(--color-text-interactive-hover-6naf7i, #0f141a);
+  color: var(--color-text-interactive-hover, #0f141a);
 }
 .token-box.read-only {
-  border-color: var(--color-border-input-disabled-zgnzvk, #ebebf0);
-  background-color: var(--color-background-container-content-6u8rvp, #ffffff);
+  border-color: var(--color-border-input-disabled, #ebebf0);
+  background-color: var(--color-background-container-content, #ffffff);
   pointer-events: none;
 }
 .token-box.read-only > .dismiss-button {
-  color: var(--color-text-button-inline-icon-disabled-82hho0, #b4b4bb);
+  color: var(--color-text-button-inline-icon-disabled, #b4b4bb);
 }
 .token-box.read-only > .dismiss-button:hover {
 
   cursor: initial;
-  color: var(--color-text-button-inline-icon-disabled-82hho0, #b4b4bb);
+  color: var(--color-text-button-inline-icon-disabled, #b4b4bb);
 }
 .token-box.loading {
-  border-color: var(--color-border-control-disabled-uj7t08, #dedee3);
-  background-color: var(--color-background-container-content-6u8rvp, #ffffff);
+  border-color: var(--color-border-control-disabled, #dedee3);
+  background-color: var(--color-background-container-content, #ffffff);
 }
 `;
 

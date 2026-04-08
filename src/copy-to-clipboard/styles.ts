@@ -12,7 +12,7 @@ export const componentStyles = css`
   word-break: break-all;
 }
 .inline-container-trigger {
-  margin-inline-end: var(--space-scaled-xxs-pfm1nx, 4px);
+  margin-inline-end: var(--space-scaled-xxs, 4px);
 }
 `;
 

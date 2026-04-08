@@ -5,11 +5,11 @@ import { sharedStyles } from '../internal/styles/shared.js';
 
 export const componentStyles = css`
 .root {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
   block-size: 100%;
@@ -31,11 +31,11 @@ export const componentStyles = css`
   flex-grow: 1;
 }
 :host-context([data-awsui-focus-visible=true]) .panel > .panel-content:focus {
-  border-start-start-radius: calc(var(--border-radius-control-default-focus-ring-1uabki, 4px) + 2px);
-  border-start-end-radius: calc(var(--border-radius-control-default-focus-ring-1uabki, 4px) + 2px);
-  border-end-start-radius: calc(var(--border-radius-control-default-focus-ring-1uabki, 4px) + 2px);
-  border-end-end-radius: calc(var(--border-radius-control-default-focus-ring-1uabki, 4px) + 2px);
-  outline: 2px solid var(--color-border-item-focused-uk47pl, #006ce0);
+  border-start-start-radius: calc(var(--border-radius-control-default-focus-ring, 4px) + 2px);
+  border-start-end-radius: calc(var(--border-radius-control-default-focus-ring, 4px) + 2px);
+  border-end-start-radius: calc(var(--border-radius-control-default-focus-ring, 4px) + 2px);
+  border-end-end-radius: calc(var(--border-radius-control-default-focus-ring, 4px) + 2px);
+  outline: 2px solid var(--color-border-item-focused, #006ce0);
   outline-offset: calc(-1 * 2px);
 }
 .display-main-only > .panel {
@@ -56,11 +56,11 @@ export const componentStyles = css`
   display: none;
 }
 :host-context([data-awsui-focus-visible=true]) .content:focus {
-  border-start-start-radius: calc(var(--border-radius-control-default-focus-ring-1uabki, 4px) + 2px);
-  border-start-end-radius: calc(var(--border-radius-control-default-focus-ring-1uabki, 4px) + 2px);
-  border-end-start-radius: calc(var(--border-radius-control-default-focus-ring-1uabki, 4px) + 2px);
-  border-end-end-radius: calc(var(--border-radius-control-default-focus-ring-1uabki, 4px) + 2px);
-  outline: 2px solid var(--color-border-item-focused-uk47pl, #006ce0);
+  border-start-start-radius: calc(var(--border-radius-control-default-focus-ring, 4px) + 2px);
+  border-start-end-radius: calc(var(--border-radius-control-default-focus-ring, 4px) + 2px);
+  border-end-start-radius: calc(var(--border-radius-control-default-focus-ring, 4px) + 2px);
+  border-end-end-radius: calc(var(--border-radius-control-default-focus-ring, 4px) + 2px);
+  outline: 2px solid var(--color-border-item-focused, #006ce0);
   outline-offset: calc(-1 * 2px);
 }
 `;

@@ -24,7 +24,7 @@ export const chartPlotStyles = css`
   outline: none;
   pointer-events: none;
   fill: none;
-  stroke: var(--color-border-item-focused-uk47pl, #006ce0);
+  stroke: var(--color-border-item-focused, #006ce0);
   stroke-width: 2px;
   visibility: hidden;
 }

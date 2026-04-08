@@ -10,7 +10,7 @@ export const abstractSwitchStyles = css`
 }
 
 .abstract-switch--label {
-  color: var(--color-text-form-default-47mtz6, #0f141a);
+  color: var(--color-text-form-default, #0f141a);
 }
 
 .abstract-switch--outline {
@@ -46,22 +46,22 @@ export const abstractSwitchStyles = css`
 }
 
 .abstract-switch--description {
-  color: var(--color-text-form-secondary-1nm780, #656871);
-  font-size: var(--font-size-body-s-smc8cv, 12px);
-  line-height: var(--line-height-body-s-nu5hx1, 16px);
-  letter-spacing: var(--letter-spacing-body-s-gq78ok, 0.005em);
+  color: var(--color-text-form-secondary, #656871);
+  font-size: var(--font-size-body-s, 12px);
+  line-height: var(--line-height-body-s, 16px);
+  letter-spacing: var(--letter-spacing-body-s, 0.005em);
 }
 .abstract-switch--description-bottom-padding {
-  padding-block-end: var(--space-scaled-xxs-pfm1nx, 4px);
+  padding-block-end: var(--space-scaled-xxs, 4px);
 }
 
 .abstract-switch--label,
 .abstract-switch--description {
-  padding-inline-start: var(--space-xs-ymlm0b, 8px);
+  padding-inline-start: var(--space-xs, 8px);
 }
 .abstract-switch--label-disabled,
 .abstract-switch--description-disabled {
-  color: var(--color-text-control-disabled-upk9lz, #b4b4bb);
+  color: var(--color-text-control-disabled, #b4b4bb);
 }
 
 .abstract-switch--control {

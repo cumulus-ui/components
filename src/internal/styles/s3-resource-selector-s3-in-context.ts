@@ -7,13 +7,13 @@ export const s3ResourceSelectorS3InContextStyles = css`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  margin-block: calc(-1 * var(--space-xs-ymlm0b, 8px));
-  margin-inline: calc(-1 * var(--space-xs-ymlm0b, 8px));
+  margin-block: calc(-1 * var(--space-xs, 8px));
+  margin-inline: calc(-1 * var(--space-xs, 8px));
 
 }
 .s3-resource-selector-s3-in-context--layout > * {
-  margin-block: var(--space-xs-ymlm0b, 8px);
-  margin-inline: var(--space-xs-ymlm0b, 8px);
+  margin-block: var(--space-xs, 8px);
+  margin-inline: var(--space-xs, 8px);
 }
 .s3-resource-selector-s3-in-context--layout-uri {
   min-inline-size: 200px;
@@ -25,7 +25,7 @@ export const s3ResourceSelectorS3InContextStyles = css`
   inline-size: 20%;
 }
 .s3-resource-selector-s3-in-context--layout-divider {
-  block-size: calc(2 * var(--border-divider-section-width-uwo8my, 1px) + 2 * var(--space-scaled-xxs-pfm1nx, 4px) + var(--line-height-body-m-2mh3ke, 20px));
-  border-inline-start: var(--border-divider-section-width-uwo8my, 1px) solid var(--color-border-divider-default-nr68jt, #c6c6cd);
+  block-size: calc(2 * var(--border-divider-section-width, 1px) + 2 * var(--space-scaled-xxs, 4px) + var(--line-height-body-m, 20px));
+  border-inline-start: var(--border-divider-section-width, 1px) solid var(--color-border-divider-default, #c6c6cd);
 }
 `;

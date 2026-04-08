@@ -21,7 +21,7 @@ export const treeViewTreeItemStyles = css`
   position: relative;
 }
 .tree-view-tree-item--treeitem.tree-view-tree-item--offset {
-  margin-inline-start: var(--space-tree-view-indentation-xh9kis, 24px);
+  margin-inline-start: var(--space-tree-view-indentation, 24px);
 }
 .tree-view-tree-item--treeitem > .tree-view-tree-item--treeitem-content-wrapper {
   display: grid;
@@ -43,11 +43,11 @@ export const treeViewTreeItemStyles = css`
   inset-block-start: calc(-1 * 0px);
   inline-size: calc(100% + 0px + 0px);
   block-size: calc(100% + 0px + 0px);
-  border-start-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-start-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-start-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  border-end-end-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
-  box-shadow: 0 0 0 2px var(--color-border-item-focused-uk47pl, #006ce0);
+  border-start-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-start-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-start-radius: var(--border-radius-control-default-focus-ring, 4px);
+  border-end-end-radius: var(--border-radius-control-default-focus-ring, 4px);
+  box-shadow: 0 0 0 2px var(--color-border-item-focused, #006ce0);
 }
 .tree-view-tree-item--treeitem > .tree-view-tree-item--treeitem-content-wrapper > .tree-view-tree-item--expand-toggle-wrapper {
   display: grid;
@@ -63,7 +63,7 @@ export const treeViewTreeItemStyles = css`
 .tree-view-tree-item--treeitem > .tree-view-tree-item--treeitem-content-wrapper > .tree-view-tree-item--structured-item-wrapper {
   grid-column: 2;
   grid-row: 1/span 2;
-  padding-block: var(--space-scaled-xxxs-oo06c7, 2px);
+  padding-block: var(--space-scaled-xxxs, 2px);
   position: relative;
 }
 

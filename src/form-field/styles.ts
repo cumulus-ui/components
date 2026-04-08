@@ -6,7 +6,7 @@ import { sharedStyles } from '../internal/styles/shared.js';
 export const componentStyles = css`
 .error-icon-shake-wrapper,
 .warning-icon-shake-wrapper {
-  animation: awsui_awsui-motion-shake-horizontally_14mhv_fzxwy_1 var(--motion-duration-refresh-only-medium-5rbn3k, 165ms);
+  animation: awsui_awsui-motion-shake-horizontally_14mhv_fzxwy_1 var(--motion-duration-refresh-only-medium, 165ms);
 }
 @keyframes awsui_awsui-motion-shake-horizontally_14mhv_fzxwy_1 {
   0% {
@@ -15,7 +15,7 @@ export const componentStyles = css`
   }
   50% {
     transform: translateX(5px);
-    animation-timing-function: var(--motion-easing-refresh-only-a-ccyqaz, cubic-bezier(0, 0, 0, 1));
+    animation-timing-function: var(--motion-easing-refresh-only-a, cubic-bezier(0, 0, 0, 1));
   }
   100% {
     transform: translateX(0px);
@@ -35,7 +35,7 @@ export const componentStyles = css`
 
 .error-icon-scale-wrapper,
 .warning-icon-scale-wrapper {
-  animation: awsui_awsui-motion-scale-popup_14mhv_fzxwy_1 var(--motion-duration-refresh-only-medium-5rbn3k, 165ms) var(--motion-easing-refresh-only-a-ccyqaz, cubic-bezier(0, 0, 0, 1));
+  animation: awsui_awsui-motion-scale-popup_14mhv_fzxwy_1 var(--motion-duration-refresh-only-medium, 165ms) var(--motion-easing-refresh-only-a, cubic-bezier(0, 0, 0, 1));
 }
 @keyframes awsui_awsui-motion-scale-popup_14mhv_fzxwy_1 {
   0% {
@@ -59,7 +59,7 @@ export const componentStyles = css`
 
 .warning,
 .error {
-  animation: awsui_awsui-motion-fade-in-0_14mhv_fzxwy_1 var(--motion-duration-refresh-only-medium-5rbn3k, 165ms) var(--motion-easing-refresh-only-a-ccyqaz, cubic-bezier(0, 0, 0, 1));
+  animation: awsui_awsui-motion-fade-in-0_14mhv_fzxwy_1 var(--motion-duration-refresh-only-medium, 165ms) var(--motion-easing-refresh-only-a, cubic-bezier(0, 0, 0, 1));
 }
 @keyframes awsui_awsui-motion-fade-in-0_14mhv_fzxwy_1 {
   from {
@@ -82,11 +82,11 @@ export const componentStyles = css`
 }
 
 .root {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
   box-sizing: border-box;
@@ -94,14 +94,14 @@ export const componentStyles = css`
 
 .label {
   box-sizing: border-box;
-  color: var(--color-text-form-label-6sbm75, #0f141a);
+  color: var(--color-text-form-label, #0f141a);
   display: inline;
-  -webkit-font-smoothing: var(--font-smoothing-webkit-oemolo, antialiased);
-  -moz-osx-font-smoothing: var(--font-smoothing-moz-osx-hbm0aq, grayscale);
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  font-weight: var(--font-display-label-weight-zavpeo, 700);
-  margin-inline-end: var(--space-xs-ymlm0b, 8px);
+  -webkit-font-smoothing: var(--font-smoothing-webkit, antialiased);
+  -moz-osx-font-smoothing: var(--font-smoothing-moz-osx, grayscale);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  font-weight: var(--font-display-label-weight, 700);
+  margin-inline-end: var(--space-xs, 8px);
 }
 .label:only-child {
   margin-block: 0;
@@ -110,25 +110,25 @@ export const componentStyles = css`
 
 .info {
   display: inline-flex;
-  padding-inline-start: var(--space-xs-ymlm0b, 8px);
-  border-inline-start: var(--border-divider-section-width-uwo8my, 1px) solid var(--color-border-divider-default-nr68jt, #c6c6cd);
+  padding-inline-start: var(--space-xs, 8px);
+  border-inline-start: var(--border-divider-section-width, 1px) solid var(--color-border-divider-default, #c6c6cd);
 }
 
 .description,
 .constraint {
-  color: var(--color-text-form-secondary-1nm780, #656871);
-  font-size: var(--font-size-body-s-smc8cv, 12px);
-  line-height: var(--line-height-body-s-nu5hx1, 16px);
-  letter-spacing: var(--letter-spacing-body-s-gq78ok, 0.005em);
+  color: var(--color-text-form-secondary, #656871);
+  font-size: var(--font-size-body-s, 12px);
+  line-height: var(--line-height-body-s, 16px);
+  letter-spacing: var(--letter-spacing-body-s, 0.005em);
 }
 
 .hints,
 .constraint-has-validation-text {
-  padding-block-start: var(--space-xxs-hwfkai, 4px);
+  padding-block-start: var(--space-xxs, 4px);
 }
 
 .controls:not(.label-hidden) {
-  padding-block-start: var(--space-xxs-hwfkai, 4px);
+  padding-block-start: var(--space-xxs, 4px);
 }
 .label-wrapper:empty + .controls {
   padding-block-start: 0;
@@ -140,26 +140,26 @@ export const componentStyles = css`
 }
 
 .error {
-  color: var(--color-text-status-error-ksqavh, #db0000);
-  font-size: var(--font-size-body-s-smc8cv, 12px);
-  line-height: var(--line-height-body-s-nu5hx1, 16px);
-  letter-spacing: var(--letter-spacing-body-s-gq78ok, 0.005em);
+  color: var(--color-text-status-error, #db0000);
+  font-size: var(--font-size-body-s, 12px);
+  line-height: var(--line-height-body-s, 16px);
+  letter-spacing: var(--letter-spacing-body-s, 0.005em);
   display: flex;
   align-items: flex-start;
 }
 
 .warning {
-  color: var(--color-text-status-warning-6meo06, #855900);
-  font-size: var(--font-size-body-s-smc8cv, 12px);
-  line-height: var(--line-height-body-s-nu5hx1, 16px);
-  letter-spacing: var(--letter-spacing-body-s-gq78ok, 0.005em);
+  color: var(--color-text-status-warning, #855900);
+  font-size: var(--font-size-body-s, 12px);
+  line-height: var(--line-height-body-s, 16px);
+  letter-spacing: var(--letter-spacing-body-s, 0.005em);
   display: flex;
   align-items: flex-start;
 }
 
 .error__message,
 .warning__message {
-  margin-inline-start: var(--space-xxs-hwfkai, 4px);
+  margin-inline-start: var(--space-xxs, 4px);
 }
 
 .visually-hidden {

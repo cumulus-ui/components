@@ -16,7 +16,7 @@ export const appLayoutNotificationsStyles = css`
 .app-layout-notifications--notifications-sticky {
   inset-block-start: 0;
   position: sticky;
-  --awsui-flashbar-sticky-bottom-margin-6b9ypa: var(--space-xxl-32srm4, 32px);
+  --awsui-flashbar-sticky-bottom-margin: var(--space-xxl, 32px);
 }
 
 .app-layout-notifications--no-content-paddings {
@@ -24,6 +24,6 @@ export const appLayoutNotificationsStyles = css`
   When using the disableContentPaddings option, the Flashbar will use this custom property to add additional space
   when the notification bar is rendered, to prevent it from overlapping the content.
    */
-  --awsui-stacked-notifications-bottom-margin-6b9ypa: var(--space-scaled-l-sej05l, 20px);
+  --awsui-stacked-notifications-bottom-margin: var(--space-scaled-l, 20px);
 }
 `;

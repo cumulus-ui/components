@@ -6,7 +6,7 @@ import { sharedStyles } from '../internal/styles/shared.js';
 export const componentStyles = css`
 .icon-shake {
   display: inline-block;
-  animation: awsui_awsui-motion-shake-horizontally_1cbgc_rbfxz_1 var(--motion-duration-refresh-only-medium-5rbn3k, 165ms);
+  animation: awsui_awsui-motion-shake-horizontally_1cbgc_rbfxz_1 var(--motion-duration-refresh-only-medium, 165ms);
 }
 @keyframes awsui_awsui-motion-shake-horizontally_1cbgc_rbfxz_1 {
   0% {
@@ -15,7 +15,7 @@ export const componentStyles = css`
   }
   50% {
     transform: translateX(5px);
-    animation-timing-function: var(--motion-easing-refresh-only-a-ccyqaz, cubic-bezier(0, 0, 0, 1));
+    animation-timing-function: var(--motion-easing-refresh-only-a, cubic-bezier(0, 0, 0, 1));
   }
   100% {
     transform: translateX(0px);
@@ -33,7 +33,7 @@ export const componentStyles = css`
 }
 
 .container-fade-in {
-  animation: awsui_awsui-motion-fade-in-0_1cbgc_rbfxz_1 var(--motion-duration-refresh-only-medium-5rbn3k, 165ms) var(--motion-easing-refresh-only-a-ccyqaz, cubic-bezier(0, 0, 0, 1));
+  animation: awsui_awsui-motion-fade-in-0_1cbgc_rbfxz_1 var(--motion-duration-refresh-only-medium, 165ms) var(--motion-easing-refresh-only-a, cubic-bezier(0, 0, 0, 1));
 }
 @keyframes awsui_awsui-motion-fade-in-0_1cbgc_rbfxz_1 {
   from {
@@ -55,55 +55,55 @@ export const componentStyles = css`
 }
 
 .root {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
 }
 .root.status-error {
-  color: var(--color-text-status-error-ksqavh, #db0000);
+  color: var(--color-text-status-error, #db0000);
 }
 .root.status-warning {
-  color: var(--color-text-status-warning-6meo06, #855900);
+  color: var(--color-text-status-warning, #855900);
 }
 .root.status-success {
-  color: var(--color-text-status-success-ybmii8, #00802f);
+  color: var(--color-text-status-success, #00802f);
 }
 .root.status-info {
-  color: var(--color-text-status-info-ue8bd2, #006ce0);
+  color: var(--color-text-status-info, #006ce0);
 }
 .root.status-stopped {
-  color: var(--color-text-status-inactive-gy7337, #656871);
+  color: var(--color-text-status-inactive, #656871);
 }
 .root.status-pending {
-  color: var(--color-text-status-inactive-gy7337, #656871);
+  color: var(--color-text-status-inactive, #656871);
 }
 .root.status-in-progress {
-  color: var(--color-text-status-inactive-gy7337, #656871);
+  color: var(--color-text-status-inactive, #656871);
 }
 .root.status-loading {
-  color: var(--color-text-status-inactive-gy7337, #656871);
+  color: var(--color-text-status-inactive, #656871);
 }
 .root.status-not-started {
-  color: var(--color-text-status-inactive-gy7337, #656871);
+  color: var(--color-text-status-inactive, #656871);
 }
 .root.color-override-red {
-  color: var(--color-text-status-error-ksqavh, #db0000);
+  color: var(--color-text-status-error, #db0000);
 }
 .root.color-override-grey {
-  color: var(--color-text-status-inactive-gy7337, #656871);
+  color: var(--color-text-status-inactive, #656871);
 }
 .root.color-override-blue {
-  color: var(--color-text-status-info-ue8bd2, #006ce0);
+  color: var(--color-text-status-info, #006ce0);
 }
 .root.color-override-green {
-  color: var(--color-text-status-success-ybmii8, #00802f);
+  color: var(--color-text-status-success, #00802f);
 }
 .root.color-override-yellow {
-  color: var(--color-text-status-warning-6meo06, #855900);
+  color: var(--color-text-status-warning, #855900);
 }
 
 .container.display-inline {
@@ -120,7 +120,7 @@ export const componentStyles = css`
   word-break: break-all;
 }
 .container.display-inline-block > .icon {
-  padding-inline-end: var(--space-xxs-hwfkai, 4px);
+  padding-inline-end: var(--space-xxs, 4px);
 }
 
 .overflow-ellipsis {

@@ -5,11 +5,11 @@ import { sharedStyles } from '../internal/styles/shared.js';
 
 export const componentStyles = css`
 .root {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
 }
@@ -18,7 +18,7 @@ export const componentStyles = css`
   padding-block-start: 0;
   padding-inline-start: 0;
   padding-inline-end: 0;
-  padding-block-end: calc(var(--space-container-header-bottom-2taq8v, 8px) + var(--space-table-header-tools-full-page-bottom-9m47g6, 4px));
+  padding-block-end: calc(var(--space-container-header-bottom, 8px) + var(--space-table-header-tools-full-page-bottom, 4px));
 }
 
 .list {
@@ -29,7 +29,7 @@ export const componentStyles = css`
   padding-inline: 0;
   list-style: none;
   margin-block: 0;
-  margin-inline-start: calc(var(--space-grid-gutter-whc3jp, 20px) * -1);
+  margin-inline-start: calc(var(--space-grid-gutter, 20px) * -1);
   margin-inline-end: 0;
 }
 .list.list-grid-1 > .card {
@@ -96,26 +96,26 @@ export const componentStyles = css`
 .selection-control {
   position: absolute;
   box-sizing: border-box;
-  inline-size: calc(var(--size-control-adm93y, 16px) + 2 * var(--space-card-horizontal-default-pihe12, 20px));
+  inline-size: calc(var(--size-control, 16px) + 2 * var(--space-card-horizontal-default, 20px));
   inset-block-start: 0;
   inset-inline-end: 0;
-  padding-block: var(--space-card-vertical-default-e40tif, 16px);
-  padding-inline: var(--space-card-horizontal-default-pihe12, 20px);
+  padding-block: var(--space-card-vertical-default, 16px);
+  padding-inline: var(--space-card-horizontal-default, 20px);
 }
 
 .loading,
 .empty {
   overflow: hidden;
   text-align: center;
-  color: var(--color-text-empty-tlohug, #656871);
-  margin-block-end: var(--space-scaled-l-sej05l, 20px);
+  color: var(--color-text-empty, #656871);
+  margin-block-end: var(--space-scaled-l, 20px);
 }
 
 .has-header {
-  margin-block-start: var(--space-grid-gutter-whc3jp, 20px);
+  margin-block-start: var(--space-grid-gutter, 20px);
 }
 .has-header.refresh.header-variant-full-page {
-  margin-block-start: var(--space-scaled-s-8ozaad, 12px);
+  margin-block-start: var(--space-scaled-s, 12px);
 }
 
 .card {
@@ -125,19 +125,19 @@ export const componentStyles = css`
   margin-block: 0;
   margin-inline: 0;
   padding-block-start: 0;
-  padding-block-end: var(--space-grid-gutter-whc3jp, 20px);
-  padding-inline-start: var(--space-grid-gutter-whc3jp, 20px);
+  padding-block-end: var(--space-grid-gutter, 20px);
+  padding-inline-start: var(--space-grid-gutter, 20px);
   padding-inline-end: 0;
   list-style: none;
 }
 .card-header {
-  font-family: var(--font-family-heading-ugphat, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
-  font-size: var(--font-size-heading-m-170yiy, 18px);
-  line-height: var(--line-height-heading-m-uoaqdh, 22px);
-  letter-spacing: var(--letter-spacing-heading-m-29ewnk, -0.01em);
-  font-weight: var(--font-weight-heading-m-zf82dr, 700);
-  -webkit-font-smoothing: var(--font-smoothing-webkit-oemolo, antialiased);
-  -moz-osx-font-smoothing: var(--font-smoothing-moz-osx-hbm0aq, grayscale);
+  font-family: var(--font-family-heading, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-size: var(--font-size-heading-m, 18px);
+  line-height: var(--line-height-heading-m, 22px);
+  letter-spacing: var(--letter-spacing-heading-m, -0.01em);
+  font-weight: var(--font-weight-heading-m, 700);
+  -webkit-font-smoothing: var(--font-smoothing-webkit, antialiased);
+  -moz-osx-font-smoothing: var(--font-smoothing-moz-osx, grayscale);
 }
 .card-header-inner-selectable {
   inline-size: 90%;
@@ -149,19 +149,19 @@ export const componentStyles = css`
 .section {
   display: inline-block;
   box-sizing: border-box;
-  padding-block-end: var(--space-scaled-xs-xwoogq, 8px);
+  padding-block-end: var(--space-scaled-xs, 8px);
   padding-inline: 0;
   vertical-align: top;
 }
 .section-header {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  font-weight: var(--font-display-label-weight-zavpeo, 700);
-  color: var(--color-text-label-28gfmc, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  font-weight: var(--font-display-label-weight, 700);
+  color: var(--color-text-label, #0f141a);
 }
 
 .section:not(:first-child) {
-  padding-block-start: var(--space-xs-ymlm0b, 8px);
+  padding-block-start: var(--space-xs, 8px);
 }
 
 .section:last-child {

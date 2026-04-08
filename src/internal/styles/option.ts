@@ -4,11 +4,11 @@ import { css } from 'lit';
 
 export const optionStyles = css`
 .option--option {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
   display: flex;
@@ -25,7 +25,7 @@ export const optionStyles = css`
   font-weight: bold;
 }
 .option--option.option--parent:not(.option--disabled):not(.option--highlighted) {
-  color: var(--color-text-dropdown-group-label-2tmyik, #424650);
+  color: var(--color-text-dropdown-group-label, #424650);
 }
 
 .option--content {
@@ -58,7 +58,7 @@ export const optionStyles = css`
 }
 
 .option--label-tag {
-  padding-inline-start: var(--space-s-tvghoh, 12px);
+  padding-inline-start: var(--space-s, 12px);
   flex: auto;
   text-align: end;
 }
@@ -68,19 +68,19 @@ export const optionStyles = css`
 
 .option--tags,
 .option--description {
-  font-size: var(--font-size-body-s-smc8cv, 12px);
-  line-height: var(--line-height-body-s-nu5hx1, 16px);
-  letter-spacing: var(--letter-spacing-body-s-gq78ok, 0.005em);
-  color: var(--color-text-dropdown-item-secondary-v12lfh, #656871);
+  font-size: var(--font-size-body-s, 12px);
+  line-height: var(--line-height-body-s, 16px);
+  letter-spacing: var(--letter-spacing-body-s, 0.005em);
+  color: var(--color-text-dropdown-item-secondary, #656871);
   flex-wrap: wrap;
 }
 .option--tags.option--highlighted,
 .option--description.option--highlighted {
-  color: var(--color-text-dropdown-item-secondary-hover-de15wb, #656871);
+  color: var(--color-text-dropdown-item-secondary-hover, #656871);
 }
 .option--tags.option--selected,
 .option--description.option--selected {
-  color: var(--color-text-dropdown-item-secondary-v12lfh, #656871);
+  color: var(--color-text-dropdown-item-secondary, #656871);
 }
 
 .option--tags {
@@ -89,24 +89,24 @@ export const optionStyles = css`
 }
 
 .option--tag:not(:last-child) {
-  padding-inline-end: var(--space-m-dsumyt, 16px);
+  padding-inline-end: var(--space-m, 16px);
 }
 
 .option--icon {
-  padding-inline-end: var(--space-xs-ymlm0b, 8px);
+  padding-inline-end: var(--space-xs, 8px);
   align-content: center;
   display: flex;
   flex-shrink: 0;
 }
 
 .option--filtering-match-highlight {
-  background-color: var(--color-background-dropdown-item-filter-match-49b5vt, #f0fbff);
-  color: var(--color-text-dropdown-item-filter-match-ebhvct, #006ce0);
+  background-color: var(--color-background-dropdown-item-filter-match, #f0fbff);
+  color: var(--color-text-dropdown-item-filter-match, #006ce0);
   font-weight: bold;
 }
 
 .option--disabled {
-  color: var(--color-text-dropdown-item-disabled-8m65hf, #b4b4bb);
+  color: var(--color-text-dropdown-item-disabled, #b4b4bb);
   pointer-events: none;
 }
 .option--disabled > .option--content > .option--tags,

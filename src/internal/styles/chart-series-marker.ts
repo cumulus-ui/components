@@ -4,15 +4,15 @@ import { css } from 'lit';
 
 export const chartSeriesMarkerStyles = css`
 .chart-series-marker--marker {
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-body-default, #0f141a);
   font-weight: 400;
-  font-family: var(--font-family-base-gmnpzl, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+  font-family: var(--font-family-base, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
-  margin-inline-end: var(--space-xxs-hwfkai, 4px);
-  margin-block-start: var(--space-xxs-hwfkai, 4px);
+  margin-inline-end: var(--space-xxs, 4px);
+  margin-block-start: var(--space-xxs, 4px);
   border-start-start-radius: 2px;
   border-start-end-radius: 2px;
   border-end-start-radius: 2px;
@@ -45,7 +45,7 @@ export const chartSeriesMarkerStyles = css`
   margin-block: 2px;
   margin-inline: 2px;
   block-size: 10px;
-  background-color: var(--color-background-container-content-6u8rvp, #ffffff);
+  background-color: var(--color-background-container-content, #ffffff);
   opacity: 0.5;
 }
 .chart-series-marker--marker--dashed {
