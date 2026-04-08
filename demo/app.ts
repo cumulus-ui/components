@@ -65,6 +65,15 @@ const pageLoaders: Record<string, PageLoader> = {
   'key-value-pairs/permutations': () => import('./pages/key-value-pairs/permutations.js') as Promise<PageModule>,
   'property-filter/permutations': () => import('./pages/property-filter/permutations.js') as Promise<PageModule>,
   'table/permutations': () => import('./pages/table/permutations.js') as Promise<PageModule>,
+  'form/permutations': () => import('./pages/form/permutations.js') as Promise<PageModule>,
+  'modal/permutations': () => import('./pages/modal/permutations.js') as Promise<PageModule>,
+  'file-upload/permutations': () => import('./pages/file-upload/permutations.js') as Promise<PageModule>,
+  'calendar/permutations': () => import('./pages/calendar/permutations.js') as Promise<PageModule>,
+  'date-input/permutations': () => import('./pages/date-input/permutations.js') as Promise<PageModule>,
+  'date-picker/permutations': () => import('./pages/date-picker/permutations.js') as Promise<PageModule>,
+  'date-range-picker/permutations': () => import('./pages/date-range-picker/permutations.js') as Promise<PageModule>,
+  'attribute-editor/permutations': () => import('./pages/attribute-editor/permutations.js') as Promise<PageModule>,
+  'tag-editor/permutations': () => import('./pages/tag-editor/permutations.js') as Promise<PageModule>,
 };
 
 @customElement('demo-app')

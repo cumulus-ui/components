@@ -771,11 +771,21 @@ function auditCSSCoverage(component: string): string[] {
     'panel', 'panel-title', 'panel-section', 'panel-section-title', 'panel-footer',
     'page-size-options', 'page-size-option', 'visible-content-group-label', 'visible-content-option',
     'header-text', 'header-description', 'header-counter', '?',
+    // Wave 6: date/form/editor structural classes
+    'input-container', 'calendar-grid', 'calendar-grid-header', 'calendar-grid-wrapper',
+    'calendar-grids', 'calendar-week', 'calendar-day', 'calendar-day-empty', 'calendar-day-header',
+    'calendar-day-number', 'dropdown-body', 'mode-switch', 'mode-tab', 'mode-tab-active',
+    'absolute', 'absolute-mode', 'relative', 'relative-mode', 'relative-heading',
+    'relative-option', 'relative-option-label', 'relative-option-selected', 'relative-options',
+    'relative-radio', 'dismiss-button', 'file-upload-root', 'file-name', 'file-info',
+    'file-metadata', 'file-thumbnail', 'file-error', 'error-text', 'error-message',
+    'constraint-text', 'action-cell', 'add-section', 'tag-list',
   ]);
 
   // Per-component structural classes that are valid but not in that component's CSS
   const COMPONENT_SKIP: Record<string, Set<string>> = {
     'collection-preferences': new Set(['root']),
+    'date-input': new Set(['root']),
     'table': new Set([
       'table-loading', 'table-empty', 'header-cell', 'body-cell',
       'selection-cell', 'screenreader-only', 'header-cell-text',
