@@ -15,8 +15,8 @@ export declare namespace FlashbarProps {
     action?: unknown;
     id?: string;
     buttonText?: ButtonProps['children'];
-    onButtonClick?: ButtonProps['onClick'];
-    onDismiss?: ButtonProps['onClick'];
+    onButtonClick?: (event: CustomEvent) => void;
+    onDismiss?: (event: CustomEvent) => void;
     analyticsMetadata?: FlashbarProps.ItemAnalyticsMetadata;
     persistenceConfig?: FlashbarProps.PersistenceConfig;
   }

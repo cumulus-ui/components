@@ -16,6 +16,7 @@ const pageLoaders: Record<string, PageLoader> = {
   'badge/permutations': () => import('./pages/badge/permutations.js') as Promise<PageModule>,
   'live-region/permutations': () => import('./pages/live-region/permutations.js') as Promise<PageModule>,
   'icon/permutations': () => import('./pages/icon/permutations.js') as Promise<PageModule>,
+  'icon-provider/permutations': () => import('./pages/icon-provider/permutations.js') as Promise<PageModule>,
   'radio-group/permutations': () => import('./pages/radio-group/permutations.js') as Promise<PageModule>,
   'radio-group/form-submit': () => import('./pages/radio-group/form-submit.js') as Promise<PageModule>,
   'tiles/permutations': () => import('./pages/tiles/permutations.js') as Promise<PageModule>,
