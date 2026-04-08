@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export declare namespace AlertProps {
   type Type = 'success' | 'error' | 'warning' | 'info';
   interface Ref {
@@ -83,12 +84,35 @@ export interface AlertProps {
    * If the label is assigned via the `i18nStrings` property, this label will be ignored.
    */
   dismissAriaLabel?: string;
-  /** @slot default — Primary text displayed in the element */
-  /** @slot header — Heading text */
-  /** @slot buttonText — Displays an action button next to the message area when set */
-  /** @slot action — Specifies an action for the alert message */
-  /** @event dismiss — CustomEvent<void> */
-  /** @event buttonClick — CustomEvent<void> */
+  /**
+   * Primary text displayed in the element.
+   */
+  children?: SlotContent;
+  /**
+   * Heading text.
+   */
+  header?: SlotContent;
+  /**
+   * Displays an action button next to the message area when set.
+   * An `onButtonClick` event is fired when the user clicks it.
+   * @deprecated Replaced by `action`.
+   */
+  buttonText?: SlotContent;
+  /**
+   * Specifies an action for the alert message.
+   * Although it is technically possible to insert any content, our UX guidelines only allow you to add a button.
+   */
+  action?: SlotContent;
+  /**
+   * Fired when the user clicks the close icon that is displayed
+   * when the `dismissible` property is set to `true`.
+   */
+  onDismiss?: EventDetail<void>;
+  /**
+   * Fired when the user clicks the action button.
+   * **Deprecated** Replaced by `action`.
+   */
+  onButtonClick?: EventDetail<void>;
   /**
    * An object containing all the necessary localized strings required by the component.
    * @property {AlertProps.I18nStrings} [i18nStrings] - optional

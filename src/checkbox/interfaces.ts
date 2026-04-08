@@ -2,15 +2,23 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { BaseCheckboxProps } from './base-checkbox.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface CheckboxProps extends BaseCheckboxProps {
-  /** @slot default — The control's label that's displayed next to the checkbox */
+  /**
+   * The control's label that's displayed next to the checkbox. A state change occurs when a user clicks on it.
+   * @displayname label
+   */
+  children?: SlotContent;
   /**
    * Specifies that the component is in an indeterminate state. The behavior of this property replicates
    * the behavior of [the respective property](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Indeterminate_state_checkboxes)
    * in the native control.
    */
   indeterminate?: boolean;
-  /** @event change — CustomEvent<CheckboxProps.ChangeDetail> */
+  /**
+   * Called when the user changes the component state. The event `detail` contains the current value for the `checked` property.
+   */
+  onChange?: EventDetail<CheckboxProps.ChangeDetail>;
   /**
    * Specifies whether to add `aria-required` to the native control.
    */

@@ -1,15 +1,23 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface ContentLayoutProps {
-  /** @slot default — Use this slot to render the main content of the layout below the header */
+  /**
+   * Use this slot to render the main content of the layout below the header.
+   * @displayname content
+   */
+  children?: SlotContent;
   /**
    * Determines whether the layout has an overlap between the header and content.
    * If true, the overlap will be removed.
    * @visualrefresh
    */
   disableOverlap?: boolean;
-  /** @slot header — Use this slot to render the header content for the layout */
+  /**
+   * Use this slot to render the header content for the layout.
+   */
+  header?: SlotContent;
   /**
    * Determines the visual treatment for the header. Specifically:
    * * `default` - Does not apply any visual treatment.
@@ -30,8 +38,22 @@ export interface ContentLayoutProps {
    * In that case, the content layout will become sensitive to the state of drawers in app layout and leave the necessary padding to avoid visual overlap with those elements.
    */
   defaultPadding?: boolean;
-  /** @slot notifications — Use this slot to display [notifications](/components/flashbar/) to the content layout: */
-  /** @slot breadcrumbs — Use this slot to add the [breadcrumb group component](/components/breadcrumb-group/) to the content layout: */
+  /**
+   * Use this slot to display [notifications](/components/flashbar/) to the content layout:
+   * * If your page does not use the [app layout component](/components/app-layout/), which already offers a `notifications` slot.
+   * * If your page uses the [app layout component](/components/app-layout/) with `disableContentPaddings=true`.
+   *
+   * Do not use in conjunction with the `notifications` slot in the [app layout component](/components/app-layout/).
+   */
+  notifications?: SlotContent;
+  /**
+   * Use this slot to add the [breadcrumb group component](/components/breadcrumb-group/) to the content layout:
+   * * if your application does not use the [app layout component](/components/app-layout/), which already offers a `breadcrumbs` slot.
+   * * If your page uses the [app layout component](/components/app-layout/) with `disableContentPaddings=true`.
+   *
+   * Do not use in conjunction with the `breadcrumbs` slot in the [app layout component](/components/app-layout/).
+   */
+  breadcrumbs?: SlotContent;
   /**
    * Use this property to style the background of the header.
    *
@@ -43,5 +65,9 @@ export interface ContentLayoutProps {
    *  If set, the component will not add the default background color to the header.
    */
   headerBackgroundStyle?: string | ((mode: 'light' | 'dark') => string);
-  /** @slot secondaryHeader — Use this slot to add a secondary element inside the header */
+  /**
+   * Use this slot to add a secondary element inside the header. The secondary element will be displayed next to main header and occupy 25% of the available space.
+   * Note that the secondary header will not have a high-contrast treatement, even if you set `headerVariant` to `high-contrast`.
+   */
+  secondaryHeader?: SlotContent;
 }

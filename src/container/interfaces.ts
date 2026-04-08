@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface ContainerProps {
   /**
    * Specifies additional analytics-related metadata.
@@ -8,7 +9,10 @@ export interface ContainerProps {
    * @analytics
    */
   analyticsMetadata?: ContainerProps.AnalyticsMetadata;
-  /** @slot header — Heading element of the container */
+  /**
+   * Heading element of the container. Use the [header component](/components/header/).
+   */
+  header?: SlotContent;
   /**
    * Determines whether the container header has padding. If `true`, removes the default padding from the header.
    */
@@ -33,7 +37,10 @@ export interface ContainerProps {
    *
    */
   media?: ContainerProps.Media;
-  /** @slot default — Main content of the container */
+  /**
+   * Main content of the container.
+   */
+  children?: SlotContent;
   /**
    * Determines whether the container content has padding. If `true`, removes the default padding from the content area.
    */
@@ -46,7 +53,10 @@ export interface ContainerProps {
    * all containers to the height of the longest one, to avoid extra vertical scroll areas.
    */
   fitHeight?: boolean;
-  /** @slot footer — Footer of the container */
+  /**
+   * Footer of the container.
+   */
+  footer?: SlotContent;
   /**
    * Determines whether the container footer has padding. If `true`, removes the default padding from the footer.
    */

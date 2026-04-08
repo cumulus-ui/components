@@ -1,12 +1,13 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface TokenProps {
   /** Slot for the label of the token as text or an element.
    *
    * For `variant="inline"`, only plain text is supported, for example, strings or numbers.
    */
-  /** @slot label */
+  label?: SlotContent;
   /**
    * Adds an `aria-label` to the token.
    *
@@ -25,7 +26,7 @@ export interface TokenProps {
    *
    * When `variant="inline"`, icon size should be `small`.
    */
-  /** @slot icon */
+  icon?: SlotContent;
   /**
    * Specifies the token's visual style and functionality.
    *
@@ -42,7 +43,12 @@ export interface TokenProps {
   readOnly?: boolean;
   /** Adds an `aria-label` to the dismiss button. */
   dismissLabel?: string;
-  /** @event dismiss — CustomEvent<void> */
+  /**
+   * Called when the user clicks on the dismiss button.
+   *
+   * Make sure that you add a listener to this event to update your application state.
+   */
+  onDismiss?: EventDetail<void>;
   /**
    * Content to display in the tooltip when `variant="inline"`. The tooltip appears when the token label is truncated due to insufficient space.
    *

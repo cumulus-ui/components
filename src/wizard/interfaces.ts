@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export declare namespace WizardProps {
   interface AnalyticsMetadata {
     instanceIdentifier?: string;
@@ -90,11 +91,34 @@ export interface WizardProps {
    * Defaults to `false`.
    */
   allowSkipTo?: boolean;
-  /** @slot customPrimaryActions — Specifies right-aligned custom primary actions for the wizard */
-  /** @slot secondaryActions — Specifies left-aligned secondary actions for the wizard */
-  /** @event cancel — CustomEvent<void> */
-  /** @event submit — CustomEvent<void> */
-  /** @event navigate — CustomEvent<WizardProps.NavigateDetail> */
+  /**
+   * Specifies right-aligned custom primary actions for the wizard. Overwrites existing buttons (e.g. Cancel, Next, Finish).
+   *
+   */
+  customPrimaryActions?: SlotContent;
+  /**
+   * Specifies left-aligned secondary actions for the wizard. Use a button dropdown if multiple actions are required.
+   */
+  secondaryActions?: SlotContent;
+  /**
+   * Called when a user clicks the *cancel* button.
+   * If a user has entered data in the form, you should prompt the user with a modal before exiting the wizard flow.
+   */
+  onCancel?: EventDetail<void>;
+  /**
+   * Called when a user clicks the *submit* button.
+   */
+  onSubmit?: EventDetail<void>;
+  /**
+   * Called when a user clicks the *next* button, the *previous* button, or an enabled step link in the navigation pane.
+   *
+   * The event `detail` includes the following:
+   * - `requestedStepIndex` - The index of the requested step.
+   * - `reason` - The user action that triggered the navigation event. It can be `next` (when the user clicks the *next* button),
+   * `previous` (when the user clicks the *previous* button), `step` (an enabled step link in the navigation pane),
+   * or `skip` (when navigated using navigation pane or the *skip-to* button to the previously unvisited step).
+   */
+  onNavigate?: EventDetail<WizardProps.NavigateDetail>;
 }
 export declare namespace WizardProps {
   interface StepAnalyticsMetadata {

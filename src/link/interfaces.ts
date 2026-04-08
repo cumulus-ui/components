@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { ClickDetail as _ClickDetail, BaseNavigationDetail } from '../internal/generated/cloudscape-types.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface LinkProps {
   /**
    * Determines the visual style of the link as follows:
@@ -57,7 +58,10 @@ export interface LinkProps {
    * "button" role and `target` will not be used.
    */
   href?: string;
-  /** @slot default — The text to render inside the link */
+  /**
+   * The text to render inside the link.
+   */
+  children?: SlotContent;
   /**
    * Adds an aria-label to the HTML element.
    */
@@ -67,8 +71,18 @@ export interface LinkProps {
    * @i18n
    */
   externalIconAriaLabel?: string;
-  /** @event follow — CustomEvent<LinkProps.FollowDetail> */
-  /** @event click — CustomEvent<LinkProps.ClickDetail> */
+  /**
+   * Called when a link is clicked without any modifier keys. If the link has no `href` provided, it will be called on
+   * all clicks.
+   *
+   * If you want to implement client-side routing yourself, use this event and prevent default browser navigation
+   * (by calling `preventDefault`).
+   */
+  onFollow?: EventDetail<LinkProps.FollowDetail>;
+  /**
+   * Called when the user clicks on the link. Do not use this handler for navigation, use the `onFollow` event instead.
+   */
+  onClick?: EventDetail<LinkProps.ClickDetail>;
   /**
    * Adds a `rel` attribute to the link. If the `rel` property is provided, it overrides the default behaviour.
    * By default, the component sets the `rel` attribute to "noopener noreferrer" when `external` is `true` or `target` is `"_blank"`.

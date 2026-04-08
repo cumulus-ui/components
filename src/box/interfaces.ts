@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface BoxProps {
   /**
    * Defines the style of element to display.
@@ -112,7 +113,11 @@ export interface BoxProps {
    * Note: If you don't set it, the text color depends on the variant.
    */
   color?: BoxProps.Color;
-  /** @slot default — Content of the box */
+  /**
+   * Content of the box.
+   * @displayname content
+   */
+  children?: SlotContent;
 }
 export declare namespace BoxProps {
   type Variant = 'div' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'strong' | 'small' | 'code' | 'pre' | 'samp' | 'awsui-key-label' | 'awsui-gen-ai-label' | 'awsui-value-large' | 'awsui-inline-code';

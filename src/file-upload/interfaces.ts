@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface FileUploadProps {
   /**
    * Specifies the native file input `accept` attribute to describe the allow-list of file types.
@@ -26,7 +27,11 @@ export interface FileUploadProps {
    * Specifies the native file input `multiple` attribute to allow users entering more than one file.
    */
   multiple?: boolean;
-  /** @event change — CustomEvent<FileUploadProps.ChangeDetail> */
+  /**
+   * Called when the user selects new file(s), or removes a file.
+   * The event `detail` contains the current value of the component.
+   */
+  onChange?: EventDetail<FileUploadProps.ChangeDetail>;
   /**
    * Specifies the currently selected file(s).
    * If you want to clear the selection, use empty array.
@@ -36,9 +41,18 @@ export interface FileUploadProps {
    * Specifies the maximum number of displayed file tokens. If the property isn't set, all of the tokens are displayed.
    */
   tokenLimit?: number;
-  /** @slot constraintText — Constraint text that is displayed below the control */
-  /** @slot errorText — Text that displays as a validation error message */
-  /** @slot warningText — Text that displays as a validation warning message */
+  /**
+   * Constraint text that is displayed below the control. Use this to provide additional information about file size limit, etc.
+   */
+  constraintText?: SlotContent;
+  /**
+   * Text that displays as a validation error message.
+   */
+  errorText?: SlotContent;
+  /**
+   * Text that displays as a validation warning message.
+   */
+  warningText?: SlotContent;
   /**
    * An array of file errors corresponding to the files in the `value`.
    */

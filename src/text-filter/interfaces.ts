@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { InputAutoCorrect } from '../input/interfaces.js';
+import type { EventDetail } from '../internal/types.js';
 export interface TextFilterProps extends InputAutoCorrect {
   /**
    * The current value of the filtering input.
@@ -39,8 +40,15 @@ export interface TextFilterProps extends InputAutoCorrect {
    * Adds an `aria-label` on the filtering input.
    */
   filteringAriaLabel?: string;
-  /** @event change — CustomEvent<TextFilterProps.ChangeDetail> */
-  /** @event delayedChange — CustomEvent<TextFilterProps.ChangeDetail> */
+  /**
+   * Called when a change in filtering is caused by a user interaction. The event `detail` contains the current `filteringText`.
+   */
+  onChange?: EventDetail<TextFilterProps.ChangeDetail>;
+  /**
+   * Called after the user changes the value of the filtering input field and stops typing for a certain
+   * period of time. If you want a delayed handler to invoke a filtering API call, you can use this event in addition to `onChange`.
+   */
+  onDelayedChange?: EventDetail<TextFilterProps.ChangeDetail>;
   /**
    * An object containing CSS properties to customize the text filter's visual appearance.
    * Refer to the [style](/components/text-filter/?tabId=style) tab for more details.

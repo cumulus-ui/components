@@ -1,8 +1,14 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface HeaderProps {
-  /** @slot default — The heading text */
+  /**
+   * The heading text. Plain text is recommended. The component renders the
+   * HTML heading tag based on the specified `variant` or `headingTagOverride`.
+   * @displayname title
+   */
+  children?: SlotContent;
   /**
    * Specifies the variant of the header:
    * * `h1` - Use this for page level headers.
@@ -17,10 +23,23 @@ export interface HeaderProps {
    * provided by the variant. Using this property does not change the visual appearance of the component.
    */
   headingTagOverride?: HeaderProps.HeadingTag;
-  /** @slot description — Supplementary text below the heading */
-  /** @slot actions — Actions for the container */
-  /** @slot counter — Specifies secondary content that's displayed to the right of the heading title */
-  /** @slot info — Area next to the heading to display an Info link */
+  /**
+   * Supplementary text below the heading.
+   */
+  description?: SlotContent;
+  /**
+   * Actions for the container.
+   */
+  actions?: SlotContent;
+  /**
+   * Specifies secondary content that's displayed to the right of the heading title. This is commonly used
+   * to display resource counters in table and cards components.
+   */
+  counter?: SlotContent;
+  /**
+   * Area next to the heading to display an Info link.
+   */
+  info?: SlotContent;
 }
 export declare namespace HeaderProps {
   type Variant = 'h1' | 'h2' | 'h3' | 'awsui-h1-sticky';

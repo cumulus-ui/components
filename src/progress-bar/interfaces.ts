@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface ProgressBarProps {
   /**
    * Indicates the current progress as a percentage. The value must be between 0 and 100. Decimals are rounded.
@@ -44,11 +45,31 @@ export interface ProgressBarProps {
    * Adds `aria-describedby` to the progress bar.
    */
   ariaDescribedby?: string;
-  /** @slot label — Short description of the operation that appears at the top of the component */
-  /** @slot description — More detailed information about the operation that appears below the label */
-  /** @slot additionalInfo — Information that's displayed below the progress bar or status text */
-  /** @slot resultText — Content that's displayed when `status` is set to `error` or `success` */
-  /** @event resultButtonClick — CustomEvent<void> */
+  /**
+   * Short description of the operation that appears at the top of the component.
+   *
+   * Make sure that you always provide a label for accessibility.
+   */
+  label?: SlotContent;
+  /**
+   * More detailed information about the operation that appears below the label.
+   */
+  description?: SlotContent;
+  /**
+   * Information that's displayed below the progress bar or status text.
+   */
+  additionalInfo?: SlotContent;
+  /**
+   * Content that's displayed when `status` is set to `error` or `success`.
+   */
+  resultText?: SlotContent;
+  /**
+   * Called when the user clicks the result state button.
+   *
+   * Note: If you are using the `flash` variant, the result button isn't displayed.
+   * Use the `buttonText` property and the `onButtonClick` event listener of the flashbar item instead.
+   */
+  onResultButtonClick?: EventDetail<void>;
   /**
    * An object containing CSS properties to customize the progress bar's visual appearance.
    * Refer to the [style](/components/progress-bar/?tabId=style) tab for more details.

@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { EventDetail } from '../internal/types.js';
 export interface PaginationProps {
   /**
    * Index of the current page. The first page has an index of 1.
@@ -43,9 +44,23 @@ export interface PaginationProps {
    * @i18n
    */
   ariaLabels?: PaginationProps.Labels;
-  /** @event change — CustomEvent<PaginationProps.ChangeDetail> */
-  /** @event previousPageClick — CustomEvent<PaginationProps.PageClickDetail> */
-  /** @event nextPageClick — CustomEvent<PaginationProps.PageClickDetail> */
+  /**
+   * Called when a user interaction causes a pagination change. The event `detail` contains the new `currentPageIndex`.
+   */
+  onChange?: EventDetail<PaginationProps.ChangeDetail>;
+  /**
+   * Called when the previous page arrow is clicked. The event `detail` contains the following:
+   * * `requestedPageAvailable` (boolean) - Always set to `true`.
+   * * `requestedPageIndex` (integer) - The index of the requested page.
+   */
+  onPreviousPageClick?: EventDetail<PaginationProps.PageClickDetail>;
+  /**
+   * Called when the next page arrow is clicked. The event `detail` contains the following:
+   * * `requestedPageAvailable` (boolean) - Indicates whether the requested page is available for display.
+   *   The value can be `false` when the `openEnd` property is set to `true`.
+   * * `requestedPageIndex` (integer) - The index of the requested page.
+   */
+  onNextPageClick?: EventDetail<PaginationProps.PageClickDetail>;
 }
 export declare namespace PaginationProps {
   interface Labels {

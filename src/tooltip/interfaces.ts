@@ -2,8 +2,12 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { PopoverProps } from '../popover/interfaces.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface TooltipProps {
-  /** @slot content — Content to display in the tooltip */
+  /**
+   * Content to display in the tooltip.
+   */
+  content?: SlotContent;
   /**
    * Function that returns the element the tooltip points to.
    * Can return null if the element is not yet mounted or available.
@@ -13,7 +17,10 @@ export interface TooltipProps {
    * Determines where the tooltip is displayed when opened, relative to the trigger. If the tooltip doesn't have enough space to open in this direction, it automatically chooses a better direction based on available space.
    */
   position?: TooltipProps.Position;
-  /** @event escape — CustomEvent<void> */
+  /**
+   * Callback fired when the user presses the Escape key while the tooltip is visible.
+   */
+  onEscape?: EventDetail<void>;
 }
 export declare namespace TooltipProps {
   /**

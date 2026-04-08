@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { ButtonDropdownProps } from '../button-dropdown/interfaces.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export declare namespace AttributeEditorProps {
   interface IsItemRemovableFunction<T> {
     (item: T): boolean;
@@ -66,8 +67,14 @@ export declare namespace AttributeEditorProps {
   }
 }
 export interface AttributeEditorProps<T> {
-  /** @slot empty — Displayed when there are no items to display */
-  /** @slot additionalInfo — Displayed below the add button */
+  /**
+   * Displayed when there are no items to display.
+   */
+  empty?: SlotContent;
+  /**
+   * Displayed below the add button. Use it for additional information related to the attribute editor.
+   */
+  additionalInfo?: SlotContent;
   /**
    * Specifies the text that's displayed in the add button.
    */
@@ -100,7 +107,10 @@ export interface AttributeEditorProps<T> {
    * Determines whether the add button is hidden
    */
   hideAddButton?: boolean;
-  /** @slot additionalActions — Specifies additional actions displayed next to the add-button (or instead of the add-button if hidden) */
+  /**
+   * Specifies additional actions displayed next to the add-button (or instead of the add-button if hidden).
+   */
+  additionalActions?: SlotContent;
   /**
    * Specifies the variant to use for the add button. By default a normal button is used.
    * Use `inline-link` when using an attribute editor nested inside complex attribute editing
@@ -152,8 +162,15 @@ export interface AttributeEditorProps<T> {
    * - `ownRow` (`boolean`): Whether the button is rendered on its own row.
    */
   customRowActions?: (props: AttributeEditorProps.RowActionsProps<T>) => unknown;
-  /** @event addButtonClick — CustomEvent<void> */
-  /** @event removeButtonClick — CustomEvent<AttributeEditorProps.RemoveButtonClickDetail> */
+  /**
+   * Called when add button is clicked.
+   */
+  onAddButtonClick?: EventDetail<void>;
+  /**
+   * Called when remove button is clicked.
+   * The event `detail` contains the index of the corresponding item.
+   */
+  onRemoveButtonClick?: EventDetail<AttributeEditorProps.RemoveButtonClickDetail>;
   /**
    * An object containing all the necessary localized strings required by the component.
    * @i18n

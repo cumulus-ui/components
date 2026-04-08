@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { AutosuggestProps } from '../autosuggest/interfaces.js';
+import type { EventDetail } from '../internal/types.js';
 export interface TagEditorProps {
   /**
    * Specifies an array of tags that are displayed to the user. Each tag item has the following properties:
@@ -48,7 +49,12 @@ export interface TagEditorProps {
    * You should return a rejected promise when the `key` parameter is an empty string.
    */
   valuesRequest?: (key: string, value: string) => Promise<ReadonlyArray<string>>;
-  /** @event change — CustomEvent<TagEditorProps.ChangeDetail> */
+  /**
+   * Called when any tag operation occurs.
+   * The event `detail` object contains the full updated state of `tags`,
+   * and whether the component is in a `valid` state.
+   */
+  onChange?: EventDetail<TagEditorProps.ChangeDetail>;
 }
 export declare namespace TagEditorProps {
   interface Tag {

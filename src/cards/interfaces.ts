@@ -1,12 +1,28 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface CardsProps<T = any> {
-  /** @slot empty — Displayed only when the list of items is empty */
-  /** @slot header — Heading element of the table container */
-  /** @slot filter — Use this slot to add filtering controls to the component */
-  /** @slot pagination — Use this slot to add the [pagination component](/components/pagination/) to the component */
-  /** @slot preferences — Use this slot to add [collection preferences](/components/collection-preferences/) to the component */
+  /**
+   * Displayed only when the list of items is empty.
+   */
+  empty?: SlotContent;
+  /**
+   * Heading element of the table container. Use the [header component](/components/header/).
+   */
+  header?: SlotContent;
+  /**
+   * Use this slot to add filtering controls to the component.
+   */
+  filter?: SlotContent;
+  /**
+   * Use this slot to add the [pagination component](/components/pagination/) to the component.
+   */
+  pagination?: SlotContent;
+  /**
+   * Use this slot to add [collection preferences](/components/collection-preferences/) to the component.
+   */
+  preferences?: SlotContent;
   /**
    * Specifies the items that serve as data source for a card.
    *
@@ -128,7 +144,11 @@ export interface CardsProps<T = any> {
    * The order of `id`s doesn't influence the order of display of sections, which is controlled by the `cardDefinition` property.
    */
   visibleSections?: ReadonlyArray<string>;
-  /** @event selectionChange — CustomEvent<CardsProps.SelectionChangeDetail<T>> */
+  /**
+   * Called when a user interaction causes a change in the list of selected items.
+   * The event `detail` contains the current list of `selectedItems`.
+   */
+  onSelectionChange?: EventDetail<CardsProps.SelectionChangeDetail<T>>;
   /**
    * If set to true, the cards header remains visible when the user scrolls down.
    */

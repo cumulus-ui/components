@@ -6,6 +6,7 @@ import { ButtonProps } from '../button/interfaces.js';
 import { ExpandToViewport } from '../dropdown/interfaces.js';
 import { IconProps } from '../icon/interfaces.js';
 import { BaseNavigationDetail } from '../internal/generated/cloudscape-types.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface ButtonDropdownProps extends ExpandToViewport {
   /**
    * Array of objects with a number of supported types.
@@ -130,9 +131,20 @@ export interface ButtonDropdownProps extends ExpandToViewport {
    * Use this to provide an accessible name for buttons that don't have visible text.
    */
   ariaLabel?: string;
-  /** @slot default — Text displayed in the button dropdown trigger */
-  /** @event itemClick — CustomEvent<ButtonDropdownProps.ItemClickDetails> */
-  /** @event itemFollow — CustomEvent<ButtonDropdownProps.ItemClickDetails> */
+  /**
+   * Text displayed in the button dropdown trigger.
+   * @displayname text
+   */
+  children?: SlotContent;
+  /**
+   * Called when the user clicks on an item, and the item is not disabled.  The event detail object contains the id of the clicked item.
+   */
+  onItemClick?: EventDetail<ButtonDropdownProps.ItemClickDetails>;
+  /**
+   * Called when the user clicks on an item with the left mouse button without pressing
+   * modifier keys (that is, CTRL, ALT, SHIFT, META), and the item has an `href` set.
+   */
+  onItemFollow?: EventDetail<ButtonDropdownProps.ItemClickDetails>;
   /**
    * A standalone action that is shown prior to the dropdown trigger.
    * Use it with "primary" and "normal" variant only.

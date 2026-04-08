@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface HotspotProps {
   /**
    * ID of this hotspot. Use this ID in your tutorial data to refer to this
@@ -18,5 +19,18 @@ export interface HotspotProps {
    * overlaps too much with other content on the page.
    */
   direction?: 'top' | 'right' | 'bottom' | 'left';
-  /** @slot default — Content that should be wrapped by the hotspot icon */
+  /**
+   * Content that should be wrapped by the hotspot icon. Optional.
+   *
+   * If you supply this property, the hotspot will wrap it in an element with
+   * `flex: 1`, in order to give the children the maximum available space. The
+   * hotspot icon will be placed floating next to the children. Use
+   * this if you are wrapping e.g. an input field that should use the full
+   * available width, or a button.
+   *
+   * If you do not supply this property, the hotspot icon will behave as an inline
+   * element. Use this if you want to place the hotspot icon on a label, e.g. a
+   * checkbox's label.
+   */
+  children?: SlotContent;
 }

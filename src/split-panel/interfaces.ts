@@ -1,12 +1,13 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface SplitPanelProps {
   /**
    * Header text of the split panel.
    */
   header?: string;
-  /** @slot default */
+  children?: SlotContent;
   /**
    * Determines whether the split panel collapses or hides completely when closed.
    */
@@ -34,10 +35,22 @@ export interface SplitPanelProps {
    * ARIA label for the panel. Use this if the value passed in the `header` property is not descriptive as a label for the panel.
    */
   ariaLabel?: string;
-  /** @slot headerActions — Actions for the header */
-  /** @slot headerDescription — Supplementary text below the heading */
-  /** @slot headerInfo — The area next to the heading, used to display an Info link */
-  /** @slot headerBefore — Content displayed before the header text */
+  /**
+   * Actions for the header.
+   */
+  headerActions?: SlotContent;
+  /**
+   * Supplementary text below the heading.
+   */
+  headerDescription?: SlotContent;
+  /**
+   * The area next to the heading, used to display an Info link.
+   */
+  headerInfo?: SlotContent;
+  /**
+   * Content displayed before the header text.
+   */
+  headerBefore?: SlotContent;
 }
 export declare namespace SplitPanelProps {
   interface I18nStrings {
@@ -63,8 +76,8 @@ export interface SplitPanelContentProps {
   cappedSize: number;
   panelHeaderId?: string;
   ariaLabel?: string;
-  /** @slot resizeHandle */
-  /** @slot header */
-  /** @slot default */
+  resizeHandle?: SlotContent;
+  header?: SlotContent;
+  children?: SlotContent;
   onToggle: () => void;
 }

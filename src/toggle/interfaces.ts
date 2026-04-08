@@ -2,9 +2,14 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { BaseCheckboxProps } from '../checkbox/base-checkbox.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface ToggleProps extends BaseCheckboxProps {
-  /** @slot default — The control's label that's displayed next to the toggle */
-  /** @event change — CustomEvent<ToggleProps.ChangeDetail> */
+  /**
+   * The control's label that's displayed next to the toggle. Clicking this will invoke a state change.
+   * @displayname label
+   */
+  children?: SlotContent;
+  onChange?: EventDetail<ToggleProps.ChangeDetail>;
   /**
    * An object containing CSS properties to customize the toggle's visual appearance.
    * Refer to the [style](/components/toggle/?tabId=style) tab for more details.

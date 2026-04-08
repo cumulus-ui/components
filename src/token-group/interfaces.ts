@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { IconProps } from '../icon/interfaces.js';
+import type { EventDetail } from '../internal/types.js';
 export interface TokenGroupProps {
   /**
    * An object containing all the necessary localized strings required by the component.
@@ -37,7 +38,11 @@ export interface TokenGroupProps {
    * - `iconSvg` (unknown) - (Optional) Custom SVG icon. Equivalent to the `svg` slot of the [icon component](/components/icon/).
    */
   items?: ReadonlyArray<TokenGroupProps.Item>;
-  /** @event dismiss — CustomEvent<TokenGroupProps.DismissDetail> */
+  /**
+   *  Called when the user clicks on the dismiss button. The token won't be automatically removed.
+   *  Make sure that you add a listener to this event to update your application state.
+   */
+  onDismiss?: EventDetail<TokenGroupProps.DismissDetail>;
   /**
    * Adds an `aria-label` to the "Show fewer" button.
    * Use to assign unique labels when there are multiple token groups with the same `limitShowFewer` label on one page.

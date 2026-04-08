@@ -4,6 +4,7 @@
 import { ButtonProps } from '../button/interfaces.js';
 import { ButtonDropdownProps } from '../button-dropdown/interfaces.js';
 import { IconProps } from '../icon/interfaces.js';
+import type { SlotContent } from '../internal/types.js';
 export interface TopNavigationProps {
   /**
    * Properties describing the product identity. They are as follows:
@@ -14,7 +15,10 @@ export interface TopNavigationProps {
    * * `onFollow` (() => void) - Specifies the event handler called when the identity is clicked without any modifier keys.
    */
   identity: TopNavigationProps.Identity;
-  /** @slot search — Use with an input or autosuggest control for a global search query */
+  /**
+   * Use with an input or autosuggest control for a global search query.
+   */
+  search?: SlotContent;
   /**
    * A list of utility navigation elements.
    * The supported utility types are: `button` and `menu-dropdown`.

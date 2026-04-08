@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { PopoverProps } from '../popover/interfaces.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface SeriesInfo {
   label: string;
   color: string;
@@ -95,7 +96,11 @@ export interface PieChartProps<T extends PieChartProps.Datum = PieChartProps.Dat
    * Title for the legend.
    */
   legendTitle?: string;
-  /** @slot additionalFilters — Additional filters that you can add above the chart component */
+  /**
+   * Additional filters that you can add above the chart component.
+   * Make sure you update the `data` property when any of your custom filters change the data that's displayed.
+   */
+  additionalFilters?: SlotContent;
   /**
    * Specifies the currently highlighted data segment. Highlighting is typically the result of
    * a user hovering over or selecting a segment in the chart or the legend.
@@ -119,8 +124,14 @@ export interface PieChartProps<T extends PieChartProps.Datum = PieChartProps.Dat
    * * `error` - Indicates that an error occurred during fetch. You should provide an option to enable the user to recover.
    **/
   statusType?: 'loading' | 'finished' | 'error';
-  /** @slot empty — Content that's displayed when the data passed to the component is empty */
-  /** @slot noMatch — Content that's displayed when there is no data to display because it doesn't match the specified filter */
+  /**
+   * Content that's displayed when the data passed to the component is empty.
+   */
+  empty?: SlotContent;
+  /**
+   * Content that's displayed when there is no data to display because it doesn't match the specified filter.
+   */
+  noMatch?: SlotContent;
   /**
    * Text that's displayed when the chart is loading (that is, when `statusType` is set to `loading`).
    * @i18n
@@ -136,9 +147,21 @@ export interface PieChartProps<T extends PieChartProps.Datum = PieChartProps.Dat
    * @i18n
    **/
   recoveryText?: string;
-  /** @event recoveryClick — CustomEvent<void> */
-  /** @event highlightChange — CustomEvent<PieChartProps.HighlightChangeDetail<T>> */
-  /** @event filterChange — CustomEvent<PieChartProps.FilterChangeDetail<T>> */
+  /**
+   * Called when the user clicks the recovery button that appears when there is an error state.
+   * Use this to enable the user to retry a failed request or provide another option for the user
+   * to recover from the error.
+   */
+  onRecoveryClick?: EventDetail<void>;
+  /**
+   * Called when the highlighted segmented changes because of a user interaction.
+   */
+  onHighlightChange?: EventDetail<PieChartProps.HighlightChangeDetail<T>>;
+  /**
+   * Called when the values of the internal filter component changes.
+   * This isn't called for any custom filter components you've defined in `additionalFilters`.
+   */
+  onFilterChange?: EventDetail<PieChartProps.FilterChangeDetail<T>>;
   /**
    * ARIA label that's assigned to the chart. It should match the visible label on the page
    * (for example, in the container header). Use either `ariaLabel` or `ariaLabelledby` (you can't use both).

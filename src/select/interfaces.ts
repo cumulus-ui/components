@@ -3,6 +3,7 @@
 // License: see /NOTICE
 import { BaseDropdownHostProps, OptionsFilteringType, OptionsLoadItemsDetail } from '../dropdown/interfaces.js';
 import { OptionDefinition, OptionGroup as OptionGroupDefinition } from '../internal/generated/cloudscape-types.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface BaseSelectProps extends BaseDropdownHostProps {
   /**
    * Specifies an array of options that are displayed to the user as a dropdown list.
@@ -118,9 +119,18 @@ export interface BaseSelectProps extends BaseDropdownHostProps {
    * [accessibility guidelines](/components/select/?tabId=usage#accessibility-guidelines).
    */
   renderHighlightedAriaLive?: SelectProps.ContainingOptionAndGroupString;
-  /** @slot noMatch — Displayed for `filteringType="auto"` when there are no matches for the filtering */
-  /** @event blur — CustomEvent<void> */
-  /** @event focus — CustomEvent<void> */
+  /**
+   * Displayed for `filteringType="auto"` when there are no matches for the filtering.
+   */
+  noMatch?: SlotContent;
+  /**
+   * Called when input focus is removed from the UI control.
+   */
+  onBlur?: EventDetail<void>;
+  /**
+   * Called when input focus is set onto the UI control.
+   */
+  onFocus?: EventDetail<void>;
   /**
    * Specifies if the control is read-only, which prevents the
    * user from both modifying the value and opening the dropdown. A read-only control is still focusable.
@@ -152,7 +162,11 @@ export interface SelectProps extends BaseSelectProps {
    * If you want to clear the selection, use `null`.
    */
   selectedOption: SelectProps.Option | null;
-  /** @event change — CustomEvent<SelectProps.ChangeDetail> */
+  /**
+   * Called when the user selects an option.
+   * The event `detail` contains the current `selectedOption`.
+   */
+  onChange?: EventDetail<SelectProps.ChangeDetail>;
   /**
    * Automatically focuses the trigger when component is mounted.
    */

@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { EventDetail } from '../internal/types.js';
 export interface CalendarProps {
   /**
    * The current input value, in YYYY-MM-DD format.
@@ -59,7 +60,11 @@ export interface CalendarProps {
    * @deprecated Use `i18nStrings.previousMonthAriaLabel` instead.
    */
   previousMonthAriaLabel?: string;
-  /** @event change — CustomEvent<CalendarProps.ChangeDetail> */
+  /**
+   * Called whenever a user changes the input value (by typing, pasting, or selecting a value).
+   * The event `detail` contains the current value of the field.
+   */
+  onChange?: EventDetail<CalendarProps.ChangeDetail>;
   /**
    * An object containing all the necessary localized strings required by
    * the component.

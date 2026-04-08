@@ -4,6 +4,7 @@
 import { CalendarProps } from '../calendar/interfaces.js';
 import { ExpandToViewport } from '../dropdown/interfaces.js';
 import { TimeInputProps } from '../time-input/interfaces.js';
+import type { EventDetail } from '../internal/types.js';
 export interface DateRangePickerBaseProps {
   /**
    * The current date range value. Can be either an absolute time range
@@ -83,7 +84,11 @@ export interface DateRangePickerBaseProps {
    * Has no effect when `dateOnly` is true or `granularity` is set to 'month'.
    */
   timeInputFormat?: DateRangePickerProps.TimeInputFormat;
-  /** @event change — CustomEvent<DateRangePickerProps.ChangeDetail> */
+  /**
+   * Fired whenever a user changes the component's value.
+   * The event `detail` contains the current value of the field.
+   */
+  onChange?: EventDetail<DateRangePickerProps.ChangeDetail>;
   /**
    * The time offset from UTC in minutes that should be used to
    * display and produce values.
@@ -123,8 +128,14 @@ export interface DateRangePickerProps extends ExpandToViewport, DateRangePickerB
    * modifying the value. A read-only component can receive focus.
    */
   readOnly?: boolean;
-  /** @event focus — CustomEvent<null> */
-  /** @event blur — CustomEvent<null> */
+  /**
+   * Fired when keyboard focus is set onto the UI control.
+   */
+  onFocus?: EventDetail<null>;
+  /**
+   * Fired when keyboard focus is removed from the UI control.
+   */
+  onBlur?: EventDetail<null>;
   /**
    * A function that defines whether a particular range is valid or not.
    *

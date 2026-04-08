@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface ErrorBoundaryProps {
   /**
    * Optional identifier for the error boundary instance.
@@ -61,7 +62,10 @@ export interface ErrorBoundaryProps {
    * @i18n
    */
   i18nStrings?: ErrorBoundaryProps.I18nStrings;
-  /** @slot default — Child content rendered when no error has been captured */
+  /**
+   * Child content rendered when no error has been captured.
+   */
+  children?: SlotContent;
 }
 export declare namespace ErrorBoundaryProps {
   interface FallbackProps {
@@ -87,7 +91,7 @@ export declare namespace ErrorBoundaryProps {
   }
 }
 export interface BuiltInErrorBoundaryProps {
-  /** @slot default */
+  children?: SlotContent;
   wrapper?: (content: unknown) => unknown;
   suppressNested?: boolean;
 }

@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { IconProps } from '../icon/interfaces.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface BaseLayoutProps {
   /**
    * Specifies additional analytics-related metadata.
@@ -43,7 +44,10 @@ export interface BaseLayoutProps {
    * The active drawer id. If you want to clear the active drawer, use `null`.
    */
   activeDrawerId?: string | null;
-  /** @event drawerChange — CustomEvent<AppLayoutProps.DrawerChangeDetail> */
+  /**
+   * Fired when the active drawer is toggled.
+   */
+  onDrawerChange?: EventDetail<AppLayoutProps.DrawerChangeDetail>;
   /**
    * If `true`, disables outer paddings for the content slot.
    */
@@ -127,8 +131,16 @@ export interface BaseLayoutProps {
    * @i18n
    */
   ariaLabels?: AppLayoutProps.Labels;
-  /** @slot navigation — Navigation drawer */
-  /** @slot contentHeader — Top area of the page content */
+  /**
+   * Navigation drawer.
+   */
+  navigation?: SlotContent;
+  /**
+   * Top area of the page content.
+   * @deprecated Replaced by the `header` slot of the [content layout](/components/content-layout/) component.
+   * @visualrefresh
+   */
+  contentHeader?: SlotContent;
   /**
    * Disables overlap between `contentHeader` and `content` slots.
    * @deprecated Replaced by the `disableOverlap` property of the [content layout](/components/content-layout/) component.
@@ -142,13 +154,38 @@ export interface BaseLayoutProps {
    * @visualrefresh
    */
   headerVariant?: 'default' | 'high-contrast';
-  /** @slot content — Main content */
-  /** @slot tools — Tools drawer */
-  /** @slot notifications — Displayed on top of the main content in the scrollable area */
-  /** @slot breadcrumbs — Use this slot to add the [breadcrumb group component](/components/breadcrumb-group/) to the app layout */
-  /** @event navigationChange — CustomEvent<AppLayoutProps.ChangeDetail> */
-  /** @event toolsChange — CustomEvent<AppLayoutProps.ChangeDetail> */
-  /** @slot splitPanel — Use this slot to add the [split panel component](/components/split-panel/) to the app layout */
+  /**
+   * Main content.
+   */
+  content?: SlotContent;
+  /**
+   * Tools drawer.
+   */
+  tools?: SlotContent;
+  /**
+   * Displayed on top of the main content in the scrollable area.
+   *
+   * Conceived to contain notifications (flash messages).
+   */
+  notifications?: SlotContent;
+  /**
+   * Use this slot to add the [breadcrumb group component](/components/breadcrumb-group/) to the app layout.
+   */
+  breadcrumbs?: SlotContent;
+  /**
+   * Fired when the navigation drawer is toggled.
+   */
+  onNavigationChange?: EventDetail<AppLayoutProps.ChangeDetail>;
+  /**
+   * Fired when the tools drawer is toggled.
+   */
+  onToolsChange?: EventDetail<AppLayoutProps.ChangeDetail>;
+  /**
+   * Use this slot to add the [split panel component](/components/split-panel/) to the app layout.
+   *
+   * Note: If provided, this property should be set to `null` or `undefined` if a split panel should not be rendered.
+   */
+  splitPanel?: SlotContent;
   /**
    * The size of the split panel in pixels.
    */
@@ -165,9 +202,18 @@ export interface BaseLayoutProps {
    * On smaller screens, the panel is forced to the `'bottom'` position and the `'side'` preference becomes disabled.
    */
   splitPanelPreferences?: AppLayoutProps.SplitPanelPreferences;
-  /** @event splitPanelResize — CustomEvent<AppLayoutProps.SplitPanelResizeDetail> */
-  /** @event splitPanelToggle — CustomEvent<AppLayoutProps.ChangeDetail> */
-  /** @event splitPanelPreferencesChange — CustomEvent<AppLayoutProps.SplitPanelPreferences> */
+  /**
+   * Fired when the split panel is resized.
+   */
+  onSplitPanelResize?: EventDetail<AppLayoutProps.SplitPanelResizeDetail>;
+  /**
+   * Fired when the split panel is toggled.
+   */
+  onSplitPanelToggle?: EventDetail<AppLayoutProps.ChangeDetail>;
+  /**
+   * Fired when the split panel preferences change.
+   */
+  onSplitPanelPreferencesChange?: EventDetail<AppLayoutProps.SplitPanelPreferences>;
 }
 export interface AppLayoutProps extends BaseLayoutProps {
   /**

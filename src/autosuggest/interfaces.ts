@@ -4,6 +4,7 @@
 import { BaseDropdownHostProps, OptionsFilteringType, OptionsLoadItemsDetail } from '../dropdown/interfaces.js';
 import { BaseInputProps, InputAutoCorrect, InputClearLabel, InputKeyEvents, InputProps } from '../input/interfaces.js';
 import { OptionDefinition } from '../internal/generated/cloudscape-types.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface AutosuggestProps extends BaseInputProps, InputAutoCorrect, BaseDropdownHostProps, InputKeyEvents, InputClearLabel {
   /**
    * Specifies an array of options that are displayed to the user as a dropdown list.
@@ -107,8 +108,16 @@ export interface AutosuggestProps extends BaseInputProps, InputAutoCorrect, Base
    * should subtract 1 from `matchesCount`. If using manual filtering, you should provide your own value for `totalCount`.
    */
   filteringResultsText?: (matchesCount: number, totalCount: number) => string;
-  /** @slot empty — Specifies the text that's displayed when there aren't any suggestions to display */
-  /** @event select — CustomEvent<AutosuggestProps.SelectDetail> */
+  /**
+   * Specifies the text that's displayed when there aren't any suggestions to display.
+   * This is displayed when `statusType` is set to `finished` or it's not set at all.
+   */
+  empty?: SlotContent;
+  /**
+   * Called whenever a user selects an option in the dropdown. Don't use this event as the only way to handle user input.
+   * Instead, use `onSelect` in combination with the `onChange` handler only as an optional convenience for the user.
+   */
+  onSelect?: EventDetail<AutosuggestProps.SelectDetail>;
   /**
    * Specifies the localized string that describes an option as being selected.
    * This is required to provide a good screen reader experience. For more information, see the

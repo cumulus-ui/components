@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export declare namespace FormProps {
   interface AnalyticsMetadata {
     instanceIdentifier?: string;
@@ -10,16 +11,31 @@ export declare namespace FormProps {
   }
 }
 export interface FormProps {
-  /** @slot default — Specifies the main form content */
-  /** @slot header — Specifies the form title and optional description */
-  /** @slot errorText — Specifies a form-level validation message */
+  /**
+   * Specifies the main form content.
+   */
+  children?: SlotContent;
+  /**
+   * Specifies the form title and optional description. Use the [header component](/components/header/).
+   */
+  header?: SlotContent;
+  /**
+   * Specifies a form-level validation message.
+   */
+  errorText?: SlotContent;
   /**
    * Provides a text alternative for the error icon in the error alert.
    * @i18n
    */
   errorIconAriaLabel?: string;
-  /** @slot actions — Specifies actions for the form */
-  /** @slot secondaryActions — Specifies left-aligned secondary actions for the form */
+  /**
+   * Specifies actions for the form. You should wrap action buttons in a [space between component](/components/space-between) with `direction="horizontal"` and `size="xs"`.
+   */
+  actions?: SlotContent;
+  /**
+   * Specifies left-aligned secondary actions for the form. Use a button dropdown if multiple actions are required.
+   */
+  secondaryActions?: SlotContent;
   /**
    * Specify a form variant with one of the following:
    * * `full-page` - Use this variant when the form contains the entire content of the page.

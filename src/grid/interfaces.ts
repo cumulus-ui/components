@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface GridProps {
   /**
    * An array of element definitions that specifies how the columns must be
@@ -24,7 +25,14 @@ export interface GridProps {
    * Determines whether horizontal and vertical gutters are hidden.
    */
   disableGutters?: boolean;
-  /** @slot default — The elements to align in the grid */
+  /**
+   * The elements to align in the grid.
+   *
+   * You can provide any elements here. The number of elements
+   * should match the number of objects defined in the `gridDefinition`
+   * property.
+   */
+  children?: SlotContent;
 }
 export declare namespace GridProps {
   type Breakpoint = _Breakpoint;

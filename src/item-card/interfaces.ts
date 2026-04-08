@@ -1,13 +1,32 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface ItemCardProps {
-  /** @slot header — Heading element of the item card */
-  /** @slot description — A description or subtitle displayed below the header */
-  /** @slot footer — Footer content displayed at the bottom of the item card */
-  /** @slot actions — Actions to display in the item card header area, typically buttons or links */
-  /** @slot default — Main content of the item card */
-  /** @slot icon — Icon content displayed next to the header */
+  /**
+   * Heading element of the item card. Use this to add a title or header text.
+   */
+  header?: SlotContent;
+  /**
+   * A description or subtitle displayed below the header.
+   */
+  description?: SlotContent;
+  /**
+   * Footer content displayed at the bottom of the item card.
+   */
+  footer?: SlotContent;
+  /**
+   * Actions to display in the item card header area, typically buttons or links.
+   */
+  actions?: SlotContent;
+  /**
+   * Main content of the item card.
+   */
+  children?: SlotContent;
+  /**
+   * Icon content displayed next to the header.
+   */
+  icon?: SlotContent;
   /**
    * Removes the default padding from the header area.
    * @default false

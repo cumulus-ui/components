@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface BaseCheckboxProps {
   /**
    * Specifies if the component is selected.
@@ -34,10 +35,19 @@ export interface BaseCheckboxProps {
    * Use this if you don't have a visible label for this control.
    */
   ariaLabel?: string;
-  /** @event focus — CustomEvent<void> */
-  /** @event blur — CustomEvent<void> */
-  /** @slot default */
-  /** @slot description — Description that appears below the label */
+  /**
+   * Called when input focus is moved to the UI control.
+   */
+  onFocus?: EventDetail<void>;
+  /**
+   * Called when input focus is removed from the UI control.
+   */
+  onBlur?: EventDetail<void>;
+  children?: SlotContent;
+  /**
+   * Description that appears below the label.
+   */
+  description?: SlotContent;
   /**
    * Adds `aria-controls` attribute to the component.
    * If the component controls any secondary content (for example, another form field), use this to provide an ID referring to the secondary content.

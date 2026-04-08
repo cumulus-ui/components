@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { EventDetail } from '../internal/types.js';
 export interface TilesProps {
   /**
    * Specify a custom name for the native radio buttons. If not provided, the tiles component generates a random name.
@@ -38,7 +39,10 @@ export interface TilesProps {
    * It is set to 2 if 4 or 8 items are supplied in order to optimize the layout.
    */
   columns?: number;
-  /** @event change — CustomEvent<TilesProps.ChangeDetail> */
+  /**
+   * Called when the user selects a different tile.
+   */
+  onChange?: EventDetail<TilesProps.ChangeDetail>;
   /**
    * Adds `aria-controls` attribute to the component.
    * If the component controls any secondary content (for example, another form field), use this to provide an ID referring to the secondary content.

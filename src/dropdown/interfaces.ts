@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export type OptionsFilteringType = 'none' | 'auto' | 'manual';
 export declare namespace DropdownProps {
   interface Style {
@@ -52,18 +53,52 @@ export interface BaseDropdownHostProps extends ExpandToViewport {
    * by the `findOptionsContainer` test utility for this.
    */
   virtualScroll?: boolean;
-  /** @event loadItems — CustomEvent<OptionsLoadItemsDetail> */
+  /**
+   * Use this event to implement the asynchronous behavior for the component.
+   *
+   * The event is called in the following situations:
+   * * The user scrolls to the end of the list of options, if `statusType` is set to `pending`.
+   * * The user clicks on the recovery button in the error state.
+   * * The user types inside the input field.
+   * * The user focuses the input field.
+   *
+   * The detail object contains the following properties:
+   * * `filteringText` - The value that you need to use to fetch options.
+   * * `firstPage` - Indicates that you should fetch the first page of options that match the `filteringText`.
+   * * `samePage` - Indicates that you should fetch the same page that you have previously fetched (for example, when the user clicks on the recovery button).
+   **/
+  onLoadItems?: EventDetail<OptionsLoadItemsDetail>;
 }
 export interface DropdownProps extends ExpandToViewport {
-  /** @slot trigger — The trigger element that opens/closes the dropdown */
-  /** @slot header — Optional header content that stays fixed at the top while */
-  /** @slot footer — Optional footer content that stays fixed at the bottom while */
-  /** @slot content — Main content of the dropdown */
+  /**
+   * The trigger element that opens/closes the dropdown.
+   */
+  trigger?: SlotContent;
+  /**
+   * Optional header content that stays fixed at the top while
+   * scrolling dropdown content.
+   */
+  header?: SlotContent;
+  /**
+   * Optional footer content that stays fixed at the bottom while
+   * scrolling dropdown content.
+   * Typically used to display loading status or action buttons.
+   */
+  footer?: SlotContent;
+  /**
+   * Main content of the dropdown.
+   */
+  content?: SlotContent;
   /**
    * Open state of the dropdown.
    */
   open?: boolean;
-  /** @event outsideClick — CustomEvent<null> */
+  /**
+   * Called when the user clicks outside the dropdown. The dropdown does not
+   * close automatically - the `open` prop needs to be updated to actually close
+   * the dropdown.
+   */
+  onOutsideClick?: EventDetail<null>;
   /**
    * Minimum width for the dropdown in pixels. If no value is specified, the
    * dropdown will shrink to fit its content.
@@ -74,9 +109,21 @@ export interface DropdownProps extends ExpandToViewport {
    * dropdown will expand to fit its content.
    */
   maxWidth?: number;
-  /** @event escape — CustomEvent<void> */
-  /** @event focusEnter — CustomEvent<Pick<FocusEvent, 'target' | 'relatedTarget'>> */
-  /** @event focusLeave — CustomEvent<Pick<FocusEvent, 'target' | 'relatedTarget'>> */
+  /**
+   * Called when the user presses the Escape key while the dropdown is open.
+   * The dropdown does not close automatically - the `open` prop needs to be
+   * updated to actually close the dropdown.
+   */
+  onEscape?: EventDetail<void>;
+  /**
+   * Called when any element inside the dropdown content gains focus.
+   * This includes nested interactive elements like buttons, links, or inputs.
+   */
+  onFocusEnter?: EventDetail<Pick<FocusEvent, 'target' | 'relatedTarget'>>;
+  /**
+   * Called when focus leaves the dropdown content entirely.
+   */
+  onFocusLeave?: EventDetail<Pick<FocusEvent, 'target' | 'relatedTarget'>>;
   /**
    * Adds `role` to the dropdown content element.
    */

@@ -4,8 +4,12 @@
 import { BaseModalProps } from '../modal/interfaces.js';
 import { PaginationProps } from '../pagination/interfaces.js';
 import { TableProps } from '../table/interfaces.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface S3ResourceSelectorProps extends BaseModalProps {
-  /** @slot alert — Specifies additional information about component status */
+  /**
+   * Specifies additional information about component status.
+   */
+  alert?: SlotContent;
   /**
    * Adds `aria-labelledby` to the component. If you're using this component within a form field,
    * don't set this property because the form field component automatically sets it.
@@ -130,9 +134,19 @@ export interface S3ResourceSelectorProps extends BaseModalProps {
    * - `Size` (number) - (Optional) Size of the object version.
    */
   fetchVersions: (bucketName: string, pathPrefix: string) => Promise<ReadonlyArray<S3ResourceSelectorProps.Version>>;
-  /** @event inputBlur — CustomEvent<null> */
-  /** @event inputFocus — CustomEvent<null> */
-  /** @event change — CustomEvent<S3ResourceSelectorProps.ChangeDetail> */
+  /**
+   * Called when input focus is removed from the S3 URI input.
+   */
+  onInputBlur?: EventDetail<null>;
+  /**
+   * Called when input focus is moved to the S3 URI input.
+   */
+  onInputFocus?: EventDetail<null>;
+  /**
+   * Fired when the resource selection is changed. The event detail object contains resource that represents the full
+   * path of the selected resource and `errorText` that may contain a validation error.
+   */
+  onChange?: EventDetail<S3ResourceSelectorProps.ChangeDetail>;
 }
 interface SelectionLabels<T> {
   itemSelectionLabel: (data: TableProps.SelectionState<T>, row: T) => string;

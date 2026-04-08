@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface LiveRegionProps {
   /**
    * Whether the announcements should be made using assertive aria-live.
@@ -16,7 +17,12 @@ export interface LiveRegionProps {
    * Determines whether to visually hide the contents of the `children` slot.
    */
   hidden?: boolean;
-  /** @slot default — Use the rendered content as the source for the announcement text */
+  /**
+   * Use the rendered content as the source for the announcement text. When the
+   * text content inside this slot changes, it will be re-announced to
+   * assistive technologies.
+   */
+  children?: SlotContent;
 }
 export declare namespace LiveRegionProps {
   type TagName = 'span' | 'div';

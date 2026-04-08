@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { EventDetail } from '../internal/types.js';
 export interface FileInputProps {
   /**
    * Variant of the file input. Defaults to "button".
@@ -28,7 +29,11 @@ export interface FileInputProps {
    * Specifies the native file input `multiple` attribute to allow users entering more than one file.
    */
   multiple?: boolean;
-  /** @event change — CustomEvent<FileInputProps.ChangeDetail> */
+  /**
+   * Called when the user selects new file(s), or removes a file.
+   * The event `detail` contains the current value of the component.
+   */
+  onChange?: EventDetail<FileInputProps.ChangeDetail>;
   /**
    * Specifies the currently selected file(s).
    * If you want to clear the selection, use empty array.

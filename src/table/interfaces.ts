@@ -3,6 +3,7 @@
 // License: see /NOTICE
 import ColumnDisplayProperties = TableProps.ColumnDisplayProperties;
 import { Optional } from '../internal/generated/cloudscape-types.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface TableProps<T = any> {
   /**
    * Specifies additional analytics-related metadata.
@@ -12,9 +13,18 @@ export interface TableProps<T = any> {
    * @analytics
    */
   analyticsMetadata?: TableProps.AnalyticsMetadata;
-  /** @slot header — Heading element of the table container */
-  /** @slot footer — Footer of the table container */
-  /** @slot empty — Displayed when the `items` property is an empty array */
+  /**
+   * Heading element of the table container. Use the [header component](/components/header/).
+   */
+  header?: SlotContent;
+  /**
+   * Footer of the table container.
+   */
+  footer?: SlotContent;
+  /**
+   * Displayed when the `items` property is an empty array. Use it to render an empty or no-match state.
+   */
+  empty?: SlotContent;
   /**
    * Specifies the data that's displayed in the table rows. Each item contains the data for one row. The display of a row is handled
    * by the `cell` property of each column definition in the `columnDefinitions` property.
@@ -107,9 +117,18 @@ export interface TableProps<T = any> {
    * List of selected items.
    */
   selectedItems?: ReadonlyArray<T>;
-  /** @slot filter — Use this slot to add filtering controls to the table */
-  /** @slot pagination — Use this slot to add the [pagination component](/components/pagination/) to the table */
-  /** @slot preferences — Use this slot to add [collection preferences](/components/collection-preferences/) to the table */
+  /**
+   * Use this slot to add filtering controls to the table.
+   */
+  filter?: SlotContent;
+  /**
+   * Use this slot to add the [pagination component](/components/pagination/) to the table.
+   */
+  pagination?: SlotContent;
+  /**
+   * Use this slot to add [collection preferences](/components/collection-preferences/) to the table.
+   */
+  preferences?: SlotContent;
   /**
    * Determines whether a given item is disabled. If an item is disabled, the user can't select it.
    */
@@ -207,11 +226,38 @@ export interface TableProps<T = any> {
    * @deprecated Replaced by `columnDisplay`.
    */
   visibleColumns?: ReadonlyArray<string>;
-  /** @event columnWidthsChange — CustomEvent<TableProps.ColumnWidthsChangeDetail> */
-  /** @event sortingChange — CustomEvent<TableProps.SortingState<T>> */
-  /** @event selectionChange — CustomEvent<TableProps.SelectionChangeDetail<T>> */
-  /** @event rowClick — CustomEvent<TableProps.OnRowClickDetail<T>> */
-  /** @event rowContextMenu — CustomEvent<TableProps.OnRowContextMenuDetail<T>> */
+  /**
+   * Fired when the user resizes a table column. The event detail contains an array of column widths in pixels,
+   * including the hidden via preferences columns. Use this event to persist the column widths.
+   */
+  onColumnWidthsChange?: EventDetail<TableProps.ColumnWidthsChangeDetail>;
+  /**
+   * Called when either the column to sort by or the direction of sorting changes upon user interaction.
+   * The event detail contains the current sortingColumn and isDescending.
+   */
+  onSortingChange?: EventDetail<TableProps.SortingState<T>>;
+  /**
+   * Fired when a user interaction triggers a change in the list of selected items.
+   * The event `detail` contains the new state for `selectedItems`.
+   */
+  onSelectionChange?: EventDetail<TableProps.SelectionChangeDetail<T>>;
+  /**
+   * Note: This feature is provided for backwards compatibility. Its use is not recommended,
+   * and it may be deprecated in the future.
+   *
+   * Called when the user clicked at a table row. The event detail contains the index of the
+   * clicked row and the row object itself. Use this event to define a row click behavior.
+   */
+  onRowClick?: EventDetail<TableProps.OnRowClickDetail<T>>;
+  /**
+   * Note: This feature is provided for backwards compatibility. Its use is not recommended,
+   * and it may be deprecated in the future.
+   *
+   * Called when the user clicked at a table row with the right mouse click. The event detail
+   * contains the index of the clicked row and the row object itself. Use this event to override
+   * the default browser context menu behavior.
+   */
+  onRowContextMenu?: EventDetail<TableProps.OnRowContextMenuDetail<T>>;
   /**
    * If set to `true`, the table header remains visible when the user scrolls down.
    *
@@ -263,7 +309,11 @@ export interface TableProps<T = any> {
    * Return a promise to keep loading state while the submit request is in progress.
    */
   submitEdit?: TableProps.SubmitEditFunction<T>;
-  /** @event editCancel — CustomEvent<void> */
+  /**
+   * Called whenever user cancels an inline edit. Use this function to reset any
+   * validation states, or show warning for unsaved changes.
+   */
+  onEditCancel?: EventDetail<void>;
   /**
    * Use this property to activate advanced keyboard navigation and focusing behaviors.
    * When set to `true`, table cells become navigable with arrow keys, and the entire table has a single tab stop.

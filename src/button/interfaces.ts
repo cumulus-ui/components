@@ -3,6 +3,7 @@
 // License: see /NOTICE
 import { IconProps } from '../icon/interfaces.js';
 import { ClickDetail as _ClickDetail, BaseNavigationDetail } from '../internal/generated/cloudscape-types.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface BaseButtonProps {
   /**
    * Renders the button as disabled and prevents clicks.
@@ -33,7 +34,28 @@ export interface BaseButtonProps {
    * If you set both `iconUrl` and `iconSvg`, `iconSvg` will take precedence.
    */
   iconUrl?: string;
-  /** @slot iconSvg — Specifies the SVG of a custom icon */
+  /**
+   * Specifies the SVG of a custom icon.
+   *
+   * Use this property if you want your custom icon to inherit colors dictated by variant or hover states.
+   * When this property is set, the component will be decorated with `aria-hidden="true"`. Ensure that the `svg` element:
+   * - has attribute `focusable="false"`.
+   * - has `viewBox="0 0 16 16"`.
+   *
+   * If you set the `svg` element as the root node of the slot, the component will automatically
+   * - set `stroke="currentColor"`, `fill="none"`, and `vertical-align="top"`.
+   * - set the stroke width based on the size of the icon.
+   * - set the width and height of the SVG element based on the size of the icon.
+   *
+   * If you don't want these styles to be automatically set, wrap the `svg` element into a `span`.
+   * You can still set the stroke to `currentColor` to inherit the color of the surrounding elements.
+   *
+   * If you set both `iconUrl` and `iconSvg`, `iconSvg` will take precedence.
+   *
+   * *Note:* Remember to remove any additional elements (for example: `defs`) and related CSS classes from SVG files exported from design software.
+   * In most cases, they aren't needed, as the `svg` element inherits styles from the icon component.
+   */
+  iconSvg?: SlotContent;
   /**
    * Adds `aria-label` to the button element. Use this to provide an accessible name for buttons
    * that don't have visible text, and to distinguish between multiple buttons with identical visible text.
@@ -48,7 +70,11 @@ export interface BaseButtonProps {
    * Specifies if the `text` content wraps. If you set it to `false`, it prevents the text from wrapping.
    */
   wrapText?: boolean;
-  /** @slot default — Text displayed in the button element */
+  /**
+   * Text displayed in the button element.
+   * @displayname text
+   */
+  children?: SlotContent;
   /**
    * Adds `aria-controls` to the button. Use when the button controls the contents or presence of an element.
    */
@@ -108,8 +134,15 @@ export interface ButtonProps extends BaseButtonProps {
    * Adds `aria-haspopup` to the button element. Use when the button triggers a popup element such as a menu, listbox, tree, grid, or dialog.
    */
   ariaHaspopup?: boolean | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog';
-  /** @event click — CustomEvent<ButtonProps.ClickDetail> */
-  /** @event follow — CustomEvent<ButtonProps.FollowDetail> */
+  /**
+   * Called when the user clicks on the button and the button is not disabled or in loading state.
+   */
+  onClick?: EventDetail<ButtonProps.ClickDetail>;
+  /**
+   * Called when the user clicks on the button with the left mouse button without pressing
+   * modifier keys (that is, CTRL, ALT, SHIFT, META), and the button has an `href` set.
+   */
+  onFollow?: EventDetail<ButtonProps.FollowDetail>;
   /**
    * Sets the button width to be 100% of the parent container width. Button content is centered.
    */

@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface FormFieldProps {
   /**
    * The ID of the primary form control. You can use this to set the
@@ -23,25 +24,53 @@ export interface FormFieldProps {
    * controls stack on top of each other.
    */
   stretch?: boolean;
-  /** @slot label — The main label for the form field */
+  /**
+   * The main label for the form field.
+   */
+  label?: SlotContent;
   /**
    * An object containing all the necessary localized strings required by the component.
    * @i18n
    */
   i18nStrings?: FormFieldProps.I18nStrings;
-  /** @slot info — Use to display an 'Info' link next to the label */
-  /** @slot default — The primary form control (for example, input, textarea, etc */
-  /** @slot secondaryControl — A secondary control */
-  /** @slot description — Detailed information about the form field that's displayed below the label */
-  /** @slot constraintText — Constraint text that's displayed below the control */
+  /**
+   * Use to display an 'Info' link next to the label.
+   */
+  info?: SlotContent;
+  /**
+   * The primary form control (for example, input, textarea, etc.).
+   * @displayname control
+   */
+  children?: SlotContent;
+  /**
+   * A secondary control. You can use this for custom actions and content.
+   */
+  secondaryControl?: SlotContent;
+  /**
+   * Detailed information about the form field that's displayed below the label.
+   */
+  description?: SlotContent;
+  /**
+   * Constraint text that's displayed below the control. Use this to provide
+   * additional information about valid formats, etc.
+   */
+  constraintText?: SlotContent;
   /**
    * Character count constraint displayed adjacent to the constraintText. Use
    * this to provide an updated character count on each keypress that is debounced
    * for screen reader users.
    */
   characterCountText?: string;
-  /** @slot errorText — Text that displays as a validation error message */
-  /** @slot warningText — Text that displays as a validation warning message */
+  /**
+   * Text that displays as a validation error message. If this is set to a
+   * non-empty string, it will render the form field as invalid.
+   */
+  errorText?: SlotContent;
+  /**
+   * Text that displays as a validation warning message. If this is set to a
+   * non-empty string, it will render the form field in a warning state.
+   */
+  warningText?: SlotContent;
   /**
    * Specifies additional analytics-related metadata.
    * * `instanceIdentifier` - A unique string that identifies this component instance in your application.

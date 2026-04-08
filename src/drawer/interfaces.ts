@@ -1,9 +1,19 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface DrawerProps {
-  /** @slot header — Header of the drawer */
-  /** @slot default — Main content of the drawer */
+  /**
+   * Header of the drawer.
+   *
+   * It should contain the only `h2` used in the drawer.
+   */
+  header?: SlotContent;
+  /**
+   * Main content of the drawer.
+   *
+   */
+  children?: SlotContent;
   /**
    * Renders the drawer in a loading state. We recommend that you also set a `loadingText`.
    */
@@ -17,8 +27,17 @@ export interface DrawerProps {
    * @i18n
    */
   i18nStrings?: I18nStrings;
-  /** @slot headerActions — Actions for the header */
-  /** @slot footer — Sticky footer content that remains visible at the bottom during scroll */
+  /**
+   * Actions for the header. Available only if you specify the `header` property.
+   */
+  headerActions?: SlotContent;
+  /**
+   * Sticky footer content that remains visible at the bottom during scroll.
+   *
+   * Automatically becomes non-sticky when scrollable content area is too small
+   * to ensure content remains accessible (not covered by the footer).
+   */
+  footer?: SlotContent;
 }
 interface I18nStrings {
   /**

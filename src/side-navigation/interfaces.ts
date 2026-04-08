@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { BaseNavigationDetail } from '../internal/generated/cloudscape-types.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface SideNavigationProps {
   /**
    * Controls the header that appears at the top of the navigation component.
@@ -12,7 +13,10 @@ export interface SideNavigationProps {
    * - `logo` (object) - Specifies a logo image.
    */
   header?: SideNavigationProps.Header;
-  /** @slot itemsControl — A slot located below the header and above the items */
+  /**
+   * A slot located below the header and above the items.
+   **/
+  itemsControl?: SlotContent;
   /**
    * Specifies the `href` of the currently active link.
    * All items within the navigation with a matching `href` are highlighted.
@@ -88,8 +92,31 @@ export interface SideNavigationProps {
    *     our UX recommendation is to use only one level.
    */
   items?: ReadonlyArray<SideNavigationProps.Item>;
-  /** @event follow — CustomEvent<SideNavigationProps.FollowDetail> */
-  /** @event change — CustomEvent<SideNavigationProps.ChangeDetail> */
+  /**
+   * Fired when an anchor is clicked without any modifier (that is, CTRL, ALT, SHIFT).
+   * The event `detail` contains a definition of the clicked item.
+   * Use this event to prevent default browser navigation (by calling `preventDefault` method)
+   * and branch your own routing.
+   *
+   * If the event is prevented the `activeHref` property won't be automatically set
+   * to the href of the clicked item so you'll have to do it yourself.
+   */
+  onFollow?: EventDetail<SideNavigationProps.FollowDetail>;
+  /**
+   * Fired when the expansion state of `Section` or `ExpandablePageGroup` items changes
+   * as a result of a user interaction. The event `detail` contains an object with information about the changed item.
+   *
+   * - `item` (object) - Specifies the item that was changed.
+   * - `expanded` (boolean) - Specifies whether the item is expanded or not.
+   * - `expandableParents` (array) - A list of parent items that have a type of `Section`
+   *     or `ExpandablePageGroup`. Use this `expandableParents` array to set their expanded
+   *     state to `true` if you want your data model to keep track of the current state
+   *     of the navigation items.
+   *
+   * Note: If the expansion is a result of the activation of a nested link
+   * upon changing the `activeHref` property, this event isn't raised.
+   */
+  onChange?: EventDetail<SideNavigationProps.ChangeDetail>;
 }
 export declare namespace SideNavigationProps {
   interface Logo {

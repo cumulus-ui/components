@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { PortalProps } from '@cloudscape-design/component-toolkit/internal';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface BaseModalProps {
   /**
    * Use this property to specify a different dynamic modal root for the dialog.
@@ -56,14 +57,29 @@ export interface ModalProps extends BaseModalProps {
    * @i18n
    */
   closeAriaLabel?: string;
-  /** @slot header — Specifies a title for the modal */
-  /** @slot default — Body of the modal */
-  /** @slot footer — Specifies a footer for the modal */
+  /**
+   * Specifies a title for the modal. Although this can be empty, we suggest that you always provide a title.
+   */
+  header?: SlotContent;
+  /**
+   * Body of the modal.
+   */
+  children?: SlotContent;
+  /**
+   * Specifies a footer for the modal. If empty, the footer isn't displayed.
+   */
+  footer?: SlotContent;
   /**
    * Determines whether the modal content has padding. If `true`, removes the default padding from the content area.
    */
   disableContentPaddings?: boolean;
-  /** @event dismiss — CustomEvent<ModalProps.DismissDetail> */
+  /**
+   * Called when a user closes the modal by using the close icon button,
+   * clicking outside of the modal, or pressing ESC.
+   * The event detail contains the `reason`, which can be any of the following:
+   * `['closeButton', 'overlay', 'keyboard']`.
+   */
+  onDismiss?: EventDetail<ModalProps.DismissDetail>;
   /**
    * Specifies the HTML element where the modal is rendered.
    * If neither `modalRoot` or `getModalRoot` properties are provided, the modal will

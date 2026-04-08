@@ -4,6 +4,7 @@
 import { PropertyFilterFreeTextFiltering, PropertyFilterOperation, PropertyFilterOperator, PropertyFilterOperatorExtended, PropertyFilterOperatorForm, PropertyFilterOperatorFormat, PropertyFilterOperatorFormProps, PropertyFilterOption, PropertyFilterProperty, PropertyFilterQuery, PropertyFilterToken, PropertyFilterTokenGroup, PropertyFilterTokenType } from '@cloudscape-design/collection-hooks';
 import { AutosuggestProps } from '../autosuggest/interfaces.js';
 import { ExpandToViewport } from '../dropdown/interfaces.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface PropertyFilterProps extends ExpandToViewport {
   /**
    * If set to `true`, the filtering input will be disabled.
@@ -61,7 +62,10 @@ export interface PropertyFilterProps extends ExpandToViewport {
    * When `true`, the `query.tokens` property is ignored and `query.tokenGroups` is used instead.
    */
   enableTokenGroups?: boolean;
-  /** @event change — CustomEvent<PropertyFilterProps.Query> */
+  /**
+   * Fired when the `query` gets changed. Filter the dataset in response to this event using the values in the `detail` object.
+   */
+  onChange?: EventDetail<PropertyFilterProps.Query>;
   /**
    * An array of properties by which the data set can be filtered. Each element has the following properties:
    *
@@ -117,7 +121,16 @@ export interface PropertyFilterProps extends ExpandToViewport {
    * * defaultOperator [ComparisonOperator]: An optional parameter that changes the default operator used for free text filtering. Use this parameter only if your API does not support "contains" free test filtering terms.
    */
   freeTextFiltering?: PropertyFilterProps.FreeTextFiltering;
-  /** @event loadItems — CustomEvent<PropertyFilterProps.LoadItemsDetail> */
+  /**
+   * Use this event to asynchronously load filteringOptions, component currently needs.  The detail object contains following properties:
+   *
+   * * `filteringProperty` - The property for which you need to fetch the options.
+   * * `filteringOperator` - The operator for which you need to fetch the options.
+   * * `filteringText` - The value that you need to use to fetch options.
+   * * `firstPage` - Indicates that you should fetch the first page of options for a `filteringProperty` that match the `filteringText`.
+   * * `samePage` - Indicates that you should fetch the same page that you have previously fetched (for example, when the user clicks on the recovery button).
+   */
+  onLoadItems?: EventDetail<PropertyFilterProps.LoadItemsDetail>;
   /**
    * If you have more than 500 `filteringOptions`, enable this flag to apply a performance optimization that makes
    * the filtering experience smoother. We don't recommend enabling the feature if you have less than 500 options,
@@ -125,8 +138,16 @@ export interface PropertyFilterProps extends ExpandToViewport {
    * it removes options that are not currently in view from the DOM.
    */
   virtualScroll?: boolean;
-  /** @slot customControl — A slot located before the filtering input */
-  /** @slot customFilterActions — A slot that replaces the standard "Clear filter" button */
+  /**
+   * A slot located before the filtering input. Use it if for a Select component if your dataset supports property
+   * filter queries only after an initial filter is applied.
+   */
+  customControl?: SlotContent;
+  /**
+   * A slot that replaces the standard "Clear filter" button.
+   * When using this slot, make sure to still provide a mechanism to clear all filters.
+   */
+  customFilterActions?: SlotContent;
   /**
    * Set `asyncProperties` if you need to load `filteringProperties` asynchronously. This would cause extra `onLoadMore`
    * events to fire calling for more properties.
@@ -145,7 +166,11 @@ export interface PropertyFilterProps extends ExpandToViewport {
    * Placeholder for the filtering input.
    */
   filteringPlaceholder?: string;
-  /** @slot filteringEmpty — Displayed when there are no options to display */
+  /**
+   * Displayed when there are no options to display.
+   * This is only shown when `statusType` is set to `finished` or not set at all.
+   */
+  filteringEmpty?: SlotContent;
   /**
    * Specifies the text to display when in the loading state.
    **/
@@ -163,7 +188,11 @@ export interface PropertyFilterProps extends ExpandToViewport {
    * Use the `onLoadItems` event to perform a recovery action (for example, retrying the request).
    **/
   filteringRecoveryText?: string;
-  /** @slot filteringConstraintText — Constraint text that's displayed below the filtering input */
+  /**
+   * Constraint text that's displayed below the filtering input.
+   * Use this to provide additional information about supported filters.
+   */
+  filteringConstraintText?: SlotContent;
   /**
    * Specifies the current status of loading more options.
    * * `pending` - Indicates that no request in progress, but more options may be loaded.

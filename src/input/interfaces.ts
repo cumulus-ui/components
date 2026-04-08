@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { BaseKeyDetail } from '../internal/generated/cloudscape-types.js';
+import type { EventDetail } from '../internal/types.js';
 export interface BaseInputProps {
   /**
    * Specifies the text entered into the form element.
@@ -48,9 +49,19 @@ export interface BaseInputProps {
    * Specifies whether to add `aria-required` to the native control.
    */
   ariaRequired?: boolean;
-  /** @event blur — CustomEvent<null> */
-  /** @event focus — CustomEvent<null> */
-  /** @event change — CustomEvent<InputProps.ChangeDetail> */
+  /**
+   * Called when input focus is removed from the UI control.
+   */
+  onBlur?: EventDetail<null>;
+  /**
+   * Called when input focus is moved to the UI control.
+   */
+  onFocus?: EventDetail<null>;
+  /**
+   * Called whenever a user changes the input value (by typing or pasting).
+   * The event `detail` contains the current value of the field.
+   */
+  onChange?: EventDetail<InputProps.ChangeDetail>;
 }
 export interface InputAutoCorrect {
   /**
@@ -87,8 +98,18 @@ export interface InputSpellcheck {
   spellcheck?: boolean;
 }
 export interface InputKeyEvents {
-  /** @event keyDown — CustomEvent<InputProps.KeyDetail> */
-  /** @event keyUp — CustomEvent<InputProps.KeyDetail> */
+  /**
+   * Called when the underlying native textarea emits a `keydown` event.
+   * The event `detail` contains the `keyCode` and information
+   * about modifiers (that is, CTRL, ALT, SHIFT, META, etc.).
+   */
+  onKeyDown?: EventDetail<InputProps.KeyDetail>;
+  /**
+   * Called when the underlying native textarea emits a `keyup` event.
+   * The event `detail` contains the `keyCode` and information
+   * about modifiers (that is, CTRL, ALT, SHIFT, META, etc.).
+   */
+  onKeyUp?: EventDetail<InputProps.KeyDetail>;
 }
 export interface InputClearLabel {
   /**

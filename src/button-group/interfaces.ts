@@ -3,6 +3,7 @@
 // License: see /NOTICE
 import { ButtonDropdownProps } from '../button-dropdown/interfaces.js';
 import { IconProps } from '../icon/interfaces.js';
+import type { EventDetail } from '../internal/types.js';
 export interface ButtonGroupProps {
   /**
    * Adds `aria-label` to the button group toolbar element.
@@ -86,8 +87,14 @@ export interface ButtonGroupProps {
    * * `items` ((ButtonGroupProps.IconButton | ButtonGroupProps.MenuDropdown)[]) - The array of items that belong to this group.
    */
   items: ReadonlyArray<ButtonGroupProps.ItemOrGroup>;
-  /** @event itemClick — CustomEvent<ButtonGroupProps.ItemClickDetails> */
-  /** @event filesChange — CustomEvent<ButtonGroupProps.FilesChangeDetails> */
+  /**
+   * Called when the user clicks on an item, and the item is not disabled. The event detail object contains the id of the clicked item.
+   */
+  onItemClick?: EventDetail<ButtonGroupProps.ItemClickDetails>;
+  /**
+   * Called when the user uploads files. The event detail object contains the id and files from the file input item.
+   */
+  onFilesChange?: EventDetail<ButtonGroupProps.FilesChangeDetails>;
   /**
    * An object containing CSS properties to customize the button group's visual appearance.
    * Refer to the [style](/components/button-group/?tabId=style) tab for more details.

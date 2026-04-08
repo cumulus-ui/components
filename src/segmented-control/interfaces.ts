@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { IconProps } from '../icon/interfaces.js';
+import type { EventDetail } from '../internal/types.js';
 export interface SegmentedControlProps {
   /**
    * ID of the selected option. If you want to clear the selection, use `null`.
@@ -32,7 +33,10 @@ export interface SegmentedControlProps {
    * Adds aria-labelledby to the component. Create a visually hidden element with an ID and set this property to that ID. If you don't want the label to be visible in narrow containers, use this property instead of `label`.
    */
   ariaLabelledby?: string;
-  /** @event change — CustomEvent<SegmentedControlProps.ChangeDetail> */
+  /**
+   * Called when the user selects a different segment.
+   */
+  onChange?: EventDetail<SegmentedControlProps.ChangeDetail>;
   /**
    * An object containing CSS properties to customize the segmented control's visual appearance.
    * Refer to the [style](/components/segmented-control/?tabId=style) tab for more details.

@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { EventDetail } from '../internal/types.js';
 export interface PanelLayoutProps {
   /**
    * Position of the panel with respect to the main content
@@ -65,8 +66,15 @@ export interface PanelLayoutProps {
    * @i18n
    */
   i18nStrings?: PanelLayoutProps.I18nStrings;
-  /** @event panelResize — CustomEvent<PanelLayoutProps.PanelResizeDetail> */
-  /** @event layoutChange — CustomEvent<PanelLayoutProps.PanelResizeDetail> */
+  /**
+   * Called when the user resizes the panel.
+   */
+  onPanelResize?: EventDetail<PanelLayoutProps.PanelResizeDetail>;
+  /**
+   * Called when the panel and/or main content size changes. This can be due
+   * to user resizing or changes to the available space on the page.
+   */
+  onLayoutChange?: EventDetail<PanelLayoutProps.PanelResizeDetail>;
 }
 export declare namespace PanelLayoutProps {
   type PanelPosition = 'side-start' | 'side-end';

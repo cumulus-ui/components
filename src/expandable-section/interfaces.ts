@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export declare namespace ExpandableSectionProps {
   interface AnalyticsMetadata {
     instanceIdentifier?: string;
@@ -45,9 +46,18 @@ export interface ExpandableSectionProps {
    * Determines whether the content section's default padding is removed. This default padding is only present for the `container` variant.
    */
   disableContentPaddings?: boolean;
-  /** @slot default — Primary content displayed in the expandable section element */
-  /** @slot header — / */
-  /** @slot headerText — The heading text */
+  /**
+   * Primary content displayed in the expandable section element.
+   */
+  children?: SlotContent;
+  /**
+   * @deprecated Use `headerText` instead.
+   */
+  header?: SlotContent;
+  /**
+   * The heading text. Use plain text. When using the container variant, you can use additional header props like `headerDescription` and `headerCounter` to display other elements in the header.
+   */
+  headerText?: SlotContent;
   /**
    * Supplementary text below the heading. Use with the container, default or footer variants.
    */
@@ -69,7 +79,17 @@ export interface ExpandableSectionProps {
    * Use to assign unique labels when there are multiple expandable sections with the same header text on one page.
    */
   headerAriaLabel?: string;
-  /** @event change — CustomEvent<ExpandableSectionProps.ChangeDetail> */
-  /** @slot headerInfo — The area next to the heading, used to display an Info link */
-  /** @slot headerActions — Actions for the header */
+  /**
+   * Called when the state changes (that is, when the user expands or collapses the component).
+   * The event `detail` contains the current value of the `expanded` property.
+   */
+  onChange?: EventDetail<ExpandableSectionProps.ChangeDetail>;
+  /**
+   * The area next to the heading, used to display an Info link. Use with the container variant.
+   */
+  headerInfo?: SlotContent;
+  /**
+   * Actions for the header. Use with the default or container variant.
+   */
+  headerActions?: SlotContent;
 }

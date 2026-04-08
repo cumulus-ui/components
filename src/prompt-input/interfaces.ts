@@ -4,8 +4,13 @@
 import { IconProps } from '../icon/interfaces.js';
 import { BaseChangeDetail, BaseInputProps, InputAutoComplete, InputAutoCorrect, InputKeyEvents, InputSpellcheck } from '../input/interfaces.js';
 import { BaseKeyDetail } from '../internal/generated/cloudscape-types.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface PromptInputProps extends Omit<BaseInputProps, 'nativeInputAttributes'>, InputKeyEvents, InputAutoCorrect, InputAutoComplete, InputSpellcheck {
-  /** @event action — CustomEvent<PromptInputProps.ActionDetail> */
+  /**
+   * Called whenever a user clicks the action button or presses the "Enter" key.
+   * The event `detail` contains the current value of the field.
+   */
+  onAction?: EventDetail<PromptInputProps.ActionDetail>;
   /**
    * Determines what icon to display in the action button.
    */
@@ -16,7 +21,28 @@ export interface PromptInputProps extends Omit<BaseInputProps, 'nativeInputAttri
    * If you set both `actionButtonIconUrl` and `actionButtonIconSvg`, `actionButtonIconSvg` will take precedence.
    */
   actionButtonIconUrl?: string;
-  /** @slot actionButtonIconSvg — Specifies the SVG of a custom icon */
+  /**
+   * Specifies the SVG of a custom icon.
+   *
+   * Use this property if you want your custom icon to inherit colors dictated by variant or hover states.
+   * When this property is set, the component will be decorated with `aria-hidden="true"`. Ensure that the `svg` element:
+   * - has attribute `focusable="false"`.
+   * - has `viewBox="0 0 16 16"`.
+   *
+   * If you set the `svg` element as the root node of the slot, the component will automatically
+   * - set `stroke="currentColor"`, `fill="none"`, and `vertical-align="top"`.
+   * - set the stroke width based on the size of the icon.
+   * - set the width and height of the SVG element based on the size of the icon.
+   *
+   * If you don't want these styles to be automatically set, wrap the `svg` element into a `span`.
+   * You can still set the stroke to `currentColor` to inherit the color of the surrounding elements.
+   *
+   * If you set both `actionButtonIconUrl` and `actionButtonIconSvg`, `iconSvg` will take precedence.
+   *
+   * *Note:* Remember to remove any additional elements (for example: `defs`) and related CSS classes from SVG files exported from design software.
+   * In most cases, they aren't needed, as the `svg` element inherits styles from the icon component.
+   */
+  actionButtonIconSvg?: SlotContent;
   /**
    * Specifies alternate text for a custom icon. We recommend that you provide this for accessibility.
    * This property is ignored if you use a predefined icon or if you set your custom icon using the `iconSvg` slot.
@@ -40,9 +66,21 @@ export interface PromptInputProps extends Omit<BaseInputProps, 'nativeInputAttri
    * Defaults to 3. Use -1 for infinite rows.
    */
   maxRows?: number;
-  /** @slot customPrimaryAction — Use this to replace the primary action */
-  /** @slot secondaryActions — Use this slot to add secondary actions to the prompt input */
-  /** @slot secondaryContent — Use this slot to add secondary content, such as file attachments, to the prompt input */
+  /**
+   * Use this to replace the primary action.
+   * If this is provided then any other `actionButton*` properties will be ignored.
+   * Note that you should still provide an `onAction` function in order to handle keyboard submission.
+   *
+   */
+  customPrimaryAction?: SlotContent;
+  /**
+   * Use this slot to add secondary actions to the prompt input.
+   */
+  secondaryActions?: SlotContent;
+  /**
+   * Use this slot to add secondary content, such as file attachments, to the prompt input.
+   */
+  secondaryContent?: SlotContent;
   /**
    * Determines whether the secondary actions area of the input has padding. If true, removes the default padding from the secondary actions area.
    */

@@ -3,6 +3,7 @@
 // License: see /NOTICE
 import { ButtonProps } from '../button/interfaces.js';
 import { ContainerProps } from '../container/interfaces.js';
+import type { SlotContent, EventDetail } from '../internal/types.js';
 export interface TabsProps {
   /**
    * Specifies the tabs to display. Each tab object has the following properties:
@@ -30,7 +31,13 @@ export interface TabsProps {
    *   - `'lazy'`: Like 'eager', but content is only rendered after the tab is first activated.
    */
   tabs: ReadonlyArray<TabsProps.Tab>;
-  /** @slot actions — Actions for the tabs header, displayed next to the list of tabs */
+  /**
+   * Actions for the tabs header, displayed next to the list of tabs.
+   * Use this to add a button or button dropdown that performs actions on the
+   * entire tab list. We recommend a maximum of one interactive element to
+   * minimize the number of keyboard tab stops between the tab list and content.
+   */
+  actions?: SlotContent;
   /**
    * The possible visual variants of tabs are the following:
    * * `default` - Use in any context.
@@ -39,7 +46,11 @@ export interface TabsProps {
    * @visualrefresh `stacked` variant
    */
   variant?: TabsProps.Variant;
-  /** @event change — CustomEvent<TabsProps.ChangeDetail> */
+  /**
+   * Called whenever the user selects a different tab.
+   * The event's `detail` contains the new `activeTabId`.
+   */
+  onChange?: EventDetail<TabsProps.ChangeDetail>;
   /**
    * The `id` of the currently active tab.
    * * If you don't set this property, the component activates the first tab and switches tabs automatically when a tab header is clicked (that is, uncontrolled behavior).

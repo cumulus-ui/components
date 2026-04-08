@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { ColumnLayoutBreakpoint } from './internal.js';
+import type { SlotContent } from '../internal/types.js';
 export interface ColumnLayoutProps {
   /**
    * Specifies the number of columns in each grid row.
@@ -29,7 +30,10 @@ export interface ColumnLayoutProps {
    * and the maximum number of columns as defined by the `columns` property.
    */
   minColumnWidth?: number;
-  /** @slot default — The columns to render */
+  /**
+   * The columns to render.
+   */
+  children?: SlotContent;
 }
 export declare namespace ColumnLayoutProps {
   type Variant = 'default' | 'text-grid';

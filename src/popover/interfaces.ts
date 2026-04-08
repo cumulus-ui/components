@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface PopoverProps {
   /**
    * Determines where the popover is displayed when opened, relative to the trigger.
@@ -34,12 +35,19 @@ export interface PopoverProps {
    * wrapping and truncates it with an ellipsis.
    */
   wrapTriggerText?: boolean;
-  /** @slot default — Element that triggers the popover when selected by the user */
+  /**
+   * Element that triggers the popover when selected by the user.
+   * @displayname trigger
+   */
+  children?: SlotContent;
   /**
    * Specifies optional header text for the popover.
    */
   header?: string;
-  /** @slot content — Content of the popover */
+  /**
+   * Content of the popover.
+   */
+  content?: SlotContent;
   /**
    * Determines whether the dismiss button is shown in the popover body.
    */

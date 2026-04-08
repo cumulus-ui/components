@@ -274,19 +274,19 @@ function pass3(content: string): string {
         if (pName.startsWith('native') && pName.includes('Attribute')) {
           i = skipMultilineProp(lines, peek); continue;
         }
-        // React.ReactNode → @slot
+        // React.ReactNode → SlotContent (keep as typed member)
         if (/^\w+\??\s*:\s*React\.ReactNode\s*;?\s*$/.test(next)) {
-          const slot = pName === 'children' ? 'default' : pName;
-          const desc = jsdocFirstLine(jsdoc);
-          out.push(`  /** @slot ${slot}${desc ? ` — ${desc}` : ''} */`);
+          const slot = pName === 'children' ? 'children' : pName;
+          out.push(...stripAwsui(jsdoc));
+          out.push(`  ${slot}?: SlotContent;`);
           i = skipMultilineProp(lines, peek); continue;
         }
-        // Event handler → @event (may be multiline)
+        // Event handler → EventDetail<T> (keep as typed member)
         if (/^\w+\??\s*:\s*(?:Non)?CancelableEventHandler/.test(next)) {
-          const ev = eventName(pName);
           const fullProp = lines.slice(peek, skipMultilineProp(lines, peek)).map(l => l.trim()).join(' ');
           const det = extractDetail(fullProp);
-          out.push(`  /** @event ${ev} — CustomEvent<${det}> */`);
+          out.push(...stripAwsui(jsdoc));
+          out.push(`  ${pName}?: EventDetail<${det}>;`);
           i = skipMultilineProp(lines, peek); continue;
         }
       }
@@ -304,17 +304,16 @@ function pass3(content: string): string {
         continue;
       }
       if (/^\w+\??\s*:\s*React\.ReactNode\s*;?\s*$/.test(trim)) {
-        const slot = pName === 'children' ? 'default' : pName;
-        out.push(`  /** @slot ${slot} */`);
+        const slot = pName === 'children' ? 'children' : pName;
+        out.push(`  ${slot}?: SlotContent;`);
         i = skipMultilineProp(lines, i);
         continue;
       }
       if (/^\w+\??\s*:\s*(?:Non)?CancelableEventHandler/.test(trim)) {
-        const ev = eventName(pName);
         const end = skipMultilineProp(lines, i);
         const fullProp = lines.slice(i, end).map(l => l.trim()).join(' ');
         const det = extractDetail(fullProp);
-        out.push(`  /** @event ${ev} — CustomEvent<${det}> */`);
+        out.push(`  ${pName}?: EventDetail<${det}>;`);
         i = end;
         continue;
       }
@@ -425,26 +424,35 @@ function pass5(content: string, stripped: Set<string>): string {
 
   for (const [local, spec] of Object.entries(SHARED_TYPE_EXPORTS)) {
     if (!stripped.has(local)) continue;
-    // Check whether the name still appears in the body (outside import lines)
     const bodyLines = content.split('\n').filter(l => !l.trim().startsWith('import '));
     const body = bodyLines.join('\n');
     const re = new RegExp(`\\b${local}\\b`);
     if (re.test(body)) needed.push(spec);
   }
 
-  if (needed.length === 0) return content;
+  const imports: string[] = [];
+  if (needed.length > 0) {
+    imports.push(`import { ${[...new Set(needed)].join(', ')} } from '${SHARED_TYPES_REL}';`);
+  }
 
-  const importLine = `import { ${[...new Set(needed)].join(', ')} } from '${SHARED_TYPES_REL}';`;
+  const body = content.split('\n').filter(l => !l.trim().startsWith('import ')).join('\n');
+  const typesNeeded: string[] = [];
+  if (/\bSlotContent\b/.test(body)) typesNeeded.push('SlotContent');
+  if (/\bEventDetail\b/.test(body)) typesNeeded.push('EventDetail');
+  if (typesNeeded.length > 0) {
+    imports.push(`import type { ${typesNeeded.join(', ')} } from '../internal/types.js';`);
+  }
+
+  if (imports.length === 0) return content;
+
   const lines = content.split('\n');
-
-  // Insert after the last existing import (or at the top)
   let insertIdx = 0;
   for (let j = 0; j < lines.length; j++) {
     const t = lines[j].trim();
     if (t.startsWith('import ') || t === '') insertIdx = j + 1;
     else break;
   }
-  lines.splice(insertIdx, 0, importLine);
+  lines.splice(insertIdx, 0, ...imports);
   return lines.join('\n');
 }
 
@@ -583,8 +591,12 @@ interface ManifestEntry {
 function extractAnnotations(content: string): { slots: string[]; events: string[] } {
   const slots: string[] = [];
   const events: string[] = [];
-  for (const m of content.matchAll(/@slot\s+(\w+)/g)) slots.push(m[1]);
-  for (const m of content.matchAll(/@event\s+(\w+)/g)) events.push(m[1]);
+  for (const m of content.matchAll(/^\s+(\w+)\?\s*:\s*SlotContent\s*;/gm)) {
+    slots.push(m[1] === 'children' ? 'default' : m[1]);
+  }
+  for (const m of content.matchAll(/^\s+(on\w+)\?\s*:\s*EventDetail/gm)) {
+    events.push(eventName(m[1]));
+  }
   return { slots: [...new Set(slots)], events: [...new Set(events)] };
 }
 

@@ -2,6 +2,7 @@
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
 import { StatusIndicatorProps } from '../status-indicator/interfaces.js';
+import type { SlotContent } from '../internal/types.js';
 export interface StepsProps {
   /**
    * An array of individual steps
@@ -27,9 +28,9 @@ export interface StepsProps {
    *
    */
   renderStep?: (step: StepsProps.Step) => {
-  /** @slot header */
-  /** @slot details */
-  /** @slot icon */
+  header?: SlotContent;
+  details?: SlotContent;
+  icon?: SlotContent;
   };
   /**
    * Provides an `aria-label` to the progress steps container.

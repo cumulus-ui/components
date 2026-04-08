@@ -1,8 +1,19 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { SlotContent } from '../internal/types.js';
 export interface NavigableGroupProps {
-  /** @slot default — The children that will be rendered inside the navigation group */
+  /**
+   * The children that will be rendered inside the navigation group.
+   *
+   * The following Cloudscape components are supported, but do not
+   * need to be direct children of the group:
+   * - Button
+   * - Button dropdown
+   * - Toggle button
+   * - Link
+   */
+  children?: SlotContent;
   /**
    * A method that should return a unique identifier for a given element.
    * The element passed will be the first focusable descendent of a child component.

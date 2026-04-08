@@ -1,6 +1,7 @@
 // AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
 // @ts-nocheck — references Cloudscape-internal types not yet generated
 // License: see /NOTICE
+import type { EventDetail } from '../internal/types.js';
 export interface RadioGroupProps {
   /**
    * Specify a custom name for the radio buttons. If not provided, the radio group generates a random name.
@@ -36,7 +37,10 @@ export interface RadioGroupProps {
    * If the radio group controls any secondary content (for example, another form field), use this to provide an ID referring to the secondary content.
    */
   ariaControls?: string;
-  /** @event change — CustomEvent<RadioGroupProps.ChangeDetail> */
+  /**
+   * Called when the user selects a different radio button. The event `detail` contains the current `value`.
+   */
+  onChange?: EventDetail<RadioGroupProps.ChangeDetail>;
   /**
    * @deprecated Has no effect.
    */
