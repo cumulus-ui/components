@@ -60,7 +60,7 @@ export class CsAlertInternal extends CsBaseElement {
     const alertClasses = {
       'alert': true,
       [`type-${this.type}`]: true,
-      'icon-size-medium': true,
+      'icon-size-normal': true,
     };
 
     return html`
@@ -71,7 +71,6 @@ export class CsAlertInternal extends CsBaseElement {
               <div class="text icon">
                 <cs-icon
                   name=${iconName}
-                  size="medium"
                   aria-label=${ifDefined(this.statusIconAriaLabel || undefined)}
                 ></cs-icon>
               </div>
@@ -79,7 +78,7 @@ export class CsAlertInternal extends CsBaseElement {
                 ${this.header
                   ? html`<div class="header">${this.header}</div>`
                   : nothing}
-                <div>
+                <div class="content">
                   <slot></slot>
                 </div>
               </div>
