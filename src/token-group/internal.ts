@@ -11,6 +11,19 @@ import '../icon/index.js';
 
 const hostStyles = css`:host { display: block; }`;
 
+const inventedStyles = css`
+  .label-tag {
+    display: inline-block;
+    margin-inline-start: var(--space-xxs-hwfkai, 4px);
+    font-size: var(--font-body-s-size-ukbcbk, 12px);
+    color: var(--color-text-body-secondary-fdstdf, #5f6b7a);
+  }
+  .tags {
+    display: inline;
+    margin-inline-start: var(--space-xxs-hwfkai, 4px);
+  }
+`;
+
 const tokenListStyles = css`
 .list {
   display: flex;
@@ -46,7 +59,7 @@ const tokenListStyles = css`
 `;
 
 export class CsTokenGroupInternal extends CsBaseElement {
-  static override styles = [sharedStyles, componentStyles, tokenStyles, tokenListStyles, hostStyles];
+  static override styles = [sharedStyles, componentStyles, tokenStyles, tokenListStyles, hostStyles, inventedStyles];
 
   @property({ attribute: false })
   items: ReadonlyArray<TokenGroupProps.Item> = [];

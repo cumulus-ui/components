@@ -74,6 +74,16 @@ const pageLoaders: Record<string, PageLoader> = {
   'date-range-picker/permutations': () => import('./pages/date-range-picker/permutations.js') as Promise<PageModule>,
   'attribute-editor/permutations': () => import('./pages/attribute-editor/permutations.js') as Promise<PageModule>,
   'tag-editor/permutations': () => import('./pages/tag-editor/permutations.js') as Promise<PageModule>,
+  'wizard/permutations': () => import('./pages/wizard/permutations.js') as Promise<PageModule>,
+  'code-editor/permutations': () => import('./pages/code-editor/permutations.js') as Promise<PageModule>,
+  'top-navigation/permutations': () => import('./pages/top-navigation/permutations.js') as Promise<PageModule>,
+  'side-navigation/permutations': () => import('./pages/side-navigation/permutations.js') as Promise<PageModule>,
+  'help-panel/permutations': () => import('./pages/help-panel/permutations.js') as Promise<PageModule>,
+  'drawer/permutations': () => import('./pages/drawer/permutations.js') as Promise<PageModule>,
+  'split-panel/permutations': () => import('./pages/split-panel/permutations.js') as Promise<PageModule>,
+  'annotation-context/permutations': () => import('./pages/annotation-context/permutations.js') as Promise<PageModule>,
+  'hotspot/permutations': () => import('./pages/hotspot/permutations.js') as Promise<PageModule>,
+  'tutorial-panel/permutations': () => import('./pages/tutorial-panel/permutations.js') as Promise<PageModule>,
 };
 
 @customElement('demo-app')

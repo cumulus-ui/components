@@ -25,6 +25,12 @@ export class CsPromptInputInternal extends CsBaseElement {
   @property({ type: Boolean, reflect: true })
   readOnly = false;
 
+  @property({ type: Boolean, reflect: true })
+  invalid = false;
+
+  @property({ type: Boolean, reflect: true })
+  warning = false;
+
   @property({ type: String })
   actionButtonAriaLabel = 'Submit';
 
@@ -69,11 +75,15 @@ export class CsPromptInputInternal extends CsBaseElement {
       'root': true,
       'disabled': this.disabled,
       'textarea-readonly': this.readOnly,
+      'textarea-invalid': this.invalid,
+      'textarea-warning': this.warning && !this.invalid,
     };
 
     const textareaClasses = {
       'textarea': true,
       'textarea-readonly': this.readOnly,
+      'textarea-invalid': this.invalid,
+      'textarea-warning': this.warning && !this.invalid,
     };
 
     return html`

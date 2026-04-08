@@ -13,8 +13,19 @@ import type { TreeViewProps } from './interfaces.js';
 
 const hostStyles = css`:host { display: block; }`;
 
+const inventedStyles = css`
+  .expandable {}
+  .expanded {}
+  .structured-item--icon {
+    display: flex;
+    align-items: center;
+    margin-inline-end: var(--space-xs-ymlm0b, 8px);
+    flex-shrink: 0;
+  }
+`;
+
 export class CsTreeViewInternal<T = any> extends CsBaseElement {
-  static override styles = [sharedStyles, componentStyles, treeViewTreeItemStyles, expandToggleButtonStyles, treeViewVerticalConnectorStyles, structuredItemStyles, hostStyles];
+  static override styles = [sharedStyles, componentStyles, treeViewTreeItemStyles, expandToggleButtonStyles, treeViewVerticalConnectorStyles, structuredItemStyles, hostStyles, inventedStyles];
 
   @property({ attribute: false })
   items: ReadonlyArray<T> = [];

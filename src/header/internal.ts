@@ -56,6 +56,7 @@ export class CsHeaderInternal extends CsBaseElement {
     const tag = this.headingTagOverride || variantToTag[this.variant] || 'h2';
     const headingClasses = {
       'heading': true,
+      'heading-text': true,
       [`heading-variant-${this.variant}`]: true,
       [`heading-text-variant-${this.variant}`]: true,
     };
@@ -85,6 +86,7 @@ export class CsHeaderInternal extends CsBaseElement {
 
     const rootClasses = {
       'root': true,
+      'refresh': true,
       [`root-variant-${this.variant}`]: true,
       'root-no-actions': !this._hasActions,
       'root-has-description': hasDescription,

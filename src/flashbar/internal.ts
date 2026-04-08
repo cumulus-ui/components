@@ -69,7 +69,7 @@ export class CsFlashbarInternal extends CsBaseElement {
                   ? html`<div class="flash-header">${item.header}</div>`
                   : nothing}
                 ${item.content
-                  ? html`<div class="flash-content">${item.content}</div>`
+                  ? html`<div class="flash-content"><span class="flash-text">${item.content}</span></div>`
                   : nothing}
               </div>
             </div>

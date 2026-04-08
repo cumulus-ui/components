@@ -100,7 +100,7 @@ export class CsTabsInternal extends CsBaseElement {
     };
 
     return html`
-      <li class="tabs-tab" role="presentation">
+      <li class=${classMap({ 'tabs-tab': true, 'tabs-tab-focusable': true })} role="presentation">
         <div class=${classMap(headerContainerClasses)}>
           <a
             role="tab"
@@ -155,9 +155,11 @@ export class CsTabsInternal extends CsBaseElement {
     return html`
       <div class=${classMap(rootClasses)}>
         <div class=${classMap(headerClasses)}>
-          <ul class="tabs-header-list" role="tablist">
-            ${this.tabs.map(tab => this._renderTab(tab))}
-          </ul>
+          <div class="tab-header-scroll-container">
+            <ul class="tabs-header-list" role="tablist">
+              ${this.tabs.map(tab => this._renderTab(tab))}
+            </ul>
+          </div>
         </div>
         <div class=${classMap(contentWrapperClasses)}>
           ${isContainerVariant

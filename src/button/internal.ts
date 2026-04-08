@@ -231,7 +231,7 @@ export class CsButtonInternal extends Base {
           role="button"
         >
           ${this._renderIcon('left')}
-          <slot></slot>
+          <span class="content"><slot></slot></span>
           ${this._renderIcon('right')}
           ${this._renderExternalIcon()}
         </a>
@@ -252,10 +252,10 @@ export class CsButtonInternal extends Base {
         form=${ifDefined(this.form)}
       >
         ${this._renderIcon('left')}
-        ${this.loading && this.loadingText
+        <span class="content">${this.loading && this.loadingText
           ? html`<span>${this.loadingText}</span>`
           : html`<slot></slot>`
-        }
+        }</span>
         ${this._renderIcon('right')}
       </button>
     `;

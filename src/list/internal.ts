@@ -19,8 +19,22 @@ interface RenderedItem {
 
 const hostStyles = css`:host { display: block; }`;
 
+const inventedStyles = css`
+  .structured-item--icon {
+    display: flex;
+    align-items: center;
+    margin-inline-end: var(--space-xs-ymlm0b, 8px);
+    flex-shrink: 0;
+  }
+  .structured-item--secondary {
+    color: var(--color-text-body-secondary-fdstdf, #5f6b7a);
+    font-size: var(--font-body-s-size-ukbcbk, 12px);
+    line-height: var(--line-height-body-s-2vlpm2, 16px);
+  }
+`;
+
 export class CsListInternal<T = any> extends CsBaseElement {
-  static override styles = [sharedStyles, componentStyles, structuredItemStyles, hostStyles];
+  static override styles = [sharedStyles, componentStyles, structuredItemStyles, hostStyles, inventedStyles];
 
   @property({ attribute: false })
   items: ReadonlyArray<T> = [];

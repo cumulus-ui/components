@@ -780,15 +780,28 @@ function auditCSSCoverage(component: string): string[] {
     'relative-radio', 'dismiss-button', 'file-upload-root', 'file-name', 'file-info',
     'file-metadata', 'file-thumbnail', 'file-error', 'error-text', 'error-message',
     'constraint-text', 'action-cell', 'add-section', 'tag-list',
+    'navigation-link', 'step-content', 'action-buttons-left', 'action-buttons-right',
+    'editor-textarea', 'editor-wrapper', 'icon-open', 'line-number', 'line-numbers',
+    'overflow-menu-control', 'overflow-menu-control-expandable-menu-trigger', 'overflow-menu-list-item-text',
+    // Wave 6+: tutorial/hotspot/date/file structural classes with inline CSS
+    'annotation-actions', 'annotation-content', 'annotation-header', 'annotation-popover',
+    'annotation-step-counter', 'completed-actions', 'completed-screen', 'detail-actions',
+    'detail-header', 'detail-title', 'download-link', 'loading-state', 'prerequisites-alert',
+    'step-item', 'step-list', 'task-item', 'task-list', 'task-title', 'tutorial-completed',
+    'tutorial-description', 'tutorial-item', 'tutorial-list', 'tutorial-list-description',
+    'tutorial-list-title', 'tutorial-meta', 'tutorial-title',
+    'true', 'true,', '})}', '[placementClass]:', 'markerWrapper:',
   ]);
 
   // Per-component structural classes that are valid but not in that component's CSS
   const COMPONENT_SKIP: Record<string, Set<string>> = {
     'collection-preferences': new Set(['root']),
     'date-input': new Set(['root']),
+    'error-boundary': new Set(['error-boundary']),
+    'progress-bar': new Set(['result-container-error', 'result-container-success', 'error', 'success', 'key-value']),
     'table': new Set([
       'table-loading', 'table-empty', 'header-cell', 'body-cell',
-      'selection-cell', 'screenreader-only', 'header-cell-text',
+      'selection-cell', 'screenreader-only', 'header-cell-text', 'body-cell-content',
     ]),
   };
 

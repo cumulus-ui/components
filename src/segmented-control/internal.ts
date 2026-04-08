@@ -114,7 +114,7 @@ export class CsSegmentedControlInternal extends CsBaseElement {
     const segmentCountClass = `segment-count-${count}`;
 
     return html`
-      <div class="root">
+      <div class=${classMap({ 'root': true, 'refresh': true })}>
         <div
           class=${classMap({ 'segment-part': true, [segmentCountClass]: true })}
           role="group"

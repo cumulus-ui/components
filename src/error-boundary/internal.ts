@@ -46,14 +46,16 @@ export class CsErrorBoundaryInternal extends CsBaseElement {
   override render(): TemplateResult {
     if (this._hasError) {
       return html`
-        <cs-alert type="error" .visible=${true}>
-          <span slot="header">Something went wrong</span>
-          An error occurred. Please try refreshing.
-          <cs-button slot="action" @click=${this._retry}>Retry</cs-button>
-        </cs-alert>
+        <div class="error-boundary">
+          <cs-alert type="error" .visible=${true}>
+            <span slot="header">Something went wrong</span>
+            An error occurred. Please try refreshing.
+            <cs-button slot="action" @click=${this._retry}>Retry</cs-button>
+          </cs-alert>
+        </div>
       `;
     }
 
-    return html`<slot></slot>`;
+    return html`<div class="error-boundary"><slot></slot></div>`;
   }
 }

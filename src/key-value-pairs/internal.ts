@@ -13,8 +13,15 @@ const layoutStyles = css`
   }
 `;
 
+const inventedStyles = css`
+  .pair {
+    break-inside: avoid;
+    padding-block-end: var(--space-l-t419sm, 20px);
+  }
+`;
+
 export class CsKeyValuePairsInternal extends CsBaseElement {
-  static override styles = [sharedStyles, componentStyles, layoutStyles, hostStyles];
+  static override styles = [sharedStyles, componentStyles, layoutStyles, hostStyles, inventedStyles];
 
   @property({ attribute: false })
   items: ReadonlyArray<KeyValuePairsProps.Item> = [];

@@ -311,6 +311,7 @@ export class CsTableInternal extends CsBaseElement {
   override render(): TemplateResult {
     const rootClasses = {
       'root': true,
+      'is-visual-refresh': true,
       [`content-density-${this.contentDensity}`]: true,
     };
 
@@ -462,7 +463,7 @@ export class CsTableInternal extends CsBaseElement {
     return html`
       <tr class=${classMap(rowClasses)} @click=${() => this._onRowClick(item, index)}>
         ${this._hasSelection ? this._renderSelectionCell(item) : nothing}
-        ${this.columnDefinitions.map(col => this._renderBodyCell(item, col))}
+        ${this.columnDefinitions.map(col => this._renderBodyCell(item, col, index))}
       </tr>
     `;
   }
@@ -492,10 +493,12 @@ export class CsTableInternal extends CsBaseElement {
     `;
   }
 
-  private _renderBodyCell(item: any, col: TableProps.ColumnDefinition<any>): TemplateResult {
+  private _renderBodyCell(item: any, col: TableProps.ColumnDefinition<any>, rowIndex: number): TemplateResult {
     const cellClasses = {
       'body-cell': true,
       'body-cell-wrap': this.wrapLines,
+      'body-cell-first-row': rowIndex === 0,
+      'body-cell-last-row': rowIndex === this.items.length - 1,
     };
 
     const widthStyle = col.width
@@ -504,7 +507,7 @@ export class CsTableInternal extends CsBaseElement {
 
     return html`
       <td class=${classMap(cellClasses)} style=${widthStyle ?? nothing}>
-        ${col.cell(item)}
+        <span class="body-cell-content">${col.cell(item)}</span>
       </td>
     `;
   }

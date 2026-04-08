@@ -55,6 +55,7 @@ export class CsContainerInternal extends CsBaseElement {
   override render(): TemplateResult {
     const rootClasses = {
       'root': true,
+      'refresh': true,
       [`variant-${this.variant}`]: true,
       'fit-height': this.fitHeight,
       'with-side-media': false,

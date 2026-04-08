@@ -1,5 +1,6 @@
 import { css, html, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -89,19 +90,27 @@ export class CsCopyToClipboardInternal extends CsBaseElement {
 
   override render(): TemplateResult {
     const isIconOnly = this.variant === 'icon' || this.variant === 'inline';
+    const isInline = this.variant === 'inline';
     const buttonVariant = isIconOnly ? 'icon' : 'normal';
     const buttonText = this._getButtonText();
     const iconName = this._getIconName();
 
+    const rootClasses = {
+      'root': true,
+      'inline-container': isInline,
+    };
+
     return html`
-      <span class="root">
-        <cs-button
-          variant=${buttonVariant}
-          icon-name=${iconName}
-          ?disabled=${this.disabled}
-          aria-label=${isIconOnly ? buttonText : ''}
-          @click=${this._onCopyClick}
-        >${!isIconOnly ? buttonText : ''}</cs-button>
+      <span class=${classMap(rootClasses)}>
+        <span class=${classMap({ 'inline-container-trigger': isInline })}>
+          <cs-button
+            variant=${buttonVariant}
+            icon-name=${iconName}
+            ?disabled=${this.disabled}
+            aria-label=${isIconOnly ? buttonText : ''}
+            @click=${this._onCopyClick}
+          >${!isIconOnly ? buttonText : ''}</cs-button>
+        </span>
       </span>
     `;
   }

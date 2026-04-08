@@ -9,6 +9,14 @@ import '../spinner/index.js';
 
 const hostStyles = css`:host { display: block; }`;
 
+const inventedStyles = css`
+  .title {
+    font-size: var(--font-body-m-size-sregvd, 14px);
+    font-weight: var(--font-heading-s-weight-k8ys7j, 700);
+    color: var(--color-text-body-default-ajf1h5, #0f141a);
+  }
+`;
+
 const iconNameMap: Record<string, string> = {
   'success': 'status-positive',
   'error': 'status-negative',
@@ -20,7 +28,7 @@ const iconNameMap: Record<string, string> = {
 };
 
 export class CsStepsInternal extends CsBaseElement {
-  static override styles = [sharedStyles, componentStyles, hostStyles];
+  static override styles = [sharedStyles, componentStyles, hostStyles, inventedStyles];
 
   @property({ attribute: false })
   steps: ReadonlyArray<StepsProps.Step> = [];

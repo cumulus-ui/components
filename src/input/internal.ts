@@ -151,12 +151,20 @@ export class CsInputInternal extends Base {
       [`input-type-${this.type}`]: true,
     };
 
+    const inputContainerClasses = {
+      'input-container': true,
+      'input-invalid': this._isInvalid,
+      'input-warning': this._isWarning,
+      'input-readonly': this.readOnly,
+      [`input-type-${this.type}`]: true,
+    };
+
     const controlId = this._formFieldCtx.controlId || undefined;
     const ariaLabelledby = this._formFieldCtx.ariaLabelledby || undefined;
 
     return html`
       <div class="root">
-        <div class="input-container">
+        <div class=${classMap(inputContainerClasses)}>
           <input
             class=${classMap(inputClasses)}
             type=${this.type}

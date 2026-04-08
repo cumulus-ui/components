@@ -10,8 +10,21 @@ import '../icon/index.js';
 
 const hostStyles = css`:host { display: inline-block; }`;
 
+const inventedStyles = css`
+  .label-tag {
+    display: inline-block;
+    margin-inline-start: var(--space-xxs-hwfkai, 4px);
+    font-size: var(--font-body-s-size-ukbcbk, 12px);
+    color: var(--color-text-body-secondary-fdstdf, #5f6b7a);
+  }
+  .description {
+    font-size: var(--font-body-s-size-ukbcbk, 12px);
+    color: var(--color-text-body-secondary-fdstdf, #5f6b7a);
+  }
+`;
+
 export class CsTokenInternal extends CsBaseElement {
-  static override styles = [sharedStyles, componentStyles, hostStyles];
+  static override styles = [sharedStyles, componentStyles, hostStyles, inventedStyles];
 
   @property({ type: String })
   override ariaLabel: string | null = null;

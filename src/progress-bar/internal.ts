@@ -9,8 +9,36 @@ import '../status-indicator/index.js';
 
 const hostStyles = css`:host { display: block; }`;
 
+const inventedStyles = css`
+  .label {
+    font-size: var(--font-body-m-size-sregvd, 14px);
+    font-weight: var(--font-body-m-weight-7v1jxr, 400);
+    color: var(--color-text-body-default-ajf1h5, #0f141a);
+    margin-block-end: var(--space-xxs-hwfkai, 4px);
+  }
+  .description {
+    font-size: var(--font-body-s-size-ukbcbk, 12px);
+    color: var(--color-text-body-secondary-fdstdf, #5f6b7a);
+    margin-block-end: var(--space-xs-ymlm0b, 8px);
+  }
+  .result-button-trigger {
+    display: inline-block;
+    margin-block-start: var(--space-xs-ymlm0b, 8px);
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--color-text-button-inline-icon-default-sm4ql6, #006ce0);
+    cursor: pointer;
+    font-size: inherit;
+  }
+  .result-button-trigger:hover {
+    color: var(--color-text-button-inline-icon-hover-rbyzfc, #002b66);
+    text-decoration: underline;
+  }
+`;
+
 export class CsProgressBarInternal extends CsBaseElement {
-  static override styles = [sharedStyles, componentStyles, hostStyles];
+  static override styles = [sharedStyles, componentStyles, hostStyles, inventedStyles];
 
   @property({ type: Number })
   value: number = 0;
@@ -59,7 +87,11 @@ export class CsProgressBarInternal extends CsBaseElement {
 
     return html`
       <div class=${classMap(rootClasses)}>
-        <div class="label">
+        <div class=${classMap({
+          'label': true,
+          'label-flash': this.variant === 'flash',
+          'label-key-value': this.variant === 'key-value',
+        })}>
           <slot name="label"></slot>
         </div>
         <div class="description">
@@ -80,7 +112,12 @@ export class CsProgressBarInternal extends CsBaseElement {
             <span class="percentage-container">${clamped}%</span>
           </div>
         ` : html`
-          <div class="result-state ${this.resultButtonText ? 'with-result-button' : ''}">
+          <div class=${classMap({
+            'result-state': true,
+            'with-result-button': !!this.resultButtonText,
+            'result-container-error': this.status === 'error',
+            'result-container-success': this.status === 'success',
+          })}>
             <cs-status-indicator type=${statusType}>
               <slot name="resultText"></slot>
             </cs-status-indicator>
