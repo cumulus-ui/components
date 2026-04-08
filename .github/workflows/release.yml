@@ -21,3 +21,15 @@ jobs:
       - run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  notify-docs:
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger docs site update
+        run: |
+          gh api repos/cumulus-ui/cumulus-ui.github.io/dispatches \
+            -f event_type="components-published" \
+            -f 'client_payload[version]=${{ github.event.release.tag_name }}'
+        env:
+          GH_TOKEN: ${{ secrets.DOCS_DISPATCH_TOKEN }}
