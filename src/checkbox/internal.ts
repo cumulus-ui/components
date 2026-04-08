@@ -137,7 +137,7 @@ export class CsCheckboxInternal extends Base {
     const ariaDescribedBy = hasDescription ? this._descriptionId : undefined;
 
     return html`
-      <label class="root wrapper" @click=${this._preventNativeToggle}>
+      <span class="root wrapper" @click=${this._preventNativeToggle}>
         <span class="label-wrapper">
           <span class="control checkbox-control">
             <svg class="checkbox-icon-root" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect class=${classMap(styledBoxClasses)} x="0.5" y="0.5" width="15" height="15" rx="3" ry="3" />${
@@ -155,6 +155,7 @@ export class CsCheckboxInternal extends Base {
               ?disabled=${this.disabled}
               ?readonly=${this.readOnly}
               aria-label=${ifDefined(this.ariaLabel || undefined)}
+              aria-labelledby=${ifDefined(!this.ariaLabel ? this._labelId : undefined)}
               aria-required=${ifDefined(this.ariaRequired || undefined)}
               aria-controls=${ifDefined(this.ariaControls || undefined)}
               aria-describedby=${ifDefined(ariaDescribedBy)}
@@ -181,7 +182,7 @@ export class CsCheckboxInternal extends Base {
             ` : ''}
           </span>
         </span>
-      </label>
+      </span>
     `;
   }
 }

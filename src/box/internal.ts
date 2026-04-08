@@ -106,6 +106,7 @@ export class CsBoxInternal extends CsBaseElement {
     const tag = this.tagOverride || VARIANT_TAG_MAP[this.variant] || 'div';
 
     const classes: Record<string, boolean> = {
+      'root': true,
       'box': true,
       [variantCssClass(this.variant)]: true,
       ...(this.display ? { [`d-${this.display}`]: true } : {}),

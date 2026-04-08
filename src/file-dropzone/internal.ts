@@ -79,7 +79,9 @@ export class CsFileDropzoneInternal extends CsBaseElement {
         @dragleave=${this._onDragLeave}
         @drop=${this._onDrop}
       >
-        <slot></slot>
+        <div class="content">
+          <slot></slot>
+        </div>
       </div>
     `;
   }

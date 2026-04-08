@@ -192,6 +192,7 @@ export class CsRadioGroupInternal extends Base {
     const isChecked = item.value === this.value;
     const isDisabled = this.disabled || !!item.disabled;
     const itemId = item.controlId || generateUniqueId('radio-item');
+    const labelId = `${itemId}-label`;
     const descId = item.description ? `${itemId}-desc` : undefined;
 
     const itemClasses = {
@@ -209,7 +210,7 @@ export class CsRadioGroupInternal extends Base {
     };
 
     return html`
-      <label
+      <span
         class=${classMap(itemClasses)}
         @click=${(e: Event) => {
           e.preventDefault();
@@ -240,6 +241,7 @@ export class CsRadioGroupInternal extends Base {
               ?disabled=${isDisabled}
               ?readonly=${this.readOnly}
               tabindex=${this._getTabIndex(index)}
+              aria-labelledby=${labelId}
               aria-describedby=${ifDefined(descId)}
               @click=${(e: Event) => e.preventDefault()}
               @focus=${() => this._onFocus(index)}
@@ -247,7 +249,7 @@ export class CsRadioGroupInternal extends Base {
             <span class="outline"></span>
           </span>
           <span class="content">
-            <span class=${classMap({
+            <span id=${labelId} class=${classMap({
               'label': true,
               'label-disabled': isDisabled,
             })}>
@@ -266,7 +268,7 @@ export class CsRadioGroupInternal extends Base {
             ` : ''}
           </span>
         </span>
-      </label>
+      </span>
     `;
   }
 }
