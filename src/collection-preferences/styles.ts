@@ -4,10 +4,41 @@ import { css } from 'lit';
 import { sharedStyles } from '../internal/styles/shared.js';
 
 export const componentStyles = css`
-.visible-content,
-.visible-content-toggle,
-.visible-content-groups,
-.visible-content-group {
+.visible-content-title {
+  font-size: var(--font-size-body-m-a7nh2n, 14px);
+  line-height: var(--line-height-body-m-2mh3ke, 20px);
+  font-weight: var(--font-display-label-weight-zavpeo, 700);
+  color: var(--color-text-form-label-6sbm75, #0f141a);
+  margin-block-start: 0;
+  margin-block-end: var(--space-scaled-l-sej05l, 20px);
+  margin-inline: 0;
+}
+
+.visible-content-group-label {
+  color: var(--color-text-group-label-a2qc05, #424650);
+  padding-block-end: var(--space-xs-ymlm0b, 8px);
+  border-block-end: var(--border-divider-list-width-tdfx1x, 1px) solid var(--color-border-divider-secondary-qoitch, #ebebf0);
+}
+
+.visible-content-option {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding-block: var(--space-xs-ymlm0b, 8px);
+  padding-inline-start: var(--space-scaled-l-sej05l, 20px);
+  padding-inline-end: 0px;
+  border-block-end: var(--border-divider-list-width-tdfx1x, 1px) solid var(--color-border-divider-secondary-qoitch, #ebebf0);
+}
+.visible-content-option:last-child {
+  border-block-end: none;
+}
+
+.visible-content-option-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-inline-end: var(--space-l-2ud1p3, 20px);
+  flex-grow: 1;
+}
 
 .content-display-option-content {
   font-size: var(--font-size-body-m-a7nh2n, 14px);

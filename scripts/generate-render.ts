@@ -767,78 +767,86 @@ function auditCSSCoverage(component: string): string[] {
 
   const SVG_SKIP = new Set(['filled', 'stroke-linejoin-round', 'stroke-linecap-round']);
 
-  // Generic classes used by 10+ components — reviewed in Step 4
-  const SKIP = new Set([
-    'header', 'content', 'label', 'description', 'icon', 'title', 'actions',
-    'group', 'grid', 'toggle', 'token', 'panel', 'dropdown', 'tags',
-    'expandable', 'expanded', 'dismiss-button', 'absolute', 'relative',
-  ]);
+  // Truly structural classes that no component styles individually
+  const SKIP = new Set(['toggle', 'tags', 'expandable', 'absolute', 'relative']);
 
   const COMPONENT_SKIP: Record<string, Set<string>> = {
-    'autosuggest': new Set(['filter-input']),
+    'alert': new Set(['content']),
+    'autosuggest': new Set(['dropdown', 'filter-input']),
+    'button': new Set(['content']),
+    'button-dropdown': new Set(['dropdown', 'icon']),
     'calendar': new Set(['calendar-grid']),
-    'cards': new Set(['section-content']),
+    'cards': new Set(['header', 'section-content']),
     'code-editor': new Set(['editor-textarea', 'editor-wrapper', 'line-number', 'line-numbers']),
     'collection-preferences': new Set([
-      'root', 'panel-title', 'panel-section', 'panel-section-title', 'panel-footer',
-      'page-size-options', 'page-size-option', 'visible-content-group-label',
-      'visible-content-option', 'group-label',
+      'group-label', 'page-size-option', 'page-size-options', 'panel', 'panel-footer',
+      'panel-section', 'panel-section-title', 'panel-title', 'root',
+      'visible-content-group', 'visible-content-group-label', 'visible-content-option',
     ]),
-    'date-input': new Set(['root', 'input-container']),
+    'date-input': new Set(['input-container', 'root']),
+    'date-picker': new Set(['dropdown']),
     'date-range-picker': new Set([
-      'calendar-grid', 'calendar-grid-header', 'calendar-grid-wrapper', 'calendar-grids',
-      'calendar-week', 'calendar-day', 'calendar-day-empty', 'calendar-day-header',
-      'calendar-day-number', 'dropdown-body', 'mode-switch', 'mode-tab', 'mode-tab-active',
-      'absolute-mode', 'relative-mode', 'relative-heading', 'relative-option',
-      'relative-option-label', 'relative-option-selected', 'relative-options',
-      'relative-radio', 'option-label', 'error-message',
+      'absolute-mode', 'calendar-day', 'calendar-day-empty', 'calendar-day-header',
+      'calendar-day-number', 'calendar-grid', 'calendar-grid-header', 'calendar-grid-wrapper',
+      'calendar-grids', 'calendar-week', 'dropdown-body', 'error-message',
+      'mode-switch', 'mode-tab', 'mode-tab-active', 'option-label',
+      'relative-heading', 'relative-mode', 'relative-option', 'relative-option-label',
+      'relative-option-selected', 'relative-options', 'relative-radio',
     ]),
     'error-boundary': new Set(['error-boundary']),
-    'expandable-section': new Set(['header-text', 'header-description', 'header-counter']),
-    'file-token-group': new Set(['file-name', 'file-thumbnail', 'file-error', 'file-error-text', 'file-warning-text', 'error-text']),
-    'file-upload': new Set([
-      'file-upload-root', 'file-name', 'file-info', 'file-metadata', 'file-thumbnail',
-      'file-error', 'error-text', 'constraint-text',
+    'expandable-section': new Set(['header-counter', 'header-description', 'header-text']),
+    'file-token-group': new Set([
+      'error-text', 'file-error', 'file-error-text', 'file-name', 'file-thumbnail',
+      'file-warning-text',
     ]),
-    'flashbar': new Set(['dismiss-button']),
+    'file-upload': new Set([
+      'constraint-text', 'dismiss-button', 'error-text', 'file-error', 'file-info',
+      'file-metadata', 'file-name', 'file-thumbnail', 'file-upload-root', 'label',
+    ]),
+    'form': new Set(['content']),
     'hotspot': new Set([
       'annotation-actions', 'annotation-content', 'annotation-header', 'annotation-popover',
       'annotation-step-counter',
     ]),
     'input': new Set(['input-container']),
-    'key-value-pairs': new Set(['pair']),
+    'item-card': new Set(['actions']),
+    'key-value-pairs': new Set(['grid', 'group', 'pair']),
     'multiselect': new Set([
-      'filter-container', 'filter-input', 'option-list', 'option-content', 'option-label',
-      'option-label-tag', 'option-description', 'group-label', 'no-matches',
-      'trigger-label', 'trigger-arrow', 'label-tag',
+      'dropdown', 'filter-container', 'filter-input', 'group-label', 'label-tag',
+      'no-matches', 'option-content', 'option-description', 'option-label',
+      'option-label-tag', 'option-list', 'trigger-arrow', 'trigger-label',
     ]),
     'panel-layout': new Set(['handle-bar', 'handle-wrapper']),
-    'popover': new Set(['header-row']),
+    'popover': new Set(['dismiss-control']),
     'progress-bar': new Set([
-      'result-container-error', 'result-container-success', 'error', 'success',
-      'key-value', 'additional-info', 'result-button-trigger',
+      'additional-info', 'description', 'error', 'key-value', 'label',
+      'result-button-trigger', 'result-container-error', 'result-container-success', 'success',
     ]),
-    'property-filter': new Set(['token-item', 'token-list', 'operation-label', 'filter-input']),
+    'property-filter': new Set(['dismiss-button', 'filter-input', 'operation-label', 'token-item', 'token-list']),
     'select': new Set([
-      'filter-container', 'filter-input', 'option-list', 'option-content', 'option-label',
-      'option-label-tag', 'option-description', 'option-tags', 'group-label', 'no-matches',
-      'selected-icon', 'trigger-label', 'trigger-arrow', 'label-tag',
+      'dropdown', 'filter-container', 'filter-input', 'group-label', 'label-tag',
+      'no-matches', 'option-content', 'option-description', 'option-label',
+      'option-label-tag', 'option-tags', 'option-list', 'selected-icon',
+      'trigger-arrow', 'trigger-label',
     ]),
     'side-navigation': new Set([
-      'icon-open', 'overflow-menu-control', 'overflow-menu-control-expandable-menu-trigger',
-      'overflow-menu-list-item-text',
+      'icon', 'icon-open', 'overflow-menu-control',
+      'overflow-menu-control-expandable-menu-trigger', 'overflow-menu-list-item-text',
     ]),
     'split-panel': new Set(['header-text']),
+    'steps': new Set(['header', 'icon', 'title']),
     'table': new Set([
-      'table-loading', 'table-empty', 'header-cell', 'body-cell',
-      'selection-cell', 'screenreader-only', 'header-cell-text', 'body-cell-content',
+      'body-cell', 'body-cell-content', 'header-cell', 'header-cell-text',
+      'screenreader-only', 'selection-cell', 'table-empty', 'table-loading',
     ]),
     'tag-editor': new Set(['action-cell', 'add-section', 'tag-list']),
     'time-input': new Set(['input-container']),
-    'token': new Set(['label-tag']),
-    'token-group': new Set(['label-tag']),
-    'tooltip': new Set(['tooltip-trigger', 'tooltip-body']),
+    'toggle-button': new Set(['icon']),
+    'token': new Set(['description', 'label-tag']),
+    'token-group': new Set(['description', 'dismiss-button', 'icon', 'label-tag', 'token']),
+    'tooltip': new Set(['tooltip-body', 'tooltip-trigger']),
     'top-navigation': new Set(['overflow-menu-control']),
+    'tree-view': new Set(['expanded']),
     'tutorial-panel': new Set([
       'completed-actions', 'completed-screen', 'detail-actions', 'detail-header',
       'detail-title', 'download-link', 'loading-state', 'prerequisites-alert',
@@ -846,7 +854,7 @@ function auditCSSCoverage(component: string): string[] {
       'tutorial-completed', 'tutorial-description', 'tutorial-item', 'tutorial-list',
       'tutorial-list-description', 'tutorial-list-title', 'tutorial-meta', 'tutorial-title',
     ]),
-    'wizard': new Set(['navigation-link', 'step-content', 'action-buttons-left', 'action-buttons-right']),
+    'wizard': new Set(['action-buttons-left', 'action-buttons-right', 'navigation-link', 'step-content']),
   };
 
   const STRUCTURAL_CLASSES: Record<string, Set<string>> = {

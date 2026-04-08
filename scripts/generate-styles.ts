@@ -35,7 +35,10 @@ const HEADER = [
 
 /** Strip all copyright/license header comment blocks */
 function stripCopyrightHeaders(css: string): string {
-  return css.replace(/\/\*[\s\S]*?(?:Copyright|SPDX-License-Identifier|Licensed under)[\s\S]*?\*\//g, '');
+  return css.replace(/\/\*[^*]*\*+(?:[^/*][^*]*\*+)*\/\s*/g, (match) => {
+    if (/Copyright|SPDX-License-Identifier|Licensed under/.test(match)) return '';
+    return match;
+  });
 }
 
 /** Strip stylelint disable/enable comments */
@@ -51,6 +54,13 @@ function stripDescriptionComments(css: string): string {
 /** Strip test-utils comments */
 function stripTestComments(css: string): string {
   return css.replace(/\/\*\s*used in test-utils\s*\*\//g, '');
+}
+
+function stripBacktickComments(css: string): string {
+  return css.replace(/\/\*[^*]*\*+(?:[^/*][^*]*\*+)*\/\s*/g, (match) => {
+    if (match.includes('`')) return '';
+    return match;
+  });
 }
 
 /**
@@ -141,6 +151,7 @@ function transformCSS(cssPath: string, cssJsPath: string, classPrefix?: string):
   css = stripStylelintComments(css);
   css = stripDescriptionComments(css);
   css = stripTestComments(css);
+  css = stripBacktickComments(css);
   css = stripResetBlock(css);
   css = replaceClassNames(css, rev);
   css = stripNotId9(css);
