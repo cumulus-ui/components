@@ -13,8 +13,8 @@ const toolbarStyles = css`
     gap: 4px;
     height: 48px;
     padding: 0 12px;
-    background: var(--color-background-container-content-ljv8l6, #ffffff);
-    border-bottom: 1px solid var(--color-border-divider-default-cx07f2, #e9ebed);
+    background: var(--color-background-container-content, #ffffff);
+    border-bottom: 1px solid var(--color-border-divider-default, #e9ebed);
     box-sizing: border-box;
   }
 
@@ -30,7 +30,7 @@ const toolbarStyles = css`
     border: none;
     border-radius: 8px;
     background: transparent;
-    color: var(--color-text-interactive-default-waj0dj, #414d5c);
+    color: var(--color-text-interactive-default, #414d5c);
     cursor: pointer;
     position: relative;
   }
@@ -38,19 +38,19 @@ const toolbarStyles = css`
   .toolbar__nav-trigger:hover,
   .toolbar__tools-trigger:hover,
   .toolbar__drawer-trigger:hover {
-    background: var(--color-background-button-normal-hover-7jklbd, #f2f3f3);
+    background: var(--color-background-button-normal-hover, #f2f3f3);
   }
 
   .toolbar__nav-trigger:focus-visible,
   .toolbar__tools-trigger:focus-visible,
   .toolbar__drawer-trigger:focus-visible {
-    outline: 2px solid var(--color-border-item-focused-nv6mhz, #0972d3);
+    outline: 2px solid var(--color-border-item-focused, #0972d3);
     outline-offset: 2px;
   }
 
   .toolbar__drawer-trigger--active {
-    background: var(--color-background-button-normal-active-clrtfe, #e9ebed);
-    color: var(--color-text-interactive-active-vol84d, #0972d3);
+    background: var(--color-background-button-normal-active, #e9ebed);
+    color: var(--color-text-interactive-active, #0972d3);
   }
 
   .toolbar__breadcrumbs {
@@ -62,7 +62,7 @@ const toolbarStyles = css`
   .toolbar__separator {
     width: 1px;
     height: 24px;
-    background: var(--color-border-divider-default-cx07f2, #e9ebed);
+    background: var(--color-border-divider-default, #e9ebed);
     margin: 0 4px;
     flex-shrink: 0;
   }
@@ -74,11 +74,15 @@ const toolbarStyles = css`
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--color-background-notification-badge-3847ch, #d91515);
+    background: var(--color-background-notification-badge, #d91515);
   }
 
   .toolbar__drawer-panel {
-    border-left: 1px solid var(--color-border-divider-default-cx07f2, #e9ebed);
+    border-left: 1px solid var(--color-border-divider-default, #e9ebed);
+  }
+
+  .app-layout-drawer--drawer {
+    box-shadow: 0px 0px 0px 1px var(--color-border-divider-default, #e9ebed);
   }
 `;
 
