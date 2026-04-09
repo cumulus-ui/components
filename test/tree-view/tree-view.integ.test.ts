@@ -41,7 +41,7 @@ test.describe('TreeView — Integration', () => {
   test('clicking toggle expands/collapses node', async ({ page }) => {
     const tree = page.locator('cs-tree-view').first();
     const testsNode = tree.locator('[data-node-id="tests"]');
-    const toggle = testsNode.locator(':scope > .tree-view-tree-item--treeitem-content-wrapper .expand-toggle-button--expand-toggle');
+    const toggle = testsNode.locator(':scope > .tree-view-tree-item--treeitem-content-wrapper .expand-toggle-button--expand');
     const children = testsNode.locator(':scope > .tree-view-tree-item--treeitem-group');
 
     await expect(children).toBeHidden();
@@ -56,7 +56,7 @@ test.describe('TreeView — Integration', () => {
   test('fires itemToggle event on toggle click', async ({ page }) => {
     const tree = page.locator('cs-tree-view').first();
     const testsNode = tree.locator('[data-node-id="tests"]');
-    const toggle = testsNode.locator(':scope > .tree-view-tree-item--treeitem-content-wrapper .expand-toggle-button--expand-toggle');
+    const toggle = testsNode.locator(':scope > .tree-view-tree-item--treeitem-content-wrapper .expand-toggle-button--expand');
 
     const detailPromise = tree.evaluate((el) => {
       return new Promise<{ id: string; expanded: boolean }>((resolve) => {
@@ -82,7 +82,7 @@ test.describe('TreeView — Integration', () => {
 
   test('toggle button has aria-label', async ({ page }) => {
     const tree = page.locator('cs-tree-view').first();
-    const toggle = tree.locator('.expand-toggle-button--expand-toggle').first();
+    const toggle = tree.locator('.expand-toggle-button--expand').first();
     const label = await toggle.getAttribute('aria-label');
     expect(label).toBeTruthy();
   });
@@ -90,7 +90,7 @@ test.describe('TreeView — Integration', () => {
   test('nodes without children have no toggle button', async ({ page }) => {
     const tree = page.locator('cs-tree-view').first();
     const readmeNode = tree.locator('[data-node-id="readme"]');
-    const toggle = readmeNode.locator('.expand-toggle-button--expand-toggle');
+    const toggle = readmeNode.locator('.expand-toggle-button--expand');
     await expect(toggle).toHaveCount(0);
   });
 
@@ -98,7 +98,7 @@ test.describe('TreeView — Integration', () => {
     const tree = page.locator('cs-tree-view').first();
     const readmeNode = tree.locator('[data-node-id="readme"]');
     const wrapper = readmeNode.locator('.tree-view-tree-item--expand-toggle-wrapper');
-    const toggle = wrapper.locator('.expand-toggle-button--expand-toggle');
+    const toggle = wrapper.locator('.expand-toggle-button--expand');
     await expect(toggle).toHaveCount(0);
   });
 });
