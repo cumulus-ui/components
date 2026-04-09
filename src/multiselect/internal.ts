@@ -199,9 +199,6 @@ const internalStyles = css`
   font-style: italic;
   text-align: center;
 }
-.tokens {
-  margin-block-start: var(--space-scaled-xs, 8px);
-}
 `;
 
 interface FlatOption {
