@@ -1,6 +1,7 @@
 import { css, html, nothing, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { styleMap } from 'lit/directives/style-map.js';
 import { CsAppLayoutInternal } from '../app-layout/internal.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import type { AppLayoutProps } from '../app-layout/interfaces.js';
@@ -196,7 +197,7 @@ export class CsAppLayoutToolbarInternal extends CsAppLayoutInternal {
           ${!this.navigationHide ? html`
             <div
               class=${classMap(navigationClasses)}
-              style="width: ${this.navigationWidth}px; ${!this.navigationOpen ? 'display: none' : ''}"
+              style=${styleMap({ width: this.navigationWidth + 'px', ...(this.navigationOpen ? {} : { display: 'none' }) })}
               role="navigation"
               aria-label="Navigation drawer"
             >
@@ -212,8 +213,7 @@ export class CsAppLayoutToolbarInternal extends CsAppLayoutInternal {
             </div>
             <main
               class=${classMap(contentWrapperClasses)}
-              style="${this.maxContentWidth ? `max-width: ${this.maxContentWidth}px` : ''};
-                     ${this.minContentWidth ? `min-width: ${this.minContentWidth}px` : ''}"
+              style=${styleMap({ ...(this.maxContentWidth ? { 'max-width': this.maxContentWidth + 'px' } : {}), ...(this.minContentWidth ? { 'min-width': this.minContentWidth + 'px' } : {}) })}
             >
               <slot></slot>
             </main>
@@ -222,7 +222,7 @@ export class CsAppLayoutToolbarInternal extends CsAppLayoutInternal {
           ${!this.toolsHide && this.toolsOpen ? html`
             <div
               class=${classMap(toolsClasses)}
-              style="width: ${this.toolsWidth}px"
+              style=${styleMap({ width: this.toolsWidth + 'px' })}
               role="complementary"
               aria-label="Tools drawer"
             >
@@ -233,7 +233,7 @@ export class CsAppLayoutToolbarInternal extends CsAppLayoutInternal {
           ${activeDrawer ? html`
             <div
               class="app-layout-drawer--drawer toolbar__drawer-panel"
-              style="width: ${activeDrawerWidth}px"
+              style=${styleMap({ width: activeDrawerWidth + 'px' })}
               role="complementary"
               aria-label="${activeDrawer.ariaLabels?.drawerName ?? activeDrawer.id}"
             >

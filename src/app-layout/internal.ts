@@ -1,6 +1,7 @@
 import { css, html, nothing, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { styleMap } from 'lit/directives/style-map.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -123,7 +124,7 @@ export class CsAppLayoutInternal extends CsBaseElement {
           ${!this.navigationHide ? html`
             <div
               class=${classMap(navigationClasses)}
-              style="width: ${this.navigationWidth}px; ${!this.navigationOpen ? 'display: none' : ''}"
+              style=${styleMap({ width: this.navigationWidth + 'px', ...(this.navigationOpen ? {} : { display: 'none' }) })}
               role="navigation"
               aria-label="Navigation drawer"
             >
@@ -142,8 +143,7 @@ export class CsAppLayoutInternal extends CsBaseElement {
             </div>
             <main
               class=${classMap(contentWrapperClasses)}
-              style="${this.maxContentWidth ? `max-width: ${this.maxContentWidth}px` : ''};
-                     ${this.minContentWidth ? `min-width: ${this.minContentWidth}px` : ''}"
+              style=${styleMap({ ...(this.maxContentWidth ? { 'max-width': this.maxContentWidth + 'px' } : {}), ...(this.minContentWidth ? { 'min-width': this.minContentWidth + 'px' } : {}) })}
             >
               <slot></slot>
             </main>
@@ -152,7 +152,7 @@ export class CsAppLayoutInternal extends CsBaseElement {
           ${!this.toolsHide ? html`
             <div
               class=${classMap(toolsClasses)}
-              style="width: ${this.toolsWidth}px; ${!this.toolsOpen ? 'display: none' : ''}"
+              style=${styleMap({ width: this.toolsWidth + 'px', ...(this.toolsOpen ? {} : { display: 'none' }) })}
               role="complementary"
               aria-label="Tools drawer"
             >

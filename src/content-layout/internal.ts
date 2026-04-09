@@ -1,6 +1,7 @@
 import { css, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { styleMap } from 'lit/directives/style-map.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { componentStyles, sharedStyles } from './styles.js';
 
@@ -77,7 +78,7 @@ export class CsContentLayoutInternal extends CsBaseElement {
       <div class=${classMap(layoutClasses)}>
         <div class=${classMap(backgroundClasses)}>
           ${this.headerBackgroundStyle
-            ? html`<div class="header-background" style="background: ${this.headerBackgroundStyle}"></div>`
+            ? html`<div class="header-background" style=${styleMap({ background: this.headerBackgroundStyle || '' })}></div>`
             : nothing}
         </div>
         ${this._hasNotifications

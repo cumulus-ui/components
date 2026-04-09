@@ -1,6 +1,7 @@
 import { css, html, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { styleMap } from 'lit/directives/style-map.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -136,7 +137,7 @@ export class CsCodeEditorInternal extends CsBaseElement {
   private _renderLoading(): TemplateResult {
     const loadingText = this.i18nStrings?.loadingState ?? 'Loading code editor';
     return html`
-      <div class="loading-screen" style="height: ${this.editorContentHeight}px">
+      <div class="loading-screen" style=${styleMap({ height: this.editorContentHeight + 'px' })}>
         <cs-spinner size="large"></cs-spinner>
         <span style="margin-inline-start: 8px">${loadingText}</span>
       </div>
@@ -160,7 +161,7 @@ export class CsCodeEditorInternal extends CsBaseElement {
     return html`
       <div
         class="editor-wrapper"
-        style="height: ${this.editorContentHeight}px"
+        style=${styleMap({ height: this.editorContentHeight + 'px' })}
       >
         ${this._renderLineNumbers()}
         <textarea

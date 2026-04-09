@@ -1,6 +1,7 @@
 import { css, html, nothing, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { styleMap } from 'lit/directives/style-map.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -145,7 +146,7 @@ export class CsCardsInternal extends CsBaseElement {
       .map(section => {
         const width = section.width ?? 100;
         return html`
-          <div class="section" style="inline-size: ${width}%">
+          <div class="section" style=${styleMap({ 'inline-size': width + '%' })}>
             ${section.header ? html`<div class="section-header">${section.header}</div>` : nothing}
             ${section.content ? html`<div class="section-content">${section.content(item)}</div>` : nothing}
           </div>

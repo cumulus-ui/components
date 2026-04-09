@@ -1,5 +1,6 @@
 import { css, html, nothing, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
+import { styleMap } from 'lit/directives/style-map.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -111,7 +112,7 @@ export class CsAttributeEditorInternal extends CsBaseElement {
       : '1fr';
 
     return html`
-      <div class="root" style="grid-template-columns: ${gridCols}">
+      <div class="root" style=${styleMap({ 'grid-template-columns': gridCols })}>
         ${!hasItems && this.empty
           ? html`<div class="empty empty-appear">${this.empty}</div>`
           : nothing}

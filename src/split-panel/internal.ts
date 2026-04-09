@@ -1,6 +1,7 @@
 import { css, html, nothing, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { styleMap } from 'lit/directives/style-map.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -145,7 +146,7 @@ export class CsSplitPanelInternal extends CsBaseElement {
       <div class=${classMap(drawerClasses)}
            role="region"
            aria-label=${this._regionLabel}
-           style="block-size: ${this.size}px;">
+           style=${styleMap({ 'block-size': this.size + 'px' })}>
         ${isBottom
           ? html`
             <div class="drawer-content-bottom">

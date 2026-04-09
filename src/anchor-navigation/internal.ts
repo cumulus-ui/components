@@ -3,6 +3,7 @@ import { CsBaseElement } from '../internal/base-element.js';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { styleMap } from 'lit/directives/style-map.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { sharedStyles, componentStyles } from './styles.js';
 import type { AnchorNavigationProps } from './interfaces.js';
@@ -154,7 +155,7 @@ export class CsAnchorNavigationInternal extends CsBaseElement {
           aria-current=${ifDefined(isActive ? 'location' : undefined)}
           @click=${(e: MouseEvent) => this._onAnchorClick(e, anchor)}
         >
-          <span class="anchor-link-text" style="padding-inline-start:${indent}px">${anchor.text}</span>
+          <span class="anchor-link-text" style=${styleMap({ 'padding-inline-start': indent + 'px' })}>${anchor.text}</span>
           ${anchor.info
             ? html`<span class="anchor-link-info">${anchor.info}</span>`
             : nothing}
