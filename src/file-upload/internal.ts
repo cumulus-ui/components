@@ -4,6 +4,12 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
+import { consume } from '@lit/context';
+import {
+  formFieldContext,
+  defaultFormFieldContext,
+  type FormFieldContext,
+} from '../internal/context/form-field-context.js';
 import { componentStyles, sharedStyles } from './styles.js';
 import type { FileUploadProps } from './interfaces.js';
 import '../file-input/index.js';
@@ -108,6 +114,9 @@ const fileListStyles = css`
 
 export class CsFileUploadInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, fileListStyles, hostStyles];
+
+  @consume({ context: formFieldContext, subscribe: true })
+  private _formFieldCtx: FormFieldContext = defaultFormFieldContext;
 
   @property({ attribute: false })
   value: ReadonlyArray<File> = [];
@@ -288,7 +297,9 @@ export class CsFileUploadInternal extends CsBaseElement {
           accept=${ifDefined(this.accept || undefined)}
           ?multiple=${this.multiple}
           ?disabled=${this.disabled}
+          id=${ifDefined(this._formFieldCtx.controlId || undefined)}
           aria-label=${this.ariaLabel || uploadButtonText}
+          aria-describedby=${ifDefined(this._formFieldCtx.ariaDescribedby || undefined)}
           aria-required=${ifDefined(this.ariaRequired || undefined)}
           @change=${this._onFileInputChange}
         >${uploadButtonText}</cs-file-input>

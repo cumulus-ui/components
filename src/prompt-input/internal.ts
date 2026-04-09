@@ -4,6 +4,12 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
+import { consume } from '@lit/context';
+import {
+  formFieldContext,
+  defaultFormFieldContext,
+  type FormFieldContext,
+} from '../internal/context/form-field-context.js';
 import { componentStyles, sharedStyles } from './styles.js';
 import '../button/index.js';
 import '../icon/index.js';
@@ -12,6 +18,9 @@ const hostStyles = css`:host { display: block; }`;
 
 export class CsPromptInputInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
+
+  @consume({ context: formFieldContext, subscribe: true })
+  private _formFieldCtx: FormFieldContext = defaultFormFieldContext;
 
   @property({ type: String })
   value = '';
@@ -42,6 +51,14 @@ export class CsPromptInputInternal extends CsBaseElement {
 
   @property({ type: String })
   override ariaLabel: string | null = null;
+
+  private get _isInvalid(): boolean {
+    return this.invalid || this._formFieldCtx.invalid;
+  }
+
+  private get _isWarning(): boolean {
+    return (this.warning || this._formFieldCtx.warning) && !this._isInvalid;
+  }
 
   private _hasSecondaryContent = false;
   private _hasSecondaryActions = false;
@@ -90,15 +107,15 @@ export class CsPromptInputInternal extends CsBaseElement {
       'root': true,
       'disabled': this.disabled,
       'textarea-readonly': this.readOnly,
-      'textarea-invalid': this.invalid,
-      'textarea-warning': this.warning && !this.invalid,
+      'textarea-invalid': this._isInvalid,
+      'textarea-warning': this._isWarning,
     };
 
     const textareaClasses = {
       'textarea': true,
       'textarea-readonly': this.readOnly,
-      'textarea-invalid': this.invalid,
-      'textarea-warning': this.warning && !this.invalid,
+      'textarea-invalid': this._isInvalid,
+      'textarea-warning': this._isWarning,
     };
 
     return html`
@@ -113,7 +130,11 @@ export class CsPromptInputInternal extends CsBaseElement {
             placeholder=${ifDefined(this.placeholder || undefined)}
             ?disabled=${this.disabled}
             ?readonly=${this.readOnly}
+            id=${ifDefined(this._formFieldCtx.controlId || undefined)}
             aria-label=${ifDefined(this.ariaLabel || undefined)}
+            aria-labelledby=${ifDefined(!this.ariaLabel ? (this._formFieldCtx.ariaLabelledby || undefined) : undefined)}
+            aria-describedby=${ifDefined(this._formFieldCtx.ariaDescribedby || undefined)}
+            aria-invalid=${ifDefined(this._isInvalid ? 'true' : undefined)}
             rows="1"
             @input=${this._onTextareaInput}
             @keydown=${this._onTextareaKeyDown}

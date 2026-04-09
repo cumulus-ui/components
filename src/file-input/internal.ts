@@ -3,6 +3,12 @@ import { property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
+import { consume } from '@lit/context';
+import {
+  formFieldContext,
+  defaultFormFieldContext,
+  type FormFieldContext,
+} from '../internal/context/form-field-context.js';
 import { componentStyles, sharedStyles } from './styles.js';
 import type { FileInputProps } from './interfaces.js';
 import '../button/index.js';
@@ -12,6 +18,9 @@ const hostStyles = css`:host { display: inline-block; }`;
 
 export class CsFileInputInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
+
+  @consume({ context: formFieldContext, subscribe: true })
+  private _formFieldCtx: FormFieldContext = defaultFormFieldContext;
 
   @property({ type: String })
   accept?: string;
@@ -77,7 +86,10 @@ export class CsFileInputInternal extends CsBaseElement {
           variant=${buttonVariant}
           icon-name=${isIconOnly ? 'upload' : ''}
           ?disabled=${this.disabled}
+          id=${ifDefined(this._formFieldCtx.controlId || undefined)}
           aria-label=${label}
+          aria-describedby=${ifDefined(this._formFieldCtx.ariaDescribedby || undefined)}
+          aria-invalid=${ifDefined(this._formFieldCtx.invalid ? 'true' : undefined)}
           aria-required=${ifDefined(this.ariaRequired || undefined)}
           @click=${this._onButtonClick}
         >${!isIconOnly ? html`<slot>${label}</slot>` : ''}</cs-button>

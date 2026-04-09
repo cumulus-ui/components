@@ -5,6 +5,12 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
+import { consume } from '@lit/context';
+import {
+  formFieldContext,
+  defaultFormFieldContext,
+  type FormFieldContext,
+} from '../internal/context/form-field-context.js';
 import { generateUniqueId } from '../internal/hooks/use-unique-id.js';
 import { componentStyles, sharedStyles } from './styles.js';
 import { abstractSwitchStyles } from '../internal/styles/abstract-switch.js';
@@ -17,6 +23,9 @@ const hostStyles = css`:host { display: block; }`;
 
 export class CsCheckboxInternal extends Base {
   static override styles = [sharedStyles, componentStyles, abstractSwitchStyles, checkboxIconStyles, hostStyles];
+
+  @consume({ context: formFieldContext, subscribe: true })
+  private _formFieldCtx: FormFieldContext = defaultFormFieldContext;
 
   @property({ type: Boolean, reflect: true })
   checked = false;
@@ -41,6 +50,21 @@ export class CsCheckboxInternal extends Base {
 
   private readonly _labelId = generateUniqueId('checkbox-label');
   private readonly _descriptionId = generateUniqueId('checkbox-desc');
+
+  private get _resolvedAriaLabelledby(): string | undefined {
+    if (this.ariaLabel) return undefined;
+    const parts: string[] = [];
+    if (this._formFieldCtx.ariaLabelledby) parts.push(this._formFieldCtx.ariaLabelledby);
+    parts.push(this._labelId);
+    return parts.join(' ');
+  }
+
+  private get _resolvedAriaDescribedby(): string | undefined {
+    const parts: string[] = [];
+    if (this.description) parts.push(this._descriptionId);
+    if (this._formFieldCtx.ariaDescribedby) parts.push(this._formFieldCtx.ariaDescribedby);
+    return parts.length ? parts.join(' ') : undefined;
+  }
 
   override connectedCallback(): void {
     super.connectedCallback();
@@ -100,7 +124,6 @@ export class CsCheckboxInternal extends Base {
     };
 
     const hasDescription = this.description.length > 0;
-    const ariaDescribedBy = hasDescription ? this._descriptionId : undefined;
 
     return html`
       <span class="root abstract-switch--wrapper" @click=${this._preventNativeToggle}>
@@ -116,15 +139,17 @@ export class CsCheckboxInternal extends Base {
             <input
               type="checkbox"
               class="abstract-switch--native-input"
+              id=${ifDefined(this._formFieldCtx.controlId || undefined)}
               .checked=${this.checked}
               .indeterminate=${this.indeterminate}
               ?disabled=${this.disabled}
               ?readonly=${this.readOnly}
               aria-label=${ifDefined(this.ariaLabel || undefined)}
-              aria-labelledby=${ifDefined(!this.ariaLabel ? this._labelId : undefined)}
+              aria-labelledby=${ifDefined(this._resolvedAriaLabelledby)}
               aria-required=${ifDefined(this.ariaRequired || undefined)}
               aria-controls=${ifDefined(this.ariaControls || undefined)}
-              aria-describedby=${ifDefined(ariaDescribedBy)}
+              aria-describedby=${ifDefined(this._resolvedAriaDescribedby)}
+              aria-invalid=${ifDefined(this._formFieldCtx.invalid ? 'true' : undefined)}
               aria-checked=${this.indeterminate ? 'mixed' : this.checked}
               @click=${this._preventNativeToggle}
             />

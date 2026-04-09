@@ -6,6 +6,12 @@ import { createRef, ref, type Ref } from 'lit/directives/ref.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
+import { consume } from '@lit/context';
+import {
+  formFieldContext,
+  defaultFormFieldContext,
+  type FormFieldContext,
+} from '../internal/context/form-field-context.js';
 import { computePosition, flip, offset, shift } from '@floating-ui/dom';
 import { componentStyles, sharedStyles } from './styles.js';
 import { selectPartsStyles } from '../internal/styles/select-parts.js';
@@ -211,6 +217,9 @@ function isGroup(item: OptionDefinition | OptionGroup): item is OptionGroup {
 export class CsMultiselectInternal extends Base {
   static override styles = [sharedStyles, componentStyles, selectPartsStyles, internalStyles, hostStyles];
 
+  @consume({ context: formFieldContext, subscribe: true })
+  private _formFieldCtx: FormFieldContext = defaultFormFieldContext;
+
   @property({ attribute: false })
   selectedOptions: ReadonlyArray<MultiselectProps.Option> = [];
 
@@ -262,6 +271,10 @@ export class CsMultiselectInternal extends Base {
   private _filterInputRef: Ref<HTMLInputElement> = createRef();
 
   private _cleanupOutsideClick: (() => void) | null = null;
+
+  private get _isInvalid(): boolean {
+    return this.invalid || this._formFieldCtx.invalid;
+  }
 
   override connectedCallback(): void {
     super.connectedCallback();
@@ -622,7 +635,7 @@ export class CsMultiselectInternal extends Base {
       'trigger': true,
       'select-parts--trigger': true,
       'trigger-disabled': this.disabled,
-      'trigger-invalid': this.invalid,
+      'trigger-invalid': this._isInvalid,
     };
 
     return html`
@@ -630,9 +643,13 @@ export class CsMultiselectInternal extends Base {
         <button
           class=${classMap(triggerClasses)}
           type="button"
+          id=${ifDefined(this._formFieldCtx.controlId || undefined)}
           aria-haspopup="listbox"
           aria-expanded=${this._open}
           aria-label=${ifDefined(this.ariaLabel || undefined)}
+          aria-labelledby=${ifDefined(!this.ariaLabel ? (this._formFieldCtx.ariaLabelledby || undefined) : undefined)}
+          aria-describedby=${ifDefined(this._formFieldCtx.ariaDescribedby || undefined)}
+          aria-invalid=${ifDefined(this._isInvalid ? 'true' : undefined)}
           aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
           ?disabled=${false}
           tabindex=${this.disabled ? -1 : 0}

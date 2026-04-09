@@ -6,6 +6,12 @@ import { createRef, ref, type Ref } from 'lit/directives/ref.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
+import { consume } from '@lit/context';
+import {
+  formFieldContext,
+  defaultFormFieldContext,
+  type FormFieldContext,
+} from '../internal/context/form-field-context.js';
 import { generateUniqueId } from '../internal/hooks/use-unique-id.js';
 import { computePosition, flip, offset, shift } from '@floating-ui/dom';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -53,6 +59,9 @@ const dropdownStyles = css`
 export class CsAutosuggestInternal extends Base {
   static override styles = [sharedStyles, inputComponentStyles, componentStyles, hostStyles, dropdownStyles];
 
+  @consume({ context: formFieldContext, subscribe: true })
+  private _formFieldCtx: FormFieldContext = defaultFormFieldContext;
+
   @property({ type: String })
   override value = '';
 
@@ -90,6 +99,10 @@ export class CsAutosuggestInternal extends Base {
 
   private readonly _listboxId = generateUniqueId('autosuggest-listbox');
   private _flatOptions: OptionDefinition[] = [];
+
+  private get _isInvalid(): boolean {
+    return this.invalid || this._formFieldCtx.invalid;
+  }
 
   private get _filteredOptions(): OptionDefinition[] {
     if (this.filteringType !== 'auto' || !this.value) return this._flatOptions;
@@ -264,7 +277,7 @@ export class CsAutosuggestInternal extends Base {
     const inputClasses = {
       'input': true,
       'input-readonly': this.readOnly,
-      'input-invalid': this.invalid,
+      'input-invalid': this._isInvalid,
       'input-disabled': this.disabled,
     };
 
@@ -279,7 +292,11 @@ export class CsAutosuggestInternal extends Base {
             placeholder=${ifDefined(this.placeholder || undefined)}
             ?disabled=${this.disabled}
             ?readonly=${this.readOnly}
+            id=${ifDefined(this._formFieldCtx.controlId || undefined)}
             aria-label=${ifDefined(this.ariaLabel || undefined)}
+            aria-labelledby=${ifDefined(!this.ariaLabel ? (this._formFieldCtx.ariaLabelledby || undefined) : undefined)}
+            aria-describedby=${ifDefined(this._formFieldCtx.ariaDescribedby || undefined)}
+            aria-invalid=${ifDefined(this._isInvalid ? 'true' : undefined)}
             aria-autocomplete="list"
             aria-expanded=${showDropdown ? 'true' : 'false'}
             aria-controls=${ifDefined(showDropdown ? this._listboxId : undefined)}

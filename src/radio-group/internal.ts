@@ -5,6 +5,12 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
+import { consume } from '@lit/context';
+import {
+  formFieldContext,
+  defaultFormFieldContext,
+  type FormFieldContext,
+} from '../internal/context/form-field-context.js';
 import { generateUniqueId } from '../internal/hooks/use-unique-id.js';
 import { componentStyles, sharedStyles } from './styles.js';
 import { abstractSwitchStyles } from '../internal/styles/abstract-switch.js';
@@ -17,6 +23,9 @@ const hostStyles = css`:host { display: block; }`;
 
 export class CsRadioGroupInternal extends Base {
   static override styles = [sharedStyles, componentStyles, abstractSwitchStyles, radioButtonStyles, hostStyles];
+
+  @consume({ context: formFieldContext, subscribe: true })
+  private _formFieldCtx: FormFieldContext = defaultFormFieldContext;
 
   @property({ type: String })
   override value = '';
@@ -173,7 +182,10 @@ export class CsRadioGroupInternal extends Base {
       <div
         class=${classMap(groupClasses)}
         role="radiogroup"
+        id=${ifDefined(this._formFieldCtx.controlId || undefined)}
         aria-label=${ifDefined(this.controlAriaLabel || undefined)}
+        aria-labelledby=${ifDefined(!this.controlAriaLabel ? (this._formFieldCtx.ariaLabelledby || undefined) : undefined)}
+        aria-describedby=${ifDefined(this._formFieldCtx.ariaDescribedby || undefined)}
         aria-required=${ifDefined(this.controlAriaRequired ? 'true' : undefined)}
         aria-controls=${ifDefined(this.controlAriaControls || undefined)}
         aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
