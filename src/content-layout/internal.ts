@@ -5,8 +5,10 @@ import { styleMap } from 'lit/directives/style-map.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { componentStyles, sharedStyles } from './styles.js';
 
-const hostStyles = css`:host { display: block; }`;
-
+const hostStyles = css`
+  :host { display: block; }
+  .high-contrast { color: #ffffff; }
+`;
 export class CsContentLayoutInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
@@ -66,6 +68,7 @@ export class CsContentLayoutInternal extends CsBaseElement {
     const headerClasses = {
       'header-wrapper': true,
       'with-divider': this.headerVariant === 'divider',
+      'high-contrast': this.headerVariant === 'high-contrast',
     };
 
     const backgroundClasses = {
