@@ -26,12 +26,6 @@ export const componentStyles = css`
   padding-block: 0;
   padding-inline: 0;
 }
-
-.tree-view-tree-item--expand-wrapper { /* structural */ }
-.expand-toggle-button--expand { /* structural */ }
-.tree-view-tree-item--tree-item-focus { /* structural */ }
-.expand-toggle-button--expand-icon { /* structural */ }
-.expand-toggle-button--expand-icon-expanded { /* structural */ }
 `;
 
 export { componentStyles as treeViewStyles };

@@ -41,7 +41,7 @@ export const componentStyles = css`
 }
 
 .icon {
-  transition: transform var(--motion-duration-90-lyzb0k, 135ms) var(--motion-easing-90-jhbqg9, cubic-bezier(0.165, 0.84, 0.44, 1));
+  transition: transform var(--motion-duration-rotate-90, 135ms) var(--motion-easing-rotate-90, cubic-bezier(0.165, 0.84, 0.44, 1));
 }
 @media (prefers-reduced-motion: reduce) {
   .icon {

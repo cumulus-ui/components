@@ -470,7 +470,7 @@ export const componentStyles = css`
   --awsui-style-focus-ring-box-shadow: 0 0 0 var(--awsui-style-focus-ring-border-width, 2px) var(--awsui-style-focus-ring-border-color, var(--color-border-item-focused, #006ce0));
 }
 .stack > .notification-bar > .button > .icon {
-  transition: transform var(--motion-duration-90-lyzb0k, 135ms) var(--motion-easing-90-jhbqg9, cubic-bezier(0.165, 0.84, 0.44, 1));
+  transition: transform var(--motion-duration-rotate-90, 135ms) var(--motion-easing-rotate-90, cubic-bezier(0.165, 0.84, 0.44, 1));
 }
 @media (prefers-reduced-motion: reduce) {
   .stack > .notification-bar > .button > .icon {

@@ -191,8 +191,6 @@ export const componentStyles = css`
   line-height: var(--line-height-body-s, 16px);
   letter-spacing: var(--letter-spacing-body-s, 0.005em);
 }
-
-.icon { /* structural */ }
 `;
 
 export { componentStyles as itemCardStyles };

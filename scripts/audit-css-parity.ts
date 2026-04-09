@@ -213,6 +213,22 @@ function parseOurComponent(component: string): Map<string, Set<string>> {
         merge(parseLitCss(depFile));
       }
     }
+
+    for (const file of fs.readdirSync(internalDir)) {
+      if (file.startsWith(`${component}-`) && file.endsWith('.ts')) {
+        const prefix = file.replace(/\.ts$/, '');
+        const subProps = parseLitCss(path.join(internalDir, file));
+        for (const [cls, props] of subProps) {
+          const unprefixed = cls.startsWith(`${prefix}--`) ? cls.slice(prefix.length + 2) : cls;
+          const existing = merged.get(unprefixed);
+          if (existing) {
+            for (const p of props) existing.add(p);
+          } else {
+            merged.set(unprefixed, new Set(props));
+          }
+        }
+      }
+    }
   }
 
   return merged;

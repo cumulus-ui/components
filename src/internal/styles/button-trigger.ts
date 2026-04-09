@@ -4,7 +4,7 @@ import { css } from 'lit';
 
 export const buttonTriggerStyles = css`
 .button-trigger--button-trigger > .button-trigger--arrow {
-  transition: transform var(--motion-duration-180-cxi9g7, 135ms) var(--motion-easing-180-7a58rc, cubic-bezier(0.165, 0.84, 0.44, 1));
+  transition: transform var(--motion-duration-rotate-180, 135ms) var(--motion-easing-rotate-180, cubic-bezier(0.165, 0.84, 0.44, 1));
 }
 @media (prefers-reduced-motion: reduce) {
   .button-trigger--button-trigger > .button-trigger--arrow {
