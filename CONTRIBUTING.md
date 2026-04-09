@@ -279,6 +279,8 @@ Cumulus reimplements Cloudscape for the Web Component platform. Some things work
 
 **Template whitespace in inline elements.** Lit preserves whitespace in `html` template literals. For inline components like `<cs-link>`, whitespace around `<slot></slot>` inside `<a>` or `<span>` renders as visible extra spaces. Content must be collapsed: `><slot></slot></a>`, not `>\n  <slot></slot>\n</a>`.
 
+**SVG stroke clipping in positioned containers.** In Cloudscape React, SVG elements inside `position: relative` containers inherit `overflow: visible` from the parent `<span>`. In Shadow DOM with fixed-dimension containers, the SVG stroke at the viewBox boundary can get clipped. Components with SVG strokes at the viewBox edge (e.g., checkbox) need `overflow: visible` on the control container.
+
 ### Slots
 
 Use `<slot>` elements to match Cloudscape's content projection. Named slots follow the pattern `<slot name="header">`, `<slot name="footer">`, etc.

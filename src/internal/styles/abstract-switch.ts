@@ -66,8 +66,7 @@ export const abstractSwitchStyles = css`
 
 .abstract-switch--control {
   position: relative;
-
-
+  overflow: visible;
 }
 .abstract-switch--control > input, .abstract-switch--control > svg, .abstract-switch--control > .abstract-switch--outline {
   position: absolute;
