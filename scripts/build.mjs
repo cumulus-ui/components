@@ -5,7 +5,9 @@ const shared = {
   entryPoints: ['src/index.ts'],
   bundle: true,
   format: 'esm',
-  plugins: [minifyHTMLLiteralsPlugin()],
+  plugins: [minifyHTMLLiteralsPlugin({
+    minifyOptions: { keepClosingSlash: true },
+  })],
 };
 
 const mode = process.argv[2];
