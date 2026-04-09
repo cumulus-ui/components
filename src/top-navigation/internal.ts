@@ -27,19 +27,12 @@ export class CsTopNavigationInternal extends CsBaseElement {
     const isModified = e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey;
     if (isModified) return;
 
-    e.preventDefault();
     fireNonCancelableEvent(this as unknown as HTMLElement, 'identityClick', {
       href: this.identity?.href,
     });
   }
 
   private _onUtilityButtonClick(utility: TopNavigationProps.ButtonUtility, e: MouseEvent): void {
-    const isModified = e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey;
-
-    if (utility.href && !isModified) {
-      e.preventDefault();
-    }
-
     fireNonCancelableEvent(this as unknown as HTMLElement, 'utilityClick', {
       type: utility.type,
       text: utility.text,
