@@ -24,6 +24,10 @@ const CS_INTERNAL = path.join(CS, 'internal/components');
 const OUT = path.join(ROOT, 'src');
 const OUT_INTERNAL = path.join(OUT, 'internal/styles');
 
+const EXTRA_PACKAGES: Array<{ pkg: string; components: string[] }> = [
+  { pkg: path.join(ROOT, 'node_modules/@cloudscape-design/code-view'), components: ['code-view'] },
+];
+
 const HEADER = [
   '// AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT',
   '// License: see /NOTICE',
@@ -208,6 +212,12 @@ function transformFocusVisible(css: string): string {
   );
 }
 
+function transformDarkMode(css: string): string {
+  return css
+    .replace(/\.awsui-dark-mode\s+/g, ':host-context(.awsui-dark-mode) ')
+    .replace(/\.awsui-polaris-dark-mode\s+/g, ':host-context(.awsui-dark-mode) ');
+}
+
 /** Remove CSS rules with empty bodies */
 function stripEmptyRules(css: string): string {
   return css.replace(/[^{}]*\{\s*\}/g, '');
@@ -238,6 +248,7 @@ function transformCSS(cssPath: string, cssJsPath: string, classPrefix?: string):
   css = replaceClassNames(css, rev);
   css = stripNotId9(css);
   css = transformFocusVisible(css);
+  css = transformDarkMode(css);
   css = dehashVariableNames(css);
   css = addSentinelFallbacks(css);
   if (classPrefix) {
@@ -319,9 +330,9 @@ function findInternalComponents(): string[] {
 // MAIN
 // ════════════════════════════════════════════════════════════════
 
-function processComponent(name: string): boolean {
-  const cssPath = path.join(CS, name, 'styles.scoped.css');
-  const cssJsPath = path.join(CS, name, 'styles.css.js');
+function processComponent(name: string, baseDir: string = CS): boolean {
+  const cssPath = path.join(baseDir, name, 'styles.scoped.css');
+  const cssJsPath = path.join(baseDir, name, 'styles.css.js');
 
   if (!fs.existsSync(cssPath) || !fs.existsSync(cssJsPath)) {
     console.error(`  ✗ ${name}: missing styles.scoped.css or styles.css.js`);
@@ -338,7 +349,7 @@ function processComponent(name: string): boolean {
 
   // Process sub-component styles (e.g. tree-view/tree-item/, anchor-navigation/anchor-item/)
   const SKIP_SUBDIRS = new Set(['test-classes', 'analytics-metadata', 'keyboard-navigation']);
-  const compDir = path.join(CS, name);
+  const compDir = path.join(baseDir, name);
 
   function findSubComponents(dir: string, prefix: string): Array<{ cssPath: string; cssJsPath: string; styleName: string }> {
     const results: Array<{ cssPath: string; cssJsPath: string; styleName: string }> = [];
@@ -439,6 +450,19 @@ function main(): void {
     } catch (err) {
       console.error(`  ✗ internal/${comp}: ${(err as Error).message}`);
       errors++;
+    }
+  }
+
+  for (const extra of EXTRA_PACKAGES) {
+    console.log(`\nExtra package: ${path.basename(path.dirname(extra.pkg))}/${path.basename(extra.pkg)}`);
+    for (const comp of extra.components) {
+      try {
+        if (processComponent(comp, extra.pkg)) ok++;
+        else errors++;
+      } catch (err) {
+        console.error(`  ✗ ${comp}: ${(err as Error).message}`);
+        errors++;
+      }
     }
   }
 

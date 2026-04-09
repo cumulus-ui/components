@@ -28,9 +28,7 @@ export class CsLiveRegionInternal extends CsBaseElement {
 
     if (this.tagName_ === 'span') {
       return html`
-        <span class=${classMap(classes)} aria-live=${liveValue} aria-atomic="true">
-          <slot></slot>
-        </span>
+        <span class=${classMap(classes)} aria-live=${liveValue} aria-atomic="true"><slot></slot></span>
       `;
     }
 

@@ -178,9 +178,7 @@ export class CsPopoverInternal extends CsBaseElement {
             <button class=${classMap(triggerClasses)}
               aria-label=${ifDefined(this.triggerAriaLabel || undefined)}
               aria-expanded=${this._open}
-              @click=${this._onTriggerClick}>
-              <slot></slot>
-            </button>
+              @click=${this._onTriggerClick}><slot></slot></button>
           `
         }
         ${this._open ? html`

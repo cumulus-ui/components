@@ -32,7 +32,7 @@ export const appLayoutVisualRefreshToolbarToolbarStyles = css`
   background: #161d26;
   }
 @media not print {
-  .awsui-polaris-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer:not(:has(.app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom)):before, .awsui-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer:not(:has(.app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom)):before, .awsui-polaris-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer:not(:has(.app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom)):after, .awsui-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer:not(:has(.app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom)):after {
+  :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer:not(:has(.app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom)):before, :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer:not(:has(.app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom)):before, :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer:not(:has(.app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom)):after, :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer:not(:has(.app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom)):after {
     content: "";
     position: absolute;
     inset-block-start: 42px;
@@ -47,7 +47,7 @@ export const appLayoutVisualRefreshToolbarToolbarStyles = css`
   border-start-start-radius: var(--space-xxs, 4px);
 }
 @media not print {
-  .awsui-polaris-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer:not(:has(.app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom)):after, .awsui-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer:not(:has(.app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom)):after {
+  :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer:not(:has(.app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom)):after, :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer:not(:has(.app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom)):after {
     display: none;
   }
 }
@@ -76,7 +76,7 @@ export const appLayoutVisualRefreshToolbarToolbarStyles = css`
   background: #161d26;
 }
 @media not print {
-  .awsui-polaris-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom, .awsui-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom {
+  :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom, :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom {
     block-size: 100%;
   }
 }
@@ -90,7 +90,7 @@ export const appLayoutVisualRefreshToolbarToolbarStyles = css`
   background: #161d26;
 }
 @media not print {
-  .awsui-polaris-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom:before, .awsui-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom:before, .awsui-polaris-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom:after, .awsui-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom:after {
+  :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom:before, :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom:before, :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom:after, :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar-ai-custom:after {
     display: none;
   }
 }
@@ -107,10 +107,10 @@ export const appLayoutVisualRefreshToolbarToolbarStyles = css`
   grid-template-rows: 1fr;
 }
 @media not print {
-  .awsui-polaris-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--toolbar-container, .awsui-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--toolbar-container {
+  :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--toolbar-container, :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--toolbar-container {
     border-block-start: var(--border-divider-section-width, 1px) solid var(--color-border-layout, #c6c6cd);
   }
-  .awsui-polaris-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--toolbar-container.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer, .awsui-dark-mode .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--toolbar-container.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer {
+  :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--toolbar-container.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer, :host-context(.awsui-dark-mode) .app-layout-visual-refresh-toolbar-toolbar--universal-toolbar > .app-layout-visual-refresh-toolbar-toolbar--toolbar-container.app-layout-visual-refresh-toolbar-toolbar--with-ai-drawer {
     border-start-start-radius: var(--space-xxs, 4px);
     border-inline-start: var(--border-divider-section-width, 1px) solid var(--color-border-layout, #c6c6cd);
   }

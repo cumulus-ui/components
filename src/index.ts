@@ -193,6 +193,9 @@ export type { WizardProps } from './wizard/index.js';
 export { CsCodeEditor } from './code-editor/index.js';
 export type { CodeEditorProps } from './code-editor/index.js';
 
+export { CsCodeView } from './code-view/index.js';
+export type { CodeViewProps } from './code-view/index.js';
+
 export { CsTopNavigation } from './top-navigation/index.js';
 export type { TopNavigationProps } from './top-navigation/index.js';
 

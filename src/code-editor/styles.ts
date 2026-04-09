@@ -34,7 +34,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23db0000' fill-opacity='0' stroke-width='2' stroke-linejoin='round'%3E %3Ccircle cx='8' cy='8' r='7'/%3E %3Cpath d='M10.828 5.172l-5.656 5.656M10.828 10.828L5.172 5.172'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-cell.ace_error, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-cell.ace_error {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-cell.ace_error, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-cell.ace_error {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23ff7a7a' fill-opacity='0' stroke-width='2' stroke-linejoin='round'%3E %3Ccircle cx='8' cy='8' r='7'/%3E %3Cpath d='M10.828 5.172l-5.656 5.656M10.828 10.828L5.172 5.172'/%3E %3C/svg%3E");
     }
   }
@@ -44,7 +44,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23855900' fill-opacity='0' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M8 1l7 14H1L8 1z'/%3E %3Cpath d='M7.99 12H8v.01h-.01zM8 6v4'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-cell.ace_warning, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-cell.ace_warning {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-cell.ace_warning, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-cell.ace_warning {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23fbd332' fill-opacity='0' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M8 1l7 14H1L8 1z'/%3E %3Cpath d='M7.99 12H8v.01h-.01zM8 6v4'/%3E %3C/svg%3E");
     }
   }
@@ -117,7 +117,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23424650' fill='%23424650' stroke-width='2'%3E %3Cpath d='M4 5h8l-4 6-4-6z' stroke-linejoin='round'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_fold-widget.ace_open, body.awsui-dark-mode .code-editor .ace_editor .ace_fold-widget.ace_open {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_fold-widget.ace_open, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_fold-widget.ace_open {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23dedee3' fill='%23dedee3' stroke-width='2'%3E %3Cpath d='M4 5h8l-4 6-4-6z' stroke-linejoin='round'/%3E %3C/svg%3E");
     }
   }
@@ -127,7 +127,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%230f141a' fill='%230f141a' stroke-width='2'%3E %3Cpath d='M4 5h8l-4 6-4-6z' stroke-linejoin='round'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_fold-widget.ace_open:hover, body.awsui-dark-mode .code-editor .ace_editor .ace_fold-widget.ace_open:hover {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_fold-widget.ace_open:hover, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_fold-widget.ace_open:hover {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23f9f9fa' fill='%23f9f9fa' stroke-width='2'%3E %3Cpath d='M4 5h8l-4 6-4-6z' stroke-linejoin='round'/%3E %3C/svg%3E");
     }
   }
@@ -137,7 +137,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23424650' fill='%23424650' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M5 4v8l6-4-6-4z'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_fold-widget.ace_closed, body.awsui-dark-mode .code-editor .ace_editor .ace_fold-widget.ace_closed {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_fold-widget.ace_closed, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_fold-widget.ace_closed {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23dedee3' fill='%23dedee3' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M5 4v8l6-4-6-4z'/%3E %3C/svg%3E");
     }
   }
@@ -147,7 +147,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%230f141a' fill='%230f141a' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M5 4v8l6-4-6-4z'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_fold-widget.ace_closed:hover, body.awsui-dark-mode .code-editor .ace_editor .ace_fold-widget.ace_closed:hover {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_fold-widget.ace_closed:hover, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_fold-widget.ace_closed:hover {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23f9f9fa' fill='%23f9f9fa' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M5 4v8l6-4-6-4z'/%3E %3C/svg%3E");
     }
   }
@@ -185,7 +185,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23dedee3' fill='%23dedee3' stroke-width='2'%3E %3Cpath d='M4 5h8l-4 6-4-6z' stroke-linejoin='round'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_open, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_open {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_open, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_open {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%231b232d' fill='%231b232d' stroke-width='2'%3E %3Cpath d='M4 5h8l-4 6-4-6z' stroke-linejoin='round'/%3E %3C/svg%3E");
     }
   }
@@ -195,7 +195,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23f9f9fa' fill='%23f9f9fa' stroke-width='2'%3E %3Cpath d='M4 5h8l-4 6-4-6z' stroke-linejoin='round'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_open:hover, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_open:hover {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_open:hover, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_open:hover {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%230f141a' fill='%230f141a' stroke-width='2'%3E %3Cpath d='M4 5h8l-4 6-4-6z' stroke-linejoin='round'/%3E %3C/svg%3E");
     }
   }
@@ -205,7 +205,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23dedee3' fill='%23dedee3' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M5 4v8l6-4-6-4z'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_closed, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_closed {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_closed, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_closed {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%231b232d' fill='%231b232d' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M5 4v8l6-4-6-4z'/%3E %3C/svg%3E");
     }
   }
@@ -215,7 +215,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23f9f9fa' fill='%23f9f9fa' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M5 4v8l6-4-6-4z'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_closed:hover, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_closed:hover {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_closed:hover, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line > .ace_fold-widget.ace_closed:hover {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%230f141a' fill='%230f141a' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M5 4v8l6-4-6-4z'/%3E %3C/svg%3E");
     }
   }
@@ -229,7 +229,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23ffffff' fill-opacity='0' stroke-width='2' stroke-linejoin='round'%3E %3Ccircle cx='8' cy='8' r='7'/%3E %3Cpath d='M10.828 5.172l-5.656 5.656M10.828 10.828L5.172 5.172'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_error, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_error {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_error, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_error {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%230f141a' fill-opacity='0' stroke-width='2' stroke-linejoin='round'%3E %3Ccircle cx='8' cy='8' r='7'/%3E %3Cpath d='M10.828 5.172l-5.656 5.656M10.828 10.828L5.172 5.172'/%3E %3C/svg%3E");
     }
   }
@@ -239,7 +239,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23ffffff' fill-opacity='0' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M8 1l7 14H1L8 1z'/%3E %3Cpath d='M7.99 12H8v.01h-.01zM8 6v4'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_warning, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_warning {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_warning, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_warning {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%230f141a' fill-opacity='0' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M8 1l7 14H1L8 1z'/%3E %3Cpath d='M7.99 12H8v.01h-.01zM8 6v4'/%3E %3C/svg%3E");
     }
   }
@@ -249,7 +249,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23dedee3' fill='%23dedee3' stroke-width='2'%3E %3Cpath d='M4 5h8l-4 6-4-6z' stroke-linejoin='round'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_open, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_open, body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_open, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_open {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_open, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_open, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_open, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_open {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%231b232d' fill='%231b232d' stroke-width='2'%3E %3Cpath d='M4 5h8l-4 6-4-6z' stroke-linejoin='round'/%3E %3C/svg%3E");
     }
   }
@@ -259,7 +259,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23f9f9fa' fill='%23f9f9fa' stroke-width='2'%3E %3Cpath d='M4 5h8l-4 6-4-6z' stroke-linejoin='round'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_open:hover, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_open:hover, body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_open:hover, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_open:hover {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_open:hover, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_open:hover, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_open:hover, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_open:hover {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%230f141a' fill='%230f141a' stroke-width='2'%3E %3Cpath d='M4 5h8l-4 6-4-6z' stroke-linejoin='round'/%3E %3C/svg%3E");
     }
   }
@@ -269,7 +269,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23dedee3' fill='%23dedee3' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M5 4v8l6-4-6-4z'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_closed, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_closed, body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_closed, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_closed {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_closed, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_closed, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_closed, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_closed {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%231b232d' fill='%231b232d' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M5 4v8l6-4-6-4z'/%3E %3C/svg%3E");
     }
   }
@@ -279,7 +279,7 @@ export const componentStyles = css`
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%23f9f9fa' fill='%23f9f9fa' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M5 4v8l6-4-6-4z'/%3E %3C/svg%3E");
   }
   @media not print {
-    body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_closed:hover, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_closed:hover, body.awsui-polaris-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_closed:hover, body.awsui-dark-mode .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_closed:hover {
+    body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_closed:hover, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_error > .ace_fold-widget.ace_closed:hover, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_closed:hover, body:host-context(.awsui-dark-mode) .code-editor .ace_editor .ace_gutter-active-line.ace_warning > .ace_fold-widget.ace_closed:hover {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' stroke='%230f141a' fill='%230f141a' stroke-width='2' stroke-linejoin='round'%3E %3Cpath d='M5 4v8l6-4-6-4z'/%3E %3C/svg%3E");
     }
   }

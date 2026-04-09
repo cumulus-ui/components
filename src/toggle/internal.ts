@@ -143,9 +143,7 @@ export class CsToggleInternal extends Base {
             <span id=${this._labelId} class=${classMap({
               'abstract-switch--label': true,
               'abstract-switch--label-disabled': this.disabled,
-            })}>
-              <slot></slot>
-            </span>
+            })}><slot></slot></span>
             ${hasDescription ? html`
               <span id=${this._descriptionId} class=${classMap({
                 'abstract-switch--description': true,

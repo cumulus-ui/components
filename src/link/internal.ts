@@ -1,4 +1,4 @@
-import { css, html, nothing, type TemplateResult } from 'lit';
+import { html, nothing, type TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -8,10 +8,8 @@ import { componentStyles, sharedStyles } from './styles.js';
 import type { LinkProps } from './interfaces.js';
 import '../icon/index.js';
 
-const hostStyles = css`:host { display: inline; }`;
-
 export class CsLinkInternal extends CsBaseElement {
-  static override styles = [sharedStyles, componentStyles, hostStyles];
+  static override styles = [sharedStyles, componentStyles];
 
   @property({ type: String })
   href = '';
@@ -99,10 +97,7 @@ export class CsLinkInternal extends CsBaseElement {
           target=${ifDefined(this._resolvedTarget())}
           rel=${ifDefined(this._resolvedRel())}
           aria-label=${ifDefined(this.ariaLabel || undefined)}
-        >
-          <slot></slot>
-          ${externalIcon}
-        </a>
+        ><slot></slot>${externalIcon}</a>
       `;
     }
 
@@ -111,10 +106,6 @@ export class CsLinkInternal extends CsBaseElement {
         class=${classMap(linkClasses)}
         type="button"
         aria-label=${ifDefined(this.ariaLabel || undefined)}
-      >
-        <slot></slot>
-        ${externalIcon}
-      </button>
-    `;
+      ><slot></slot>${externalIcon}</button>`;
   }
 }

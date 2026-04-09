@@ -84,9 +84,7 @@ export class CsTokenInternal extends CsBaseElement {
             aria-disabled=${ifDefined(ariaDisabled)}
           >
             <slot name="icon"></slot>
-            <span class="token-option-inline">
-              <slot></slot>
-            </span>
+            <span class="token-option-inline"><slot></slot></span>
             ${showDismiss
               ? html`
                 <button
