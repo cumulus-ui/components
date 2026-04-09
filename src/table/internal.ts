@@ -78,7 +78,7 @@ const tableElementStyles = css`
     background: var(--color-background-item-selected, #f0f4ff);
   }
   .row-striped:not(.row-selected) {
-    background: var(--color-background-striped-rows, #fafafa);
+    background: var(--color-background-cell-shaded, #f6f6f9);
   }
 
   .selection-cell {

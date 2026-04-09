@@ -28,7 +28,7 @@ const dropdownStyles = css`
   position: fixed;
   z-index: 1000;
   background: var(--color-background-dropdown-item-default, #ffffff);
-  border: 1px solid var(--color-border-dropdown, #8c8c94);
+  border: 1px solid var(--color-border-dropdown-container, #b4b4bb);
   border-radius: var(--border-radius-dropdown, 8px);
   box-shadow: var(--shadow-dropdown, 0px 4px 20px 1px rgba(0, 7, 22, 0.1));
   padding: 0;

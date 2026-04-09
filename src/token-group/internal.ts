@@ -15,7 +15,7 @@ const inventedStyles = css`
   .label-tag {
     display: inline-block;
     margin-inline-start: var(--space-xxs, 4px);
-    font-size: var(--font-body-s-size, 12px);
+    font-size: var(--font-size-body-s, 12px);
     color: var(--color-text-body-secondary, #5f6b7a);
   }
   .tags {

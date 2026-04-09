@@ -11,13 +11,13 @@ const hostStyles = css`:host { display: block; }`;
 
 const inventedStyles = css`
   .label {
-    font-size: var(--font-body-m-size, 14px);
-    font-weight: var(--font-body-m-weight, 400);
+    font-size: var(--font-size-body-m, 14px);
+    font-weight: 400;
     color: var(--color-text-body-default, #0f141a);
     margin-block-end: var(--space-xxs, 4px);
   }
   .description {
-    font-size: var(--font-body-s-size, 12px);
+    font-size: var(--font-size-body-s, 12px);
     color: var(--color-text-body-secondary, #5f6b7a);
     margin-block-end: var(--space-xs, 8px);
   }

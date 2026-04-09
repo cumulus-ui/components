@@ -80,14 +80,14 @@ const internalStyles = css`
   max-block-size: 300px;
   overflow-y: auto;
   background: var(--color-background-dropdown-item-default, #ffffff);
-  border: 1px solid var(--color-border-dropdown, #c6c6cd);
+  border: 1px solid var(--color-border-dropdown-container, #b4b4bb);
   border-radius: var(--border-radius-dropdown, 8px);
   box-shadow: var(--shadow-dropdown, 0px 4px 20px 1px rgba(0, 7, 22, 0.10));
   padding-block: var(--space-xxs, 4px);
 }
 .filter-container {
   padding: var(--space-xxs, 4px) var(--space-xs, 8px);
-  border-block-end: 1px solid var(--color-border-dropdown, #c6c6cd);
+  border-block-end: 1px solid var(--color-border-dropdown-container, #b4b4bb);
 }
 .filter-input {
   display: block;
@@ -159,7 +159,7 @@ const internalStyles = css`
   color: var(--color-text-body-secondary, #656871);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border-block-start: 1px solid var(--color-border-dropdown, #c6c6cd);
+  border-block-start: 1px solid var(--color-border-dropdown-container, #b4b4bb);
   margin-block-start: var(--space-xxs, 4px);
 }
 .group-label:first-child {

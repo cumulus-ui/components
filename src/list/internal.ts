@@ -28,7 +28,7 @@ const inventedStyles = css`
   }
   .structured-item--secondary {
     color: var(--color-text-body-secondary, #5f6b7a);
-    font-size: var(--font-body-s-size, 12px);
+    font-size: var(--font-size-body-s, 12px);
     line-height: var(--line-height-body-s, 16px);
   }
 `;

@@ -19,7 +19,7 @@ const dropdownStyles = css`
     position: fixed;
     z-index: 9999;
     background: var(--color-background-dropdown-item-default, #ffffff);
-    border: var(--border-width-dropdown, 2px) solid var(--color-border-dropdown, #c6c6cd);
+    border: var(--border-width-dropdown, 2px) solid var(--color-border-dropdown-container, #b4b4bb);
     border-radius: var(--border-radius-dropdown, 8px);
     box-shadow: var(--shadow-dropdown, 0px 4px 20px 1px rgba(0, 7, 22, 0.10));
     overflow: auto;

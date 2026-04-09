@@ -11,8 +11,8 @@ const hostStyles = css`:host { display: block; }`;
 
 const inventedStyles = css`
   .title {
-    font-size: var(--font-body-m-size, 14px);
-    font-weight: var(--font-heading-s-weight, 700);
+    font-size: var(--font-size-body-m, 14px);
+    font-weight: var(--font-weight-heading-s, 700);
     color: var(--color-text-body-default, #0f141a);
   }
 `;
