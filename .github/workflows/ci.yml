@@ -41,7 +41,6 @@ jobs:
 
       - name: Audit — ARIA + CSS coverage
         run: npx tsx scripts/generate-render.ts --audit
-        continue-on-error: true  # 12 pre-existing CSS coverage errors — harden after Phase 4 fixes
 
       - name: Audit — Conditional rendering
         run: npx tsx scripts/generate-render.ts --audit-conditionals

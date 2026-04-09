@@ -205,6 +205,16 @@ export const componentStyles = css`
   line-height: var(--line-height-body-s, 16px);
   letter-spacing: var(--letter-spacing-body-s, 0.005em);
 }
+
+.custom-control { /* structural */ }
+
+.filtering-constraint-text {
+  padding-block-start: var(--space-xxs, 4px);
+  color: var(--color-text-form-secondary, #656871);
+  font-size: var(--font-size-body-s, 12px);
+  line-height: var(--line-height-body-s, 16px);
+  letter-spacing: var(--letter-spacing-body-s, 0.005em);
+}
 `;
 
 export { componentStyles as propertyFilterStyles };

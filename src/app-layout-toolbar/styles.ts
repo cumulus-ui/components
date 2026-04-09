@@ -1,12 +1,11 @@
-// AUTO-GENERATED from @cloudscape-design/components — DO NOT EDIT
-// License: see /NOTICE
 import { css } from 'lit';
 import { sharedStyles } from '../internal/styles/shared.js';
 
 export const componentStyles = css`
 .root { /* structural */ }
-.input-row { /* structural */ }
+.toolbar { /* structural */ }
+.layout { /* structural */ }
+.app-layout-notifications--notifications { /* structural */ }
 `;
 
-export { componentStyles as s3ResourceSelectorStyles };
 export { sharedStyles };

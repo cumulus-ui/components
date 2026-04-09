@@ -73,6 +73,8 @@ export const componentStyles = css`
 .layout:not(.is-visual-refresh) > .notifications {
   grid-column: 1/8;
 }
+
+.secondary-header { /* structural */ }
 `;
 
 export { componentStyles as contentLayoutStyles };

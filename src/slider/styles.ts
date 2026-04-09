@@ -397,6 +397,16 @@ export const componentStyles = css`
   pointer-events: none;
   cursor: initial;
 }
+
+.tick-marks {
+  position: relative;
+}
+.tick-mark {
+  position: absolute;
+  block-size: var(--space-xs, 8px);
+  inline-size: var(--space-xxxs, 2px);
+  background: var(--color-background-slider-track-default, #8c8c94);
+}
 `;
 
 export { componentStyles as sliderStyles };
