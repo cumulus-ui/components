@@ -129,7 +129,75 @@ function dehashVariableNames(css: string): string {
 }
 
 /**
+ * Add CSS fallbacks to --awsui-* sentinel variables (declared as 0px, set by JS at runtime).
+ *
+ * In Cloudscape React, parent components set these via inline styles before children render.
+ * In Web Components, there's no guaranteed render order, so var() references need fallbacks
+ * to gracefully degrade when no parent sets the variable.
+ *
+ * The fallback map is built by scanning ALL Cloudscape CSS for each variable's first
+ * non-zero declaration — that's Cloudscape's intended default value.
+ */
+let _fallbackMap: Map<string, string> | null = null;
+
+function buildFallbackMap(): Map<string, string> {
+  if (_fallbackMap) return _fallbackMap;
+  _fallbackMap = new Map();
+
+  const cssFiles: string[] = [];
+  function walk(dir: string): void {
+    if (!fs.existsSync(dir)) return;
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory() && !['test-classes', 'analytics-metadata', 'node_modules'].includes(entry.name)) {
+        walk(full);
+      } else if (entry.name === 'styles.scoped.css') {
+        cssFiles.push(full);
+      }
+    }
+  }
+  walk(CS);
+  walk(CS_INTERNAL);
+
+  for (const file of cssFiles) {
+    const src = fs.readFileSync(file, 'utf-8');
+    const re = /(--awsui-[\w-]+):\s*([^;]+);/g;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(src)) !== null) {
+      const name = dehashVariableNames(m[1]);
+      const value = dehashVariableNames(m[2].trim());
+      if (value === '0px' || value === '0' || _fallbackMap.has(name)) continue;
+      _fallbackMap.set(name, value);
+    }
+  }
+
+  return _fallbackMap;
+}
+
+function addSentinelFallbacks(css: string): string {
+  const map = buildFallbackMap();
+  const localNonZeroDecls = new Set<string>();
+  const declRe = /(--awsui-[\w-]+):\s*([^;]+);/g;
+  let dm: RegExpExecArray | null;
+  while ((dm = declRe.exec(css)) !== null) {
+    const val = dm[2].trim();
+    if (val !== '0px' && val !== '0') {
+      localNonZeroDecls.add(dm[1]);
+    }
+  }
+
+  return css.replace(/var\((--awsui-[\w-]+)\)/g, (match, name) => {
+    if (localNonZeroDecls.has(name)) return match;
+    const fallback = map.get(name);
+    if (fallback) return `var(${name}, ${fallback})`;
+    if (name.includes('max-content-width')) return `var(${name}, 100%)`;
+    return match;
+  });
+}
+
+/**
  * Transform body[data-awsui-focus-visible=true] selectors for Shadow DOM.
+ *
  * In Cloudscape (React), focus-visible is tracked on `body`. In Shadow DOM
  * we use `:host-context()` to reach through the shadow boundary.
  */
@@ -171,6 +239,7 @@ function transformCSS(cssPath: string, cssJsPath: string, classPrefix?: string):
   css = stripNotId9(css);
   css = transformFocusVisible(css);
   css = dehashVariableNames(css);
+  css = addSentinelFallbacks(css);
   if (classPrefix) {
     css = prefixClasses(css, fwd, classPrefix);
   }

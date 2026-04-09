@@ -100,7 +100,7 @@ export const appLayoutVisualRefreshToolbarSkeletonStyles = css`
 @media (min-width: 689px) {
   .app-layout-visual-refresh-toolbar-skeleton--navigation {
     grid-area: navigation;
-    inline-size: var(--awsui-navigation-width);
+    inline-size: var(--awsui-navigation-width, 100vw);
     border-inline-end: var(--border-divider-section-width, 1px) solid var(--color-border-layout, #c6c6cd);
   }
 }
@@ -116,7 +116,7 @@ export const appLayoutVisualRefreshToolbarSkeletonStyles = css`
 
   }
   .app-layout-visual-refresh-toolbar-skeleton--tools:not(:has(> [data-testid])) {
-    inline-size: var(--awsui-tools-width);
+    inline-size: var(--awsui-tools-width, auto);
   }
   .app-layout-visual-refresh-toolbar-skeleton--tools:not(:has(> [data-testid])).app-layout-visual-refresh-toolbar-skeleton--tools-open {
     border-inline-start: var(--border-divider-section-width, 1px) solid var(--color-border-layout, #c6c6cd);

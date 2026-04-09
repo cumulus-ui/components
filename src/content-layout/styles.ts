@@ -9,7 +9,7 @@ export const componentStyles = css`
   --awsui-content-layout-max-content-width: 0px;
   --awsui-content-layout-main-gap: 0px;
   display: grid;
-  grid-template-columns: 0 0 1fr minmax(0, var(--awsui-content-layout-max-content-width)) 1fr 0 0;
+  grid-template-columns: 0 0 1fr minmax(0, var(--awsui-content-layout-max-content-width, 100%)) 1fr 0 0;
   grid-template-rows: var(--awsui-content-layout-main-gap) min-content min-content auto var(--space-dark-header-overlap-distance, 36px) 1fr;
   min-block-size: 100%;
 }
@@ -42,7 +42,7 @@ export const componentStyles = css`
 }
 .layout.default-padding {
   --awsui-content-layout-main-gap: var(--space-scaled-m, 16px);
-  grid-template-columns: var(--awsui-toggles-left-width, 0) var(--awsui-content-layout-default-horizontal-padding, 0) 1fr minmax(0, var(--awsui-content-layout-max-content-width)) 1fr var(--awsui-content-layout-default-horizontal-padding, 0) var(--awsui-toggles-right-width, 0);
+  grid-template-columns: var(--awsui-toggles-left-width, 0) var(--awsui-content-layout-default-horizontal-padding, 0) 1fr minmax(0, var(--awsui-content-layout-max-content-width, 100%)) 1fr var(--awsui-content-layout-default-horizontal-padding, 0) var(--awsui-toggles-right-width, 0);
 }
 .layout > .header-wrapper {
   grid-column: 4;

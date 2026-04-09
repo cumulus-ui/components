@@ -74,8 +74,12 @@ export class CsContentLayoutInternal extends CsBaseElement {
       'is-overlap-disabled': this.disableOverlap,
     };
 
+    const layoutStyle = this.maxContentWidth
+      ? { '--awsui-content-layout-max-content-width': `${this.maxContentWidth}px` }
+      : { '--awsui-content-layout-max-content-width': '100%' };
+
     return html`
-      <div class=${classMap(layoutClasses)}>
+      <div class=${classMap(layoutClasses)} style=${styleMap(layoutStyle)}>
         <div class=${classMap(backgroundClasses)}>
           ${this.headerBackgroundStyle
             ? html`<div class="header-background" style=${styleMap({ background: this.headerBackgroundStyle || '' })}></div>`

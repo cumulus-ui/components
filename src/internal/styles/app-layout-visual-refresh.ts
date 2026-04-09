@@ -304,7 +304,7 @@ explicitly set in script.
   --awsui-default-max-content-width: 100%;
 }
 .app-layout-visual-refresh--layout.app-layout-visual-refresh--has-max-content-width {
-  --awsui-default-max-content-width: var(--awsui-max-content-width);
+  --awsui-default-max-content-width: var(--awsui-max-content-width, 100%);
 }
 .app-layout-visual-refresh--layout.app-layout-visual-refresh--is-overlap-disabled {
   --awsui-overlap-height: 0;

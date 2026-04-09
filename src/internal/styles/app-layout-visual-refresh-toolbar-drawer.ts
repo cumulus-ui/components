@@ -9,7 +9,7 @@ export const appLayoutVisualRefreshToolbarDrawerStyles = css`
   background-color: var(--color-background-container-content, #ffffff);
   display: grid;
   grid-template-columns: var(--space-m, 16px) 1fr;
-  inline-size: var(--awsui-drawer-size);
+  inline-size: var(--awsui-drawer-size, 290px);
   block-size: 100%;
   overflow: hidden;
 
@@ -48,7 +48,7 @@ export const appLayoutVisualRefreshToolbarDrawerStyles = css`
 }
 @media (min-width: 689px) {
   .app-layout-visual-refresh-toolbar-drawer--drawer.app-layout-visual-refresh-toolbar-drawer--drawer-global {
-    inline-size: var(--awsui-drawer-size);
+    inline-size: var(--awsui-drawer-size, 290px);
   }
 }
 @media (max-width: 688px) {
@@ -99,7 +99,7 @@ export const appLayoutVisualRefreshToolbarDrawerStyles = css`
   grid-template-columns: var(--space-m, 16px) 1fr auto var(--space-m, 16px);
   grid-template-rows: 14px auto 1fr;
   overflow-y: auto;
-  min-inline-size: var(--awsui-drawer-size);
+  min-inline-size: var(--awsui-drawer-size, 290px);
 }
 .app-layout-visual-refresh-toolbar-drawer--drawer > .app-layout-visual-refresh-toolbar-drawer--drawer-content-container > .app-layout-visual-refresh-toolbar-drawer--drawer-close-button {
   grid-column: 3;
@@ -132,7 +132,7 @@ export const appLayoutVisualRefreshToolbarDrawerStyles = css`
 }
 .app-layout-visual-refresh-toolbar-drawer--drawer > .app-layout-visual-refresh-toolbar-drawer--global-drawer-wrapper {
   display: grid;
-  min-inline-size: var(--awsui-drawer-size);
+  min-inline-size: var(--awsui-drawer-size, 290px);
   grid-template-columns: 8px var(--space-m, 16px) 1fr;
   overflow: hidden;
 }
