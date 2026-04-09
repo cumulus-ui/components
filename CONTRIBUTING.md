@@ -277,7 +277,7 @@ Cumulus reimplements Cloudscape for the Web Component platform. Some things work
 
 **CSS custom property fallbacks for sentinel variables.** Cloudscape declares `--awsui-*` variables as `0px` in CSS and sets real values via JavaScript at render time. In React, parent components always render before children, so the variable is set before it's read. In Web Components, there's no guaranteed render order. The generator adds CSS fallbacks to `var()` references using Cloudscape's own non-zero values, so components degrade gracefully when used standalone.
 
-**Template whitespace in inline elements.** Lit preserves whitespace in `html` template literals. For inline components like `<cs-link>`, whitespace around `<slot></slot>` inside `<a>` or `<span>` renders as visible extra spaces. Content must be collapsed: `><slot></slot></a>`, not `>\n  <slot></slot>\n</a>`.
+**Template whitespace.** Lit preserves whitespace in `html` template literals. For inline components like `<cs-link>`, whitespace around elements renders as visible gaps (e.g., space before punctuation after a link). The build uses `esbuild-plugin-minify-html-literals` to strip insignificant whitespace from all templates automatically. Source templates can use natural formatting.
 
 **SVG stroke clipping in positioned containers.** In Cloudscape React, SVG elements inside `position: relative` containers inherit `overflow: visible` from the parent `<span>`. In Shadow DOM with fixed-dimension containers, the SVG stroke at the viewBox boundary can get clipped. Components with SVG strokes at the viewBox edge (e.g., checkbox) need `overflow: visible` on the control container.
 
