@@ -51,7 +51,7 @@ export class CsSliderInternal extends CsBaseElement {
     this.value = Number(input.value);
 
     const detail: SliderProps.ChangeDetail = { value: this.value };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
   };
 
   private _getRangePercent(): number {

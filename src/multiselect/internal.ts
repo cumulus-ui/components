@@ -361,7 +361,7 @@ export class CsMultiselectInternal extends Base {
     this.value = newSelected.map(o => o.value).filter(Boolean).join(',');
 
     fireNonCancelableEvent(
-      this as unknown as HTMLElement,
+      this,
       'change',
       { selectedOptions: newSelected } as MultiselectProps.MultiselectChangeDetail
     );
@@ -385,7 +385,7 @@ export class CsMultiselectInternal extends Base {
     this.value = newSelected.map(o => o.value).filter(Boolean).join(',');
 
     fireNonCancelableEvent(
-      this as unknown as HTMLElement,
+      this,
       'change',
       { selectedOptions: newSelected } as MultiselectProps.MultiselectChangeDetail
     );

@@ -122,13 +122,13 @@ export class CsButtonDropdownInternal extends CsBaseElement {
     e.stopPropagation();
 
     if (item.href) {
-      fireNonCancelableEvent(this as unknown as HTMLElement, 'itemFollow', {
+      fireNonCancelableEvent(this, 'itemFollow', {
         id: item.id,
         href: item.href,
         external: item.external ?? false,
       });
     } else {
-      fireNonCancelableEvent(this as unknown as HTMLElement, 'itemClick', {
+      fireNonCancelableEvent(this, 'itemClick', {
         id: item.id,
       });
     }

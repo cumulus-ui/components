@@ -50,7 +50,7 @@ export class CsTabsInternal extends CsBaseElement {
       activeTabHref: tab.href,
     };
     this._internalActiveTabId = tab.id;
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
   }
 
   private _onTabKeyDown = (e: KeyboardEvent): void => {

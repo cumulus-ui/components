@@ -33,7 +33,7 @@ export class CsFlashbarInternal extends CsBaseElement {
     if (item?.onDismiss) {
       (item.onDismiss as (event: CustomEvent) => void)(new CustomEvent('dismiss'));
     }
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'dismiss', { index, item });
+    fireNonCancelableEvent(this, 'dismiss', { index, item });
   }
 
   private _onButtonClick(index: number): void {

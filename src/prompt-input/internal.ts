@@ -66,7 +66,7 @@ export class CsPromptInputInternal extends CsBaseElement {
   private _onTextareaInput = (e: Event): void => {
     const textarea = e.target as HTMLTextAreaElement;
     this.value = textarea.value;
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', { value: this.value });
+    fireNonCancelableEvent(this, 'change', { value: this.value });
   };
 
   private _onTextareaKeyDown = (e: KeyboardEvent): void => {
@@ -82,7 +82,7 @@ export class CsPromptInputInternal extends CsBaseElement {
 
   private _fireAction(): void {
     if (this.disabled || this.readOnly || this.disableActionButton) return;
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'action', { value: this.value });
+    fireNonCancelableEvent(this, 'action', { value: this.value });
   }
 
   override render(): TemplateResult {

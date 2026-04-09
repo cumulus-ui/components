@@ -55,14 +55,14 @@ export class CsAttributeEditorInternal extends CsBaseElement {
 
   private _handleAddClick = (e: Event): void => {
     if (!(e instanceof CustomEvent)) return;
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'addButtonClick', {});
+    fireNonCancelableEvent(this, 'addButtonClick', {});
   };
 
   private _handleRemoveClick(itemIndex: number): (e: Event) => void {
     return (e: Event) => {
       if (!(e instanceof CustomEvent)) return;
       const detail: AttributeEditorProps.RemoveButtonClickDetail = { itemIndex };
-      fireNonCancelableEvent(this as unknown as HTMLElement, 'removeButtonClick', detail);
+      fireNonCancelableEvent(this, 'removeButtonClick', detail);
     };
   }
 

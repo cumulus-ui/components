@@ -95,7 +95,7 @@ export class CsS3ResourceSelectorInternal extends CsBaseElement {
     const detail: S3ResourceSelectorProps.ChangeDetail = {
       resource: { uri },
     };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
   };
 
   private _openModal = (): void => {
@@ -135,7 +135,7 @@ export class CsS3ResourceSelectorInternal extends CsBaseElement {
     this._modalOpen = false;
 
     const detail: S3ResourceSelectorProps.ChangeDetail = { resource: { uri } };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
   };
 
   private async _loadBuckets(): Promise<void> {

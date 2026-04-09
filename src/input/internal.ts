@@ -99,15 +99,15 @@ export class CsInputInternal extends Base {
     const target = e.target as HTMLInputElement;
     this.value = target.value;
     const detail: BaseChangeDetail = { value: this.value };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
   };
 
   private _onBlur = (): void => {
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'blur', null);
+    fireNonCancelableEvent(this, 'blur', {});
   };
 
   private _onFocus = (): void => {
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'focus', null);
+    fireNonCancelableEvent(this, 'focus', {});
   };
 
   private _onKeyDown = (e: KeyboardEvent): void => {
@@ -120,7 +120,7 @@ export class CsInputInternal extends Base {
       metaKey: e.metaKey,
       isComposing: e.isComposing,
     };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'keydown', detail);
+    fireNonCancelableEvent(this, 'keydown', detail);
   };
 
   private _onKeyUp = (e: KeyboardEvent): void => {
@@ -133,13 +133,13 @@ export class CsInputInternal extends Base {
       metaKey: e.metaKey,
       isComposing: e.isComposing,
     };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'keyup', detail);
+    fireNonCancelableEvent(this, 'keyup', detail);
   };
 
   private _onClear = (): void => {
     this.value = '';
     const detail: BaseChangeDetail = { value: '' };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
     this.focus();
   };
 

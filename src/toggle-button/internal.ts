@@ -63,7 +63,7 @@ export class CsToggleButtonInternal extends CsBaseElement {
 
     this.pressed = !this.pressed;
     const detail: ToggleButtonProps.ChangeDetail = { pressed: this.pressed };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
   };
 
   private _onKeyDown = (e: KeyboardEvent): void => {

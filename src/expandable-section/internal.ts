@@ -61,7 +61,7 @@ export class CsExpandableSectionInternal extends CsBaseElement {
     const newExpanded = !this._isExpanded;
     this._internalExpanded = newExpanded;
     const detail: ExpandableSectionProps.ChangeDetail = { expanded: newExpanded };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
   }
 
   private _onHeaderClick = (): void => {

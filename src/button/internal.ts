@@ -116,7 +116,7 @@ export class CsButtonInternal extends Base {
           external: this.external,
           target: this._resolvedTarget(),
         };
-        fireNonCancelableEvent(this as unknown as HTMLElement, 'follow', detail);
+        fireNonCancelableEvent(this, 'follow', detail);
       }
     } else {
       const detail: ButtonProps.ClickDetail = {
@@ -126,7 +126,7 @@ export class CsButtonInternal extends Base {
         metaKey: e.metaKey,
         shiftKey: e.shiftKey,
       };
-      fireNonCancelableEvent(this as unknown as HTMLElement, 'click', detail);
+      fireNonCancelableEvent(this, 'click', detail);
 
       if (this.formAction === 'submit') {
         this._submitForm();

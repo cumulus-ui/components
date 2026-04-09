@@ -74,7 +74,7 @@ export class CsTagEditorInternal extends CsBaseElement {
 
   private _emitChange(updatedTags: ReadonlyArray<TagEditorProps.Tag>): void {
     const detail: TagEditorProps.ChangeDetail = { tags: updatedTags, valid: true };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
   }
 
   private _onAdd(): void {

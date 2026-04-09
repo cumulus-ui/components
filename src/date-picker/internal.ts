@@ -136,7 +136,7 @@ export class CsDatePickerInternal extends Base {
     e.stopPropagation();
     this.value = e.detail.value;
     fireNonCancelableEvent<DatePickerProps.ChangeDetail>(
-      this as unknown as HTMLElement,
+      this,
       'change',
       { value: this.value },
     );
@@ -147,7 +147,7 @@ export class CsDatePickerInternal extends Base {
     this.value = e.detail.value;
     this._open = false;
     fireNonCancelableEvent<DatePickerProps.ChangeDetail>(
-      this as unknown as HTMLElement,
+      this,
       'change',
       { value: this.value },
     );

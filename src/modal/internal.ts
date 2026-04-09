@@ -70,7 +70,7 @@ export class CsModalInternal extends CsBaseElement {
 
   private _dismiss(reason: string): void {
     const detail: ModalProps.DismissDetail = { reason };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'dismiss', detail);
+    fireNonCancelableEvent(this, 'dismiss', detail);
   }
 
   override render(): TemplateResult {

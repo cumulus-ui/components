@@ -92,7 +92,7 @@ export class CsTokenGroupInternal extends CsBaseElement {
     const item = this.items[itemIndex];
     if (item?.disabled || this.readOnly) return;
     fireNonCancelableEvent(
-      this as unknown as HTMLElement,
+      this,
       'dismiss',
       { itemIndex } as TokenGroupProps.DismissDetail
     );

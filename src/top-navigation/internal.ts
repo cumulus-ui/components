@@ -27,13 +27,13 @@ export class CsTopNavigationInternal extends CsBaseElement {
     const isModified = e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey;
     if (isModified) return;
 
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'identityClick', {
+    fireNonCancelableEvent(this, 'identityClick', {
       href: this.identity?.href,
     });
   }
 
   private _onUtilityButtonClick(utility: TopNavigationProps.ButtonUtility, _e: MouseEvent): void {
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'utilityClick', {
+    fireNonCancelableEvent(this, 'utilityClick', {
       type: utility.type,
       text: utility.text,
       href: utility.href,

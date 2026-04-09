@@ -136,18 +136,18 @@ export class CsAutosuggestInternal extends Base {
     this.value = target.value;
     this._open = true;
     this._highlightedIndex = -1;
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', { value: this.value });
+    fireNonCancelableEvent(this, 'change', { value: this.value });
   };
 
   private _onFocus = (): void => {
     this._open = true;
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'focus', null);
+    fireNonCancelableEvent(this, 'focus', {});
   };
 
   private _onBlur = (): void => {
     this._open = false;
     this._highlightedIndex = -1;
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'blur', null);
+    fireNonCancelableEvent(this, 'blur', {});
   };
 
   private _onKeyDown = (e: KeyboardEvent): void => {
@@ -210,8 +210,8 @@ export class CsAutosuggestInternal extends Base {
     this._open = false;
     this._highlightedIndex = -1;
 
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', { value: newValue });
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'select', {
+    fireNonCancelableEvent(this, 'change', { value: newValue });
+    fireNonCancelableEvent(this, 'select', {
       value: newValue,
       selectedOption: option,
     });

@@ -79,15 +79,15 @@ export class CsTimeInputInternal extends Base {
     const target = e.target as HTMLInputElement;
     this.value = target.value;
     const detail: TimeInputProps.ChangeDetail = { value: this.value };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
   };
 
   private _onBlur = (): void => {
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'blur', null);
+    fireNonCancelableEvent(this, 'blur', {});
   };
 
   private _onFocus = (): void => {
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'focus', null);
+    fireNonCancelableEvent(this, 'focus', {});
   };
 
   override render(): TemplateResult {

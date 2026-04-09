@@ -68,7 +68,7 @@ export class CsLinkInternal extends CsBaseElement {
       external: this.external,
       target: this._resolvedTarget(),
     };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'follow', detail);
+    fireNonCancelableEvent(this, 'follow', detail);
   };
 
   focus(options?: FocusOptions): void {

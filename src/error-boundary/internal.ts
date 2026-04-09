@@ -32,7 +32,7 @@ export class CsErrorBoundaryInternal extends CsBaseElement {
       const error = e instanceof Error ? e : new Error(String(e));
       this._hasError = true;
 
-      fireNonCancelableEvent(this as unknown as HTMLElement, 'error', {
+      fireNonCancelableEvent(this, 'error', {
         error,
         errorBoundaryId: this.errorBoundaryId || undefined,
       });

@@ -27,7 +27,7 @@ export class CsBreadcrumbGroupInternal extends CsBaseElement {
     const isModified = e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey;
     if (isModified) return;
 
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'follow', {
+    fireNonCancelableEvent(this, 'follow', {
       item,
       text: item.text,
       href: item.href,

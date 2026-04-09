@@ -32,13 +32,13 @@ export class CsPaginationInternal extends CsBaseElement {
 
     const requestedPageIndex = this.currentPageIndex - 1;
     fireNonCancelableEvent<PaginationProps.PageClickDetail>(
-      this as unknown as HTMLElement,
+      this,
       'previousPageClick',
       { requestedPageIndex, requestedPageAvailable: true }
     );
     this.currentPageIndex = requestedPageIndex;
     fireNonCancelableEvent<PaginationProps.ChangeDetail>(
-      this as unknown as HTMLElement,
+      this,
       'change',
       { currentPageIndex: this.currentPageIndex }
     );
@@ -53,13 +53,13 @@ export class CsPaginationInternal extends CsBaseElement {
     if (!this.openEnd && this.currentPageIndex >= this.pagesCount) return;
 
     fireNonCancelableEvent<PaginationProps.PageClickDetail>(
-      this as unknown as HTMLElement,
+      this,
       'nextPageClick',
       { requestedPageIndex, requestedPageAvailable }
     );
     this.currentPageIndex = requestedPageIndex;
     fireNonCancelableEvent<PaginationProps.ChangeDetail>(
-      this as unknown as HTMLElement,
+      this,
       'change',
       { currentPageIndex: this.currentPageIndex }
     );
@@ -70,7 +70,7 @@ export class CsPaginationInternal extends CsBaseElement {
 
     this.currentPageIndex = pageIndex;
     fireNonCancelableEvent<PaginationProps.ChangeDetail>(
-      this as unknown as HTMLElement,
+      this,
       'change',
       { currentPageIndex: this.currentPageIndex }
     );

@@ -78,15 +78,15 @@ export class CsTextareaInternal extends Base {
     const target = e.target as HTMLTextAreaElement;
     this.value = target.value;
     const detail: TextareaProps.ChangeDetail = { value: this.value };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
   };
 
   private _onBlur = (): void => {
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'blur', null);
+    fireNonCancelableEvent(this, 'blur', {});
   };
 
   private _onFocus = (): void => {
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'focus', null);
+    fireNonCancelableEvent(this, 'focus', {});
   };
 
   private _onKeyDown = (e: KeyboardEvent): void => {
@@ -99,7 +99,7 @@ export class CsTextareaInternal extends Base {
       metaKey: e.metaKey,
       isComposing: e.isComposing,
     };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'keydown', detail);
+    fireNonCancelableEvent(this, 'keydown', detail);
   };
 
   private _onKeyUp = (e: KeyboardEvent): void => {
@@ -112,7 +112,7 @@ export class CsTextareaInternal extends Base {
       metaKey: e.metaKey,
       isComposing: e.isComposing,
     };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'keyup', detail);
+    fireNonCancelableEvent(this, 'keyup', detail);
   };
 
   override render(): TemplateResult {

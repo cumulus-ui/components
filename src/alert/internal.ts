@@ -46,7 +46,7 @@ export class CsAlertInternal extends CsBaseElement {
   }
 
   private _onDismiss = (): void => {
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'dismiss', {});
+    fireNonCancelableEvent(this, 'dismiss', {});
   };
 
   override render(): TemplateResult {

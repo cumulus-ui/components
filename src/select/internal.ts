@@ -322,7 +322,7 @@ export class CsSelectInternal extends Base {
     this.selectedOption = option;
     this.value = option.value ?? '';
     fireNonCancelableEvent(
-      this as unknown as HTMLElement,
+      this,
       'change',
       { selectedOption: option } as SelectProps.ChangeDetail
     );

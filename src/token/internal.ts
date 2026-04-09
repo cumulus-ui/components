@@ -52,7 +52,7 @@ export class CsTokenInternal extends CsBaseElement {
 
   private _onDismiss = (): void => {
     if (this.disabled || this.readOnly) return;
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'dismiss', {});
+    fireNonCancelableEvent(this, 'dismiss', {});
   };
 
   override render(): TemplateResult {

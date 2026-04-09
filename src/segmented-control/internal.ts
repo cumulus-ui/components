@@ -97,7 +97,7 @@ export class CsSegmentedControlInternal extends CsBaseElement {
 
     this.selectedId = option.id;
     const detail: SegmentedControlProps.ChangeDetail = { selectedId: option.id };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
   }
 
   private _getTabIndex(index: number): number {

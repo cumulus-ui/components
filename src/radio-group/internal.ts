@@ -147,7 +147,7 @@ export class CsRadioGroupInternal extends Base {
 
     this.value = itemValue;
     const detail: RadioGroupProps.ChangeDetail = { value: itemValue };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+    fireNonCancelableEvent(this, 'change', detail);
   }
 
   private _getTabIndex(index: number): number {

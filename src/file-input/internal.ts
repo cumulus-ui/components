@@ -49,7 +49,7 @@ export class CsFileInputInternal extends CsBaseElement {
       const detail: FileInputProps.ChangeDetail = {
         value: Array.from(files),
       };
-      fireNonCancelableEvent(this as unknown as HTMLElement, 'change', detail);
+      fireNonCancelableEvent(this, 'change', detail);
     }
     // Reset so the same file can be selected again
     input.value = '';

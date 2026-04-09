@@ -126,7 +126,7 @@ export class CsPropertyFilterInternal extends CsBaseElement {
         operation: this.query.operation,
       };
       this._inputValue = '';
-      fireNonCancelableEvent(this as unknown as HTMLElement, 'change', { query: newQuery });
+      fireNonCancelableEvent(this, 'change', { query: newQuery });
     }
   }
 
@@ -136,7 +136,7 @@ export class CsPropertyFilterInternal extends CsBaseElement {
       tokens: newTokens,
       operation: this.query.operation,
     };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', { query: newQuery });
+    fireNonCancelableEvent(this, 'change', { query: newQuery });
   }
 
   private _renderToken(token: SimpleToken, index: number): TemplateResult {

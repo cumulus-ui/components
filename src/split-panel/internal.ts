@@ -53,7 +53,7 @@ export class CsSplitPanelInternal extends CsBaseElement {
   private _onPreferencesClick = (): void => {
     const newPosition = this._position === 'bottom' ? 'side' : 'bottom';
     this._position = newPosition;
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'preferencesChange', { position: newPosition });
+    fireNonCancelableEvent(this, 'preferencesChange', { position: newPosition });
   };
 
   private get _regionLabel(): string {

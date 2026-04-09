@@ -173,7 +173,7 @@ export class CsCalendarInternal extends CsBaseElement {
     if (!this._isEnabled(dateStr)) return;
     this.value = dateStr;
     fireNonCancelableEvent<CalendarProps.ChangeDetail>(
-      this as unknown as HTMLElement,
+      this,
       'change',
       { value: dateStr },
     );

@@ -74,7 +74,7 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
 
   private _handleToggle(item: T, id: string, expanded: boolean): void {
     const detail: TreeViewProps.ItemToggleDetail<T> = { id, item, expanded: !expanded };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'itemToggle', detail);
+    fireNonCancelableEvent(this, 'itemToggle', detail);
   }
 
   private _renderToggleIcon(expanded: boolean): TemplateResult {

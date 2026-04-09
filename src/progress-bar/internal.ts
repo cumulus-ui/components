@@ -66,7 +66,7 @@ export class CsProgressBarInternal extends CsBaseElement {
   }
 
   private _onResultButtonClick(): void {
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'resultButtonClick', null);
+    fireNonCancelableEvent(this, 'resultButtonClick', {});
   }
 
   override render(): TemplateResult {

@@ -79,18 +79,18 @@ export class CsDateInputInternal extends Base {
     const target = e.target as HTMLInputElement;
     this.value = target.value;
     fireNonCancelableEvent<{ value: string }>(
-      this as unknown as HTMLElement,
+      this,
       'change',
       { value: this.value },
     );
   };
 
   private _onBlur = (): void => {
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'blur', null);
+    fireNonCancelableEvent(this, 'blur', {});
   };
 
   private _onFocus = (): void => {
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'focus', null);
+    fireNonCancelableEvent(this, 'focus', {});
   };
 
   override render(): TemplateResult {

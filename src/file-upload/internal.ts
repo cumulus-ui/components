@@ -176,7 +176,7 @@ export class CsFileUploadInternal extends CsBaseElement {
         ? [...this.value, ...detail.value]
         : [...detail.value];
       fireNonCancelableEvent(
-        this as unknown as HTMLElement,
+        this,
         'change',
         { value: newFiles } as FileUploadProps.ChangeDetail
       );
@@ -193,7 +193,7 @@ export class CsFileUploadInternal extends CsBaseElement {
     }
 
     fireNonCancelableEvent(
-      this as unknown as HTMLElement,
+      this,
       'change',
       { value: newFiles } as FileUploadProps.ChangeDetail
     );

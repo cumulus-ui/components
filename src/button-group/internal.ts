@@ -37,14 +37,14 @@ export class CsButtonGroupInternal extends CsBaseElement {
 
   private _onIconButtonClick(item: ButtonGroupProps.IconButton): void {
     if (item.disabled || item.loading) return;
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'itemClick', {
+    fireNonCancelableEvent(this, 'itemClick', {
       id: item.id,
     });
   }
 
   private _onToggleButtonChange(item: ButtonGroupProps.IconToggleButton): void {
     if (item.disabled || item.loading) return;
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'itemClick', {
+    fireNonCancelableEvent(this, 'itemClick', {
       id: item.id,
       pressed: !item.pressed,
     });

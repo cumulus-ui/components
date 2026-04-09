@@ -118,7 +118,7 @@ export class CsFileTokenGroupInternal extends CsBaseElement {
   private _onDismiss(fileIndex: number): void {
     if (this.readOnly) return;
     fireNonCancelableEvent(
-      this as unknown as HTMLElement,
+      this,
       'dismiss',
       { fileIndex } as FileTokenGroupProps.DismissDetail
     );

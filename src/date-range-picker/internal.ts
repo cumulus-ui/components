@@ -349,7 +349,7 @@ export class CsDateRangePickerInternal extends Base {
     this.rangeValue = newValue;
     this.value = JSON.stringify(newValue);
     fireNonCancelableEvent(
-      this as unknown as HTMLElement,
+      this,
       'change',
       { value: newValue } as DateRangePickerProps.ChangeDetail,
     );

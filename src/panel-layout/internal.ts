@@ -105,8 +105,8 @@ export class CsPanelLayoutInternal extends CsBaseElement {
   private _fireResize(panelSize: number): void {
     const totalSize = this.clientWidth;
     const detail: PanelLayoutProps.PanelResizeDetail = { totalSize, panelSize };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'panelResize', detail);
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'layoutChange', detail);
+    fireNonCancelableEvent(this, 'panelResize', detail);
+    fireNonCancelableEvent(this, 'layoutChange', detail);
   }
 
   private _onPointerDown = (e: PointerEvent): void => {

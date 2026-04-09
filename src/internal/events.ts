@@ -19,19 +19,3 @@ export function fireNonCancelableEvent<T>(
     })
   );
 }
-
-/** Dispatch a cancelable `CustomEvent`. Returns `true` if `preventDefault()` was called. */
-export function fireCancelableEvent<T>(
-  element: HTMLElement,
-  eventName: string,
-  detail: T
-): boolean {
-  const event = new CustomEvent(eventName, {
-    detail,
-    bubbles: true,
-    composed: true,
-    cancelable: true,
-  });
-  element.dispatchEvent(event);
-  return event.defaultPrevented;
-}

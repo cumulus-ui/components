@@ -56,12 +56,12 @@ export class CsTextFilterInternal extends CsBaseElement {
     this.filteringText = detail.value;
 
     const changeDetail: TextFilterProps.ChangeDetail = { filteringText: this.filteringText };
-    fireNonCancelableEvent(this as unknown as HTMLElement, 'change', changeDetail);
+    fireNonCancelableEvent(this, 'change', changeDetail);
 
     this._clearDebounce();
     this._debounceTimer = setTimeout(() => {
       const delayedDetail: TextFilterProps.ChangeDetail = { filteringText: this.filteringText };
-      fireNonCancelableEvent(this as unknown as HTMLElement, 'delayedChange', delayedDetail);
+      fireNonCancelableEvent(this, 'delayedChange', delayedDetail);
     }, 400);
   };
 

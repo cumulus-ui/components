@@ -57,10 +57,10 @@ export class CsCopyToClipboardInternal extends CsBaseElement {
     try {
       await navigator.clipboard.writeText(this.textToCopy);
       this._status = 'success';
-      fireNonCancelableEvent(this as unknown as HTMLElement, 'copy', { successful: true });
+      fireNonCancelableEvent(this, 'copy', { successful: true });
     } catch {
       this._status = 'error';
-      fireNonCancelableEvent(this as unknown as HTMLElement, 'copy', { successful: false });
+      fireNonCancelableEvent(this, 'copy', { successful: false });
     }
 
     if (this._resetTimer !== undefined) {
