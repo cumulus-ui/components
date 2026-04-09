@@ -8,9 +8,24 @@ import type { AppLayoutProps } from '../app-layout/interfaces.js';
 import type { AppLayoutToolbarProps } from './interfaces.js';
 
 const toolbarStyles = css`
+  :host {
+    --awsui-default-max-content-width: 1280px;
+  }
+
+  @media (min-width: 1921px) {
+    :host {
+      --awsui-default-max-content-width: 1440px;
+    }
+  }
+
   .content-wrapper {
     padding-block-start: var(--space-content-header-padding-bottom, 16px);
     padding-block-end: var(--space-layout-content-bottom, 40px);
+  }
+
+  .content-wrapper.app-layout-content-wrapper--content-wrapper {
+    max-inline-size: var(--awsui-default-max-content-width);
+    margin-inline: auto;
   }
 
   .toolbar {
