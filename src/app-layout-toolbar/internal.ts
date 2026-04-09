@@ -121,12 +121,8 @@ export class CsAppLayoutToolbarInternal extends CsAppLayoutInternal {
   }
 
   override render(): TemplateResult {
-    const effectiveNavWidth = !this.navigationHide && this.navigationOpen ? this.navigationWidth : 0;
-
     const activeDrawer = this.toolbarDrawers.find(d => d.id === this.activeDrawerId);
     const activeDrawerWidth = activeDrawer?.defaultSize ?? 290;
-    const effectiveToolsWidth = !this.toolsHide && this.toolsOpen ? this.toolsWidth : 0;
-    const effectiveRightWidth = effectiveToolsWidth || (activeDrawer ? activeDrawerWidth : 0);
 
     const layoutMainClasses = {
       'layout-main': true,
@@ -210,7 +206,6 @@ export class CsAppLayoutToolbarInternal extends CsAppLayoutInternal {
 
           <div
             class=${classMap(layoutMainClasses)}
-            style="margin-left: ${effectiveNavWidth}px; margin-right: ${effectiveRightWidth}px"
           >
             <div class="app-layout-notifications--notifications">
               <slot name="notifications"></slot>

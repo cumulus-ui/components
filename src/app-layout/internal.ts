@@ -86,9 +86,6 @@ export class CsAppLayoutInternal extends CsBaseElement {
   }
 
   override render(): TemplateResult {
-    const effectiveNavWidth = !this.navigationHide && this.navigationOpen ? this.navigationWidth : 0;
-    const effectiveToolsWidth = !this.toolsHide && this.toolsOpen ? this.toolsWidth : 0;
-
     const rootClasses = {
       'root': true,
     };
@@ -136,7 +133,6 @@ export class CsAppLayoutInternal extends CsBaseElement {
 
           <div
             class=${classMap(layoutMainClasses)}
-            style="margin-left: ${effectiveNavWidth}px; margin-right: ${effectiveToolsWidth}px"
           >
             <div class="app-layout-notifications--notifications">
               <slot name="notifications"></slot>
