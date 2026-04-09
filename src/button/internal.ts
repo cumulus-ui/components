@@ -106,6 +106,8 @@ export class CsButtonInternal extends Base {
       return;
     }
 
+    e.stopPropagation();
+
     if (this.href) {
       const isModified = e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey;
       if (!isModified) {
