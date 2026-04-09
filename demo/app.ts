@@ -1,4 +1,4 @@
-import '@cumulus-ui/styles/index.css';
+import '@cumulus-ui/design-tokens/tokens.css';
 import { LitElement, html, nothing } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { parseHash, applyMode, type Route } from './router.js';

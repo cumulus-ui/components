@@ -777,6 +777,7 @@ function auditCSSCoverage(component: string): string[] {
     'button-dropdown': new Set(['dropdown', 'icon']),
     'cards': new Set(['header', 'section-content']),
     'code-editor': new Set(['editor-textarea', 'editor-wrapper', 'line-number', 'line-numbers']),
+    'content-layout': new Set(['secondary-header']),
     'collection-preferences': new Set([
       'group-label', 'page-size-option', 'page-size-options', 'panel', 'panel-footer',
       'panel-section', 'panel-section-title', 'panel-title', 'root',
@@ -806,7 +807,7 @@ function auditCSSCoverage(component: string): string[] {
       'annotation-actions', 'annotation-content', 'annotation-header', 'annotation-popover',
       'annotation-step-counter',
     ]),
-    'item-card': new Set(['actions']),
+    'item-card': new Set(['actions', 'icon']),
     'key-value-pairs': new Set(['grid', 'group', 'pair']),
     'multiselect': new Set([
       'dropdown', 'filter-container', 'filter-input', 'group-label', 'label-tag',
@@ -819,17 +820,19 @@ function auditCSSCoverage(component: string): string[] {
       'additional-info', 'description', 'error', 'key-value', 'label',
       'result-button-trigger', 'result-container-error', 'result-container-success', 'success',
     ]),
-    'property-filter': new Set(['dismiss-button', 'filter-input', 'operation-label', 'token-item', 'token-list']),
+    'property-filter': new Set(['dismiss-button', 'filter-input', 'operation-label', 'token-item', 'token-list', 'custom-control', 'filtering-constraint-text']),
     'select': new Set([
       'dropdown', 'filter-container', 'filter-input', 'group-label', 'label-tag',
       'no-matches', 'option-content', 'option-description', 'option-label',
       'option-label-tag', 'option-tags', 'option-list', 'selected-icon',
       'trigger-arrow', 'trigger-label',
     ]),
+    's3-resource-selector': new Set(['root', 'input-row']),
     'side-navigation': new Set([
       'icon', 'icon-open', 'overflow-menu-control',
       'overflow-menu-control-expandable-menu-trigger', 'overflow-menu-list-item-text',
     ]),
+    'slider': new Set(['tick-marks', 'tick-mark']),
     'steps': new Set(['icon', 'title']),
     'table': new Set([
       'body-cell', 'body-cell-content', 'header-cell', 'header-cell-text',
@@ -840,7 +843,7 @@ function auditCSSCoverage(component: string): string[] {
     'toggle-button': new Set(['icon']),
     'token': new Set(['description', 'label-tag']),
     'token-group': new Set(['description', 'dismiss-button', 'icon', 'label-tag', 'token']),
-    'tree-view': new Set(['expanded']),
+    'tree-view': new Set(['expanded', 'tree-view-tree-item--expand-wrapper', 'expand-toggle-button--expand', 'tree-view-tree-item--tree-item-focus', 'expand-toggle-button--expand-icon', 'expand-toggle-button--expand-icon-expanded']),
     'tutorial-panel': new Set([
       'completed-actions', 'completed-screen', 'detail-actions', 'detail-header',
       'detail-title', 'download-link', 'loading-state', 'prerequisites-alert',

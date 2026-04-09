@@ -125,7 +125,7 @@ function stripNotId9(css: string): string {
  *   --awsui-style-background-default-6b9ypa: ...     →  --awsui-style-background-default: ...
  */
 function dehashVariableNames(css: string): string {
-  return css.replace(/--((?:[a-z0-9]+-)*[a-z][a-z0-9]*)-[a-z0-9]{6}\b/g, '--$1');
+  return css.replace(/--((?:[a-z0-9]+-)*[a-z0-9]+)-[a-z0-9]{6}(?![-a-z0-9])/g, '--$1');
 }
 
 /**

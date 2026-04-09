@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
 
 const CS = resolve(__dirname, 'node_modules/@cloudscape-design');
-const STYLES = resolve(__dirname, '..', 'styles');
+const DESIGN_TOKENS = resolve(__dirname, '..', 'design-tokens');
 
 export default defineConfig({
   root: 'demo',
@@ -12,7 +12,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@cloudscape-design': CS,
-      '@cumulus-ui/styles': STYLES,
+      '@cumulus-ui/design-tokens': DESIGN_TOKENS,
     },
   },
 });
