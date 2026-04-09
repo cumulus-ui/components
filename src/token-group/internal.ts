@@ -64,16 +64,16 @@ export class CsTokenGroupInternal extends CsBaseElement {
   @property({ attribute: false })
   items: ReadonlyArray<TokenGroupProps.Item> = [];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   alignment: TokenGroupProps.Alignment = 'horizontal';
 
   @property({ type: Number })
   limit?: number;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   readOnly = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disableOuterPadding = false;
 
   @property({ attribute: false })

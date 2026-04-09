@@ -33,7 +33,7 @@ export class CsStepsInternal extends CsBaseElement {
   @property({ attribute: false })
   steps: ReadonlyArray<StepsProps.Step> = [];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   orientation: StepsProps.Orientation = 'vertical';
 
   @property({ type: String })

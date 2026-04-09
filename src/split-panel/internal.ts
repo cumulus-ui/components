@@ -20,10 +20,10 @@ export class CsSplitPanelInternal extends CsBaseElement {
   @property({ type: String })
   override ariaLabel: string | null = null;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   hidePreferencesButton = false;
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   closeBehavior: 'collapse' | 'hide' = 'collapse';
 
   @property({ type: Number })

@@ -20,7 +20,7 @@ const hostStyles = css`
 export class CsBadgeInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   color: BadgeProps['color'] = 'grey';
 
   override render() {

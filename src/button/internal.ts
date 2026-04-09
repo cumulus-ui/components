@@ -16,10 +16,10 @@ const hostStyles = css`:host { display: inline-block; }`;
 export class CsButtonInternal extends Base {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: ButtonProps.Variant = 'normal';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   loading = false;
 
   @property({ type: String })
@@ -64,13 +64,13 @@ export class CsButtonInternal extends Base {
   @property({ type: String })
   disabledReason = '';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   wrapText = true;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   external = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   fullWidth = false;
 
   @property({ type: String })

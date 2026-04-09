@@ -85,19 +85,19 @@ export class CsFileTokenGroupInternal extends CsBaseElement {
   @property({ attribute: false })
   items: ReadonlyArray<FileTokenGroupProps.Item> = [];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   alignment: FileTokenGroupProps.Alignment = 'horizontal';
 
-  @property({ type: Boolean, reflect: true, attribute: 'show-file-size' })
+  @property({ type: Boolean, attribute: 'show-file-size' })
   showFileSize = false;
 
-  @property({ type: Boolean, reflect: true, attribute: 'show-file-last-modified' })
+  @property({ type: Boolean, attribute: 'show-file-last-modified' })
   showFileLastModified = false;
 
-  @property({ type: Boolean, reflect: true, attribute: 'show-file-thumbnail' })
+  @property({ type: Boolean, attribute: 'show-file-thumbnail' })
   showFileThumbnail = false;
 
-  @property({ type: Boolean, reflect: true, attribute: 'read-only' })
+  @property({ type: Boolean, attribute: 'read-only' })
   readOnly = false;
 
   @property({ type: Number })

@@ -84,7 +84,7 @@ export class CsPropertyFilterInternal extends CsBaseElement {
   @property({ attribute: false })
   filteringOptions: ReadonlyArray<{ propertyKey: string; value: string; label?: string }> = [];
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disabled = false;
 
   @property({ type: String })

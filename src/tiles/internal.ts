@@ -36,7 +36,7 @@ export class CsTilesInternal extends Base {
   @property({ type: Number })
   columns?: number;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   readOnly = false;
 
   private readonly _groupName = generateUniqueId('tiles');

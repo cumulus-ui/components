@@ -21,10 +21,10 @@ const hostStyles = css`
 export class CsSpinnerInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   size: SpinnerProps.Size = 'normal';
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: SpinnerProps.Variant = 'normal';
 
   override render() {

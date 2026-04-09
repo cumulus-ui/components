@@ -9,7 +9,7 @@ const hostStyles = css`:host { display: block; }`;
 export class CsHelpPanelInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   loading = false;
 
   @property({ type: String })

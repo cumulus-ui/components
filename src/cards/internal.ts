@@ -32,13 +32,13 @@ export class CsCardsInternal extends CsBaseElement {
   @property({ attribute: false })
   selectedItems: ReadonlyArray<unknown> = [];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   selectionType: CardsProps.SelectionType | 'none' = 'none';
 
   @property({ attribute: false })
   trackBy?: CardsProps.TrackBy<unknown>;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   loading = false;
 
   @property({ type: String })
@@ -47,7 +47,7 @@ export class CsCardsInternal extends CsBaseElement {
   @property({ attribute: false })
   cardsPerRow?: ReadonlyArray<CardsProps.CardsLayout>;
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: 'container' | 'full-page' = 'container';
 
   @property({ attribute: false })

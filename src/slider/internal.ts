@@ -34,10 +34,10 @@ export class CsSliderInternal extends CsBaseElement {
   @property({ type: Number })
   step = 1;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disabled = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   hideFillLine = false;
 
   @property({ attribute: false })

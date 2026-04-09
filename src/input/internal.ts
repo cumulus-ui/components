@@ -28,19 +28,19 @@ export class CsInputInternal extends Base {
   @property({ type: String })
   override value = '';
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   type: string = 'text';
 
   @property({ type: String })
   placeholder = '';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   readOnly = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   invalid = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   warning = false;
 
   @property({ type: Boolean })

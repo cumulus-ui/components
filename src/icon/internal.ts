@@ -14,13 +14,13 @@ const hostStyles = css`:host { display: inline-block; vertical-align: top; line-
 export class CsIconInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   name?: IconProps.Name;
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   size: IconProps.Size = 'normal';
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: IconProps.Variant = 'normal';
 
   @property({ type: String })

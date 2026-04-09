@@ -21,7 +21,7 @@ export class CsPaginationInternal extends CsBaseElement {
   @property({ type: Boolean })
   openEnd = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disabled = false;
 
   @property({ attribute: false })

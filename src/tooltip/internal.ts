@@ -18,7 +18,7 @@ const hostStyles = css`
 export class CsTooltipInternal extends CsBaseElement {
   static override styles = [sharedStyles, tooltipStyles, hostStyles];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   position: TooltipProps.Position = 'top';
 
   @property({ type: String })

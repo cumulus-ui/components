@@ -12,10 +12,10 @@ const hostStyles = css`:host { display: block; }`;
 export class CsExpandableSectionInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: ExpandableSectionProps.Variant = 'default';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   expanded?: boolean;
 
   @property({ type: Boolean })

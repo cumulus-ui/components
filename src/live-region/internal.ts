@@ -10,13 +10,13 @@ const hostStyles = css`:host { display: contents; }`;
 export class CsLiveRegionInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   assertive = false;
 
-  @property({ type: String, reflect: true, attribute: 'tag-name' })
+  @property({ type: String, attribute: 'tag-name' })
   tagName_: LiveRegionProps.TagName = 'div';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   hidden = false;
 
   override render() {

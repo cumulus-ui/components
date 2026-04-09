@@ -47,13 +47,13 @@ export class CsButtonDropdownInternal extends CsBaseElement {
   @property({ attribute: false })
   items: ReadonlyArray<ButtonDropdownProps.ItemOrGroup> = [];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: ButtonDropdownProps['variant'] = 'normal';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disabled = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   loading = false;
 
   @property({ type: String })

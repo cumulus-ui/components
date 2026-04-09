@@ -62,13 +62,13 @@ export class CsDatePickerInternal extends Base {
   @property({ attribute: false })
   openCalendarAriaLabel?: DatePickerProps.OpenCalendarAriaLabel;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   readOnly = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   invalid = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   warning = false;
 
   @property({ type: Boolean })

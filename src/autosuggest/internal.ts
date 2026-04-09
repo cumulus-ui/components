@@ -71,10 +71,10 @@ export class CsAutosuggestInternal extends Base {
   @property({ type: String })
   placeholder = '';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   readOnly = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   invalid = false;
 
   @property({ type: String })

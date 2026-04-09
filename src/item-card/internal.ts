@@ -11,26 +11,26 @@ const hostStyles = css`:host { display: block; }`;
 export class CsItemCardInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: ItemCardProps.Variant = 'default';
 
-  @property({ type: Boolean, reflect: true, attribute: 'disable-header-paddings' })
+  @property({ type: Boolean, attribute: 'disable-header-paddings' })
   disableHeaderPaddings = false;
 
-  @property({ type: Boolean, reflect: true, attribute: 'disable-content-paddings' })
+  @property({ type: Boolean, attribute: 'disable-content-paddings' })
   disableContentPaddings = false;
 
-  @property({ type: Boolean, reflect: true, attribute: 'disable-footer-paddings' })
+  @property({ type: Boolean, attribute: 'disable-footer-paddings' })
   disableFooterPaddings = false;
 
   @property({ attribute: false })
   style_?: ItemCardProps.Style;
 
   /* Internal-only props (set programmatically, not via attributes) */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   highlighted = false;
 
-  @property({ type: Boolean, reflect: true, attribute: 'full-height' })
+  @property({ type: Boolean, attribute: 'full-height' })
   fullHeight = false;
 
   @property({ attribute: false })

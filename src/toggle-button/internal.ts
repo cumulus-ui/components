@@ -14,10 +14,10 @@ const hostStyles = css`:host { display: inline-block; }`;
 export class CsToggleButtonInternal extends CsBaseElement {
   static override styles = [buttonSharedStyles, buttonComponentStyles, sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   pressed = false;
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: ToggleButtonProps.Variant = 'normal';
 
   @property({ type: String })
@@ -26,7 +26,7 @@ export class CsToggleButtonInternal extends CsBaseElement {
   @property({ type: String })
   pressedIconName?: string;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disabled = false;
 
   @property({ type: String })

@@ -28,16 +28,16 @@ export class CsPromptInputInternal extends CsBaseElement {
   @property({ type: String })
   placeholder = '';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disabled = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   readOnly = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   invalid = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   warning = false;
 
   @property({ type: String })

@@ -27,13 +27,13 @@ export class CsCheckboxInternal extends Base {
   @consume({ context: formFieldContext, subscribe: true })
   private _formFieldCtx: FormFieldContext = defaultFormFieldContext;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   checked = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   indeterminate = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   readOnly = false;
 
   @property({ type: String })

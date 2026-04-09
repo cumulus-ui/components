@@ -164,13 +164,13 @@ export class CsTableInternal extends CsBaseElement {
   @property({ attribute: false })
   trackBy?: TableProps.TrackBy<any>;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   loading = false;
 
   @property({ type: String })
   loadingText = '';
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: TableProps.Variant = 'container';
 
   @property({ type: Boolean })
@@ -185,7 +185,7 @@ export class CsTableInternal extends CsBaseElement {
   @property({ type: String })
   contentDensity: 'comfortable' | 'compact' = 'comfortable';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   resizableColumns = false;
 
   @property({ attribute: false })

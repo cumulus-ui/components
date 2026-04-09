@@ -84,7 +84,7 @@ export class CsCollectionPreferencesInternal extends CsBaseElement {
   @property({ type: String })
   cancelLabel = 'Cancel';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disabled = false;
 
   @property({ attribute: false })

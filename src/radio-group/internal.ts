@@ -42,7 +42,7 @@ export class CsRadioGroupInternal extends Base {
   @property({ type: String, attribute: 'aria-controls' })
   controlAriaControls = '';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   readOnly = false;
 
   @property({ type: String })

@@ -26,7 +26,7 @@ export class CsTextFilterInternal extends CsBaseElement {
   @property({ type: String })
   countText = '';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disabled = false;
 
   private _debounceTimer: ReturnType<typeof setTimeout> | null = null;

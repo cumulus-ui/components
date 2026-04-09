@@ -27,10 +27,10 @@ export class CsCopyToClipboardInternal extends CsBaseElement {
   @property({ type: String })
   textToCopy = '';
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: CopyToClipboardProps.Variant = 'button';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disabled = false;
 
   @state()

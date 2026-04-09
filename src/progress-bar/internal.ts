@@ -43,10 +43,10 @@ export class CsProgressBarInternal extends CsBaseElement {
   @property({ type: Number })
   value: number = 0;
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   status: ProgressBarProps.Status = 'in-progress';
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: ProgressBarProps.Variant = 'standalone';
 
   @property({ type: String })

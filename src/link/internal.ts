@@ -13,10 +13,10 @@ export class CsLinkInternal extends CsBaseElement {
   @property({ type: String })
   href = '';
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: LinkProps.Variant = 'secondary';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   external = false;
 
   @property({ type: String })

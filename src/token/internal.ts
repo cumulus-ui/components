@@ -35,19 +35,19 @@ export class CsTokenInternal extends CsBaseElement {
   @property({ type: String })
   description = '';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disabled = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   readOnly = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   dismissible = false;
 
   @property({ type: String })
   dismissLabel = 'Remove';
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: TokenProps.Variant = 'normal';
 
   private _onDismiss = (): void => {

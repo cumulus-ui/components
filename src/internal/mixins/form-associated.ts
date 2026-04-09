@@ -56,16 +56,16 @@ export function FormAssociatedMixin<T extends Constructor<LitElement>>(superClas
 
     // ── Reactive properties ───────────────────────────────────────────
 
-    @property({ reflect: true })
+    @property()
     name = '';
 
     @property()
     value = '';
 
-    @property({ type: Boolean, reflect: true })
+    @property({ type: Boolean })
     disabled = false;
 
-    @property({ type: Boolean, reflect: true })
+    @property({ type: Boolean })
     required = false;
 
     // ── Constructor ───────────────────────────────────────────────────

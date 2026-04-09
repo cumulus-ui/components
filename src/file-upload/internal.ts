@@ -124,10 +124,10 @@ export class CsFileUploadInternal extends CsBaseElement {
   @property({ type: String })
   accept?: string;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   multiple = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disabled = false;
 
   @property({ type: Boolean })

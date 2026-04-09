@@ -17,7 +17,7 @@ const variantToTag: Record<string, string> = {
 export class CsHeaderInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: HeaderProps.Variant = 'h2';
 
   @property({ type: String })

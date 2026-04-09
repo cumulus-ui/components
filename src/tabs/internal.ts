@@ -15,16 +15,16 @@ export class CsTabsInternal extends CsBaseElement {
   @property({ attribute: false })
   tabs: ReadonlyArray<TabsProps.Tab> = [];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   activeTabId = '';
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: TabsProps.Variant = 'default';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disableContentPaddings = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   fitHeight = false;
 
   @property({ type: String })

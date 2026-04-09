@@ -11,16 +11,16 @@ const hostStyles = css`:host { display: block; }`;
 export class CsContainerInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: 'default' | 'stacked' = 'default';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   fitHeight = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disableContentPaddings = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disableHeaderPaddings = false;
 
   @provide({ context: containerContext })

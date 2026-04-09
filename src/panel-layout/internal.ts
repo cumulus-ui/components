@@ -43,7 +43,7 @@ const MIN_DEFAULT = 100;
 export class CsPanelLayoutInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, handleStyles, hostStyles];
 
-  @property({ type: String, reflect: true, attribute: 'panel-position' })
+  @property({ type: String, attribute: 'panel-position' })
   panelPosition: PanelLayoutProps.PanelPosition = 'side-end';
 
   @property({ type: Number, attribute: 'default-panel-size' })
@@ -58,10 +58,10 @@ export class CsPanelLayoutInternal extends CsBaseElement {
   @property({ type: Number, attribute: 'max-panel-size' })
   maxPanelSize?: number;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   resizable = false;
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   display: PanelLayoutProps.Display = 'all';
 
   @property({ attribute: false })

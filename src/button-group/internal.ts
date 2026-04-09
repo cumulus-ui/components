@@ -29,7 +29,7 @@ export class CsButtonGroupInternal extends CsBaseElement {
   @property({ attribute: false })
   items: ReadonlyArray<ButtonGroupProps.ItemOrGroup> = [];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: ButtonGroupProps.Variant = 'icon';
 
   @property({ type: String })

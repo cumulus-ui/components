@@ -40,22 +40,22 @@ export class CsAppLayoutInternal extends CsBaseElement {
     hostStyles,
   ];
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   navigationOpen = false;
 
   @property({ type: Number })
   navigationWidth = 280;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   navigationHide = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   toolsOpen = false;
 
   @property({ type: Number })
   toolsWidth = 290;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   toolsHide = false;
 
   @property({ type: String })
@@ -73,7 +73,7 @@ export class CsAppLayoutInternal extends CsBaseElement {
   @property({ type: Number })
   minContentWidth = 280;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disableContentPaddings = false;
 
   private _toggleNav(open: boolean): void {

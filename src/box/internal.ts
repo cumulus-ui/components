@@ -78,7 +78,7 @@ export class CsBoxInternal extends CsBaseElement {
   @property({ type: String })
   tagOverride?: string;
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   display?: BoxProps.Display;
 
   @property({ attribute: false })

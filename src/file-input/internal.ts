@@ -28,7 +28,7 @@ export class CsFileInputInternal extends CsBaseElement {
   @property({ type: Boolean })
   multiple = false;
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   variant: 'button' | 'icon' = 'button';
 
   @property({ type: String })
@@ -37,7 +37,7 @@ export class CsFileInputInternal extends CsBaseElement {
   @property({ type: Boolean })
   override ariaRequired: string | null = null;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disabled = false;
 
   focus(options?: FocusOptions): void {

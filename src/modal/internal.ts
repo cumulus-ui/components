@@ -14,10 +14,10 @@ const hostStyles = css`:host { display: block; }`;
 export class CsModalInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   visible = false;
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   size: ModalProps.Size = 'medium';
 
   @property({ type: String })

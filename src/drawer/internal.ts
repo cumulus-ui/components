@@ -9,10 +9,10 @@ const hostStyles = css`:host { display: block; }`;
 export class CsDrawerInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   loading = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   disableContentPaddings = false;
 
   private _hasHeader = false;

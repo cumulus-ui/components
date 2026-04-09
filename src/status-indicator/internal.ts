@@ -22,7 +22,7 @@ const iconNameMap: Record<string, string> = {
 export class CsStatusIndicatorInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   type: StatusIndicatorProps.Type = 'success';
 
   @property({ type: String })

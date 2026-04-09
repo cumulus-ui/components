@@ -22,13 +22,13 @@ const iconNameMap: Record<AlertProps.Type, string> = {
 export class CsAlertInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, alertActionsWrapperStyles, hostStyles];
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   type: AlertProps.Type = 'info';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   visible = true;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   dismissible = false;
 
   @property({ type: String })

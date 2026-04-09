@@ -29,13 +29,13 @@ export class CsDateInputInternal extends Base {
   @property({ type: String })
   placeholder = 'YYYY/MM/DD';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   readOnly = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   invalid = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean })
   warning = false;
 
   @property({ type: Boolean })
