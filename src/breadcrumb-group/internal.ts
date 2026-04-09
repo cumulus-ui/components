@@ -14,7 +14,7 @@ const hostStyles = css`:host { display: block; }`;
 export class CsBreadcrumbGroupInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, breadcrumbGroupItemStyles, hostStyles];
 
-  @property({ type: Array })
+  @property({ attribute: false })
   items: ReadonlyArray<BreadcrumbGroupProps.Item> = [];
 
   @property({ type: String })

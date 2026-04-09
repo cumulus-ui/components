@@ -21,7 +21,7 @@ export class CsRadioGroupInternal extends Base {
   @property({ type: String })
   override value = '';
 
-  @property({ type: Array })
+  @property({ attribute: false })
   items: ReadonlyArray<RadioGroupProps.RadioButtonDefinition> = [];
 
   @property({ type: String, attribute: 'aria-label' })

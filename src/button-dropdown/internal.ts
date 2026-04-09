@@ -44,7 +44,7 @@ export class CsButtonDropdownInternal extends CsBaseElement {
     hostStyles,
   ];
 
-  @property({ type: Array })
+  @property({ attribute: false })
   items: ReadonlyArray<ButtonDropdownProps.ItemOrGroup> = [];
 
   @property({ type: String, reflect: true })

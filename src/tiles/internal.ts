@@ -21,7 +21,7 @@ export class CsTilesInternal extends Base {
   @property({ type: String })
   override value = '';
 
-  @property({ type: Array })
+  @property({ attribute: false })
   items: ReadonlyArray<TilesProps.TilesDefinition> = [];
 
   @property({ type: String, attribute: 'aria-label' })

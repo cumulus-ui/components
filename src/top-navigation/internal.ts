@@ -14,13 +14,13 @@ const hostStyles = css`:host { display: block; }`;
 export class CsTopNavigationInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Object })
+  @property({ attribute: false })
   identity!: TopNavigationProps.Identity;
 
-  @property({ type: Array })
+  @property({ attribute: false })
   utilities: ReadonlyArray<TopNavigationProps.Utility> = [];
 
-  @property({ type: Object })
+  @property({ attribute: false })
   i18nStrings: TopNavigationProps.I18nStrings = {};
 
   private _onIdentityClick(e: MouseEvent): void {

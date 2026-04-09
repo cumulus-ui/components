@@ -16,7 +16,7 @@ export class CsSegmentedControlInternal extends CsBaseElement {
   @property({ type: String })
   selectedId: string | null = '';
 
-  @property({ type: Array })
+  @property({ attribute: false })
   options: ReadonlyArray<SegmentedControlProps.Option> = [];
 
   @property({ type: String })

@@ -12,7 +12,7 @@ const hostStyles = css`:host { display: block; }`;
 export class CsTabsInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Array })
+  @property({ attribute: false })
   tabs: ReadonlyArray<TabsProps.Tab> = [];
 
   @property({ type: String, reflect: true })

@@ -31,7 +31,7 @@ export class CsSplitPanelInternal extends CsBaseElement {
   @property({ type: String, attribute: 'panel-aria-label' })
   panelAriaLabel = '';
 
-  @property({ type: Object })
+  @property({ attribute: false })
   i18nStrings?: SplitPanelProps.I18nStrings;
 
   @state()

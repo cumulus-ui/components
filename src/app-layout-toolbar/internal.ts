@@ -94,7 +94,7 @@ export class CsAppLayoutToolbarInternal extends CsAppLayoutInternal {
   @property({ type: String, reflect: true })
   activeDrawerId: string | null = null;
 
-  @property({ type: Array })
+  @property({ attribute: false })
   toolbarDrawers: Array<AppLayoutToolbarProps.Drawer> = [];
 
   private _handleToggleDrawer(id: string): void {

@@ -12,7 +12,7 @@ const hostStyles = css`:host { display: block; }`;
 export class CsAnchorNavigationInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Array })
+  @property({ attribute: false })
   anchors: AnchorNavigationProps.Anchor[] = [];
 
   @property({ type: String })

@@ -22,7 +22,7 @@ const iconNameMap: Record<string, string> = {
 export class CsFlashbarInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Array })
+  @property({ attribute: false })
   items: ReadonlyArray<FlashbarProps.MessageDefinition> = [];
 
   @property({ type: String })

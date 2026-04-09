@@ -26,7 +26,7 @@ function isGroup(itemOrGroup: ButtonGroupProps.ItemOrGroup): itemOrGroup is Butt
 export class CsButtonGroupInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Array })
+  @property({ attribute: false })
   items: ReadonlyArray<ButtonGroupProps.ItemOrGroup> = [];
 
   @property({ type: String, reflect: true })

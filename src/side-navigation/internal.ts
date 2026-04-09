@@ -13,10 +13,10 @@ const hostStyles = css`:host { display: block; }`;
 export class CsSideNavigationInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Object })
+  @property({ attribute: false })
   header?: SideNavigationProps.Header;
 
-  @property({ type: Array })
+  @property({ attribute: false })
   items: ReadonlyArray<SideNavigationProps.Item> = [];
 
   @property({ type: String })

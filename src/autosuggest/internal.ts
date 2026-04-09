@@ -56,7 +56,7 @@ export class CsAutosuggestInternal extends Base {
   @property({ type: String })
   override value = '';
 
-  @property({ type: Array })
+  @property({ attribute: false })
   options: ReadonlyArray<OptionDefinition | (OptionDefinition & { options: ReadonlyArray<OptionDefinition> })> = [];
 
   @property({ type: String })
