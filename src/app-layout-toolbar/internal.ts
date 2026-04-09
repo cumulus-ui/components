@@ -8,6 +8,11 @@ import type { AppLayoutProps } from '../app-layout/interfaces.js';
 import type { AppLayoutToolbarProps } from './interfaces.js';
 
 const toolbarStyles = css`
+  .content-wrapper {
+    padding-block-start: var(--space-content-header-padding-bottom, 16px);
+    padding-block-end: var(--space-layout-content-bottom, 40px);
+  }
+
   .toolbar {
     display: flex;
     align-items: center;
