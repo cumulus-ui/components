@@ -39,118 +39,7 @@ All components self-register their custom element tags on import. Just import th
 
 ## Components
 
-56 components are currently exported and ready to use. ~35 more have scaffolding in `src/` and are in progress.
-
-### Input & Controls
-
-| Component | Tag | Description |
-|-----------|-----|-------------|
-| Button | `<cs-button>` | Primary, normal, link, and icon button variants |
-| ButtonDropdown | `<cs-button-dropdown>` | Button with dropdown menu |
-| ButtonGroup | `<cs-button-group>` | Grouped action buttons with overflow |
-| Checkbox | `<cs-checkbox>` | Checkbox with label, description, indeterminate state |
-| Toggle | `<cs-toggle>` | On/off toggle switch |
-| ToggleButton | `<cs-toggle-button>` | Pressable toggle button |
-| RadioGroup | `<cs-radio-group>` | Radio button group with horizontal/vertical layout |
-| Select | `<cs-select>` | Single-select dropdown |
-| Multiselect | `<cs-multiselect>` | Multi-select dropdown with tokens |
-| Autosuggest | `<cs-autosuggest>` | Input with autocomplete suggestions |
-| Slider | `<cs-slider>` | Range slider input |
-| SegmentedControl | `<cs-segmented-control>` | Segmented button group |
-| PromptInput | `<cs-prompt-input>` | Multi-line prompt input with action area |
-| DateInput | `<cs-date-input>` | Date text input |
-| DatePicker | `<cs-date-picker>` | Date picker with calendar dropdown |
-| DateRangePicker | `<cs-date-range-picker>` | Date range selection |
-| Calendar | `<cs-calendar>` | Standalone calendar |
-| FileInput | `<cs-file-input>` | File selection button |
-| FileUpload | `<cs-file-upload>` | File upload with preview and validation |
-| FileDropzone | `<cs-file-dropzone>` | Drag-and-drop file zone |
-| PropertyFilter | `<cs-property-filter>` | Token-based property filtering |
-
-### Form & Validation
-
-| Component | Tag | Description |
-|-----------|-----|-------------|
-| FormField | `<cs-form-field>` | Label, description, error, and constraint text wrapper |
-| Form | `<cs-form>` | Form layout with actions and error summary |
-
-### Display & Feedback
-
-| Component | Tag | Description |
-|-----------|-----|-------------|
-| Badge | `<cs-badge>` | Colored count badge |
-| Spinner | `<cs-spinner>` | Loading spinner |
-| StatusIndicator | `<cs-status-indicator>` | Status with icon (success, error, warning, etc.) |
-| ProgressBar | `<cs-progress-bar>` | Determinate/indeterminate progress bar |
-| Alert | `<cs-alert>` | Inline alert (info, success, warning, error) |
-| Flashbar | `<cs-flashbar>` | Stacked notification messages |
-| Icon | `<cs-icon>` | SVG icon from the Cloudscape icon set |
-| IconProvider | `<cs-icon-provider>` | Custom icon set provider |
-| LiveRegion | `<cs-live-region>` | ARIA live region for screen readers |
-| ErrorBoundary | `<cs-error-boundary>` | Error boundary with fallback UI |
-| CopyToClipboard | `<cs-copy-to-clipboard>` | Copy-to-clipboard button |
-
-### Data Display
-
-| Component | Tag | Description |
-|-----------|-----|-------------|
-| Table | `<cs-table>` | Data table with sorting, selection, pagination |
-| Cards | `<cs-cards>` | Card grid layout for items |
-| KeyValuePairs | `<cs-key-value-pairs>` | Key-value pair display |
-| Token | `<cs-token>` | Dismissible token |
-| TokenGroup | `<cs-token-group>` | Group of tokens |
-| Steps | `<cs-steps>` | Step indicator |
-| CollectionPreferences | `<cs-collection-preferences>` | Table/cards display preferences |
-| List | `<cs-list>` | Structured list |
-| TreeView | `<cs-tree-view>` | Hierarchical tree |
-
-### Layout
-
-| Component | Tag | Description |
-|-----------|-----|-------------|
-| Box | `<cs-box>` | Spacing, typography, and color utility wrapper |
-| Grid | `<cs-grid>` | Responsive column grid |
-| SpaceBetween | `<cs-space-between>` | Vertical/horizontal spacing between children |
-| ColumnLayout | `<cs-column-layout>` | Multi-column layout |
-| ContentLayout | `<cs-content-layout>` | Page content layout with header |
-| TextContent | `<cs-text-content>` | Prose text styling |
-
-### Container & Navigation
-
-| Component | Tag | Description |
-|-----------|-----|-------------|
-| Container | `<cs-container>` | Bordered content container with header |
-| Header | `<cs-header>` | Section header with actions and counter |
-| ExpandableSection | `<cs-expandable-section>` | Collapsible content section |
-| Tabs | `<cs-tabs>` | Tab navigation |
-| Modal | `<cs-modal>` | Dialog modal |
-| Tooltip | `<cs-tooltip>` | Hover tooltip |
-| Popover | `<cs-popover>` | Click-triggered popover |
-| Link | `<cs-link>` | Styled anchor link |
-| Pagination | `<cs-pagination>` | Page navigation |
-| BreadcrumbGroup | `<cs-breadcrumb-group>` | Breadcrumb navigation |
-| TopNavigation | `<cs-top-navigation>` | Application top bar |
-| SideNavigation | `<cs-side-navigation>` | Side navigation menu |
-| AnchorNavigation | `<cs-anchor-navigation>` | In-page anchor links |
-| HelpPanel | `<cs-help-panel>` | Contextual help panel |
-| Drawer | `<cs-drawer>` | Slide-out drawer panel |
-| SplitPanel | `<cs-split-panel>` | Resizable split panel |
-
-### Editor & Wizard
-
-| Component | Tag | Description |
-|-----------|-----|-------------|
-| AttributeEditor | `<cs-attribute-editor>` | Dynamic key-value attribute editor |
-| TagEditor | `<cs-tag-editor>` | Tag key-value editor |
-| CodeEditor | `<cs-code-editor>` | Code editor with syntax highlighting |
-| Wizard | `<cs-wizard>` | Multi-step wizard |
-
-### Tutorial
-
-| Component | Tag | Description |
-|-----------|-----|-------------|
-| AnnotationContext | `<cs-annotation-context>` | Tutorial annotation overlay |
-| Tiles | `<cs-tiles>` | Selectable tile grid |
+See the full list at [cumulus-ui.github.io/components](https://cumulus-ui.github.io/components).
 
 ## Framework Integration
 
@@ -279,8 +168,7 @@ src/
 | [Lit 3](https://lit.dev) | Reactive web component base |
 | [@lit/context](https://lit.dev/docs/data/context/) | Context protocol for FormField |
 | [@floating-ui/dom](https://floating-ui.com) | Popover/tooltip positioning |
-| [@cumulus-ui/design-tokens](https://github.com/cumulus-ui) | Cloudscape design token values |
-| [@cumulus-ui/styles](https://github.com/cumulus-ui) | Shared global styles |
+| [@cumulus-ui/design-tokens](https://github.com/cumulus-ui/design-tokens) | Cloudscape design token values |
 
 ## References
 
