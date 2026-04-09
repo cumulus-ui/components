@@ -30,7 +30,9 @@ export class CsBadgeInternal extends CsBaseElement {
     };
 
     return html`
-      <span class=${classMap(classes)}><slot></slot></span>
+      <span class=${classMap(classes)}>
+        <slot></slot>
+      </span>
     `;
   }
 }

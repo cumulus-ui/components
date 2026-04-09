@@ -51,7 +51,9 @@ export class CsStatusIndicatorInternal extends CsBaseElement {
           <span class="icon">
             ${iconContent}
           </span>
-          <span class=${classMap({ 'display-inline': true, 'overflow-ellipsis': !this.wrapText })}><slot></slot></span>
+          <span class=${classMap({ 'display-inline': true, 'overflow-ellipsis': !this.wrapText })}>
+            <slot></slot>
+          </span>
         </span>
       </span>
     `;
