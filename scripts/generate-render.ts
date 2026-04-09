@@ -772,6 +772,7 @@ function auditCSSCoverage(component: string): string[] {
 
   const COMPONENT_SKIP: Record<string, Set<string>> = {
     'alert': new Set(['content']),
+    'app-layout-toolbar': new Set(['root', 'toolbar', 'layout', 'app-layout-notifications--notifications']),
     'autosuggest': new Set(['dropdown']),
     'button': new Set(['content']),
     'button-dropdown': new Set(['dropdown', 'icon']),
