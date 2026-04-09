@@ -18,6 +18,12 @@ const toolbarStyles = css`
     }
   }
 
+  @media (min-width: 2541px) {
+    :host {
+      --awsui-default-max-content-width: 1620px;
+    }
+  }
+
   .content-wrapper {
     padding-block-start: var(--space-content-header-padding-bottom, 16px);
     padding-block-end: var(--space-layout-content-bottom, 40px);
