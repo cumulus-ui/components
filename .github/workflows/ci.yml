@@ -48,10 +48,25 @@ jobs:
 
       - name: Audit — No hashed tokens in internal.ts
         run: |
-          if grep -rPl 'var\(--[\w-]+-[a-z0-9]{6,},' src/*/internal.ts 2>/dev/null; then
-            echo "::warning::Found hashed Cloudscape tokens in internal.ts files (see Phase 1)"
-          fi
-        continue-on-error: true
+          node -e "
+            const fs = require('fs');
+            const p = require('path');
+            const re = /--([\w-]+)-([a-z0-9]{6})\b/g;
+            let found = 0;
+            for (const dir of fs.readdirSync('src', {withFileTypes:true})) {
+              if (!dir.isDirectory()) continue;
+              const f = p.join('src', dir.name, 'internal.ts');
+              if (!fs.existsSync(f)) continue;
+              const src = fs.readFileSync(f,'utf8');
+              let m;
+              while ((m = re.exec(src)) !== null) {
+                const hash = m[2];
+                if (/[0-9]/.test(hash)) { found++; console.log(f + ': --' + m[1] + '-' + hash); }
+              }
+            }
+            if (found) { console.error(found + ' hashed token(s) found. Dehash them.'); process.exit(1); }
+            console.log('No hashed tokens found.');
+          "
 
       - name: Get Playwright version
         id: playwright-version

@@ -16,19 +16,19 @@ const fileListStyles = css`
 .file-upload-root {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs-ymlm0b, 8px);
+  gap: var(--space-xs, 8px);
 }
 .label {
   font-weight: 700;
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
-  color: var(--color-text-form-label-2ul0mm, #0f141a);
-  margin-block-end: var(--space-xxs-p4when, 4px);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
+  color: var(--color-text-form-label, #0f141a);
+  margin-block-end: var(--space-xxs, 4px);
 }
 .file-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs-ymlm0b, 8px);
+  gap: var(--space-xs, 8px);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -40,15 +40,15 @@ const fileListStyles = css`
 .file-item {
   display: flex;
   align-items: center;
-  gap: var(--space-xs-ymlm0b, 8px);
-  padding: var(--space-xxs-p4when, 4px) var(--space-xs-ymlm0b, 8px);
-  border: 1px solid var(--color-border-input-default-nviccl, #c6c6cd);
-  border-radius: var(--border-radius-item-1xihb0, 8px);
-  background: var(--color-background-container-content-6u8rvp, #ffffff);
+  gap: var(--space-xs, 8px);
+  padding: var(--space-xxs, 4px) var(--space-xs, 8px);
+  border: 1px solid var(--color-border-input-default, #c6c6cd);
+  border-radius: var(--border-radius-item, 8px);
+  background: var(--color-background-container-content, #ffffff);
   min-width: 0;
 }
 .file-item-error {
-  border-color: var(--color-text-status-error-cjhm35, #db0000);
+  border-color: var(--color-text-status-error, #db0000);
 }
 .file-info {
   flex: 1;
@@ -59,18 +59,18 @@ const fileListStyles = css`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
 }
 .file-metadata {
-  font-size: var(--font-size-body-s-h7kcgl, 12px);
-  color: var(--color-text-body-secondary-5wt35c, #687078);
-  line-height: var(--line-height-body-s-0ycq7b, 16px);
+  font-size: var(--font-size-body-s, 12px);
+  color: var(--color-text-body-secondary, #687078);
+  line-height: var(--line-height-body-s, 16px);
 }
 .file-error {
-  font-size: var(--font-size-body-s-h7kcgl, 12px);
-  color: var(--color-text-status-error-cjhm35, #db0000);
-  line-height: var(--line-height-body-s-0ycq7b, 16px);
+  font-size: var(--font-size-body-s, 12px);
+  color: var(--color-text-status-error, #db0000);
+  line-height: var(--line-height-body-s, 16px);
 }
 .file-thumbnail {
   width: 32px;
@@ -86,23 +86,23 @@ const fileListStyles = css`
   border: none;
   cursor: pointer;
   padding: 2px;
-  color: var(--color-text-body-secondary-5wt35c, #687078);
+  color: var(--color-text-body-secondary, #687078);
   border-radius: 4px;
   flex-shrink: 0;
 }
 .dismiss-button:hover {
-  color: var(--color-text-body-default-vvtq8u, #0f141a);
-  background: var(--color-background-button-normal-hover-h21rio, rgba(0, 7, 22, 0.05));
+  color: var(--color-text-body-default, #0f141a);
+  background: var(--color-background-button-normal-hover, rgba(0, 7, 22, 0.05));
 }
 .constraint-text {
-  font-size: var(--font-size-body-s-h7kcgl, 12px);
-  color: var(--color-text-body-secondary-5wt35c, #687078);
-  line-height: var(--line-height-body-s-0ycq7b, 16px);
+  font-size: var(--font-size-body-s, 12px);
+  color: var(--color-text-body-secondary, #687078);
+  line-height: var(--line-height-body-s, 16px);
 }
 .error-text {
-  font-size: var(--font-size-body-s-h7kcgl, 12px);
-  color: var(--color-text-status-error-cjhm35, #db0000);
-  line-height: var(--line-height-body-s-0ycq7b, 16px);
+  font-size: var(--font-size-body-s, 12px);
+  color: var(--color-text-status-error, #db0000);
+  line-height: var(--line-height-body-s, 16px);
 }
 `;
 

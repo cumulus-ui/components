@@ -9,14 +9,14 @@ const hostStyles = css`:host { display: block; }`;
 const layoutStyles = css`
   .grid {
     display: grid;
-    gap: var(--space-scaled-m-m892r9, 16px);
+    gap: var(--space-scaled-m, 16px);
   }
 `;
 
 const inventedStyles = css`
   .pair {
     break-inside: avoid;
-    padding-block-end: var(--space-l-t419sm, 20px);
+    padding-block-end: var(--space-l, 20px);
   }
 `;
 

@@ -23,13 +23,13 @@ const inventedStyles = css`
   .structured-item--icon {
     display: flex;
     align-items: center;
-    margin-inline-end: var(--space-xs-ymlm0b, 8px);
+    margin-inline-end: var(--space-xs, 8px);
     flex-shrink: 0;
   }
   .structured-item--secondary {
-    color: var(--color-text-body-secondary-fdstdf, #5f6b7a);
-    font-size: var(--font-body-s-size-ukbcbk, 12px);
-    line-height: var(--line-height-body-s-2vlpm2, 16px);
+    color: var(--color-text-body-secondary, #5f6b7a);
+    font-size: var(--font-body-s-size, 12px);
+    line-height: var(--line-height-body-s, 16px);
   }
 `;
 

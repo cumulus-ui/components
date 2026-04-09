@@ -14,9 +14,9 @@ const hostStyles = css`
   .tag-row {
     display: grid;
     grid-template-columns: 1fr 1fr auto;
-    gap: var(--space-grid-gutter-whc3jp, 20px);
+    gap: var(--space-grid-gutter, 20px);
     align-items: start;
-    padding-block: var(--space-xs-ctmojp, 8px);
+    padding-block: var(--space-xs, 8px);
   }
   .tag-row-removed {
     opacity: 0.5;
@@ -26,10 +26,10 @@ const hostStyles = css`
     flex-direction: column;
   }
   .add-section {
-    margin-block-start: var(--space-s-k3fkj0, 12px);
+    margin-block-start: var(--space-s, 12px);
   }
   .action-cell {
-    padding-block-start: calc(var(--space-xxs-hwfkai, 4px) + var(--line-height-body-m-2mh3ke, 20px));
+    padding-block-start: calc(var(--space-xxs, 4px) + var(--line-height-body-m, 20px));
   }
 `;
 

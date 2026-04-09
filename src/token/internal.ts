@@ -13,13 +13,13 @@ const hostStyles = css`:host { display: inline-block; }`;
 const inventedStyles = css`
   .label-tag {
     display: inline-block;
-    margin-inline-start: var(--space-xxs-hwfkai, 4px);
-    font-size: var(--font-body-s-size-ukbcbk, 12px);
-    color: var(--color-text-body-secondary-fdstdf, #5f6b7a);
+    margin-inline-start: var(--space-xxs, 4px);
+    font-size: var(--font-body-s-size, 12px);
+    color: var(--color-text-body-secondary, #5f6b7a);
   }
   .description {
-    font-size: var(--font-body-s-size-ukbcbk, 12px);
-    color: var(--color-text-body-secondary-fdstdf, #5f6b7a);
+    font-size: var(--font-body-s-size, 12px);
+    color: var(--color-text-body-secondary, #5f6b7a);
   }
 `;
 

@@ -11,28 +11,28 @@ const hostStyles = css`:host { display: block; }`;
 
 const inventedStyles = css`
   .label {
-    font-size: var(--font-body-m-size-sregvd, 14px);
-    font-weight: var(--font-body-m-weight-7v1jxr, 400);
-    color: var(--color-text-body-default-ajf1h5, #0f141a);
-    margin-block-end: var(--space-xxs-hwfkai, 4px);
+    font-size: var(--font-body-m-size, 14px);
+    font-weight: var(--font-body-m-weight, 400);
+    color: var(--color-text-body-default, #0f141a);
+    margin-block-end: var(--space-xxs, 4px);
   }
   .description {
-    font-size: var(--font-body-s-size-ukbcbk, 12px);
-    color: var(--color-text-body-secondary-fdstdf, #5f6b7a);
-    margin-block-end: var(--space-xs-ymlm0b, 8px);
+    font-size: var(--font-body-s-size, 12px);
+    color: var(--color-text-body-secondary, #5f6b7a);
+    margin-block-end: var(--space-xs, 8px);
   }
   .result-button-trigger {
     display: inline-block;
-    margin-block-start: var(--space-xs-ymlm0b, 8px);
+    margin-block-start: var(--space-xs, 8px);
     background: none;
     border: none;
     padding: 0;
-    color: var(--color-text-button-inline-icon-default-sm4ql6, #006ce0);
+    color: var(--color-text-button-inline-icon-default, #006ce0);
     cursor: pointer;
     font-size: inherit;
   }
   .result-button-trigger:hover {
-    color: var(--color-text-button-inline-icon-hover-rbyzfc, #002b66);
+    color: var(--color-text-button-inline-icon-hover, #002b66);
     text-decoration: underline;
   }
 `;

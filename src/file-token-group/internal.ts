@@ -14,7 +14,7 @@ const tokenListStyles = css`
 .list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs-ymlm0b, 8px);
+  gap: var(--space-xs, 8px);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -29,14 +29,14 @@ const tokenListStyles = css`
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--color-text-button-inline-icon-default-sm4ql6, #006ce0);
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
+  color: var(--color-text-button-inline-icon-default, #006ce0);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
   padding: 0;
-  margin-block-start: var(--space-xs-ymlm0b, 8px);
+  margin-block-start: var(--space-xs, 8px);
 }
 .toggle:hover {
-  color: var(--color-text-button-inline-icon-hover-rbyzfc, #002b66);
+  color: var(--color-text-button-inline-icon-hover, #002b66);
   text-decoration: underline;
 }
 .dismiss-button {
@@ -46,25 +46,25 @@ const tokenListStyles = css`
   justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
-  color: var(--color-text-button-inline-icon-default-sm4ql6, #006ce0);
-  padding: var(--space-static-xxs-ns94dp, 4px);
+  color: var(--color-text-button-inline-icon-default, #006ce0);
+  padding: var(--space-static-xxs, 4px);
 }
 .dismiss-button:hover {
-  color: var(--color-text-button-inline-icon-hover-rbyzfc, #002b66);
+  color: var(--color-text-button-inline-icon-hover, #002b66);
 }
 .file-error-text,
 .file-warning-text {
-  font-size: var(--font-size-body-s-smc8cv, 12px);
-  line-height: var(--line-height-body-s-nu5hx1, 16px);
+  font-size: var(--font-size-body-s, 12px);
+  line-height: var(--line-height-body-s, 16px);
   display: flex;
   align-items: center;
-  gap: var(--space-xxs-hwfkai, 4px);
+  gap: var(--space-xxs, 4px);
 }
 .file-error-text {
-  color: var(--color-text-status-error-5676bj, #db0000);
+  color: var(--color-text-status-error, #db0000);
 }
 .file-warning-text {
-  color: var(--color-text-status-warning-cxbpkd, #855900);
+  color: var(--color-text-status-warning, #855900);
 }
 `;
 

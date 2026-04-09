@@ -19,7 +19,7 @@ const inventedStyles = css`
   .structured-item--icon {
     display: flex;
     align-items: center;
-    margin-inline-end: var(--space-xs-ymlm0b, 8px);
+    margin-inline-end: var(--space-xs, 8px);
     flex-shrink: 0;
   }
 `;
@@ -84,8 +84,8 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
 
     return html`
       <span class=${classMap({
-        'expand-toggle-button--expand-toggle-icon': true,
-        'expand-toggle-button--expand-toggle-icon-expanded': expanded,
+        'expand-toggle-button--expand-icon': true,
+        'expand-toggle-button--expand-icon-expanded': expanded,
       })}>
         <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
           <path class="filled stroke-linejoin-round" d="m8 11 4-6H4l4 6Z"></path>
@@ -120,12 +120,12 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
         data-node-id=${id}
       >
         <div class="tree-view-tree-item--treeitem-content-wrapper">
-          <div class="tree-view-tree-item--expand-toggle-wrapper">
+          <div class="tree-view-tree-item--expand-wrapper">
             <div class="tree-view-tree-item--toggle">
               ${hasChildren
                 ? html`
                   <button
-                    class="expand-toggle-button--expand-toggle expand-toggle-button--disable-focus-highlight tree-view-tree-item--tree-item-focus-target"
+                    class="expand-toggle-button--expand expand-toggle-button--disable-focus-highlight tree-view-tree-item--tree-item-focus"
                     type="button"
                     tabindex="-1"
                     aria-label=${contentLabel}
@@ -135,7 +135,7 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
                     ${this._renderToggleIcon(expanded)}
                   </button>`
                 : html`
-                  <div class="tree-view-tree-item--tree-item-focus-target"
+                  <div class="tree-view-tree-item--tree-item-focus"
                     role="group"
                     tabindex="-1"
                     aria-label=${contentLabel}

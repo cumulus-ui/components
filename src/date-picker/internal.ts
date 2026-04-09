@@ -27,10 +27,10 @@ const dropdownStyles = css`
 .dropdown {
   position: fixed;
   z-index: 1000;
-  background: var(--color-background-dropdown-item-default-x1j8rl, #ffffff);
-  border: 1px solid var(--color-border-dropdown-maqkj1, #8c8c94);
-  border-radius: var(--border-radius-dropdown-fgc2a1, 8px);
-  box-shadow: var(--shadow-dropdown-ld783s, 0px 4px 20px 1px rgba(0, 7, 22, 0.1));
+  background: var(--color-background-dropdown-item-default, #ffffff);
+  border: 1px solid var(--color-border-dropdown, #8c8c94);
+  border-radius: var(--border-radius-dropdown, 8px);
+  box-shadow: var(--shadow-dropdown, 0px 4px 20px 1px rgba(0, 7, 22, 0.1));
   padding: 0;
 }
 `;

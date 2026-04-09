@@ -41,7 +41,7 @@ export class CsColumnLayoutInternal extends CsBaseElement {
     };
 
     const gridStyle = this.minColumnWidth
-      ? `display: grid; grid-template-columns: repeat(auto-fill, minmax(${this.minColumnWidth}px, 1fr)); gap: var(--space-grid-gutter-whc3jp, 20px);`
+      ? `display: grid; grid-template-columns: repeat(auto-fill, minmax(${this.minColumnWidth}px, 1fr)); gap: var(--space-grid-gutter, 20px);`
       : `display: grid; grid-template-columns: repeat(${this.columns}, 1fr);`;
 
     return html`

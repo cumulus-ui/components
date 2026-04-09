@@ -85,7 +85,7 @@ export class CsSliderInternal extends CsBaseElement {
             ? nothing
             : html`<div
                 class=${classMap(rangeClasses)}
-                style="--awsui-slider-range-inline-size-6b9ypa: ${percent}%"
+                style="--awsui-slider-range-inline-size: ${percent}%"
               ></div>`}
           ${this.tickMarks.length > 0
             ? html`<div class="tick-marks">${this.tickMarks.map(tick => {

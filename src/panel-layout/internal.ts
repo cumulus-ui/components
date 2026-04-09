@@ -21,19 +21,19 @@ const handleStyles = css`
   flex-shrink: 0;
 }
 .handle-wrapper:hover .handle-bar {
-  background-color: var(--color-border-item-focused-uk47pl, #006ce0);
+  background-color: var(--color-border-item-focused, #006ce0);
 }
 .handle-bar {
   inline-size: 2px;
   block-size: 24px;
   border-radius: 1px;
-  background-color: var(--color-border-divider-default-jx2uvy, #c6c6cd);
+  background-color: var(--color-border-divider-default, #c6c6cd);
   transition: background-color 120ms ease-out;
 }
 .handle-wrapper:focus-visible {
-  outline: 2px solid var(--color-border-item-focused-uk47pl, #006ce0);
+  outline: 2px solid var(--color-border-item-focused, #006ce0);
   outline-offset: -2px;
-  border-radius: var(--border-radius-control-default-focus-ring-1uabki, 4px);
+  border-radius: var(--border-radius-control-default-focus-ring, 4px);
 }
 `;
 

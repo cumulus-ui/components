@@ -14,13 +14,13 @@ const hostStyles = css`:host { display: block; }`;
 const inventedStyles = css`
   .label-tag {
     display: inline-block;
-    margin-inline-start: var(--space-xxs-hwfkai, 4px);
-    font-size: var(--font-body-s-size-ukbcbk, 12px);
-    color: var(--color-text-body-secondary-fdstdf, #5f6b7a);
+    margin-inline-start: var(--space-xxs, 4px);
+    font-size: var(--font-body-s-size, 12px);
+    color: var(--color-text-body-secondary, #5f6b7a);
   }
   .tags {
     display: inline;
-    margin-inline-start: var(--space-xxs-hwfkai, 4px);
+    margin-inline-start: var(--space-xxs, 4px);
   }
 `;
 
@@ -28,7 +28,7 @@ const tokenListStyles = css`
 .list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs-ymlm0b, 8px);
+  gap: var(--space-xs, 8px);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -47,13 +47,13 @@ const tokenListStyles = css`
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--color-text-button-inline-icon-default-sm4ql6, #006ce0);
-  font-size: var(--font-size-body-m-a7nh2n, 14px);
-  line-height: var(--line-height-body-m-2mh3ke, 20px);
+  color: var(--color-text-button-inline-icon-default, #006ce0);
+  font-size: var(--font-size-body-m, 14px);
+  line-height: var(--line-height-body-m, 20px);
   padding: 0;
 }
 .toggle:hover {
-  color: var(--color-text-button-inline-icon-hover-rbyzfc, #002b66);
+  color: var(--color-text-button-inline-icon-hover, #002b66);
   text-decoration: underline;
 }
 `;

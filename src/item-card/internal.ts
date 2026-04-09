@@ -75,11 +75,11 @@ export class CsItemCardInternal extends CsBaseElement {
   private _buildRootStyleOverrides(): Record<string, string> {
     const s = this.style_;
     const overrides: Record<string, string> = {};
-    if (s?.root?.background) overrides['--awsui-style-item-card-background-default-6b9ypa'] = s.root.background;
-    if (s?.root?.borderColor) overrides['--awsui-style-item-card-border-color-default-6b9ypa'] = s.root.borderColor;
-    if (s?.root?.borderRadius) overrides['--awsui-style-item-card-border-radius-6b9ypa'] = s.root.borderRadius;
-    if (s?.root?.borderWidth) overrides['--awsui-style-item-card-border-width-default-6b9ypa'] = s.root.borderWidth;
-    if (s?.root?.boxShadow) overrides['--awsui-style-item-card-box-shadow-default-6b9ypa'] = s.root.boxShadow;
+    if (s?.root?.background) overrides['--awsui-style-item-card-background-default'] = s.root.background;
+    if (s?.root?.borderColor) overrides['--awsui-style-item-card-border-color-default'] = s.root.borderColor;
+    if (s?.root?.borderRadius) overrides['--awsui-style-item-card-border-radius'] = s.root.borderRadius;
+    if (s?.root?.borderWidth) overrides['--awsui-style-item-card-border-width-default'] = s.root.borderWidth;
+    if (s?.root?.boxShadow) overrides['--awsui-style-item-card-box-shadow-default'] = s.root.boxShadow;
     return overrides;
   }
 

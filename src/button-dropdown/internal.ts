@@ -18,10 +18,10 @@ const dropdownStyles = css`
   .dropdown {
     position: fixed;
     z-index: 9999;
-    background: var(--color-background-dropdown-item-default-xqpysa, #ffffff);
-    border: var(--border-width-dropdown-youcay, 2px) solid var(--color-border-dropdown-rqmyxm, #c6c6cd);
-    border-radius: var(--border-radius-dropdown-lhqz1x, 8px);
-    box-shadow: var(--shadow-dropdown-vfv6uo, 0px 4px 20px 1px rgba(0, 7, 22, 0.10));
+    background: var(--color-background-dropdown-item-default, #ffffff);
+    border: var(--border-width-dropdown, 2px) solid var(--color-border-dropdown, #c6c6cd);
+    border-radius: var(--border-radius-dropdown, 8px);
+    box-shadow: var(--shadow-dropdown, 0px 4px 20px 1px rgba(0, 7, 22, 0.10));
     overflow: auto;
     max-block-size: 300px;
     min-inline-size: 176px;

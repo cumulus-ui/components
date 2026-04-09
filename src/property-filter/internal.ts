@@ -13,32 +13,32 @@ const filterInputStyles = css`
   .filter-input {
     flex: 1;
     min-inline-size: 120px;
-    padding-block: var(--space-scaled-xxs-pfm1nx, 4px);
-    padding-inline: var(--space-field-horizontal-0aq2ch, 12px);
-    font-size: var(--font-size-body-m-a7nh2n, 14px);
-    line-height: var(--line-height-body-m-2mh3ke, 20px);
+    padding-block: var(--space-scaled-xxs, 4px);
+    padding-inline: var(--space-field-horizontal, 12px);
+    font-size: var(--font-size-body-m, 14px);
+    line-height: var(--line-height-body-m, 20px);
     font-family: inherit;
-    border: var(--border-width-field-2xc78x, 1px) solid var(--color-border-input-default-t4n2s0, #8c8c94);
-    border-radius: var(--border-radius-input-0z3fnq, 8px);
-    background: var(--color-background-input-default-m6twru, #ffffff);
-    color: var(--color-text-body-default-vvtq8u, #0f141a);
+    border: var(--border-width-field, 1px) solid var(--color-border-input-default, #8c8c94);
+    border-radius: var(--border-radius-input, 8px);
+    background: var(--color-background-input-default, #ffffff);
+    color: var(--color-text-body-default, #0f141a);
     outline: none;
     box-sizing: border-box;
   }
   .filter-input:focus {
-    border-color: var(--color-border-input-focused-0mhils, #006ce0);
-    box-shadow: 0 0 0 1px var(--color-border-input-focused-0mhils, #006ce0);
+    border-color: var(--color-border-input-focused, #006ce0);
+    box-shadow: 0 0 0 1px var(--color-border-input-focused, #006ce0);
   }
   .filter-input:disabled {
-    background: var(--color-background-input-disabled-kxocba, #ebebf0);
-    border-color: var(--color-border-input-disabled-zgnzvk, #ebebf0);
-    color: var(--color-text-input-disabled-tvmsyk, #b4b4bb);
+    background: var(--color-background-input-disabled, #ebebf0);
+    border-color: var(--color-border-input-disabled, #ebebf0);
+    color: var(--color-text-input-disabled, #b4b4bb);
     cursor: default;
   }
   .token-list {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-xs-ymlm0b, 8px);
+    gap: var(--space-xs, 8px);
     list-style: none;
     margin: 0;
     padding: 0;
@@ -50,12 +50,12 @@ const filterInputStyles = css`
   .operation-label {
     display: inline-flex;
     align-items: center;
-    font-size: var(--font-size-body-s-smc8cv, 12px);
-    line-height: var(--line-height-body-s-nu5hx1, 16px);
-    color: var(--color-text-form-secondary-1nm780, #656871);
+    font-size: var(--font-size-body-s, 12px);
+    line-height: var(--line-height-body-s, 16px);
+    color: var(--color-text-form-secondary, #656871);
     font-weight: bold;
     text-transform: uppercase;
-    padding-inline: var(--space-xxs-hwfkai, 4px);
+    padding-inline: var(--space-xxs, 4px);
   }
 `;
 
