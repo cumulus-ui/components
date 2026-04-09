@@ -89,27 +89,19 @@ export class CsLinkInternal extends CsBaseElement {
       : nothing;
 
     if (isLink) {
-      return html`
-        <a
+      return html`<a
           class=${classMap(linkClasses)}
           href=${this.href}
           target=${ifDefined(this._resolvedTarget())}
           rel=${ifDefined(this._resolvedRel())}
           aria-label=${ifDefined(this.ariaLabel || undefined)}
-        >
-          <slot></slot>${externalIcon}
-        </a>
-      `;
+        ><slot></slot>${externalIcon}</a>`;
     }
 
-    return html`
-      <button
+    return html`<button
         class=${classMap(linkClasses)}
         type="button"
         aria-label=${ifDefined(this.ariaLabel || undefined)}
-      >
-        <slot></slot>${externalIcon}
-      </button>
-    `;
+      ><slot></slot>${externalIcon}</button>`;
   }
 }

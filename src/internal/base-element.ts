@@ -11,9 +11,21 @@ export class CsBaseElement extends LitElement {
           options = { ...options, attribute: kebab };
         }
       }
-      // Reflect all primitive properties by default — HTML-first library
+      // Reflect non-empty values to attributes for SSR
       if (options?.reflect === undefined) {
-        options = { ...options, reflect: true };
+        const isStringType = !options?.type || options.type === String;
+        if (isStringType && !options?.converter) {
+          options = {
+            ...options,
+            reflect: true,
+            converter: {
+              fromAttribute: (value: string | null) => value ?? '',
+              toAttribute: (value: unknown) => (value === '' || value == null) ? null : String(value),
+            },
+          };
+        } else {
+          options = { ...options, reflect: true };
+        }
       }
     }
     super.createProperty(name, options);
