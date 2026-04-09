@@ -125,7 +125,7 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
               ${hasChildren
                 ? html`
                   <button
-                    class="expand-toggle-button--expand expand-toggle-button--disable-focus-highlight tree-view-tree-item--tree-item-focus"
+                    class="expand-toggle-button--expand-toggle expand-toggle-button--disable-focus-highlight tree-view-tree-item--tree-item-focus"
                     type="button"
                     tabindex="-1"
                     aria-label=${contentLabel}
