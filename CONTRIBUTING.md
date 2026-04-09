@@ -265,6 +265,20 @@ export class CsCheckboxInternal extends Base {
 
 Call `this.setFormValue()` in `willUpdate` whenever the form-relevant value changes.
 
+### Platform differences from Cloudscape
+
+Cumulus reimplements Cloudscape for the Web Component platform. Some things work differently and require intentional divergence from upstream. These are not bugs or workarounds; they are architectural decisions.
+
+**Dehashed token names.** Cloudscape uses MD5-hashed CSS variable names (`--color-text-body-default-vvtq8u`) and class names (`awsui_button_vjswe_5mof5_157`). We strip these to clean names (`--color-text-body-default`, `.button`). Hashed names exist in Cloudscape to avoid collisions in the global CSS scope. In Shadow DOM, scoping is native and hashing is unnecessary.
+
+**Dark mode selector: `:root.awsui-dark-mode` instead of `.awsui-dark-mode`.** Cloudscape uses `.awsui-dark-mode { ... }` for dark token overrides. CSS build tools (Lightning CSS, cssnano) may merge this with `:root { ... }` since both target the same element and have equal specificity. The merged result destroys the cascade: dark values overwrite light values unconditionally. Using `:root.awsui-dark-mode` makes the selector structurally distinct so no build tool will merge it. Functionally identical (the class is always on `<html>`, which is `:root`).
+
+**`:host-context(.awsui-dark-mode)` for Shadow DOM class selectors.** Cloudscape uses `.awsui-dark-mode .root { ... }` for component-level dark mode overrides (e.g., code-view's hardcoded background colors). In Shadow DOM, descendant selectors from outside the shadow boundary don't work. The generator transforms these to `:host-context(.awsui-dark-mode) .root { ... }` which checks ancestors through the shadow boundary.
+
+**CSS custom property fallbacks for sentinel variables.** Cloudscape declares `--awsui-*` variables as `0px` in CSS and sets real values via JavaScript at render time. In React, parent components always render before children, so the variable is set before it's read. In Web Components, there's no guaranteed render order. The generator adds CSS fallbacks to `var()` references using Cloudscape's own non-zero values, so components degrade gracefully when used standalone.
+
+**Template whitespace in inline elements.** Lit preserves whitespace in `html` template literals. For inline components like `<cs-link>`, whitespace around `<slot></slot>` inside `<a>` or `<span>` renders as visible extra spaces. Content must be collapsed: `><slot></slot></a>`, not `>\n  <slot></slot>\n</a>`.
+
 ### Slots
 
 Use `<slot>` elements to match Cloudscape's content projection. Named slots follow the pattern `<slot name="header">`, `<slot name="footer">`, etc.
