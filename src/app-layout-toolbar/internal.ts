@@ -80,10 +80,6 @@ const toolbarStyles = css`
   .toolbar__drawer-panel {
     border-left: 1px solid var(--color-border-divider-default, #e9ebed);
   }
-
-  .app-layout-drawer--drawer {
-    box-shadow: 0px 0px 0px 1px var(--color-border-divider-default, #e9ebed);
-  }
 `;
 
 export class CsAppLayoutToolbarInternal extends CsAppLayoutInternal {
