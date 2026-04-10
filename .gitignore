@@ -2,6 +2,7 @@ node_modules/
 dist/
 *.tsbuildinfo
 .DS_Store
+.sisyphus/
 test/.results/
 test/*/baselines/
 scripts/output/

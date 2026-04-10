@@ -1,5 +1,6 @@
-import { LitElement, html, css } from 'lit';
+import { html, css } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
+import { PermutationsPageBase } from '../base.js';
 import '../../../src/app-layout-toolbar/index.js';
 import '../../../src/side-navigation/index.js';
 import '../../../src/help-panel/index.js';
@@ -10,7 +11,7 @@ import '../../../src/flashbar/index.js';
 import '../../../src/icon/index.js';
 
 @customElement('app-layout-toolbar-permutations-page')
-export class AppLayoutToolbarPermutationsPage extends LitElement {
+export class AppLayoutToolbarPermutationsPage extends PermutationsPageBase {
   static override styles = css`
     :host {
       display: block;

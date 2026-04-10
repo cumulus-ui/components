@@ -1,8 +1,9 @@
-import { LitElement, html, css } from 'lit';
+import { html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { PermutationsPageBase } from '../base.js';
 
 @customElement('demo-test-permutations')
-export class DemoTestPermutations extends LitElement {
+export class DemoTestPermutations extends PermutationsPageBase {
   static override styles = css`
     :host {
       display: block;

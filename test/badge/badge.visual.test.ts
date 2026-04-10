@@ -1,9 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { compareSections, waitForPage } from '../helpers/visual.js';
-
-const BASELINES = resolve(fileURLToPath(import.meta.url), '..', 'baselines');
+import { waitForPage } from '../helpers/visual.js';
 
 for (const mode of ['light', 'dark'] as const) {
   test.describe(`Badge — Visual (${mode})`, () => {
@@ -12,9 +8,16 @@ for (const mode of ['light', 'dark'] as const) {
     });
 
     test('all sections match baselines', async ({ page }) => {
-      const results = await compareSections(page, BASELINES, 'badge', mode);
-      for (const { name, result } of results) {
-        expect(result.match, `"${name}" differs by ${result.diffPixels}px`).toBe(true);
+      await page.addStyleTag({
+        content: '*, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; }',
+      });
+
+      const sections = page.locator('section');
+      const count = await sections.count();
+      for (let i = 0; i < count; i++) {
+        await expect(sections.nth(i)).toHaveScreenshot(
+          `badge-${mode}-section-${i}.png`,
+        );
       }
     });
   });

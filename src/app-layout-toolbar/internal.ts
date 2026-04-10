@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { CsAppLayoutInternal } from '../app-layout/internal.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
+import { appLayoutVisualRefreshToolbarSkeletonStyles } from '../internal/styles/app-layout-visual-refresh-toolbar-skeleton.js';
 import type { AppLayoutProps } from '../app-layout/interfaces.js';
 import type { AppLayoutToolbarProps } from './interfaces.js';
 
@@ -115,6 +116,7 @@ export class CsAppLayoutToolbarInternal extends CsAppLayoutInternal {
   static override styles = [
     ...CsAppLayoutInternal.styles,
     toolbarStyles,
+    appLayoutVisualRefreshToolbarSkeletonStyles,
   ];
 
   @property({ type: Boolean, attribute: 'navigation-trigger-hide' })

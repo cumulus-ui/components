@@ -1,12 +1,13 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { PermutationsPageBase } from '../base.js';
 import '../../../src/icon-provider/index.js';
 import '../../../src/icon/index.js';
 
 export const tagName = 'icon-provider-permutations-page';
 
 @customElement(tagName)
-export class IconProviderPermutationsPage extends LitElement {
+export class IconProviderPermutationsPage extends PermutationsPageBase {
   override createRenderRoot(): this { return this; }
 
   override render() {
