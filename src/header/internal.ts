@@ -119,9 +119,11 @@ export class CsHeaderInternal extends CsBaseElement {
             ${this._renderHeading()}
             <span class="info"><slot name="info" @slotchange=${this._onInfoSlotChange}></slot></span>
           </div>
-          <div class=${classMap(actionsClasses)}>
-            <slot name="actions" @slotchange=${this._onActionsSlotChange}></slot>
-          </div>
+          ${this._hasActions
+            ? html`<div class=${classMap(actionsClasses)}>
+                <slot name="actions" @slotchange=${this._onActionsSlotChange}></slot>
+              </div>`
+            : html`<slot name="actions" @slotchange=${this._onActionsSlotChange} style="display:none"></slot>`}
         </div>
         ${this.description
           ? html`<p class=${classMap(descriptionClasses)}>${this.description}</p>`
