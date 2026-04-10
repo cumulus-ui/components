@@ -32,6 +32,17 @@ export class CsContentLayoutInternal extends CsBaseElement {
   private _hasBreadcrumbs = false;
   private _hasSecondaryHeader = false;
 
+  override firstUpdated(): void {
+    const slot = this.shadowRoot?.querySelector('slot[name="header"]') as HTMLSlotElement | null;
+    if (slot) {
+      const hasHeader = slot.assignedNodes({ flatten: true }).length > 0;
+      if (this._hasHeader !== hasHeader) {
+        this._hasHeader = hasHeader;
+        this.requestUpdate();
+      }
+    }
+  }
+
   private _onHeaderSlotChange(e: Event): void {
     const slot = e.target as HTMLSlotElement;
     this._hasHeader = slot.assignedNodes({ flatten: true }).length > 0;
