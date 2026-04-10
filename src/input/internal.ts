@@ -4,7 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { consume } from '@lit/context';
 import { CsBaseElement } from '../internal/base-element.js';
-import { FormControlMixin } from '../internal/mixins/form-associated.js';
+import { FormControlMixin } from '../internal/mixins/form-control.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import {
   formFieldContext,

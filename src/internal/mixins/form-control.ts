@@ -1,5 +1,5 @@
 /**
- * @module form-associated
+ * @module form-control
  *
  * Lit mixin that makes a custom element participate in HTML forms via
  * `ElementInternals`. Every form component (Input, Select, Checkbox, etc.)
@@ -9,7 +9,7 @@
  * ```ts
  * import { LitElement, html } from 'lit';
  * import { property } from 'lit/decorators.js';
- * import { FormControlMixin } from '../internal/mixins/form-associated.js';
+ * import { FormControlMixin } from '../internal/mixins/form-control.js';
  *
  * class MyInput extends FormControlMixin(LitElement) {
  *   @property() value = '';
