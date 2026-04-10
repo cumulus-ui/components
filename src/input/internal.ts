@@ -4,7 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { consume } from '@lit/context';
 import { CsBaseElement } from '../internal/base-element.js';
-import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
+import { FormControlMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import {
   formFieldContext,
@@ -15,7 +15,7 @@ import { componentStyles, sharedStyles } from './styles.js';
 import type { InputProps, BaseChangeDetail } from './interfaces.js';
 import '../icon/index.js';
 
-const Base = FormAssociatedMixin(CsBaseElement);
+const Base = FormControlMixin(CsBaseElement);
 
 const hostStyles = css`:host { display: block; }`;
 
@@ -138,7 +138,7 @@ export class CsInputInternal extends Base {
 
   private _onClear = (): void => {
     this.value = '';
-    const detail: BaseChangeDetail = { value: '' };
+    const detail: BaseChangeDetail = { value: this.value };
     fireNonCancelableEvent(this, 'change', detail);
     this.focus();
   };

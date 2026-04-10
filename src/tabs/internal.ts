@@ -1,8 +1,9 @@
 import { css, html, nothing, type TemplateResult } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { CsBaseElement } from '../internal/base-element.js';
+import { ControllableController } from '../internal/controllers/controllable.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { componentStyles, sharedStyles } from './styles.js';
 import type { TabsProps } from './interfaces.js';
@@ -16,7 +17,7 @@ export class CsTabsInternal extends CsBaseElement {
   tabs: ReadonlyArray<TabsProps.Tab> = [];
 
   @property({ type: String, attribute: 'active-tab-id' })
-  activeTabId = '';
+  activeTabId?: string;
 
   @property({ type: String })
   variant: TabsProps.Variant = 'default';
@@ -33,12 +34,11 @@ export class CsTabsInternal extends CsBaseElement {
   @property({ type: String, attribute: 'aria-labelledby' })
   ariaLabelledby: string | null = null;
 
-  @state()
-  private _internalActiveTabId = '';
+  private _activeTabId = new ControllableController(this, { defaultValue: '' });
 
   private get _resolvedActiveTabId(): string {
-    if (this.activeTabId) return this.activeTabId;
-    if (this._internalActiveTabId) return this._internalActiveTabId;
+    const resolved = this.activeTabId ?? this._activeTabId.value;
+    if (resolved) return resolved;
     const first = this.tabs.find(t => !t.disabled);
     return first?.id ?? '';
   }
@@ -49,7 +49,7 @@ export class CsTabsInternal extends CsBaseElement {
       activeTabId: tab.id,
       activeTabHref: tab.href,
     };
-    this._internalActiveTabId = tab.id;
+    this._activeTabId.set(tab.id);
     fireNonCancelableEvent(this, 'change', detail);
   }
 

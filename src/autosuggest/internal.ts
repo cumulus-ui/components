@@ -4,7 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { createRef, ref, type Ref } from 'lit/directives/ref.js';
 import { CsBaseElement } from '../internal/base-element.js';
-import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
+import { FormControlMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { consume } from '@lit/context';
 import {
@@ -18,7 +18,7 @@ import { componentStyles, sharedStyles } from './styles.js';
 import { componentStyles as inputComponentStyles } from '../input/styles.js';
 import type { OptionDefinition } from '../internal/generated/cloudscape-types.js';
 
-const Base = FormAssociatedMixin(CsBaseElement);
+const Base = FormControlMixin(CsBaseElement);
 
 const hostStyles = css`:host { display: block; }`;
 
@@ -105,8 +105,9 @@ export class CsAutosuggestInternal extends Base {
   }
 
   private get _filteredOptions(): OptionDefinition[] {
-    if (this.filteringType !== 'auto' || !this.value) return this._flatOptions;
-    const lower = this.value.toLowerCase();
+    const resolvedValue = this.value;
+    if (this.filteringType !== 'auto' || !resolvedValue) return this._flatOptions;
+    const lower = resolvedValue.toLowerCase();
     return this._flatOptions.filter(opt => {
       const label = (opt.label || opt.value || '').toLowerCase();
       const desc = (opt.description || '').toLowerCase();
@@ -223,9 +224,9 @@ export class CsAutosuggestInternal extends Base {
     this._open = false;
     this._highlightedIndex = -1;
 
-    fireNonCancelableEvent(this, 'change', { value: newValue });
+    fireNonCancelableEvent(this, 'change', { value: this.value });
     fireNonCancelableEvent(this, 'select', {
-      value: newValue,
+      value: this.value,
       selectedOption: option,
     });
   }

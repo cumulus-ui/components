@@ -4,7 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { createRef, ref, type Ref } from 'lit/directives/ref.js';
 import { CsBaseElement } from '../internal/base-element.js';
-import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
+import { FormControlMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { consume } from '@lit/context';
 import {
@@ -16,10 +16,11 @@ import { computePosition, flip, offset, shift } from '@floating-ui/dom';
 import { componentStyles, sharedStyles } from './styles.js';
 import { selectPartsStyles } from '../internal/styles/select-parts.js';
 import type { SelectProps } from './interfaces.js';
+import { ControllableController } from '../internal/controllers/controllable.js';
 import type { OptionDefinition, OptionGroup } from '../internal/generated/cloudscape-types.js';
 import '../icon/index.js';
 
-const Base = FormAssociatedMixin(CsBaseElement);
+const Base = FormControlMixin(CsBaseElement);
 
 const hostStyles = css`:host { display: block; }`;
 
@@ -196,7 +197,9 @@ export class CsSelectInternal extends Base {
   private _formFieldCtx: FormFieldContext = defaultFormFieldContext;
 
   @property({ attribute: false })
-  selectedOption: SelectProps.Option | null = null;
+  selectedOption?: SelectProps.Option | null;
+
+  private _selectedOption = new ControllableController<SelectProps.Option | null>(this, { defaultValue: null });
 
   @property({ attribute: false })
   options: SelectProps.Options = [];
@@ -319,8 +322,9 @@ export class CsSelectInternal extends Base {
   }
 
   private _isOptionSelected(option: OptionDefinition): boolean {
-    if (!this.selectedOption) return false;
-    return this.selectedOption.value === option.value && this.selectedOption.label === option.label;
+    const resolved = this.selectedOption ?? this._selectedOption.value;
+    if (!resolved) return false;
+    return resolved.value === option.value && resolved.label === option.label;
   }
 
   private _onTriggerClick = (): void => {
@@ -332,7 +336,7 @@ export class CsSelectInternal extends Base {
     e.stopPropagation();
     if (option.disabled) return;
 
-    this.selectedOption = option;
+    this._selectedOption.set(option);
     this.value = option.value ?? '';
     fireNonCancelableEvent(
       this,
@@ -538,8 +542,9 @@ export class CsSelectInternal extends Base {
   }
 
   override render(): TemplateResult {
-    const triggerLabel = this.selectedOption?.label || this.selectedOption?.value || '';
-    const showPlaceholder = !this.selectedOption;
+    const resolvedOption = this.selectedOption ?? this._selectedOption.value;
+    const triggerLabel = resolvedOption?.label || resolvedOption?.value || '';
+    const showPlaceholder = !resolvedOption;
 
     const triggerClasses = {
       'trigger': true,

@@ -3,8 +3,9 @@ import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { CsBaseElement } from '../internal/base-element.js';
-import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
+import { FormControlMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
+
 import { consume } from '@lit/context';
 import {
   formFieldContext,
@@ -16,7 +17,7 @@ import { componentStyles, sharedStyles } from './styles.js';
 import { abstractSwitchStyles } from '../internal/styles/abstract-switch.js';
 import type { ToggleProps } from './interfaces.js';
 
-const Base = FormAssociatedMixin(CsBaseElement);
+const Base = FormControlMixin(CsBaseElement);
 
 const hostStyles = css`:host { display: block; }`;
 
@@ -102,16 +103,18 @@ export class CsToggleInternal extends Base {
   }
 
   override render(): TemplateResult {
+    const checked = this.checked;
+
     const controlClasses = {
       'toggle-control': true,
-      'toggle-control-checked': this.checked,
+      'toggle-control-checked': checked,
       'toggle-control-disabled': this.disabled,
       'toggle-control-readonly': this.readOnly,
     };
 
     const handleClasses = {
       'toggle-handle': true,
-      'toggle-handle-checked': this.checked,
+      'toggle-handle-checked': checked,
       'toggle-handle-disabled': this.disabled,
       'toggle-handle-readonly': this.readOnly,
     };
@@ -127,14 +130,14 @@ export class CsToggleInternal extends Base {
               type="checkbox"
               class="abstract-switch--native-input"
               id=${ifDefined(this._formFieldCtx.controlId || undefined)}
-              .checked=${this.checked}
+              .checked=${checked}
               ?disabled=${this.disabled}
               ?readonly=${this.readOnly}
               aria-label=${ifDefined(this.ariaLabel || undefined)}
               aria-labelledby=${ifDefined(this._resolvedAriaLabelledby)}
               aria-describedby=${ifDefined(this._resolvedAriaDescribedby)}
               aria-invalid=${ifDefined(this._formFieldCtx.invalid ? 'true' : undefined)}
-              aria-checked=${this.checked}
+              aria-checked=${checked}
               @click=${this._preventNativeToggle}
             />
             <span class="abstract-switch--outline outline"></span>

@@ -154,7 +154,7 @@ src/
     index.ts         # Public export + customElements.define()
   internal/
     base-element.ts  # CsBaseElement — shared base class
-    mixins/          # FormAssociatedMixin, etc.
+    mixins/          # FormControlMixin, etc.
     events.ts        # fireNonCancelableEvent helper
     styles/          # Shared and internal component styles
     generated/       # Auto-generated shared types

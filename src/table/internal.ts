@@ -3,6 +3,7 @@ import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
+import { ControllableController } from '../internal/controllers/controllable.js';
 import { componentStyles, sharedStyles } from './styles.js';
 import type { TableProps } from './interfaces.js';
 
@@ -140,6 +141,10 @@ const tableElementStyles = css`
 export class CsTableInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles, tableElementStyles];
 
+  private _sortingColumn = new ControllableController<TableProps.SortingColumn<any> | undefined>(this, { defaultValue: undefined });
+  private _sortingDescending = new ControllableController(this, { defaultValue: false });
+  private _selectedItems = new ControllableController<ReadonlyArray<any>>(this, { defaultValue: [] });
+
   @property({ attribute: false })
   items: ReadonlyArray<any> = [];
 
@@ -150,13 +155,13 @@ export class CsTableInternal extends CsBaseElement {
   sortingColumn?: TableProps.SortingColumn<any>;
 
   @property({ type: Boolean, attribute: 'sorting-descending' })
-  sortingDescending = false;
+  sortingDescending?: boolean;
 
   @property({ type: Boolean, attribute: 'sorting-disabled' })
   sortingDisabled = false;
 
   @property({ attribute: false })
-  selectedItems: ReadonlyArray<any> = [];
+  selectedItems?: ReadonlyArray<any>;
 
   @property({ type: String, attribute: 'selection-type' })
   selectionType?: TableProps.SelectionType;
@@ -246,12 +251,13 @@ export class CsTableInternal extends CsBaseElement {
   }
 
   private _isSelected(item: any): boolean {
-    if (!this.selectedItems?.length) return false;
+    const selected = this.selectedItems ?? this._selectedItems.value;
+    if (!selected?.length) return false;
     if (this.trackBy) {
       const key = this._getItemKey(item);
-      return this.selectedItems.some(s => this._getItemKey(s) === key);
+      return selected.some(s => this._getItemKey(s) === key);
     }
-    return this.selectedItems.includes(item);
+    return selected.includes(item);
   }
 
   private _isSameColumn(
@@ -267,17 +273,24 @@ export class CsTableInternal extends CsBaseElement {
   private _getAriaSort(col: TableProps.ColumnDefinition<any>): string | typeof nothing {
     const isSortable = !!(col.sortingField || col.sortingComparator);
     if (!isSortable) return nothing;
-    if (!this.sortingColumn) return 'none';
-    if (!this._isSameColumn(col, this.sortingColumn)) return 'none';
-    return this.sortingDescending ? 'descending' : 'ascending';
+    const resolvedSortingColumn = this.sortingColumn ?? this._sortingColumn.value;
+    if (!resolvedSortingColumn) return 'none';
+    if (!this._isSameColumn(col, resolvedSortingColumn)) return 'none';
+    const resolvedDescending = this.sortingDescending ?? this._sortingDescending.value;
+    return resolvedDescending ? 'descending' : 'ascending';
   }
 
   private _onSort(col: TableProps.ColumnDefinition<any>): void {
     if (!col.sortingField && !col.sortingComparator) return;
     if (this.sortingDisabled) return;
 
-    const isSame = this.sortingColumn && this._isSameColumn(col, this.sortingColumn);
-    const isDescending = isSame ? !this.sortingDescending : false;
+    const resolvedSortingColumn = this.sortingColumn ?? this._sortingColumn.value;
+    const resolvedDescending = this.sortingDescending ?? this._sortingDescending.value;
+    const isSame = resolvedSortingColumn && this._isSameColumn(col, resolvedSortingColumn);
+    const isDescending = isSame ? !resolvedDescending : false;
+
+    this._sortingColumn.set({ sortingField: col.sortingField, sortingComparator: col.sortingComparator });
+    this._sortingDescending.set(isDescending);
 
     fireNonCancelableEvent(this, 'sortingChange', {
       sortingColumn: { sortingField: col.sortingField, sortingComparator: col.sortingComparator },
@@ -286,7 +299,8 @@ export class CsTableInternal extends CsBaseElement {
   }
 
   private _toggleSelection(item: any): void {
-    const selected = this.selectedItems ? [...this.selectedItems] : [];
+    const resolvedSelected = this.selectedItems ?? this._selectedItems.value;
+    const selected = resolvedSelected ? [...resolvedSelected] : [];
     const idx = this.trackBy
       ? selected.findIndex(s => this._getItemKey(s) === this._getItemKey(item))
       : selected.indexOf(item);
@@ -297,15 +311,18 @@ export class CsTableInternal extends CsBaseElement {
       selected.push(item);
     }
 
+    this._selectedItems.set(selected);
     fireNonCancelableEvent(this, 'selectionChange', { selectedItems: selected });
   }
 
   private _selectSingle(item: any): void {
+    this._selectedItems.set([item]);
     fireNonCancelableEvent(this, 'selectionChange', { selectedItems: [item] });
   }
 
   private _toggleAll(): void {
     const selectedItems = this._allSelected ? [] : [...this.items];
+    this._selectedItems.set(selectedItems);
     fireNonCancelableEvent(this, 'selectionChange', { selectedItems });
   }
 
@@ -431,7 +448,9 @@ export class CsTableInternal extends CsBaseElement {
 
   private _renderHeaderCell(col: TableProps.ColumnDefinition<any>): TemplateResult {
     const isSortable = !!(col.sortingField || col.sortingComparator);
-    const isSorted = isSortable && this.sortingColumn && this._isSameColumn(col, this.sortingColumn);
+    const resolvedSortingColumn = this.sortingColumn ?? this._sortingColumn.value;
+    const resolvedDescending = this.sortingDescending ?? this._sortingDescending.value;
+    const isSorted = isSortable && resolvedSortingColumn && this._isSameColumn(col, resolvedSortingColumn);
     const ariaSort = this._getAriaSort(col);
 
     const cellClasses = {
@@ -442,7 +461,7 @@ export class CsTableInternal extends CsBaseElement {
 
     const iconClasses = {
       'sorting-icon': true,
-      'sorting-icon-ascending': !!isSorted && !this.sortingDescending,
+      'sorting-icon-ascending': !!isSorted && !resolvedDescending,
     };
 
     const widthStyle = col.width

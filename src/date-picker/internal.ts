@@ -3,7 +3,7 @@ import { property, state, query } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { consume } from '@lit/context';
 import { CsBaseElement } from '../internal/base-element.js';
-import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
+import { FormControlMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import {
   formFieldContext,
@@ -19,7 +19,7 @@ import '../calendar/index.js';
 import '../button/index.js';
 import '../icon/index.js';
 
-const Base = FormAssociatedMixin(CsBaseElement);
+const Base = FormControlMixin(CsBaseElement);
 
 const hostStyles = css`:host { display: block; }`;
 

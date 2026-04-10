@@ -65,7 +65,7 @@ export class CsCheckboxInternal extends CsBaseElement {
 Key patterns:
 
 - **Extend `CsBaseElement`** for standard components
-- **Extend `FormAssociatedMixin(CsBaseElement)`** for form-participating components (checkbox, input, select, etc.)
+- **Extend `FormControlMixin(CsBaseElement)`** for form-participating components (checkbox, input, select, etc.)
 - **Use `classMap`** for conditional CSS classes, matching Cloudscape's semantic class names
 - **Fire events** with `fireNonCancelableEvent(this, 'change', detail)` to match Cloudscape's event pattern
 - **Use `@lit/context`** for FormField integration (label, error, description propagation)
@@ -254,10 +254,10 @@ fireNonCancelableEvent(this, 'change', { checked: true, indeterminate: false });
 
 ### Form participation
 
-Components that participate in HTML forms should use `FormAssociatedMixin`:
+Components that participate in HTML forms should use `FormControlMixin`:
 
 ```typescript
-const Base = FormAssociatedMixin(CsBaseElement);
+const Base = FormControlMixin(CsBaseElement);
 
 export class CsCheckboxInternal extends Base {
   // Inherits: name, value, disabled, required, form, setFormValue(), etc.
@@ -265,6 +265,32 @@ export class CsCheckboxInternal extends Base {
 ```
 
 Call `this.setFormValue()` in `willUpdate` whenever the form-relevant value changes.
+
+### Controlled/uncontrolled state (`ControllableController`)
+
+All stateful components use `ControllableController` to support both controlled and uncontrolled usage. This matches Cloudscape's `useControllable` mental model.
+
+```typescript
+import { ControllableController } from '../internal/controllers/controllable.js';
+
+// 1. Public property — consumer sets this to "control" the component
+@property({ type: Boolean })
+expanded?: boolean;
+
+// 2. Controller manages internal state for uncontrolled mode
+private _expanded = new ControllableController(this, { defaultValue: false });
+
+// 3. Resolve: controlled wins via ?? fallback
+const expanded = this.expanded ?? this._expanded.value;
+
+// 4. On user interaction: update internal state + fire event
+this._expanded.set(!expanded);
+fireNonCancelableEvent(this, 'change', { expanded: !expanded });
+```
+
+**Convention**: controller field named `_` + what it controls (`_checked`, `_activeTabId`, `_selectedOption`).
+
+**Exception**: `value` from `FormControlMixin` cannot be made optional — these components keep self-mutation (`this.value = newVal`), which already provides hybrid behavior.
 
 ### Platform differences from Cloudscape
 
@@ -298,7 +324,7 @@ components/
     {component}/          # One directory per component
     internal/             # Shared infrastructure
       base-element.ts     # CsBaseElement base class
-      mixins/             # FormAssociatedMixin, etc.
+      mixins/             # FormControlMixin, etc.
       events.ts           # Event helpers
       styles/             # Shared CSS and internal component styles
       generated/          # Auto-generated shared types

@@ -9,9 +9,9 @@
  * ```ts
  * import { LitElement, html } from 'lit';
  * import { property } from 'lit/decorators.js';
- * import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
+ * import { FormControlMixin } from '../internal/mixins/form-associated.js';
  *
- * class MyInput extends FormAssociatedMixin(LitElement) {
+ * class MyInput extends FormControlMixin(LitElement) {
  *   @property() value = '';
  *
  *   render() {
@@ -45,7 +45,7 @@ export interface FormAssociatedHost {
 
 // ── Mixin ───────────────────────────────────────────────────────────────────
 
-export function FormAssociatedMixin<T extends Constructor<LitElement>>(superClass: T) {
+export function FormControlMixin<T extends Constructor<LitElement>>(superClass: T) {
   class FormAssociatedElement extends superClass {
     static formAssociated = true;
 

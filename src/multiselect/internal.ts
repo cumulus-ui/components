@@ -4,7 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { createRef, ref, type Ref } from 'lit/directives/ref.js';
 import { CsBaseElement } from '../internal/base-element.js';
-import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
+import { FormControlMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { consume } from '@lit/context';
 import {
@@ -16,12 +16,13 @@ import { computePosition, flip, offset, shift } from '@floating-ui/dom';
 import { componentStyles, sharedStyles } from './styles.js';
 import { selectPartsStyles } from '../internal/styles/select-parts.js';
 import type { MultiselectProps } from './interfaces.js';
+import { ControllableController } from '../internal/controllers/controllable.js';
 import type { OptionDefinition, OptionGroup } from '../internal/generated/cloudscape-types.js';
 import '../icon/index.js';
 import '../token-group/index.js';
 import type { TokenGroupProps } from '../token-group/interfaces.js';
 
-const Base = FormAssociatedMixin(CsBaseElement);
+const Base = FormControlMixin(CsBaseElement);
 
 const hostStyles = css`:host { display: block; }`;
 
@@ -218,7 +219,9 @@ export class CsMultiselectInternal extends Base {
   private _formFieldCtx: FormFieldContext = defaultFormFieldContext;
 
   @property({ attribute: false })
-  selectedOptions: ReadonlyArray<MultiselectProps.Option> = [];
+  selectedOptions?: ReadonlyArray<MultiselectProps.Option>;
+
+  private _selectedOptions = new ControllableController<ReadonlyArray<MultiselectProps.Option>>(this, { defaultValue: [] });
 
   @property({ attribute: false })
   options: MultiselectProps.Options = [];
@@ -344,7 +347,8 @@ export class CsMultiselectInternal extends Base {
   }
 
   private _isOptionSelected(option: OptionDefinition): boolean {
-    return this.selectedOptions.some(
+    const resolved = this.selectedOptions ?? this._selectedOptions.value;
+    return resolved.some(
       s => s.value === option.value && s.label === option.label
     );
   }
@@ -358,16 +362,17 @@ export class CsMultiselectInternal extends Base {
     e.stopPropagation();
     if (option.disabled) return;
 
+    const resolved = this.selectedOptions ?? this._selectedOptions.value;
     let newSelected: ReadonlyArray<MultiselectProps.Option>;
     if (this._isOptionSelected(option)) {
-      newSelected = this.selectedOptions.filter(
+      newSelected = resolved.filter(
         s => !(s.value === option.value && s.label === option.label)
       );
     } else {
-      newSelected = [...this.selectedOptions, option];
+      newSelected = [...resolved, option];
     }
 
-    this.selectedOptions = newSelected;
+    this._selectedOptions.set(newSelected);
     this.value = newSelected.map(o => o.value).filter(Boolean).join(',');
 
     fireNonCancelableEvent(
@@ -388,10 +393,11 @@ export class CsMultiselectInternal extends Base {
     if (idx < 0 || idx >= tokenItems.length) return;
 
     const dismissed = tokenItems[idx];
-    const newSelected = this.selectedOptions.filter(
+    const resolved = this.selectedOptions ?? this._selectedOptions.value;
+    const newSelected = resolved.filter(
       s => !(s.value === dismissed.value && s.label === dismissed.label)
     );
-    this.selectedOptions = newSelected;
+    this._selectedOptions.set(newSelected);
     this.value = newSelected.map(o => o.value).filter(Boolean).join(',');
 
     fireNonCancelableEvent(
@@ -524,7 +530,7 @@ export class CsMultiselectInternal extends Base {
   }
 
   private _getTokenItems(): MultiselectProps.Option[] {
-    return [...this.selectedOptions];
+    return [...(this.selectedOptions ?? this._selectedOptions.value)];
   }
 
   private _renderOption(flat: FlatOption, index: number): TemplateResult {
@@ -604,9 +610,10 @@ export class CsMultiselectInternal extends Base {
   }
 
   private _renderTokens(): TemplateResult | typeof nothing {
-    if (this.hideTokens || this.selectedOptions.length === 0) return nothing;
+    const resolved = this.selectedOptions ?? this._selectedOptions.value;
+    if (this.hideTokens || resolved.length === 0) return nothing;
 
-    const tokenItems: TokenGroupProps.Item[] = this.selectedOptions.map(opt => ({
+    const tokenItems: TokenGroupProps.Item[] = resolved.map(opt => ({
       label: opt.label || opt.value || '',
       description: opt.description,
       dismissLabel: this.deselectAriaLabel ? this.deselectAriaLabel(opt) : `Remove ${opt.label || opt.value || ''}`,
@@ -624,7 +631,8 @@ export class CsMultiselectInternal extends Base {
   }
 
   override render(): TemplateResult {
-    const count = this.selectedOptions.length;
+    const resolvedOptions = this.selectedOptions ?? this._selectedOptions.value;
+    const count = resolvedOptions.length;
     const triggerLabel = count > 0 ? `${count} option${count > 1 ? 's' : ''} selected` : '';
     const showPlaceholder = count === 0;
 

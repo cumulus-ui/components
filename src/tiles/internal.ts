@@ -3,7 +3,7 @@ import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { CsBaseElement } from '../internal/base-element.js';
-import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
+import { FormControlMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { generateUniqueId } from '../internal/hooks/use-unique-id.js';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -11,7 +11,7 @@ import { abstractSwitchStyles } from '../internal/styles/abstract-switch.js';
 import { radioButtonStyles } from '../internal/styles/radio-button.js';
 import type { TilesProps } from './interfaces.js';
 
-const Base = FormAssociatedMixin(CsBaseElement);
+const Base = FormControlMixin(CsBaseElement);
 
 const hostStyles = css`:host { display: block; }`;
 

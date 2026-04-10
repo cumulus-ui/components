@@ -1,7 +1,8 @@
 import { css, html, nothing, type TemplateResult } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { CsBaseElement } from '../internal/base-element.js';
+import { ControllableController } from '../internal/controllers/controllable.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { componentStyles, sharedStyles } from './styles.js';
 import type { ExpandableSectionProps } from './interfaces.js';
@@ -39,27 +40,16 @@ export class CsExpandableSectionInternal extends CsBaseElement {
   @property({ type: Boolean, attribute: 'disable-content-paddings' })
   disableContentPaddings = false;
 
-  @state()
-  private _internalExpanded = false;
-
-  private _initialized = false;
-
-  private get _isExpanded(): boolean {
-    if (this.expanded !== undefined) return this.expanded;
-    return this._internalExpanded;
-  }
+  private _expanded = new ControllableController(this, { defaultValue: false });
 
   override connectedCallback(): void {
     super.connectedCallback();
-    if (!this._initialized) {
-      this._internalExpanded = this.defaultExpanded;
-      this._initialized = true;
-    }
+    this._expanded.set(this.defaultExpanded);
   }
 
   private _toggle(): void {
-    const newExpanded = !this._isExpanded;
-    this._internalExpanded = newExpanded;
+    const newExpanded = !(this.expanded ?? this._expanded.value);
+    this._expanded.set(newExpanded);
     const detail: ExpandableSectionProps.ChangeDetail = { expanded: newExpanded };
     fireNonCancelableEvent(this, 'change', detail);
   }
@@ -116,7 +106,7 @@ export class CsExpandableSectionInternal extends CsBaseElement {
   }
 
   override render(): TemplateResult {
-    const expanded = this._isExpanded;
+    const expanded = this.expanded ?? this._expanded.value;
     const isContainer = this._isContainerVariant();
 
     const rootClasses = {

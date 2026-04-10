@@ -3,7 +3,7 @@ import { property, state, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { CsBaseElement } from '../internal/base-element.js';
-import { FormAssociatedMixin } from '../internal/mixins/form-associated.js';
+import { FormControlMixin } from '../internal/mixins/form-associated.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
 import { computePosition, flip, offset, shift } from '@floating-ui/dom';
 import { componentStyles, sharedStyles } from './styles.js';
@@ -12,7 +12,7 @@ import type { DateRangePickerProps } from './interfaces.js';
 import '../button/index.js';
 import '../icon/index.js';
 
-const Base = FormAssociatedMixin(CsBaseElement);
+const Base = FormControlMixin(CsBaseElement);
 
 const hostStyles = css`:host { display: block; }`;
 

@@ -3,6 +3,7 @@ import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { CsBaseElement } from '../internal/base-element.js';
 import { fireNonCancelableEvent } from '../internal/events.js';
+import { ControllableController } from '../internal/controllers/controllable.js';
 import { componentStyles, sharedStyles } from './styles.js';
 import type { WizardProps } from './interfaces.js';
 import '../button/index.js';
@@ -13,11 +14,13 @@ const hostStyles = css`:host { display: block; }`;
 export class CsWizardInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
+  private _activeStepIndex = new ControllableController(this, { defaultValue: 0 });
+
   @property({ attribute: false })
   steps: ReadonlyArray<WizardProps.Step> = [];
 
   @property({ type: Number, attribute: 'active-step-index' })
-  activeStepIndex = 0;
+  activeStepIndex?: number;
 
   @property({ type: Boolean, attribute: 'allow-skip-to' })
   allowSkipTo = false;
@@ -55,7 +58,7 @@ export class CsWizardInternal extends CsBaseElement {
 
   private get _clampedIndex(): number {
     const max = Math.max(0, this.steps.length - 1);
-    return Math.min(Math.max(0, this.activeStepIndex), max);
+    return Math.min(Math.max(0, this.activeStepIndex ?? this._activeStepIndex.value), max);
   }
 
   private get _isLastStep(): boolean {
@@ -68,8 +71,10 @@ export class CsWizardInternal extends CsBaseElement {
 
   private _onPrevious(): void {
     if (this._clampedIndex > 0) {
+      const targetIndex = this._clampedIndex - 1;
+      this._activeStepIndex.set(targetIndex);
       fireNonCancelableEvent<WizardProps.NavigateDetail>(this, 'navigate', {
-        requestedStepIndex: this._clampedIndex - 1,
+        requestedStepIndex: targetIndex,
         reason: 'previous',
       });
     }
@@ -79,8 +84,10 @@ export class CsWizardInternal extends CsBaseElement {
     if (this._isLastStep) {
       fireNonCancelableEvent(this, 'submit', {});
     } else {
+      const targetIndex = this._clampedIndex + 1;
+      this._activeStepIndex.set(targetIndex);
       fireNonCancelableEvent<WizardProps.NavigateDetail>(this, 'navigate', {
-        requestedStepIndex: this._clampedIndex + 1,
+        requestedStepIndex: targetIndex,
         reason: 'next',
       });
     }
@@ -88,6 +95,7 @@ export class CsWizardInternal extends CsBaseElement {
 
   private _onStepClick(index: number): void {
     if (index < this._clampedIndex) {
+      this._activeStepIndex.set(index);
       fireNonCancelableEvent<WizardProps.NavigateDetail>(this, 'navigate', {
         requestedStepIndex: index,
         reason: 'step',
