@@ -29,6 +29,10 @@ export class CsBadgeInternal extends CsBaseElement {
       [`badge-color-${this.color}`]: true,
     };
 
-    return html`<span class=${classMap(classes)}><slot></slot></span>`;
+    return html`
+      <span class=${classMap(classes)}>
+        <slot></slot>
+      </span>
+    `;
   }
 }
