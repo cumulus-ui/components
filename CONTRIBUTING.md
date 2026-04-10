@@ -224,7 +224,7 @@ test.describe('Checkbox — Accessibility', () => {
 
 - **Adding a new component:** Run both `generate:styles` and `generate:interfaces` for that component
 - **Updating `@cloudscape-design/components`:** Run both generators for all components
-- **Debugging class name mismatches:** Run `generate-render.ts --audit` to check ARIA properties and CSS coverage
+- **Debugging class name mismatches:** Run `generate-render.ts --audit` to check ARIA properties and CSS coverage. Add `--fix` to auto-add missing ARIA properties from interfaces
 - **After adding camelCase properties:** Run `generate-render.ts --kebab-attrs --dry-run` to preview, then `--kebab-attrs` to apply explicit attribute names
 
 ## Conventions

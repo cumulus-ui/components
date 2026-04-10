@@ -646,24 +646,37 @@ function auditComponent(component: string): AuditIssue[] {
   return issues;
 }
 
-function runAudit(): void {
+function runAudit(fix: boolean): void {
   const srcDir = path.join(ROOT, 'src');
   const components = fs.readdirSync(srcDir).filter(d => {
     return fs.existsSync(path.join(srcDir, d, 'internal.ts')) &&
            fs.existsSync(path.join(srcDir, d, 'interfaces.ts'));
   });
 
-  console.log(`\n═══ ARIA Property Audit ═══\n`);
+  console.log(`\n═══ ARIA Property Audit${fix ? ' + Fix' : ''} ═══\n`);
   console.log(`Scanning ${components.length} implemented components...\n`);
 
   let totalErrors = 0;
   let totalWarnings = 0;
+  let totalFixed = 0;
 
   for (const comp of components.sort()) {
     const issues = auditComponent(comp);
     if (issues.length === 0) {
       console.log(`  ✅ ${comp}`);
       continue;
+    }
+
+    if (fix) {
+      const filePath = path.join(srcDir, comp, 'internal.ts');
+      const src = fs.readFileSync(filePath, 'utf-8');
+      const result = addMissingAriaProps(comp, src);
+      if (result.names.length > 0) {
+        fs.writeFileSync(filePath, result.src);
+        console.log(`  🔧 ${comp}: added ${result.names.join(', ')}`);
+        totalFixed += result.names.length;
+        continue;
+      }
     }
 
     console.log(`  ❌ ${comp}`);
@@ -675,7 +688,12 @@ function runAudit(): void {
     }
   }
 
-  console.log(`\n${totalErrors} error(s), ${totalWarnings} warning(s)\n`);
+  const summary = [
+    `${totalErrors} error(s)`,
+    `${totalWarnings} warning(s)`,
+    ...(totalFixed > 0 ? [`${totalFixed} fixed`] : []),
+  ].join(', ');
+  console.log(`\n${summary}\n`);
 
   console.log(`═══ CSS Coverage Audit ═══\n`);
 
@@ -1141,7 +1159,6 @@ function kebabAttrs(dryRun: boolean): void {
   console.log(`\n═══ Kebab Attributes${dryRun ? ' (dry run)' : ''} ═══\n`);
 
   let totalFixed = 0;
-  let totalAdded = 0;
   let filesChanged = 0;
 
   for (const comp of components.sort()) {
@@ -1149,7 +1166,7 @@ function kebabAttrs(dryRun: boolean): void {
     const original = fs.readFileSync(filePath, 'utf-8');
 
     let compFixed = 0;
-    let src = original.replace(
+    const patched = original.replace(
       /@property\((\{[^}]*\})\)(\s*\n\s*)(override\s+)?(\w+)/g,
       (match, opts, ws, override, name) => {
         if (!/[A-Z]/.test(name)) return match;
@@ -1163,27 +1180,15 @@ function kebabAttrs(dryRun: boolean): void {
       },
     );
 
-    // Add missing native ARIA properties declared in the interface
-    const added = addMissingAriaProps(comp, src);
-    src = added.src;
-
-    const changed = compFixed > 0 || added.names.length > 0;
-    if (changed) {
-      if (!dryRun) fs.writeFileSync(filePath, src);
-      const parts: string[] = [];
-      if (compFixed > 0) parts.push(`${compFixed} kebab`);
-      if (added.names.length > 0) parts.push(`+${added.names.join(', ')}`);
-      console.log(`  ${comp}: ${parts.join(', ')}`);
+    if (compFixed > 0) {
+      if (!dryRun) fs.writeFileSync(filePath, patched);
+      console.log(`  ${comp}: ${compFixed} propert${compFixed === 1 ? 'y' : 'ies'}`);
       totalFixed += compFixed;
-      totalAdded += added.names.length;
       filesChanged++;
     }
   }
 
-  const parts: string[] = [];
-  if (totalFixed > 0) parts.push(`${totalFixed} kebab`);
-  if (totalAdded > 0) parts.push(`${totalAdded} added`);
-  console.log(`\n${parts.join(', ') || 'nothing to do'} across ${filesChanged} component${filesChanged === 1 ? '' : 's'}${dryRun ? ' (dry run — no files written)' : ''}\n`);
+  console.log(`\n${totalFixed} propert${totalFixed === 1 ? 'y' : 'ies'} across ${filesChanged} component${filesChanged === 1 ? '' : 's'}${dryRun ? ' (dry run — no files written)' : ''}\n`);
 }
 
 function addMissingAriaProps(comp: string, src: string): { src: string; names: string[] } {
@@ -1232,13 +1237,14 @@ function addMissingAriaProps(comp: string, src: string): { src: string; names: s
 const isAudit = process.argv.includes('--audit');
 const isConditionalAudit = process.argv.includes('--audit-conditionals');
 const isKebabAttrs = process.argv.includes('--kebab-attrs');
+const isFix = process.argv.includes('--fix');
 const isProps = process.argv.includes('--props');
 const isDryRun = process.argv.includes('--dry-run');
 
 if (isKebabAttrs) {
   kebabAttrs(isDryRun);
 } else if (isAudit) {
-  runAudit();
+  runAudit(isFix);
 } else if (isConditionalAudit) {
   runConditionalAudit();
 } else {
