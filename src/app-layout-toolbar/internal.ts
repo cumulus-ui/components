@@ -8,19 +8,21 @@ import type { AppLayoutProps } from '../app-layout/interfaces.js';
 import type { AppLayoutToolbarProps } from './interfaces.js';
 
 const toolbarStyles = css`
-  :host {
-    --awsui-default-max-content-width: 1280px;
+  @media (min-width: 1401px) {
+    :host {
+      --awsui-default-max-content-width: 1280px;
+    }
   }
 
   @media (min-width: 1921px) {
     :host {
-      --awsui-default-max-content-width: 1440px;
+      --awsui-default-max-content-width: 1620px;
     }
   }
 
   @media (min-width: 2541px) {
     :host {
-      --awsui-default-max-content-width: 1620px;
+      --awsui-default-max-content-width: 2160px;
     }
   }
 
