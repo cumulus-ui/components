@@ -70,19 +70,19 @@ export class CsTokenGroupInternal extends CsBaseElement {
   @property({ type: Number })
   limit?: number;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'read-only' })
   readOnly = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-outer-padding' })
   disableOuterPadding = false;
 
   @property({ attribute: false })
   i18nStrings?: TokenGroupProps.I18nStrings;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'limit-show-fewer-aria-label' })
   limitShowFewerAriaLabel = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'limit-show-more-aria-label' })
   limitShowMoreAriaLabel = '';
 
   @state()

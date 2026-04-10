@@ -56,7 +56,7 @@ export class CsButtonDropdownInternal extends CsBaseElement {
   @property({ type: Boolean })
   loading = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
   @state()

@@ -40,40 +40,40 @@ export class CsAppLayoutInternal extends CsBaseElement {
     hostStyles,
   ];
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'navigation-open' })
   navigationOpen = false;
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'navigation-width' })
   navigationWidth = 280;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'navigation-hide' })
   navigationHide = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'tools-open' })
   toolsOpen = false;
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'tools-width' })
   toolsWidth = 290;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'tools-hide' })
   toolsHide = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'content-type' })
   contentType: AppLayoutProps.ContentType = 'default';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'header-selector' })
   headerSelector = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'footer-selector' })
   footerSelector = '';
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'max-content-width' })
   maxContentWidth = 0;
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'min-content-width' })
   minContentWidth = 280;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-content-paddings' })
   disableContentPaddings = false;
 
   private _toggleNav(open: boolean): void {

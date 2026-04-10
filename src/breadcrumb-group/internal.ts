@@ -17,7 +17,7 @@ export class CsBreadcrumbGroupInternal extends CsBaseElement {
   @property({ attribute: false })
   items: ReadonlyArray<BreadcrumbGroupProps.Item> = [];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = 'Breadcrumbs';
 
   private _onItemClick(item: BreadcrumbGroupProps.Item, index: number, e: MouseEvent): void {

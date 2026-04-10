@@ -12,13 +12,13 @@ const hostStyles = css`:host { display: block; }`;
 export class CsPaginationInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'current-page-index' })
   currentPageIndex = 1;
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'pages-count' })
   pagesCount = 0;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'open-end' })
   openEnd = false;
 
   @property({ type: Boolean })

@@ -12,7 +12,7 @@ export class CsDrawerInternal extends CsBaseElement {
   @property({ type: Boolean })
   loading = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-content-paddings' })
   disableContentPaddings = false;
 
   private _hasHeader = false;

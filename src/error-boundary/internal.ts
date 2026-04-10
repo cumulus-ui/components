@@ -11,7 +11,7 @@ const hostStyles = css`:host { display: contents; }`;
 export class CsErrorBoundaryInternal extends CsBaseElement {
   static override styles = [sharedStyles, hostStyles];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'error-boundary-id' })
   errorBoundaryId = '';
 
   @state()

@@ -22,13 +22,13 @@ export class CsLinkInternal extends CsBaseElement {
   @property({ type: String })
   target?: string;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'font-size' })
   fontSize: LinkProps.FontSize = 'body-m';
 
   @property({ type: String })
   color?: LinkProps.Color;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
   @property({ type: String })

@@ -26,7 +26,7 @@ export class CsSpaceBetweenInternal extends CsBaseElement {
   @property({ type: String })
   size: SpaceBetweenProps.Size = 's';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'align-items' })
   alignItems?: SpaceBetweenProps.AlignItems;
 
   override render() {

@@ -20,7 +20,7 @@ export class CsHeaderInternal extends CsBaseElement {
   @property({ type: String })
   variant: HeaderProps.Variant = 'h2';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'heading-tag-override' })
   headingTagOverride?: HeaderProps.HeadingTag;
 
   @property({ type: String })

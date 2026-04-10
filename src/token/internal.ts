@@ -26,10 +26,10 @@ const inventedStyles = css`
 export class CsTokenInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles, inventedStyles];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'label-tag' })
   labelTag = '';
 
   @property({ type: String })
@@ -38,13 +38,13 @@ export class CsTokenInternal extends CsBaseElement {
   @property({ type: Boolean })
   disabled = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'read-only' })
   readOnly = false;
 
   @property({ type: Boolean })
   dismissible = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'dismiss-label' })
   dismissLabel = 'Remove';
 
   @property({ type: String })

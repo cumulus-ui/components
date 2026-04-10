@@ -25,7 +25,7 @@ export class CsFlashbarInternal extends CsBaseElement {
   @property({ attribute: false })
   items: ReadonlyArray<FlashbarProps.MessageDefinition> = [];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   ariaLabel = '';
 
   private _onDismiss(index: number): void {

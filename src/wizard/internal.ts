@@ -16,16 +16,16 @@ export class CsWizardInternal extends CsBaseElement {
   @property({ attribute: false })
   steps: ReadonlyArray<WizardProps.Step> = [];
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'active-step-index' })
   activeStepIndex = 0;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'allow-skip-to' })
   allowSkipTo = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'submit-button-text' })
   submitButtonText = 'Submit';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'is-loading-next-step' })
   isLoadingNextStep = false;
 
   @property({ attribute: false })

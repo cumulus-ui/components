@@ -22,19 +22,19 @@ export class CsButtonInternal extends Base {
   @property({ type: Boolean })
   loading = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'loading-text' })
   loadingText = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'icon-name' })
   iconName?: string;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'icon-url' })
   iconUrl?: string;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'icon-align' })
   iconAlign: ButtonProps.IconAlign = 'left';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'form-action' })
   formAction: ButtonProps.FormAction = 'submit';
 
   @property({ type: String })
@@ -49,28 +49,28 @@ export class CsButtonInternal extends Base {
   @property()
   download?: boolean | string;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-expanded' })
   override ariaExpanded: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-controls' })
   ariaControls: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-describedby' })
   ariaDescribedby: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'disabled-reason' })
   disabledReason = '';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'wrap-text' })
   wrapText = true;
 
   @property({ type: Boolean })
   external = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'full-width' })
   fullWidth = false;
 
   @property({ type: String })

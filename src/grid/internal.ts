@@ -22,7 +22,7 @@ export class CsGridInternal extends CsBaseElement {
   @property({ attribute: false })
   gridDefinition?: ReadonlyArray<GridProps.ElementDefinition>;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-gutters' })
   disableGutters = false;
 
   @state()

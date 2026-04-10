@@ -78,10 +78,10 @@ export class CsCollectionPreferencesInternal extends CsBaseElement {
   @property({ type: String })
   title = 'Preferences';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'confirm-label' })
   confirmLabel = 'Confirm';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'cancel-label' })
   cancelLabel = 'Cancel';
 
   @property({ type: Boolean })

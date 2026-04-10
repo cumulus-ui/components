@@ -31,9 +31,8 @@ const CS = path.join(ROOT, 'node_modules/@cloudscape-design/components');
  *
  * When a Cloudscape interface declares one of these with a simple type (string | boolean),
  * it's the native property. Components forward the value to an inner element for
- * accessibility, so we still need @property for Lit reactivity — but we must NOT
- * specify an explicit `attribute:` override. CsBaseElement auto-derives the correct
- * kebab-case attribute (e.g. ariaLabel → aria-label).
+ * accessibility, so we still need @property for Lit reactivity with an explicit
+ * kebab-case `attribute:` (e.g. ariaLabel → attribute: 'aria-label').
  */
 const NATIVE_ARIA_PROPS = new Set([
   'ariaLabel', 'ariaRequired', 'ariaControls', 'ariaDescribedby',
@@ -123,26 +122,20 @@ function toKebab(name: string): string {
 /** Generate the @property decorator string for a classified prop */
 function generateDecorator(name: string, typeStr: string, ariaClass: PropInfo['ariaClass']): string {
   const lt = litType(typeStr);
+  const kebab = toKebab(name);
+  const needsAttr = kebab !== name;
 
   switch (ariaClass) {
-    case 'native':
-      // CsBaseElement auto-derives aria-label from ariaLabel — no explicit attribute
-      return `@property({ type: ${lt} })`;
-
     case 'forwarded': {
-      // controlAriaLabel → attribute must be explicitly 'aria-label'
-      // because CsBaseElement would derive 'control-aria-label'
       const baseName = name.replace(/^control/, '');
-      const kebab = toKebab(baseName.charAt(0).toLowerCase() + baseName.slice(1));
-      return `@property({ type: ${lt}, attribute: '${kebab}' })`;
+      const fwdKebab = toKebab(baseName.charAt(0).toLowerCase() + baseName.slice(1));
+      return `@property({ type: ${lt}, attribute: '${fwdKebab}' })`;
     }
 
-    case 'custom':
-      // Cloudscape-specific ARIA object — normal @property
-      return `@property({ type: ${lt} })`;
-
-    case 'none':
-      return `@property({ type: ${lt} })`;
+    default:
+      return needsAttr
+        ? `@property({ type: ${lt}, attribute: '${kebab}' })`
+        : `@property({ type: ${lt} })`;
   }
 }
 
@@ -1126,13 +1119,73 @@ function runConditionalAudit(): void {
   }
 }
 
+// ─── Kebab Attributes ─────────────────────────────────────────
+
+/**
+ * Add explicit `attribute: 'kebab-name'` to every camelCase @property()
+ * declaration that doesn't already specify one.
+ *
+ * This replaces the runtime auto-kebab logic in CsBaseElement.createProperty()
+ * with a build-time pass, removing the dependency on a deprecated Lit API.
+ *
+ * Usage:
+ *   npx tsx scripts/generate-render.ts --kebab-attrs --dry-run   # preview
+ *   npx tsx scripts/generate-render.ts --kebab-attrs              # apply
+ */
+function kebabAttrs(dryRun: boolean): void {
+  const srcDir = path.join(ROOT, 'src');
+  const components = fs.readdirSync(srcDir).filter(d =>
+    fs.existsSync(path.join(srcDir, d, 'internal.ts'))
+  );
+
+  console.log(`\n═══ Kebab Attributes${dryRun ? ' (dry run)' : ''} ═══\n`);
+
+  let totalFixed = 0;
+  let filesChanged = 0;
+
+  for (const comp of components.sort()) {
+    const filePath = path.join(srcDir, comp, 'internal.ts');
+    const original = fs.readFileSync(filePath, 'utf-8');
+
+    let compFixed = 0;
+    const patched = original.replace(
+      /@property\((\{[^}]*\})\)(\s*\n\s*)(override\s+)?(\w+)/g,
+      (match, opts, ws, override, name) => {
+        // Only camelCase names need conversion
+        if (!/[A-Z]/.test(name)) return match;
+        // Already has explicit attribute: (string or false)
+        if (/attribute\s*:/.test(opts)) return match;
+        const kebab = toKebab(name);
+        if (kebab === name) return match;
+
+        const newOpts = opts.replace(/\s*\}$/, `, attribute: '${kebab}' }`);
+        compFixed++;
+        return `@property(${newOpts})${ws}${override ?? ''}${name}`;
+      },
+    );
+
+    if (compFixed > 0) {
+      if (!dryRun) fs.writeFileSync(filePath, patched);
+      console.log(`  ${comp}: ${compFixed} propert${compFixed === 1 ? 'y' : 'ies'}`);
+      totalFixed += compFixed;
+      filesChanged++;
+    }
+  }
+
+  console.log(`\n${totalFixed} propert${totalFixed === 1 ? 'y' : 'ies'} across ${filesChanged} component${filesChanged === 1 ? '' : 's'}${dryRun ? ' (dry run — no files written)' : ''}\n`);
+}
+
 // ─── Main ──────────────────────────────────────────────────────
 
 const isAudit = process.argv.includes('--audit');
 const isConditionalAudit = process.argv.includes('--audit-conditionals');
+const isKebabAttrs = process.argv.includes('--kebab-attrs');
 const isProps = process.argv.includes('--props');
+const isDryRun = process.argv.includes('--dry-run');
 
-if (isAudit) {
+if (isKebabAttrs) {
+  kebabAttrs(isDryRun);
+} else if (isAudit) {
   runAudit();
 } else if (isConditionalAudit) {
   runConditionalAudit();

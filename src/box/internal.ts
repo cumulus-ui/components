@@ -75,7 +75,7 @@ export class CsBoxInternal extends CsBaseElement {
   @property({ type: String })
   variant: BoxProps.Variant = 'div';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'tag-override' })
   tagOverride?: string;
 
   @property({ type: String })
@@ -87,16 +87,16 @@ export class CsBoxInternal extends CsBaseElement {
   @property({ attribute: false })
   padding?: BoxProps.SpacingSize | BoxProps.Spacing;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'text-align' })
   textAlign?: BoxProps.TextAlign;
 
   @property({ type: String })
   float?: BoxProps.Float;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'font-size' })
   fontSize?: BoxProps.FontSize;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'font-weight' })
   fontWeight?: BoxProps.FontWeight;
 
   @property({ type: String })

@@ -223,28 +223,28 @@ export class CsMultiselectInternal extends Base {
   @property({ attribute: false })
   options: MultiselectProps.Options = [];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'filtering-type' })
   filteringType: 'none' | 'auto' | 'manual' = 'none';
 
   @property({ type: String })
   placeholder = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
   @property({ type: Boolean })
   invalid = false;
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'token-limit' })
   tokenLimit?: number;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'hide-tokens' })
   hideTokens = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'keep-open' })
   keepOpen = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'filtering-placeholder' })
   filteringPlaceholder = '';
 
   @property({ attribute: false })

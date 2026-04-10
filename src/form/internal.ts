@@ -13,10 +13,10 @@ export class CsFormInternal extends CsBaseElement {
   @property({ type: String })
   header = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'error-text' })
   errorText = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'error-icon-aria-label' })
   errorIconAriaLabel = '';
 
   @property({ type: String })

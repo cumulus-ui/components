@@ -106,7 +106,7 @@ export class CsDateRangePickerInternal extends Base {
   @property({ type: String })
   locale?: string;
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'start-of-week' })
   startOfWeek = 0;
 
   @property({ type: String })
@@ -115,10 +115,10 @@ export class CsDateRangePickerInternal extends Base {
   @property({ type: Boolean })
   invalid = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'range-selector-mode' })
   rangeSelectorMode: DateRangePickerProps.RangeSelectorMode = 'default';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
   @property({ attribute: false })

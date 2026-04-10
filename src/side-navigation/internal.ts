@@ -19,7 +19,7 @@ export class CsSideNavigationInternal extends CsBaseElement {
   @property({ attribute: false })
   items: ReadonlyArray<SideNavigationProps.Item> = [];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'active-href' })
   activeHref = '';
 
   @state()

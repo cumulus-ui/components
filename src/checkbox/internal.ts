@@ -33,19 +33,19 @@ export class CsCheckboxInternal extends Base {
   @property({ type: Boolean })
   indeterminate = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'read-only' })
   readOnly = false;
 
   @property({ type: String })
   description = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-required' })
   override ariaRequired: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-controls' })
   ariaControls: string | null = null;
 
   private readonly _labelId = generateUniqueId('checkbox-label');

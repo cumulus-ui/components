@@ -13,7 +13,7 @@ const hostStyles = css`:host { display: inline-flex; }`;
 export class CsSegmentedControlInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'selected-id' })
   selectedId: string | null = '';
 
   @property({ attribute: false })
@@ -22,7 +22,7 @@ export class CsSegmentedControlInternal extends CsBaseElement {
   @property({ type: String })
   label = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-labelledby' })
   ariaLabelledby = '';
 
   private _focusedIndex = -1;

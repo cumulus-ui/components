@@ -29,7 +29,7 @@ export class CsIconInternal extends CsBaseElement {
   @property({ type: String })
   alt?: string;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
   @consume({ context: iconProviderContext, subscribe: true })

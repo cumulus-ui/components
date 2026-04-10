@@ -18,25 +18,25 @@ export class CsExpandableSectionInternal extends CsBaseElement {
   @property({ type: Boolean })
   expanded?: boolean;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'default-expanded' })
   defaultExpanded = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'header-text' })
   headerText = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'header-description' })
   headerDescription = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'header-counter' })
   headerCounter = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'heading-tag-override' })
   headingTagOverride?: ExpandableSectionProps.HeadingTag;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'header-aria-label' })
   headerAriaLabel?: string;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-content-paddings' })
   disableContentPaddings = false;
 
   @state()

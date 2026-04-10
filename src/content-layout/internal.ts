@@ -12,19 +12,19 @@ const hostStyles = css`
 export class CsContentLayoutInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-overlap' })
   disableOverlap = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'header-variant' })
   headerVariant: 'default' | 'high-contrast' | 'divider' = 'default';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'default-padding' })
   defaultPadding = false;
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'max-content-width' })
   maxContentWidth?: number;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'header-background-style' })
   headerBackgroundStyle?: string;
 
   private _hasHeader = true;

@@ -25,10 +25,10 @@ export class CsStatusIndicatorInternal extends CsBaseElement {
   @property({ type: String })
   type: StatusIndicatorProps.Type = 'success';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'color-override' })
   colorOverride?: StatusIndicatorProps.Color;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'wrap-text' })
   wrapText = true;
 
   override render(): TemplateResult {

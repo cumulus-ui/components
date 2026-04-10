@@ -29,13 +29,13 @@ export class CsKeyValuePairsInternal extends CsBaseElement {
   @property({ type: Number })
   columns: number = 1;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-labelledby' })
   ariaLabelledby?: string;
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'min-column-width' })
   minColumnWidth?: number;
 
   private _renderPair(pair: KeyValuePairsProps.Pair): TemplateResult {

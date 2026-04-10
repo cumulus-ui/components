@@ -130,28 +130,28 @@ export class CsFileUploadInternal extends CsBaseElement {
   @property({ type: Boolean })
   disabled = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'show-file-last-modified' })
   showFileLastModified = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'show-file-size' })
   showFileSize = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'show-file-thumbnail' })
   showFileThumbnail = false;
 
   @property({ attribute: false })
   fileErrors?: ReadonlyArray<null | string>;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'error-text' })
   errorText = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'constraint-text' })
   constraintText = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'aria-required' })
   override ariaRequired: string | null = null;
 
   @property({ type: String })
@@ -160,7 +160,7 @@ export class CsFileUploadInternal extends CsBaseElement {
   @property({ attribute: false })
   i18nStrings?: FileUploadProps.I18nStrings;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'file-token-alignment' })
   fileTokenAlignment: FileUploadProps.FileTokenAlignment = 'vertical';
 
   private _thumbnailUrls = new Map<File, string>();

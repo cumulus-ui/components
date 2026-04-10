@@ -42,7 +42,7 @@ export class CsListInternal<T = any> extends CsBaseElement {
   @property({ attribute: false })
   renderItem: ((item: T) => RenderedItem) | undefined;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'tag-override' })
   tagOverride?: 'ol' | 'ul';
 
   @property({ type: String, attribute: 'aria-label' })
@@ -57,13 +57,13 @@ export class CsListInternal<T = any> extends CsBaseElement {
   @property({ type: Boolean })
   sortable = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'sort-disabled' })
   sortDisabled = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-item-paddings' })
   disableItemPaddings = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-paddings' })
   disablePaddings = false;
 
   @property({ attribute: false })

@@ -45,28 +45,28 @@ export class CsTagEditorInternal extends CsBaseElement {
   @property({ attribute: false })
   valuesRequest?: (key: string, value: string) => Promise<ReadonlyArray<string>>;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'allowed-character-pattern' })
   allowedCharacterPattern = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'key-placeholder' })
   keyPlaceholder = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'value-placeholder' })
   valuePlaceholder = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'add-button-text' })
   addButtonText = 'Add tag';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'remove-button-text' })
   removeButtonText = 'Remove';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'undo-button-text' })
   undoButtonText = 'Undo';
 
   @property({ type: Boolean })
   loading = false;
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'tag-limit' })
   tagLimit?: number;
 
   @property({ attribute: false })

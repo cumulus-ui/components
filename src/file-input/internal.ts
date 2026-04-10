@@ -31,10 +31,10 @@ export class CsFileInputInternal extends CsBaseElement {
   @property({ type: String })
   variant: 'button' | 'icon' = 'button';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = 'Choose file';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'aria-required' })
   override ariaRequired: string | null = null;
 
   @property({ type: Boolean })

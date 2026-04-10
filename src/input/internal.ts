@@ -34,7 +34,7 @@ export class CsInputInternal extends Base {
   @property({ type: String })
   placeholder = '';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'read-only' })
   readOnly = false;
 
   @property({ type: Boolean })
@@ -43,25 +43,25 @@ export class CsInputInternal extends Base {
   @property({ type: Boolean })
   warning = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'auto-focus' })
   autoFocus = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'input-mode' })
   override inputMode = '';
 
   @property({ type: Number })
   step: number | undefined;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'aria-required' })
   override ariaRequired: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-describedby' })
   ariaDescribedby: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'clear-aria-label' })
   clearAriaLabel = '';
 
   focus(options?: FocusOptions): void {

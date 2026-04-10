@@ -17,13 +17,13 @@ export class CsSplitPanelInternal extends CsBaseElement {
   @property({ type: String })
   header = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'hide-preferences-button' })
   hidePreferencesButton = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'close-behavior' })
   closeBehavior: 'collapse' | 'hide' = 'collapse';
 
   @property({ type: Number })

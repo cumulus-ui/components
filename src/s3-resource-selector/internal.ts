@@ -24,16 +24,16 @@ export class CsS3ResourceSelectorInternal extends CsBaseElement {
   @property({ attribute: false })
   resource: S3ResourceSelectorProps.Resource = { uri: '' };
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'input-aria-describedby' })
   inputAriaDescribedby?: string;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'input-placeholder' })
   inputPlaceholder?: string;
 
   @property({ type: Boolean })
   invalid = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'view-href' })
   viewHref?: string;
 
   @property({ attribute: false })

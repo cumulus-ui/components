@@ -217,7 +217,7 @@ test.describe('Checkbox — Accessibility', () => {
 |--------|---------|-------------|
 | `generate-styles.ts` | `npm run generate:styles` | Reads Cloudscape CSS, strips resets and hacks, replaces hashed class names, wraps in Lit `css` templates |
 | `generate-interfaces.ts` | `npm run generate:interfaces` | Reads Cloudscape `.d.ts` files, strips React types, adds slot/event annotations |
-| `generate-render.ts` | `npx tsx scripts/generate-render.ts --component {name}` | Analyzes Cloudscape React source to produce a verified Lit render template with correct class names. Also supports `--props` for property declarations and `--audit` for ARIA/CSS coverage audits |
+| `generate-render.ts` | `npx tsx scripts/generate-render.ts --component {name}` | Analyzes Cloudscape React source to produce a verified Lit render template with correct class names. Also supports `--props` for property declarations, `--audit` for ARIA/CSS coverage audits, and `--kebab-attrs` to add explicit kebab-case `attribute:` names to all camelCase `@property()` declarations |
 | `capture.ts` | `npm run capture:baselines` | Captures Cloudscape visual baselines for screenshot comparison |
 
 ### When to run generators
@@ -225,6 +225,7 @@ test.describe('Checkbox — Accessibility', () => {
 - **Adding a new component:** Run both `generate:styles` and `generate:interfaces` for that component
 - **Updating `@cloudscape-design/components`:** Run both generators for all components
 - **Debugging class name mismatches:** Run `generate-render.ts --audit` to check ARIA properties and CSS coverage
+- **After adding camelCase properties:** Run `generate-render.ts --kebab-attrs --dry-run` to preview, then `--kebab-attrs` to apply explicit attribute names
 
 ## Conventions
 

@@ -39,10 +39,10 @@ export class CsAttributeEditorInternal extends CsBaseElement {
   @property({ attribute: false })
   definition: ReadonlyArray<AttributeEditorProps.FieldDefinition<Item>> = [];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'add-button-text' })
   addButtonText = 'Add attribute';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'remove-button-text' })
   removeButtonText = 'Remove';
 
   @property({ type: String })
@@ -51,7 +51,7 @@ export class CsAttributeEditorInternal extends CsBaseElement {
   @property({ attribute: false })
   isItemRemovable?: AttributeEditorProps.IsItemRemovableFunction<Item>;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-add-button' })
   disableAddButton = false;
 
   private _handleAddClick = (e: Event): void => {

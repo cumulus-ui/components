@@ -15,22 +15,22 @@ export class CsTabsInternal extends CsBaseElement {
   @property({ attribute: false })
   tabs: ReadonlyArray<TabsProps.Tab> = [];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'active-tab-id' })
   activeTabId = '';
 
   @property({ type: String })
   variant: TabsProps.Variant = 'default';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-content-paddings' })
   disableContentPaddings = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'fit-height' })
   fitHeight = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-labelledby' })
   ariaLabelledby: string | null = null;
 
   @state()

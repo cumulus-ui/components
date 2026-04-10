@@ -32,7 +32,7 @@ export class CsCardsInternal extends CsBaseElement {
   @property({ attribute: false })
   selectedItems: ReadonlyArray<unknown> = [];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'selection-type' })
   selectionType: CardsProps.SelectionType | 'none' = 'none';
 
   @property({ attribute: false })
@@ -41,7 +41,7 @@ export class CsCardsInternal extends CsBaseElement {
   @property({ type: Boolean })
   loading = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'loading-text' })
   loadingText = '';
 
   @property({ attribute: false })

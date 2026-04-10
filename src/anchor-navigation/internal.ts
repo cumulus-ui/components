@@ -16,13 +16,13 @@ export class CsAnchorNavigationInternal extends CsBaseElement {
   @property({ attribute: false })
   anchors: AnchorNavigationProps.Anchor[] = [];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'active-href' })
   activeHref?: string;
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'scroll-spy-offset' })
   scrollSpyOffset = 0;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-labelledby' })
   ariaLabelledby?: string;
 
   @state()

@@ -26,25 +26,25 @@ export class CsPopoverInternal extends CsBaseElement {
   @property({ type: String })
   size: PopoverProps.Size = 'medium';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'fixed-width' })
   fixedWidth = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'trigger-type' })
   triggerType: PopoverProps.TriggerType = 'text';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'trigger-aria-label' })
   triggerAriaLabel = '';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'wrap-trigger-text' })
   wrapTriggerText = true;
 
   @property({ type: String })
   header = '';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'dismiss-button' })
   dismissButton = true;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'dismiss-aria-label' })
   dismissAriaLabel = 'Close';
 
   @state()

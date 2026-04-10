@@ -14,13 +14,13 @@ export class CsContainerInternal extends CsBaseElement {
   @property({ type: String })
   variant: 'default' | 'stacked' = 'default';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'fit-height' })
   fitHeight = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-content-paddings' })
   disableContentPaddings = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-header-paddings' })
   disableHeaderPaddings = false;
 
   @provide({ context: containerContext })

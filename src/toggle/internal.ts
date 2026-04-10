@@ -29,13 +29,13 @@ export class CsToggleInternal extends Base {
   @property({ type: Boolean })
   checked = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'read-only' })
   readOnly = false;
 
   @property({ type: String })
   description = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
   private readonly _labelId = generateUniqueId('toggle-label');

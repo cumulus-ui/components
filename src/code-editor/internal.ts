@@ -67,16 +67,16 @@ export class CsCodeEditorInternal extends CsBaseElement {
   @property({ type: String })
   language: string = 'javascript';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'language-label' })
   languageLabel?: string;
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'editor-content-height' })
   editorContentHeight = 480;
 
   @property({ type: Boolean })
   loading = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'read-only' })
   readOnly = false;
 
   @property({ attribute: false })
@@ -88,7 +88,7 @@ export class CsCodeEditorInternal extends CsBaseElement {
   @property({ attribute: false })
   i18nStrings?: CodeEditorProps.I18nStrings;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
   private _cursorRow = 1;

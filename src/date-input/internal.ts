@@ -29,7 +29,7 @@ export class CsDateInputInternal extends Base {
   @property({ type: String })
   placeholder = 'YYYY/MM/DD';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'read-only' })
   readOnly = false;
 
   @property({ type: Boolean })
@@ -38,13 +38,13 @@ export class CsDateInputInternal extends Base {
   @property({ type: Boolean })
   warning = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'auto-focus' })
   autoFocus = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-describedby' })
   ariaDescribedby: string | null = null;
 
   focus(options?: FocusOptions): void {

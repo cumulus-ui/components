@@ -149,16 +149,16 @@ export class CsTableInternal extends CsBaseElement {
   @property({ attribute: false })
   sortingColumn?: TableProps.SortingColumn<any>;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'sorting-descending' })
   sortingDescending = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'sorting-disabled' })
   sortingDisabled = false;
 
   @property({ attribute: false })
   selectedItems: ReadonlyArray<any> = [];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'selection-type' })
   selectionType?: TableProps.SelectionType;
 
   @property({ attribute: false })
@@ -167,25 +167,25 @@ export class CsTableInternal extends CsBaseElement {
   @property({ type: Boolean })
   loading = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'loading-text' })
   loadingText = '';
 
   @property({ type: String })
   variant: TableProps.Variant = 'container';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'striped-rows' })
   stripedRows = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'wrap-lines' })
   wrapLines = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'sticky-header' })
   stickyHeader = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'content-density' })
   contentDensity: 'comfortable' | 'compact' = 'comfortable';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'resizable-columns' })
   resizableColumns = false;
 
   @property({ attribute: false })

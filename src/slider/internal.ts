@@ -37,16 +37,16 @@ export class CsSliderInternal extends CsBaseElement {
   @property({ type: Boolean })
   disabled = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'hide-fill-line' })
   hideFillLine = false;
 
   @property({ attribute: false })
   tickMarks: number[] = [];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-description' })
   override ariaDescription: string | null = null;
 
   focus(options?: FocusOptions): void {

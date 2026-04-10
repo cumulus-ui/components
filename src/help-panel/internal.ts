@@ -12,7 +12,7 @@ export class CsHelpPanelInternal extends CsBaseElement {
   @property({ type: Boolean })
   loading = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'loading-text' })
   loadingText = 'Loading content';
 
   override render(): TemplateResult {

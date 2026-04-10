@@ -32,7 +32,7 @@ export class CsButtonGroupInternal extends CsBaseElement {
   @property({ type: String })
   variant: ButtonGroupProps.Variant = 'icon';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
   private _onIconButtonClick(item: ButtonGroupProps.IconButton): void {

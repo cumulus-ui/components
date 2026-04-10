@@ -15,16 +15,16 @@ type CopyStatus = 'idle' | 'success' | 'error';
 export class CsCopyToClipboardInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'copy-button-text' })
   copyButtonText = 'Copy';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'copy-success-text' })
   copySuccessText = 'Copied';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'copy-error-text' })
   copyErrorText = 'Failed to copy';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'text-to-copy' })
   textToCopy = '';
 
   @property({ type: String })

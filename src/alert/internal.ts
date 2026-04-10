@@ -31,13 +31,13 @@ export class CsAlertInternal extends CsBaseElement {
   @property({ type: Boolean })
   dismissible = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'dismiss-aria-label' })
   dismissAriaLabel = '';
 
   @property({ type: String })
   header = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'status-icon-aria-label' })
   statusIconAriaLabel = '';
 
   focus(options?: FocusOptions): void {

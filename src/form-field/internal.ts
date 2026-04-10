@@ -19,19 +19,19 @@ export class CsFormFieldInternal extends CsBaseElement {
   @property({ type: String })
   description = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'constraint-text' })
   constraintText = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'error-text' })
   errorText = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'warning-text' })
   warningText = '';
 
   @property({ type: Boolean })
   stretch = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'control-id' })
   controlId?: string;
 
   @provide({ context: formFieldContext })

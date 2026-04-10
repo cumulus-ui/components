@@ -87,13 +87,13 @@ export class CsPropertyFilterInternal extends CsBaseElement {
   @property({ type: Boolean })
   disabled = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'filtering-placeholder' })
   filteringPlaceholder = 'Filter by text';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'count-text' })
   countText?: string;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'filtering-constraint-text' })
   filteringConstraintText = '';
 
   @state()

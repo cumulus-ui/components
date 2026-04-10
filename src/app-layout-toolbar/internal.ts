@@ -117,10 +117,10 @@ export class CsAppLayoutToolbarInternal extends CsAppLayoutInternal {
     toolbarStyles,
   ];
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'navigation-trigger-hide' })
   navigationTriggerHide = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'active-drawer-id' })
   activeDrawerId: string | null = null;
 
   @property({ attribute: false })

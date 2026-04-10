@@ -36,13 +36,13 @@ export class CsStepsInternal extends CsBaseElement {
   @property({ type: String })
   orientation: StepsProps.Orientation = 'vertical';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-labelledby' })
   ariaLabelledby?: string;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-describedby' })
   ariaDescribedby?: string;
 
   private _renderIcon(step: StepsProps.Step): TemplateResult {

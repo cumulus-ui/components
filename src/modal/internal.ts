@@ -23,10 +23,10 @@ export class CsModalInternal extends CsBaseElement {
   @property({ type: String })
   header = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'close-aria-label' })
   closeAriaLabel = 'Close';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-content-paddings' })
   disableContentPaddings = false;
 
   @property({ type: String })

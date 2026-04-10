@@ -11,19 +11,19 @@ const hostStyles = css`:host { display: block; }`;
 export class CsTextFilterInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'filtering-text' })
   filteringText = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'filtering-placeholder' })
   filteringPlaceholder = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'filtering-aria-label' })
   filteringAriaLabel = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'filtering-clear-aria-label' })
   filteringClearAriaLabel = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'count-text' })
   countText = '';
 
   @property({ type: Boolean })

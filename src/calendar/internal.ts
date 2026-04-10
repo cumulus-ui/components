@@ -38,7 +38,7 @@ export class CsCalendarInternal extends CsBaseElement {
   @property({ type: String })
   locale = 'en-US';
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'start-of-week' })
   startOfWeek = 0;
 
   @property({ type: String })
@@ -50,13 +50,13 @@ export class CsCalendarInternal extends CsBaseElement {
   @property({ attribute: false })
   dateDisabledReason?: CalendarProps.DateDisabledReasonFunction;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-labelledby' })
   ariaLabelledby: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-describedby' })
   ariaDescribedby: string | null = null;
 
   @property({ attribute: false })

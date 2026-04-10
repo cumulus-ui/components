@@ -13,7 +13,7 @@ const hostStyles = css`:host { display: inline-block; }`;
 export class CsHotspotInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'hotspot-id' })
   hotspotId = '';
 
   @property({ type: String })

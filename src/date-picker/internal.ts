@@ -50,7 +50,7 @@ export class CsDatePickerInternal extends Base {
   @property({ type: String })
   locale = 'en-US';
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'start-of-week' })
   startOfWeek = 0;
 
   @property({ type: String })
@@ -62,7 +62,7 @@ export class CsDatePickerInternal extends Base {
   @property({ attribute: false })
   openCalendarAriaLabel?: DatePickerProps.OpenCalendarAriaLabel;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'read-only' })
   readOnly = false;
 
   @property({ type: Boolean })
@@ -71,13 +71,13 @@ export class CsDatePickerInternal extends Base {
   @property({ type: Boolean })
   warning = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'auto-focus' })
   autoFocus = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'aria-required' })
   override ariaRequired: string | null = null;
 
   @property({ attribute: false })

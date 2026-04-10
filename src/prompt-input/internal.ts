@@ -31,7 +31,7 @@ export class CsPromptInputInternal extends CsBaseElement {
   @property({ type: Boolean })
   disabled = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'read-only' })
   readOnly = false;
 
   @property({ type: Boolean })
@@ -40,16 +40,16 @@ export class CsPromptInputInternal extends CsBaseElement {
   @property({ type: Boolean })
   warning = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'action-button-aria-label' })
   actionButtonAriaLabel = 'Submit';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'action-button-icon-name' })
   actionButtonIconName = 'send';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-action-button' })
   disableActionButton = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
   private get _isInvalid(): boolean {

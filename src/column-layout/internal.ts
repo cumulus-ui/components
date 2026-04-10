@@ -18,13 +18,13 @@ export class CsColumnLayoutInternal extends CsBaseElement {
   @property({ type: String })
   variant: ColumnLayoutProps.Variant = 'default';
 
-  @property({ type: Number })
+  @property({ type: Number, attribute: 'min-column-width' })
   minColumnWidth?: number;
 
   @property({ type: String })
   borders: ColumnLayoutProps.Borders = 'none';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'disable-gutters' })
   disableGutters = false;
 
   override render() {

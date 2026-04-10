@@ -12,10 +12,10 @@ export class CsCodeViewInternal extends CsBaseElement implements CodeViewProps {
   @property({ type: String })
   content = '';
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'line-numbers' })
   lineNumbers = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'wrap-lines' })
   wrapLines = false;
 
   @property({ attribute: false })

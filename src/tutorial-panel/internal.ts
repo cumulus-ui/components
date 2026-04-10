@@ -27,7 +27,7 @@ export class CsTutorialPanelInternal extends CsBaseElement {
   @property({ attribute: false })
   i18nStrings!: TutorialPanelProps['i18nStrings'];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'download-url' })
   downloadUrl?: string;
 
   @state()

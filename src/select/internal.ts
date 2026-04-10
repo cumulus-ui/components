@@ -201,28 +201,28 @@ export class CsSelectInternal extends Base {
   @property({ attribute: false })
   options: SelectProps.Options = [];
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'filtering-type' })
   filteringType: SelectProps.FilteringType = 'none';
 
   @property({ type: String })
   placeholder = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-required' })
   override ariaRequired: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-labelledby' })
   ariaLabelledby: string | null = null;
 
   @property({ type: Boolean })
   invalid = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'filtering-placeholder' })
   filteringPlaceholder = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'selected-aria-label' })
   selectedAriaLabel = '';
 
   @state()

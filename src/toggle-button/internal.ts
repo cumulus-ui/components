@@ -20,19 +20,19 @@ export class CsToggleButtonInternal extends CsBaseElement {
   @property({ type: String })
   variant: ToggleButtonProps.Variant = 'normal';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'icon-name' })
   iconName?: string;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'pressed-icon-name' })
   pressedIconName?: string;
 
   @property({ type: Boolean })
   disabled = false;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'aria-label' })
   override ariaLabel: string | null = null;
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'disabled-reason' })
   disabledReason = '';
 
   override connectedCallback(): void {

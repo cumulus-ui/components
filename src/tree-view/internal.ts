@@ -51,7 +51,7 @@ export class CsTreeViewInternal<T = any> extends CsBaseElement {
   @property({ type: String, attribute: 'aria-describedby' })
   controlAriaDescribedby = '';
 
-  @property({ type: String })
+  @property({ type: String, attribute: 'connector-lines' })
   connectorLines?: TreeViewProps.ConnectorLinesVariant;
 
   @property({ attribute: false })
