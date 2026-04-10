@@ -21,6 +21,15 @@ type BrowseLevel = 'buckets' | 'objects' | 'versions';
 export class CsS3ResourceSelectorInternal extends CsBaseElement {
   static override styles = [sharedStyles, componentStyles, hostStyles];
 
+  @property({ type: String, attribute: 'aria-labelledby' })
+  ariaLabelledby = '';
+
+  @property({ type: String, attribute: 'aria-describedby' })
+  ariaDescribedby = '';
+
+  @property({ type: String, attribute: 'aria-label' })
+  override ariaLabel: string | null = null;
+
   @property({ attribute: false })
   resource: S3ResourceSelectorProps.Resource = { uri: '' };
 

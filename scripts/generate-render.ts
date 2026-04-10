@@ -1141,6 +1141,7 @@ function kebabAttrs(dryRun: boolean): void {
   console.log(`\n═══ Kebab Attributes${dryRun ? ' (dry run)' : ''} ═══\n`);
 
   let totalFixed = 0;
+  let totalAdded = 0;
   let filesChanged = 0;
 
   for (const comp of components.sort()) {
@@ -1148,12 +1149,10 @@ function kebabAttrs(dryRun: boolean): void {
     const original = fs.readFileSync(filePath, 'utf-8');
 
     let compFixed = 0;
-    const patched = original.replace(
+    let src = original.replace(
       /@property\((\{[^}]*\})\)(\s*\n\s*)(override\s+)?(\w+)/g,
       (match, opts, ws, override, name) => {
-        // Only camelCase names need conversion
         if (!/[A-Z]/.test(name)) return match;
-        // Already has explicit attribute: (string or false)
         if (/attribute\s*:/.test(opts)) return match;
         const kebab = toKebab(name);
         if (kebab === name) return match;
@@ -1164,15 +1163,68 @@ function kebabAttrs(dryRun: boolean): void {
       },
     );
 
-    if (compFixed > 0) {
-      if (!dryRun) fs.writeFileSync(filePath, patched);
-      console.log(`  ${comp}: ${compFixed} propert${compFixed === 1 ? 'y' : 'ies'}`);
+    // Add missing native ARIA properties declared in the interface
+    const added = addMissingAriaProps(comp, src);
+    src = added.src;
+
+    const changed = compFixed > 0 || added.names.length > 0;
+    if (changed) {
+      if (!dryRun) fs.writeFileSync(filePath, src);
+      const parts: string[] = [];
+      if (compFixed > 0) parts.push(`${compFixed} kebab`);
+      if (added.names.length > 0) parts.push(`+${added.names.join(', ')}`);
+      console.log(`  ${comp}: ${parts.join(', ')}`);
       totalFixed += compFixed;
+      totalAdded += added.names.length;
       filesChanged++;
     }
   }
 
-  console.log(`\n${totalFixed} propert${totalFixed === 1 ? 'y' : 'ies'} across ${filesChanged} component${filesChanged === 1 ? '' : 's'}${dryRun ? ' (dry run — no files written)' : ''}\n`);
+  const parts: string[] = [];
+  if (totalFixed > 0) parts.push(`${totalFixed} kebab`);
+  if (totalAdded > 0) parts.push(`${totalAdded} added`);
+  console.log(`\n${parts.join(', ') || 'nothing to do'} across ${filesChanged} component${filesChanged === 1 ? '' : 's'}${dryRun ? ' (dry run — no files written)' : ''}\n`);
+}
+
+function addMissingAriaProps(comp: string, src: string): { src: string; names: string[] } {
+  const interfaceProps = extractInterfaceProps(comp);
+  if (interfaceProps.length === 0) return { src, names: [] };
+
+  const actualProps = parseActualProperties(comp);
+  const actualNames = new Set(actualProps.map(p => p.name));
+
+  const missing: { name: string; line: string }[] = [];
+
+  for (const iProp of interfaceProps) {
+    const ariaClass = classifyProp(iProp.name, iProp.typeStr);
+    if (ariaClass !== 'native') continue;
+    if (actualNames.has(iProp.name)) continue;
+
+    const controlName = 'control' + iProp.name.charAt(0).toUpperCase() + iProp.name.slice(1);
+    if (actualNames.has(controlName)) continue;
+
+    const kebab = toKebab(iProp.name);
+    const needsOverride = DOM_LIB_ARIA_STRING_PROPS.has(iProp.name);
+    const prefix = needsOverride ? 'override ' : '';
+    const type = needsOverride ? ': string | null' : '';
+    const defaultVal = needsOverride ? 'null' : "''";
+
+    missing.push({
+      name: iProp.name,
+      line: `  @property({ type: String, attribute: '${kebab}' })\n  ${prefix}${iProp.name}${type} = ${defaultVal};\n`,
+    });
+  }
+
+  if (missing.length === 0) return { src, names: [] };
+
+  const firstPropIdx = src.indexOf('@property(');
+  if (firstPropIdx === -1) return { src, names: [] };
+
+  const lineStart = src.lastIndexOf('\n', firstPropIdx) + 1;
+  const insertion = missing.map(m => m.line).join('\n') + '\n';
+  const patched = src.slice(0, lineStart) + insertion + src.slice(lineStart);
+
+  return { src: patched, names: missing.map(m => m.name) };
 }
 
 // ─── Main ──────────────────────────────────────────────────────
