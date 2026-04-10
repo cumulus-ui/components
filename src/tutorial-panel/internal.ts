@@ -205,6 +205,10 @@ export class CsTutorialPanelInternal extends CsBaseElement {
   }
 
   override render(): TemplateResult {
+    if (!this.i18nStrings) {
+      return html`<slot></slot>`;
+    }
+
     if (this.loading) {
       return this._renderLoading();
     }
