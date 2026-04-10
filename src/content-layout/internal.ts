@@ -27,7 +27,7 @@ export class CsContentLayoutInternal extends CsBaseElement {
   @property({ type: String })
   headerBackgroundStyle?: string;
 
-  private _hasHeader = false;
+  private _hasHeader = true;
   private _hasNotifications = false;
   private _hasBreadcrumbs = false;
   private _hasSecondaryHeader = false;

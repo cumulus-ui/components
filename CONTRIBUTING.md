@@ -285,6 +285,10 @@ Cumulus reimplements Cloudscape for the Web Component platform. Some things work
 
 Use `<slot>` elements to match Cloudscape's content projection. Named slots follow the pattern `<slot name="header">`, `<slot name="footer">`, etc.
 
+### Slot detection and SSR
+
+Components that conditionally render based on whether a slot has content (e.g., `_hasHeader` toggled by `slotchange`) must default slot-presence flags to `true` when the slot is commonly used. During SSR, `slotchange` events never fire — the server renders the template once with default values. If the default is `false`, the SSR output will be wrong (e.g., overlap disabled when a header exists). The `slotchange` handler corrects the value on the client for the uncommon case where the slot is actually empty.
+
 ## Project Structure
 
 ```
