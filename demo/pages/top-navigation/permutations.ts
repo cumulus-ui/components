@@ -5,7 +5,7 @@ import '../../../src/top-navigation/index.js';
 
 @customElement('top-navigation-permutations-page')
 export class TopNavigationPermutationsPage extends PermutationsPageBase {
-  static override styles = css`
+  static override styles = [css`
     :host {
       display: block;
       padding: 0;
@@ -24,7 +24,7 @@ export class TopNavigationPermutationsPage extends PermutationsPageBase {
       font-size: 14px; line-height: 1.15;
       color: #687078; text-transform: uppercase; letter-spacing: 0.5px;
     }
-  `;
+  `];
 
   private _simpleIdentity = { title: 'My Service', href: '/' };
 

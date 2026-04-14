@@ -4,7 +4,7 @@ import { PermutationsPageBase } from '../base.js';
 
 @customElement('demo-test-permutations')
 export class DemoTestPermutations extends PermutationsPageBase {
-  static override styles = css`
+  static override styles = [css`
     :host {
       display: block;
       padding: 24px;
@@ -22,7 +22,7 @@ export class DemoTestPermutations extends PermutationsPageBase {
       color: #687078;
       font-size: 14px;
     }
-  `;
+  `];
 
   override render() {
     return html`

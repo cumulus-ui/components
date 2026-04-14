@@ -12,7 +12,7 @@ import '../../../src/button/index.js';
 
 @customElement('app-layout-permutations-page')
 export class AppLayoutPermutationsPage extends PermutationsPageBase {
-  static override styles = css`
+  static override styles = [css`
     :host {
       display: block;
       font-family: system-ui, sans-serif;
@@ -43,7 +43,7 @@ export class AppLayoutPermutationsPage extends PermutationsPageBase {
       border: 1px solid #e9ebed;
       overflow: hidden;
     }
-  `;
+  `];
 
   @state() private _navOpen = true;
   @state() private _toolsOpen = false;
