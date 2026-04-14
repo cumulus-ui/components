@@ -1,112 +1,81 @@
+// AUTO-GENERATED from vendor/cloudscape-source — do not edit manually
+// Source: vendor/cloudscape-source/pages/space-between/permutations.page.tsx
+// Regenerate: npx tsx scripts/generate-permutations.ts --component space-between
 import { html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { PermutationsPageBase } from '../base.js';
+import { createPermutations } from '../../utils/create-permutations.js';
+import { renderPermutations } from '../../utils/permutations-view.js';
+import type { SpaceBetweenProps } from '../../../src/space-between/interfaces.js';
 import '../../../src/space-between/index.js';
+
+const permutations = createPermutations<Partial<SpaceBetweenProps> & Record<string, unknown>>([
+  {
+    size: ['xxxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'],
+    direction: ['vertical', 'horizontal'],
+    children: [[
+        html`<cs-example-content renderNull></cs-example-content>`,
+        html`<cs-example-content></cs-example-content>`,
+        html`<cs-example-content renderNull></cs-example-content>`,
+        html`<cs-example-content></cs-example-content>`,
+        html`<cs-example-content></cs-example-content>`,
+        html`<cs-example-content renderNull></cs-example-content>`,
+      ]],
+  },
+  {
+    size: ['xs', 'xl'],
+    direction: ['horizontal', 'vertical'],
+    children: [[
+        html`<cs-example-content renderNull></cs-example-content>`,
+        html`<cs-space-between size="s"><cs-example-content renderNull></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content renderNull></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content renderNull></cs-example-content> </cs-space-between>`,
+        html`<cs-example-content renderNull></cs-example-content>`,
+        html`<cs-space-between size="l"><cs-example-content renderNull></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content renderNull></cs-example-content> </cs-space-between>`,
+        html`<cs-space-between size="xxl"><cs-example-content renderNull></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content renderNull></cs-example-content> </cs-space-between>`,
+        html`<cs-example-content renderNull></cs-example-content>`,
+      ]],
+    note: ['nested vertical'],
+  },
+  {
+    size: ['xs', 'xl'],
+    direction: ['horizontal', 'vertical'],
+    children: [[
+        html`<cs-example-content renderNull></cs-example-content>`,
+        html`<cs-space-between size="s" direction="horizontal"><cs-example-content renderNull></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content renderNull></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content renderNull></cs-example-content> </cs-space-between>`,
+        html`<cs-example-content renderNull></cs-example-content>`,
+        html`<cs-space-between size="l" direction="horizontal"><cs-example-content renderNull></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content renderNull></cs-example-content> </cs-space-between>`,
+        html`<cs-space-between size="xxl" direction="horizontal"><cs-example-content renderNull></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content></cs-example-content> <cs-example-content renderNull></cs-example-content> </cs-space-between>`,
+        html`<cs-example-content renderNull></cs-example-content>`,
+      ]],
+    note: ['nested horizontal'],
+  },
+  {
+    size: ['xxl'],
+    direction: ['vertical', 'horizontal'],
+    children: [html`<cs-example-content></cs-example-content>`],
+    note: ['single child'],
+  },
+] as any);
 
 @customElement('space-between-permutations-page')
 export class SpaceBetweenPermutationsPage extends PermutationsPageBase {
   static override styles = [...PermutationsPageBase.styles, css`
-    .item {
-      background: #f2f3f3;
-      border: 1px solid #d1d5db;
-      border-radius: 4px;
-      padding: 8px 12px;
-      font-size: 13px;
+    .permutation-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-start;
     }
-    `];
+  `];
 
   override render() {
     return html`
-      <h2>SpaceBetween — Permutations</h2>
+      <h2>Space Between — Permutations</h2>
 
       <section>
-        <h3>Vertical - Size S (default)</h3>
-        <cs-space-between size="s">
-          <div class="item">Item 1</div>
-          <div class="item">Item 2</div>
-          <div class="item">Item 3</div>
-        </cs-space-between>
-      </section>
-
-      <section>
-        <h3>Vertical - Size XS</h3>
-        <cs-space-between size="xs">
-          <div class="item">Item 1</div>
-          <div class="item">Item 2</div>
-          <div class="item">Item 3</div>
-        </cs-space-between>
-      </section>
-
-      <section>
-        <h3>Vertical - Size M</h3>
-        <cs-space-between size="m">
-          <div class="item">Item 1</div>
-          <div class="item">Item 2</div>
-          <div class="item">Item 3</div>
-        </cs-space-between>
-      </section>
-
-      <section>
-        <h3>Vertical - Size L</h3>
-        <cs-space-between size="l">
-          <div class="item">Item 1</div>
-          <div class="item">Item 2</div>
-          <div class="item">Item 3</div>
-        </cs-space-between>
-      </section>
-
-      <section>
-        <h3>Vertical - Size XL</h3>
-        <cs-space-between size="xl">
-          <div class="item">Item 1</div>
-          <div class="item">Item 2</div>
-          <div class="item">Item 3</div>
-        </cs-space-between>
-      </section>
-
-      <section>
-        <h3>Horizontal - Size S</h3>
-        <cs-space-between direction="horizontal" size="s">
-          <div class="item">Item A</div>
-          <div class="item">Item B</div>
-          <div class="item">Item C</div>
-        </cs-space-between>
-      </section>
-
-      <section>
-        <h3>Horizontal - Size L</h3>
-        <cs-space-between direction="horizontal" size="l">
-          <div class="item">Item A</div>
-          <div class="item">Item B</div>
-          <div class="item">Item C</div>
-        </cs-space-between>
-      </section>
-
-      <section>
-        <h3>Horizontal - Align Center</h3>
-        <cs-space-between direction="horizontal" size="m" align-items="center">
-          <div class="item" style="padding: 4px 12px;">Short</div>
-          <div class="item" style="padding: 24px 12px;">Tall</div>
-          <div class="item" style="padding: 12px;">Medium</div>
-        </cs-space-between>
-      </section>
-
-      <section>
-        <h3>Horizontal - Align End</h3>
-        <cs-space-between direction="horizontal" size="m" align-items="end">
-          <div class="item" style="padding: 4px 12px;">Short</div>
-          <div class="item" style="padding: 24px 12px;">Tall</div>
-          <div class="item" style="padding: 12px;">Medium</div>
-        </cs-space-between>
-      </section>
-
-      <section>
-        <h3>Size XXXS (tightest)</h3>
-        <cs-space-between size="xxxs">
-          <div class="item">Tight 1</div>
-          <div class="item">Tight 2</div>
-          <div class="item">Tight 3</div>
-        </cs-space-between>
+        <h3>All permutations</h3>
+        <div class="permutation-grid">
+          ${renderPermutations(permutations, p => html`<cs-space-between .size=${p.size} .direction=${p.direction} .note=${p.note}>${p.children}</cs-space-between>`)}
+        </div>
       </section>
     `;
   }

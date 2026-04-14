@@ -1,95 +1,154 @@
+// AUTO-GENERATED from vendor/cloudscape-source — do not edit manually
+// Source: vendor/cloudscape-source/pages/tiles/permutations.page.tsx
+// Regenerate: npx tsx scripts/generate-permutations.ts --component tiles
 import { html, css } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import { customElement } from 'lit/decorators.js';
 import { PermutationsPageBase } from '../base.js';
+import { createPermutations } from '../../utils/create-permutations.js';
+import { renderPermutations } from '../../utils/permutations-view.js';
+import type { TilesProps } from '../../../src/tiles/interfaces.js';
 import '../../../src/tiles/index.js';
+
+const permutations = createPermutations<Partial<TilesProps> & Record<string, unknown>>([
+  {
+    value: ['first'],
+    readOnly: [false, true],
+    items: [[
+        { value: 'first', description: 'Short description', label: 'First Button', disabled: true },
+        { value: 'second', description: 'Short description', label: 'Second Button' },
+        { value: 'third', description: 'Short description', label: 'Third Button' },
+        { value: 'fourth', description: 'Short description', label: 'Fourth Button' },
+        { value: 'fifth', description: 'Short description', label: 'Fifth Button' },
+        { value: 'sixth', description: 'Short description', label: 'Sixth Button' },
+      ], [
+        { value: 'first', description: 'Long description describes long', label: 'First Button' },
+        {
+        value: 'second',
+        description: 'Short description',
+        label: 'Label Label Label Label Label Label Label Label Label Label',
+        disabled: true,
+      },
+        {
+        value: 'third',
+        description: 'ContinuouslyLongDescriptionContinuouslyLongDescriptionContinuouslyLongDescription',
+        label: 'Third Button',
+      },
+        {
+        value: 'fourth',
+        description: 'Short description',
+        label: 'LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel',
+      },
+        {
+        value: 'fifth',
+        description: 'Long description describes long description describes long description describes long description describes long description describes long description describes long description describes long',
+        label: 'Fourth Button',
+      },
+        { value: 'sixth', description: 'Short description', label: 'Sixth Button' },
+      ], [
+        { value: 'seventh', description: 'Short Description', label: 'First Button', disabled: true },
+        { value: 'second', description: 'Short description', label: 'Second Button' },
+        { value: 'ninth', description: '', label: 'Label' },
+        {
+        value: 'first',
+        description: 'Short description',
+        label: 'Third Button',
+        image: html`<img src="[dynamic]" alt="Amazon">`,
+      },
+        { value: 'third', description: 'Short description', label: 'Third Button' },
+        {
+        value: 'fourth',
+        description: 'Short description',
+        label: 'LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel',
+      },
+        {
+        value: 'fifth',
+        description: 'Long description describes long description describes long description describes long description describes long description describes long description describes long description describes long',
+        label: 'Fourth Button',
+      },
+        {
+        value: 'sixth',
+        description: 'Short description',
+        label: 'Third Button',
+        image: html`<img src="[dynamic]" alt="Amazon">`,
+      },
+      ], [
+        { value: 'first', description: 'Short description', label: 'First Button', disabled: true },
+        { value: 'second', description: 'Short description', label: 'Second Button' },
+        {
+        value: 'third',
+        description: 'Short description',
+        label: 'Third Button',
+        image: html`<img src="[dynamic]" alt="Amazon">`,
+      },
+        { value: 'fourth', description: 'Short description', label: 'Fourth Button' },
+        { value: 'fifth', description: 'Short description', label: 'Fifth Button' },
+        {
+        value: 'sixth',
+        description: 'Short description',
+        label: 'Sixth Button Sixth Button Sixth Button Sixth Button Sixth Button',
+        image: html`<img src="[dynamic]" alt="Amazon">`,
+      },
+      ]],
+  },
+  {
+    value: ['first'],
+    columns: [undefined, 4],
+    items: [[
+        {
+        value: 'first',
+        label: 'First Button',
+        description: 'Short description',
+        disabled: true,
+        image: html`<img src="[dynamic]" alt="Amazon">`,
+      },
+        {
+        value: 'second',
+        label: 'Second Button',
+        description: 'Short description',
+        image: html`<img src="[dynamic]" alt="Amazon">`,
+      },
+        {
+        value: 'third',
+        label: 'Third Button',
+        description: 'Long text, long enough to wrap.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Whatever.',
+        image: html`<img src="[dynamic]" alt="Amazon">`,
+      },
+        {
+        value: 'fourth',
+        label: 'Fourth Button',
+        description: 'Short description',
+        image: html`<img src="[dynamic]" alt="Amazon">`,
+      },
+        {
+        value: 'fifth',
+        label: 'Fourth Button',
+        description: 'Short description',
+        image: html`<img src="[dynamic]" alt="Amazon">`,
+      },
+      ]],
+  },
+] as any);
 
 @customElement('tiles-permutations-page')
 export class TilesPermutationsPage extends PermutationsPageBase {
   static override styles = [...PermutationsPageBase.styles, css`
-    .result {
-      margin-top: 8px;
-      font-size: 13px;
-      color: #0972d3;
-      font-family: monospace;
+    .permutation-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-start;
     }
-    `];
-
-  @state() private _value1 = 't1';
-  @state() private _value2 = '';
+  `];
 
   override render() {
     return html`
       <h2>Tiles — Permutations</h2>
 
       <section>
-        <h3>Default (3 columns)</h3>
-        <cs-tiles
-          .value=${this._value1}
-          .items=${[
-            { value: 't1', label: 'Tile One', description: 'First tile description' },
-            { value: 't2', label: 'Tile Two', description: 'Second tile description' },
-            { value: 't3', label: 'Tile Three', description: 'Third tile description' },
-          ]}
-          aria-label="Default tiles"
-          @change=${(e: CustomEvent) => { this._value1 = e.detail.value; }}
-        ></cs-tiles>
-        <div class="result">Selected: ${this._value1}</div>
-      </section>
-
-      <section>
-        <h3>2 Columns</h3>
-        <cs-tiles
-          .columns=${2}
-          .value=${this._value2}
-          .items=${[
-            { value: 'a', label: 'Alpha', description: 'Option Alpha details' },
-            { value: 'b', label: 'Beta', description: 'Option Beta details' },
-            { value: 'c', label: 'Gamma', description: 'Option Gamma details' },
-            { value: 'd', label: 'Delta', description: 'Option Delta details' },
-          ]}
-          aria-label="Two-column tiles"
-          @change=${(e: CustomEvent) => { this._value2 = e.detail.value; }}
-        ></cs-tiles>
-        <div class="result">Selected: ${this._value2 || '(none)'}</div>
-      </section>
-
-      <section>
-        <h3>With Disabled Tiles</h3>
-        <cs-tiles
-          value="enabled-a"
-          .items=${[
-            { value: 'enabled-a', label: 'Available', description: 'This tile is selectable' },
-            { value: 'disabled-a', label: 'Unavailable', description: 'This tile is disabled', disabled: true },
-            { value: 'enabled-b', label: 'Also Available', description: 'This tile is selectable too' },
-          ]}
-          aria-label="Tiles with disabled option"
-        ></cs-tiles>
-      </section>
-
-      <section>
-        <h3>Disabled Group</h3>
-        <cs-tiles
-          disabled
-          value="x"
-          .items=${[
-            { value: 'x', label: 'Selected', description: 'But the whole group is disabled' },
-            { value: 'y', label: 'Other', description: 'Also disabled' },
-          ]}
-          aria-label="Fully disabled tiles"
-        ></cs-tiles>
-      </section>
-
-      <section>
-        <h3>Read Only</h3>
-        <cs-tiles
-          read-only
-          value="ro-1"
-          .items=${[
-            { value: 'ro-1', label: 'Read-only selected', description: 'Cannot change' },
-            { value: 'ro-2', label: 'Read-only other', description: 'Also cannot change' },
-          ]}
-          aria-label="Read-only tiles"
-        ></cs-tiles>
+        <h3>All permutations</h3>
+        <div class="permutation-grid">
+          ${renderPermutations(permutations, p => html`<cs-tiles .value=${p.value} .readOnly=${p.readOnly} .items=${p.items} .columns=${p.columns}></cs-tiles>`)}
+        </div>
       </section>
     `;
   }

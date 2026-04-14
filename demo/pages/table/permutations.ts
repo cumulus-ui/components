@@ -1,171 +1,147 @@
-import { html } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+// AUTO-GENERATED from vendor/cloudscape-source — do not edit manually
+// Source: vendor/cloudscape-source/pages/table/permutations.page.tsx
+// Regenerate: npx tsx scripts/generate-permutations.ts --component table
+import { html, css } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import { PermutationsPageBase } from '../base.js';
+import { createPermutations } from '../../utils/create-permutations.js';
+import { renderPermutations } from '../../utils/permutations-view.js';
+import type { TableProps } from '../../../src/table/interfaces.js';
 import '../../../src/table/index.js';
 import '../../../src/header/index.js';
+import '../../../src/property-filter/index.js';
 
-interface Instance {
-  id: string;
-  name: string;
-  type: string;
-  state: string;
-  az: string;
-}
-
-const ITEMS: Instance[] = [
-  { id: '1', name: 'web-server-01', type: 't3.micro', state: 'Running', az: 'us-east-1a' },
-  { id: '2', name: 'api-gateway', type: 't3.small', state: 'Stopped', az: 'us-east-1b' },
-  { id: '3', name: 'db-primary', type: 'm5.large', state: 'Running', az: 'us-east-1a' },
-  { id: '4', name: 'worker-node', type: 'c5.xlarge', state: 'Pending', az: 'us-west-2a' },
-  { id: '5', name: 'cache-layer', type: 'r5.large', state: 'Running', az: 'us-east-1c' },
-];
-
-const COLUMNS = [
-  { id: 'name', header: 'Instance name', cell: (item: Instance) => item.name, sortingField: 'name' },
-  { id: 'type', header: 'Type', cell: (item: Instance) => item.type },
-  { id: 'state', header: 'State', cell: (item: Instance) => item.state, sortingField: 'state' },
-  { id: 'az', header: 'Availability zone', cell: (item: Instance) => item.az },
-];
+const permutations = createPermutations<Partial<TableProps> & Record<string, unknown>>([
+  {
+    wrapLines: [true, false],
+    columnDefinitions: [undefined /* PROPERTY_COLUMNS.map(column => ({ ...... */],
+    items: [[
+        {
+        name: 'Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color',
+        value: '#000000',
+        type: 'String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String',
+      },
+        {
+        name: 'Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width',
+        value: '100',
+        type: 'Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer',
+      },
+        {
+        name: 'Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height',
+        value: '200',
+        type: 'Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer',
+      },
+      ]],
+  },
+  {
+    wrapLines: [true],
+    columnDefinitions: [undefined /* PROPERTY_COLUMNS.map((column, index) ... */],
+    items: [[
+        {
+        name: 'Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color Color',
+        value: '#000000',
+        type: 'String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String String',
+      },
+        {
+        name: 'Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width Width',
+        value: '100',
+        type: 'Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer',
+      },
+        {
+        name: 'Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height Height',
+        value: '200',
+        type: 'Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer Integer',
+      },
+      ]],
+  },
+  {
+    columnDefinitions: [undefined /* PROPERTY_COLUMNS */],
+    items: [[
+        { name: 'Color', value: '#000000', type: 'String' },
+        { name: 'Width', value: '100', type: 'Integer' },
+        { name: 'Height', value: '200', type: 'Integer' },
+      ]],
+  },
+  {
+    columnDefinitions: [[
+        { id: 'variable', header: 'Property', cell: '[function]', width: 100, minWidth: '300px' },
+        { id: 'type', header: 'Type', cell: '[function]', width: 300, minWidth: '100px' },
+        { id: 'value', header: 'Value', cell: '[function]', width: 300, minWidth: '300px' },
+        { id: 'updatedDate', header: 'Updated date', cell: '[function]', width: 150 },
+        { id: 'description', header: 'Description', cell: '[function]', minWidth: '100px', width: 150 },
+      ]],
+    items: [[
+        { name: 'Color', value: '#000000', type: 'String', updatedDate: '03.12.2018', description: 'First' },
+        { name: 'Width', value: '100', type: 'Integer', updatedDate: '05.02.2019', description: 'Second' },
+        { name: 'Height', value: '200', type: 'Integer', updatedDate: '01.10.2019', description: 'Third' },
+      ]],
+  },
+  {
+    columnDefinitions: [undefined /* SORTABLE_COLUMNS */],
+    items: [undefined /* createSimpleItems(3) */],
+    sortingColumn: [undefined /* SORTABLE_COLUMNS[0] */, undefined],
+    sortingDisabled: [true, false],
+  },
+  {
+    columnDefinitions: [undefined /* SORTABLE_COLUMNS */],
+    items: [undefined /* createSimpleItems(3) */],
+    sortingColumn: [undefined /* SORTABLE_COLUMNS[0] */],
+    sortingDescending: [true],
+  },
+  {
+    columnDefinitions: [undefined /* SORTABLE_COLUMNS */],
+    items: [undefined /* createSimpleItems(3) */],
+    variant: [undefined, 'full-page'],
+    pagination: [undefined, 'pagination'],
+    footer: [undefined, 'footer'],
+  },
+  {
+    columnDefinitions: [undefined /* SORTABLE_COLUMNS */],
+    header: [html`<cs-header variant="h2">Table Header</cs-header>`],
+    pagination: ['pagination'],
+    filter: [html`<cs-property-filter .filteringProperties=${[{ key: 'text', operators: ['=', '!=', ':', '!:'], propertyLabel: 'Text', groupValuesLabel: 'Text values' }, { key: 'number', operators: ['=', '!=', ':', '!:'], propertyLabel: 'Number', groupValuesLabel: 'Number values' }]} i18nStrings="[dynamic]" onChange="[expr]"></cs-property-filter>`],
+    preferences: ['preferences'],
+    items: [undefined /* createSimpleItems(3) */],
+  },
+  {
+    header: ['Vertical align'],
+    columnDefinitions: [undefined /* VERTICAL_ALIGN_COLUMNS */],
+    cellVerticalAlign: ['top'],
+    items: [undefined /* createSimpleItems(3) */],
+    variant: [undefined, 'full-page'],
+    selectionType: ['multi'],
+  },
+  {
+    columnDefinitions: [[
+        { id: 'variable', header: 'Property', cell: '[function]', isRowHeader: true, width: 150 },
+        { id: 'type', header: 'Type', cell: '[function]', width: 150 },
+        { id: 'value', header: 'Value', cell: '[function]' },
+      ]],
+    items: [[{ name: 'Color', value: '#000000', type: 'String' }]],
+    stickyHeader: [true],
+  },
+] as any);
 
 @customElement('table-permutations-page')
 export class TablePermutationsPage extends PermutationsPageBase {
-
-  @state() private _sortingColumn?: { sortingField?: string };
-  @state() private _sortingDescending = false;
-  @state() private _selectedMulti: Instance[] = [];
-  @state() private _selectedSingle: Instance[] = [];
-
-  private get _sortedItems(): Instance[] {
-    if (!this._sortingColumn?.sortingField) return [...ITEMS];
-    const field = this._sortingColumn.sortingField as keyof Instance;
-    const sorted = [...ITEMS].sort((a, b) => String(a[field]).localeCompare(String(b[field])));
-    return this._sortingDescending ? sorted.reverse() : sorted;
-  }
-
-  private _onSortingChange(e: CustomEvent): void {
-    this._sortingColumn = e.detail.sortingColumn;
-    this._sortingDescending = !!e.detail.isDescending;
-  }
-
-  private _onMultiSelectionChange(e: CustomEvent): void {
-    this._selectedMulti = e.detail.selectedItems;
-  }
-
-  private _onSingleSelectionChange(e: CustomEvent): void {
-    this._selectedSingle = e.detail.selectedItems;
-  }
+  static override styles = [...PermutationsPageBase.styles, css`
+    .permutation-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-start;
+    }
+  `];
 
   override render() {
     return html`
       <h2>Table — Permutations</h2>
 
       <section>
-        <h3>Basic table</h3>
-        <cs-table
-          .items=${ITEMS}
-          .columnDefinitions=${COLUMNS}
-        >
-          <cs-header slot="header" counter="(${ITEMS.length})">Instances</cs-header>
-        </cs-table>
-      </section>
-
-      <section>
-        <h3>With sorting</h3>
-        <cs-table
-          .items=${this._sortedItems}
-          .columnDefinitions=${COLUMNS}
-          .sortingColumn=${this._sortingColumn}
-          .sortingDescending=${this._sortingDescending}
-          @sortingChange=${this._onSortingChange}
-        >
-          <cs-header slot="header">Sortable instances</cs-header>
-        </cs-table>
-      </section>
-
-      <section>
-        <h3>Multi-selection</h3>
-        <cs-table
-          .items=${ITEMS}
-          .columnDefinitions=${COLUMNS}
-          selection-type="multi"
-          track-by="id"
-          .selectedItems=${this._selectedMulti}
-          @selectionChange=${this._onMultiSelectionChange}
-        >
-          <cs-header slot="header" counter="(${this._selectedMulti.length}/${ITEMS.length})">
-            Multi-select instances
-          </cs-header>
-        </cs-table>
-      </section>
-
-      <section>
-        <h3>Single selection</h3>
-        <cs-table
-          .items=${ITEMS}
-          .columnDefinitions=${COLUMNS}
-          selection-type="single"
-          track-by="id"
-          .selectedItems=${this._selectedSingle}
-          @selectionChange=${this._onSingleSelectionChange}
-        >
-          <cs-header slot="header">Single-select instances</cs-header>
-        </cs-table>
-      </section>
-
-      <section>
-        <h3>Loading state</h3>
-        <cs-table
-          .items=${[]}
-          .columnDefinitions=${COLUMNS}
-          loading
-          loading-text="Loading instances…"
-        >
-          <cs-header slot="header">Loading instances</cs-header>
-        </cs-table>
-      </section>
-
-      <section>
-        <h3>Empty state</h3>
-        <cs-table
-          .items=${[]}
-          .columnDefinitions=${COLUMNS}
-        >
-          <cs-header slot="header">No instances</cs-header>
-          <div slot="empty">No instances found. Create one to get started.</div>
-        </cs-table>
-      </section>
-
-      <section>
-        <h3>Striped rows</h3>
-        <cs-table
-          .items=${ITEMS}
-          .columnDefinitions=${COLUMNS}
-          striped-rows
-        >
-          <cs-header slot="header">Striped instances</cs-header>
-        </cs-table>
-      </section>
-
-      <section>
-        <h3>Wrap lines</h3>
-        <cs-table
-          .items=${ITEMS}
-          .columnDefinitions=${COLUMNS}
-          wrap-lines
-        >
-          <cs-header slot="header">Wrapped instances</cs-header>
-        </cs-table>
-      </section>
-
-      <section>
-        <h3>Compact density</h3>
-        <cs-table
-          .items=${ITEMS}
-          .columnDefinitions=${COLUMNS}
-          content-density="compact"
-        >
-          <cs-header slot="header">Compact instances</cs-header>
-        </cs-table>
+        <h3>All permutations</h3>
+        <div class="permutation-grid">
+          ${renderPermutations(permutations, p => html`<cs-table .wrapLines=${p.wrapLines} .columnDefinitions=${p.columnDefinitions} .items=${p.items} .sortingColumn=${p.sortingColumn} .sortingDisabled=${p.sortingDisabled} .sortingDescending=${p.sortingDescending} .variant=${p.variant} .pagination=${p.pagination} .footer=${p.footer} .header=${p.header} .filter=${p.filter} .preferences=${p.preferences} .cellVerticalAlign=${p.cellVerticalAlign} .selectionType=${p.selectionType} .stickyHeader=${p.stickyHeader}></cs-table>`)}
+        </div>
       </section>
     `;
   }

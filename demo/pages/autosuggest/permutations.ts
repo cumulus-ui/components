@@ -1,111 +1,146 @@
+// AUTO-GENERATED from vendor/cloudscape-source — do not edit manually
+// Source: vendor/cloudscape-source/pages/autosuggest/permutations.page.tsx
+// Regenerate: npx tsx scripts/generate-permutations.ts --component autosuggest
 import { html, css } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import { customElement } from 'lit/decorators.js';
 import { PermutationsPageBase } from '../base.js';
+import { createPermutations } from '../../utils/create-permutations.js';
+import { renderPermutations } from '../../utils/permutations-view.js';
+import type { AutosuggestProps } from '../../../src/autosuggest/interfaces.js';
 import '../../../src/autosuggest/index.js';
 
-const PROGRAMMING_LANGUAGES = [
-  { value: 'typescript', label: 'TypeScript' },
-  { value: 'javascript', label: 'JavaScript' },
-  { value: 'python', label: 'Python' },
-  { value: 'rust', label: 'Rust' },
-  { value: 'go', label: 'Go' },
-  { value: 'java', label: 'Java' },
-  { value: 'csharp', label: 'C#' },
-  { value: 'ruby', label: 'Ruby' },
-];
+const permutations = createPermutations<Partial<AutosuggestProps> & Record<string, unknown>>([
+  {
+    ariaLabel: ['some label'],
+    placeholder: [undefined, 'Enter some data'],
+    invalid: [false, true],
+    value: ['', 'op', 'Option 2', 'Other Option'],
+    options: [[{ value: 'option1', label: 'Option 1' }, { value: 'option2', label: 'Option 2' }], undefined],
+    enteredTextLabel: [undefined /* enteredTextLabel */],
+  },
+  {
+    ariaLabel: ['some label'],
+    placeholder: ['Enter some data'],
+    warning: [true],
+    value: ['op'],
+    options: [[{ value: 'option1', label: 'Option 1' }, { value: 'option2', label: 'Option 2' }], undefined],
+    enteredTextLabel: [undefined /* enteredTextLabel */],
+  },
+  {
+    ariaLabel: ['some label'],
+    placeholder: ['Enter some data'],
+    invalid: [true],
+    warning: [true],
+    value: ['op'],
+    options: [[{ value: 'option1', label: 'Option 1' }, { value: 'option2', label: 'Option 2' }]],
+    enteredTextLabel: [undefined /* enteredTextLabel */],
+  },
+  {
+    ariaLabel: ['some label'],
+    options: [undefined],
+    value: ['', 'Some value'],
+    empty: [undefined, 'No options', html` No options, but <a>a link</a> `],
+    enteredTextLabel: [undefined /* enteredTextLabel */],
+  },
+  {
+    ariaLabel: ['some label'],
+    disabled: [true, false],
+    invalid: [true, false],
+    value: ['', 'Some option'],
+    placeholder: ['Enter some data'],
+    enteredTextLabel: [undefined /* enteredTextLabel */],
+  },
+  {
+    ariaLabel: ['some label'],
+    disabled: [true, false],
+    warning: [true],
+    value: ['', 'Some option'],
+    placeholder: ['Enter some data'],
+    enteredTextLabel: [undefined /* enteredTextLabel */],
+  },
+  {
+    ariaLabel: ['some label'],
+    readOnly: [true],
+    value: ['', 'Some option'],
+    placeholder: ['Enter some data'],
+    enteredTextLabel: [undefined /* enteredTextLabel */],
+  },
+  {
+    value: [''],
+    ariaLabel: ['some label'],
+    statusType: ['loading'],
+    loadingText: ['Loading more items', undefined],
+    enteredTextLabel: [undefined /* enteredTextLabel */],
+  },
+  {
+    value: [''],
+    ariaLabel: ['some label'],
+    statusType: ['error'],
+    errorText: ['Error while loading', undefined],
+    enteredTextLabel: [undefined /* enteredTextLabel */],
+  },
+  {
+    value: ['', 'op', 'Option 2', 'tag1', 'this is a label tag', 'thisisafilteringtag'],
+    options: [[
+        { value: 'option1', label: 'Option 1', tags: ['tag1', 'tag2'] },
+        { value: 'option2', label: 'Option 2', filteringTags: ['thisisafilteringtag'] },
+      ], [{ value: 'option1', label: 'Option 1', labelTag: 'this is a label tag' }, { value: 'option2', label: 'Option 2' }], [
+        { value: 'option1', label: 'Option 1', tags: ['tag1', 'tag2'], labelTag: 'this is a label tag' },
+        { value: 'option2', label: 'Option 2' },
+      ], [
+        { value: 'option1', label: 'Option 1', tags: ['tag1', 'tag2'], description: 'Description1' },
+        { value: 'option2', label: 'Option 2' },
+      ], [
+        { value: 'option1', label: 'Option 1', iconAriaLabel: 'amazon-logo', iconUrl: undefined /* img */ },
+        {
+        value: 'option2',
+        label: 'Option 2',
+        iconSvg: html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" focusable="false"><circle cx="8" cy="8" r="7"> <circle cx="8" cy="8" r="3"> </svg>`,
+      },
+      ], [
+        {
+        value: 'option1',
+        label: 'Option 1',
+        tags: ['tag1', 'tag2'],
+        iconSvg: html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" focusable="false"><circle cx="8" cy="8" r="7"> <circle cx="8" cy="8" r="3"> </svg>`,
+      },
+        { value: 'option2', label: 'Option 2' },
+      ]],
+    enteredTextLabel: [undefined /* enteredTextLabel */],
+  },
+  {
+    value: [''],
+    enteredTextLabel: [undefined /* enteredTextLabel */],
+    options: [undefined /* range(20).map(i => ({ value: `option$... */],
+    virtualScroll: [true, false],
+  },
+  {
+    value: ['some value'],
+    enteredTextLabel: [undefined /* enteredTextLabel */],
+    options: [[]],
+    virtualScroll: [true, false],
+  },
+] as any);
 
 @customElement('autosuggest-permutations-page')
 export class AutosuggestPermutationsPage extends PermutationsPageBase {
   static override styles = [...PermutationsPageBase.styles, css`
-    .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; }
-    cs-autosuggest { min-width: 250px; }
-    .result { margin-top: 8px; font-size: 13px; color: #0972d3; font-family: monospace; }
-    `];
-
-  @state() private _value1 = '';
-  @state() private _value2 = 'Python';
-  @state() private _selectedOption = '';
+    .permutation-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-start;
+    }
+  `];
 
   override render() {
     return html`
       <h2>Autosuggest — Permutations</h2>
 
       <section>
-        <h3>Default</h3>
-        <div class="row">
-          <cs-autosuggest
-            aria-label="Programming language"
-            placeholder="Search languages…"
-            .value=${this._value1}
-            .options=${PROGRAMMING_LANGUAGES}
-            @change=${(e: CustomEvent<{ value: string }>) => { this._value1 = e.detail.value; }}
-            @select=${(e: CustomEvent<{ value: string }>) => { this._selectedOption = e.detail.value; }}
-          ></cs-autosuggest>
-        </div>
-        <div class="result">Value: ${this._value1 || '(empty)'}</div>
-        <div class="result">Last selected: ${this._selectedOption || '(none)'}</div>
-      </section>
-
-      <section>
-        <h3>With initial value</h3>
-        <div class="row">
-          <cs-autosuggest
-            aria-label="Language with value"
-            .value=${this._value2}
-            .options=${PROGRAMMING_LANGUAGES}
-            @change=${(e: CustomEvent<{ value: string }>) => { this._value2 = e.detail.value; }}
-          ></cs-autosuggest>
-        </div>
-      </section>
-
-      <section>
-        <h3>With disabled options</h3>
-        <div class="row">
-          <cs-autosuggest
-            aria-label="With disabled options"
-            placeholder="Some options disabled…"
-            .options=${[
-              { value: 'active', label: 'Active option' },
-              { value: 'disabled1', label: 'Disabled option', disabled: true },
-              { value: 'another', label: 'Another active' },
-            ]}
-          ></cs-autosuggest>
-        </div>
-      </section>
-
-      <section>
-        <h3>Disabled</h3>
-        <div class="row">
-          <cs-autosuggest
-            aria-label="Disabled autosuggest"
-            value="Cannot edit"
-            disabled
-            .options=${PROGRAMMING_LANGUAGES}
-          ></cs-autosuggest>
-        </div>
-      </section>
-
-      <section>
-        <h3>Read-only</h3>
-        <div class="row">
-          <cs-autosuggest
-            aria-label="Read-only autosuggest"
-            value="Read only text"
-            read-only
-            .options=${PROGRAMMING_LANGUAGES}
-          ></cs-autosuggest>
-        </div>
-      </section>
-
-      <section>
-        <h3>Invalid</h3>
-        <div class="row">
-          <cs-autosuggest
-            aria-label="Invalid autosuggest"
-            value="Bad value"
-            invalid
-            .options=${PROGRAMMING_LANGUAGES}
-          ></cs-autosuggest>
+        <h3>All permutations</h3>
+        <div class="permutation-grid">
+          ${renderPermutations(permutations, p => html`<cs-autosuggest .ariaLabel=${p.ariaLabel} .placeholder=${p.placeholder} .invalid=${p.invalid} .value=${p.value} .options=${p.options} .enteredTextLabel=${p.enteredTextLabel} .warning=${p.warning} .empty=${p.empty} .disabled=${p.disabled} .readOnly=${p.readOnly} .statusType=${p.statusType} .loadingText=${p.loadingText} .errorText=${p.errorText} .virtualScroll=${p.virtualScroll}></cs-autosuggest>`)}
         </div>
       </section>
     `;

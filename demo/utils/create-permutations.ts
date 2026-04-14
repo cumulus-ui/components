@@ -1,5 +1,7 @@
+import type { TemplateResult } from 'lit';
+
 export type PermutationSet<T> = {
-  [K in keyof T]?: ReadonlyArray<T[K]>;
+  [K in keyof T]?: ReadonlyArray<T[K] | TemplateResult>;
 };
 
 export function createPermutations<T>(sets: PermutationSet<T>[]): T[] {
@@ -14,7 +16,7 @@ export function createPermutations<T>(sets: PermutationSet<T>[]): T[] {
       }
       const key = keys[index];
       for (const value of set[key]!) {
-        current[key] = value;
+        (current as Record<string, unknown>)[key as string] = value;
         recurse(index + 1, current);
       }
     }
